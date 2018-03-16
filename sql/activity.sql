@@ -1,0 +1,20 @@
+CREATE TABLE `activity` (
+  `id` int(11) auto_increment,
+  `activity_name` varchar(50) NOT NULL COMMENT '活动名称',
+  `activity_code` varchar(20) NOT NULL COMMENT '活动编码',
+  `activity_shops` varchar(200) NOT NULL COMMENT '活动门店',
+  `all_shops` int DEFAULT 1 COMMENT '是否适合所有门店，设置为1时，activity_shop无效',
+  `description` text DEFAULT NULL COMMENT '门店图文介绍',
+  `last_long` int DEFAULT 1 COMMENT '是否长期有效，设置为长期有效时，start_date,end_date无效',
+  `start_date` datetime NOT NULL COMMENT '活动开始时间',
+  `end_date` datetime NOT NULL COMMENT '活动结束时间',
+  `priority` int NOT NULL COMMENT '优先级',
+  `active` int DEFAULT 1 COMMENT '活动是否有效：1.有效，0.无效',
+  `coupons` varchar(200) COMMENT '优惠券id',
+  `exchange` varchar(200) COMMENT '提领券id',
+  `points` varchar(200) COMMENT '积分规则id',
+  `created_at` datetime COMMENT '创建时间',
+  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  primary key(`id`),
+  unique(`activity_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=148 COMMENT='活动表';

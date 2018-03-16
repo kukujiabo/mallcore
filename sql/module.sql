@@ -1,0 +1,20 @@
+CREATE TABLE `sys_module` (
+  `module_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '模块ID',
+  `module_name` varchar(50) NOT NULL DEFAULT '' COMMENT '模块标题',
+  `module` varchar(255) NOT NULL DEFAULT 'admin' COMMENT '项目名',
+  `controller` varchar(255) NOT NULL DEFAULT '' COMMENT '控制器名',
+  `method` varchar(255) NOT NULL DEFAULT '' COMMENT '方法名',
+  `pid` int(10) NOT NULL DEFAULT '0' COMMENT '上级模块ID',
+  `level` int(11) NOT NULL DEFAULT '1' COMMENT '深度等级',
+  `url` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
+  `is_menu` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否是菜单',
+  `is_dev` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否仅开发者模式可见',
+  `sort` int(10) NOT NULL DEFAULT '0' COMMENT '排序（同级有效）',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL,
+  `desc` text COMMENT '模块描述',
+  `module_picture` varchar(255) NOT NULL DEFAULT '' COMMENT '模块图片',
+  `icon_class` varchar(255) NOT NULL DEFAULT '' COMMENT '矢量图class',
+  `is_control_auth` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否控制权限',
+  PRIMARY KEY (`module_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10007 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=606 COMMENT='系统模块表';
