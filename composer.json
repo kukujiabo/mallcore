@@ -19,7 +19,7 @@
         "phalapi/kernal": "2.0.*",
         "phalapi/task": "2.0.*",
         "qiniu/php-sdk": "dev-master",
-        "phpoffice/phpexcel": "dev-master",
+        "phpoffice/phpspreadsheet": "dev-master",
         "zoujingli/wechat-php-sdk": "dev-master",
         "submail/submail-php": "^2.3@dev",
         "milon/barcode": "^5.2"
