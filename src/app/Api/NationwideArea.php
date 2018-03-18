@@ -51,6 +51,14 @@ class NationwideArea extends BaseApi {
 
         'active' => 'active|int|false||状态：1，有效；0，无效',
       
+      ),
+
+      'queryCity' => array(
+      
+        'name' => 'name|string|false||城市名称',
+
+        'id' => 'id|int|false||城市id'
+      
       )
       
     ));
@@ -155,6 +163,20 @@ class NationwideArea extends BaseApi {
     $data = $this->retriveRuleParams('update');
   
     return $this->dm->update($data);
+  
+  }
+
+  /**
+   * 查询城市数据
+   * @desc 查询城市数据
+   *
+   * @return array list
+   */
+  public function queryCity() {
+  
+    $data = $this->retriveRuleParams('queryCity');
+  
+    return $this->dm->queryCity($data);
   
   }
 

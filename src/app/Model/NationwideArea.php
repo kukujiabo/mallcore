@@ -13,7 +13,9 @@ class NationwideArea extends BaseModel {
 
     protected $_queryOptionRule = array(
 
-      'id' => 'in'
+      'id' => 'in',
+
+      'name' => 'like'
 
     );
 

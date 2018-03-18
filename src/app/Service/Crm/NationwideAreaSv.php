@@ -124,5 +124,17 @@ class NationwideAreaSv extends BaseService {
   
   }
 
+  /**
+   * 查询城市
+   */
+  public function queryCity($condition) {
+  
+    $condition['level'] = 2;
+
+    $cities = self::all($condition);
+     
+    return $cities; 
+  
+  }
 
 }

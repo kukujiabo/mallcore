@@ -51,4 +51,10 @@ class NationwideAreaDm {
 
   }
 
+  public function queryCity($data) {
+  
+    return NationwideAreaSv::queryCity($data);
+  
+  }
+
 }
