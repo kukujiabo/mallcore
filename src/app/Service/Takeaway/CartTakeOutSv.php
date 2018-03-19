@@ -207,7 +207,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
             // 添加
             $info = '';
 
-            $data['cart_id'] = rand(1000000000, 4000000000);
+            $data['cart_id'] = rand(100000000, 999999999);
 
             $info = self::add($data);
 
