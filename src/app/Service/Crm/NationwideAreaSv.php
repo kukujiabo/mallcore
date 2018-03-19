@@ -22,7 +22,7 @@ class NationwideAreaSv extends BaseService {
 
     $where = array();
 
-    $fields = 'id,name,active,parent as parent_id,py_short';
+    $fields = 'id,name,active,parent as parent_id,py_short,short,hot';
 
     if ($condition['type'] == 1) {
 
