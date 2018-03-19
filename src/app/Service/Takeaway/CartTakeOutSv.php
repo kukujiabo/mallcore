@@ -85,7 +85,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         unset($condition['way']);
 
-        return self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+        return self::all($condition, $condition['order']);
 
     }
 

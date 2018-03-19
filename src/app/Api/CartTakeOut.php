@@ -78,11 +78,7 @@ class CartTakeOut extends BaseApi {
 
         'fields' => 'fields|string|false|*|查询字段',
 
-        'order' => 'order|string|false||排序',
-
-        'page' => 'page|int|true|1|页码',
-
-        'page_size' => 'page_size|int|true|20|每页数据条数'
+        'order' => 'order|string|false||排序'
 
       ),
 
