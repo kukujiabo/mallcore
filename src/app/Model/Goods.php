@@ -12,6 +12,8 @@ class Goods extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+      'goods_id' => 'in',
+
       'goods_name' => 'like'
 
     );  

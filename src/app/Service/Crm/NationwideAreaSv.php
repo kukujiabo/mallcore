@@ -22,6 +22,8 @@ class NationwideAreaSv extends BaseService {
 
     $where = array();
 
+    $fields = 'id,name,active,parent as parent_id,py_short';
+
     if ($condition['type'] == 1) {
 
       return NationwideArea::getAreaList($where);
@@ -38,7 +40,7 @@ class NationwideAreaSv extends BaseService {
 
       }
 
-      return NationwideArea::queryList($where, 'id,name,active,parent as parent_id', 'id asc', 0, 10000);
+      return NationwideArea::queryList($where, $fields, 'id asc', 0, 10000);
 
     } elseif ($condition['type'] == 3) {
 
@@ -52,7 +54,7 @@ class NationwideAreaSv extends BaseService {
 
       }
 
-      return NationwideArea::queryList($where, 'id,name,active,parent as parent_id', 'id asc', 0, 10000);
+      return NationwideArea::queryList($where, $fields, 'id asc', 0, 10000);
 
     } elseif ($condition['type'] == 4) {
 
@@ -66,7 +68,7 @@ class NationwideAreaSv extends BaseService {
 
       }
 
-      return NationwideArea::queryList($where, 'id,name,active,parent as parent_id', 'id asc', 0, 10000);
+      return NationwideArea::queryList($where, $fields, 'id asc', 0, 10000);
 
     } else {
 
