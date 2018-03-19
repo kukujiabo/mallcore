@@ -115,114 +115,90 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
      */
     public function addCart($data) {
 
-        if ($data['way'] == 1 && $data['token']) {
+      if ($data['way'] == 1 && $data['token']) {
 
-            $info_user = UserSv::getUserByToken($data['token']);
+          $info_user = UserSv::getUserByToken($data['token']);
 
-            $data['buyer_id'] = $info_user['uid'];
+          $data['buyer_id'] = $info_user['uid'];
 
-            unset($data['token']);
+          unset($data['token']);
 
-        }
+      }
 
-        unset($data['way']);
+      unset($data['way']);
 
-        $where_cart['goods_id'] = $where_goods['goods_id'] = $data['goods_id'];
+      $where_cart['goods_id'] = $where_goods['goods_id'] = $data['goods_id'];
 
-        $where_goods['quantity'] = $data['num'];
+      $where_goods['quantity'] = $data['num'];
 
-        $info_goods = GoodsSv::verifyGoods($where_goods);
+      $info_goods = GoodsSv::verifyGoods($where_goods);
 
-        $where_cart['buyer_id'] = $data['buyer_id'];
+      $where_cart['buyer_id'] = $data['buyer_id'];
 
-        if ($data['sku_id']) {
+      if ($data['sku_id']) {
 
-            $where_cart['sku_id'] = $data['sku_id'];
+          $where_cart['sku_id'] = $data['sku_id'];
 
-            $info_sku_goods = GoodsSkuSv::findOne($data['sku_id']);
+          $info_sku_goods = GoodsSkuSv::findOne($data['sku_id']);
 
-            $data['sku_name'] = $info_sku_goods['sku_name'];
+          $data['sku_name'] = $info_sku_goods['sku_name'];
 
-            $info_goods['stock'] = $info_sku_goods['stock'];
+          $info_goods['stock'] = $info_sku_goods['stock'];
 
-            $info_goods['price'] = $info_sku_goods['price'];
+          $info_goods['price'] = $info_sku_goods['price'];
 
-            if ($info_sku_goods['picture']) {
+          if ($info_sku_goods['picture']) {
 
-                $info_goods['picture'] = $info_sku_goods['picture'];
-                
-            }
+              $info_goods['picture'] = $info_sku_goods['picture'];
+              
+          }
 
-        }
+      }
 
-        $info_cart = self::getDetail($where_cart);
+      $info_cart = self::getDetail($where_cart);
 
-        if (!isset($data['goods_name'])) {
-            
-            $data['goods_name'] = $info_goods['goods_name'];
+      $data['goods_name'] = $info_goods['goods_name'];
+      
+      $data['price'] = $info_goods['price'];
 
-        }
+      $data['goods_picture'] = $info_goods['thumbnail'];
 
-        if (!isset($data['price'])) {
-            
-            $data['price'] = $info_goods['price'];
+      if ($info_cart) {
 
-        }
+          $data['num'] += $info_cart['num'];
 
-        if (!isset($data['goods_picture'])) {
-            
-            $data['goods_picture'] = $info_goods['picture'];
+          GoodsSv::compare($data['num'], $info_goods['stock']);
 
-        }
+          $data['cart_id'] = $info_cart['cart_id'];
 
-        if ($info_cart) {
+          // 修改
+          $info = self::updates($data);
 
-            $data['num'] += $info_cart['num'];
+      } else {
 
-            GoodsSv::compare($data['num'], $info_goods['stock']);
+          if (!isset($data['shop_id'])) {
+              
+              $data['shop_id'] = $info_goods['shop_id'];
+              
+          }
 
-            $data['cart_id'] = $info_cart['cart_id'];
+          if (!isset($data['shop_name'])) {
 
-            // 修改
-            $info = self::updates($data);
+              $where_shop['shop_id'] = $info_goods['shop_id'];
 
-        } else {
+              $info_shop = ShopSv::getDetail($where_shop);
+              
+              $data['shop_name'] = $info_shop['shop_name'];
 
-            if (!isset($data['shop_id'])) {
-                
-                $data['shop_id'] = $info_goods['shop_id'];
-                
-            }
+          }
 
-            if (!isset($data['shop_name'])) {
+          $data['cart_id'] = rand(100000000, 999999999);
 
-                $where_shop['shop_id'] = $info_goods['shop_id'];
+          self::add($data);
 
-                $info_shop = ShopSv::getDetail($where_shop);
-                
-                $data['shop_name'] = $info_shop['shop_name'];
+      }
 
-            }
-
-            // 添加
-            $info = '';
-
-            $data['cart_id'] = rand(100000000, 999999999);
-
-            $info = self::add($data);
-
-        }
-
-        if ($info) {
-
-            return true;
-
-        } else {
-
-            return false;
-
-        }
-
+      return true;
 
     }
 
