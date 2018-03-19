@@ -209,6 +209,8 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
             try{
 
+                $data['cart_id'] = rand(1000000000, 4000000000);
+
                 $info = self::add($data);
 
             } catch (\Exception $e){
