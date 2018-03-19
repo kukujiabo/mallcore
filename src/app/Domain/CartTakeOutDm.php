@@ -63,5 +63,16 @@ class CartTakeOutDm {
     return CartTakeOutSv::cartEmpty($condition);
 
   }
+
+  /**
+   * 删除商品
+   */
+  public function remove($condition) {
+  
+    $id = $condition['cart_id'];
+
+    return CartTakeOutSv::remove($id);
+  
+  }
     
 }

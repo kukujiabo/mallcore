@@ -140,10 +140,8 @@ class CartTakeOut extends BaseApi {
 
         'totalizer_num' => 'totalizer_num|int|false||商品数量（累加数量）',
 
-        'goods_picture' => 'goods_picture|string|false||商品图片',
+        'goods_picture' => 'goods_picture|string|false||商品图片'
 
-        'bl_id' => 'bl_id|string|false||组合套装ID',
-      
       ),
 
       'getDetail' => array(
@@ -191,6 +189,14 @@ class CartTakeOut extends BaseApi {
         'buyer_id' => 'buyer_id|string|false||用户id',
       
       ),
+
+      'remove' => array(
+      
+        'token' => 'token|string|false||用户令牌',
+
+        'cart_id' => 'cart_id|int|true||购物车id'
+      
+      )
       
     ));
 
@@ -360,6 +366,20 @@ class CartTakeOut extends BaseApi {
     \App\Verification($conditions, $regulation);
 
     return $this->dm->queryCount($conditions);
+  
+  }
+
+  /**
+   * 删除购物车商品
+   * @desc 删除购物车商品
+   *
+   * @return int
+   */
+  public function remove() {
+  
+    $condition = $this->retriveRuleParams(__FUNCTION__);
+
+    return $this->dm->remove($condition);
   
   }
 
