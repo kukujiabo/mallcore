@@ -2,6 +2,7 @@
 namespace App\Service\Commodity;
 
 use App\Service\BaseService;
+use Core\Service\CurdSv;
 
 /**
  * 价格体系服务
@@ -10,6 +11,8 @@ use App\Service\BaseService;
  * @author Meroc Chen <398515393@qq.com>
  */
 class GoodsPriceMapSv extends BaseService {
+
+  use CurdSv;
 
   /**
    * 添加体系规则
@@ -22,7 +25,6 @@ class GoodsPriceMapSv extends BaseService {
     return self::add($params);
   
   }
-
 
 
 }
