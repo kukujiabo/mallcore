@@ -1145,6 +1145,8 @@ class UserSv extends BaseService implements IUser {
 
       'reg_time' => $time,
 
+      'member_level' => 1,
+
       'memo' => 'mini register'
     
     );
@@ -1195,7 +1197,9 @@ class UserSv extends BaseService implements IUser {
 
       $data_member['reg_time'] = $data_member_account['created_at'] = date("Y-m-d H:i:s");
 
-      $data_member['memo'] = 'mini register';
+      $data_member['memo'] = 'wps register';
+
+      $data_member['member_level'] = 1;
 
       // 添加会员
       MemberSv::addMember($data_member);
