@@ -620,43 +620,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         // 计算订单商品总价
         $data['goods_money'] = $data_goods['goods_money'] = $data['quantity'] * $info_goods['price'];
 
-        if ($data['coupon_id']) {
-
-            $info_coupon = CouponSv::findOne($data['coupon_id']);
-
-            // 验证券
-            CouponSv::isAvailable($info_coupon, $data['shop_id'], $data['goods_money']);
-
-            $where_coupon['total'] = $data['goods_money'];
-
-            $where_coupon['coupon_id'] = $data['coupon_id'];
-
-            $where_coupon['info_coupon'] = $info_coupon;
-
-            // 获取优惠券总价
-            $coupon_money = CouponSv::calculate($where_coupon);
-
-            $data['coupon_money'] = 0;
-
-            if ($coupon_money['type'] == 3){
-
-                // 包邮券判断
-
-            } else {
-
-                $data['coupon_money'] = $coupon_money['money'];
-
-            }
-
-        }
-
-        if ($data['point']) {
-
-            // 积分抵用价格
-            $data['point_money'] = 0;
-
-        }
-
         unset($data['address_id']);
 
         unset($data['goods_id']);
@@ -675,43 +638,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $balance = 0;
 
-        if ($data['user_money'] > 0 && $money > 0) {
-
-            $data['user_money'] = $money;
-
-            // 获取可用额度
-
-            $res = null;
-
-            $member_acc_where['uid'] = $data['buyer_id'];
-
-            if ($module == 1) {
-
-                $res = MemberAccountSv::getPossDetail($member_acc_where);
-
-            } elseif($module == 2) {
-
-                $res = MemberAccountSv::getDetails($member_acc_where);
-
-            }
-
-            $balance = $res['balance'] ? $res['balance'] : 0;
-
-        } else {
-
-            $data['user_money'] = 0;
-
-        }
-
         $data['pay_money'] = $money - $data['user_money'] - $data['user_platform_money'] - $data['promotion_money'];
 
         if ($data['pay_money'] <= 0) {
 
             $data['pay_money'] = 0;
-            
-            // $data['order_status'] = 2;
-
-            // $data['pay_status'] = 2;
 
         }
 
@@ -741,13 +672,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         // 添加订单
         $data_goods['order_take_out_id'] = $data_address['order_id'] = $id = $data['id'];
-
-        // 使用优惠券
-        if ($data['coupon_id']) {
-
-            CouponSv::useCoupon($info_coupon, $data['shop_id'], $data['goods_money'], $id);
-
-        }
 
         // 添加订单地址
         $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
