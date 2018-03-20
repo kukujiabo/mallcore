@@ -521,6 +521,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $data['sn'] = self::getSn();
 
+        $data['order_status'] = 1;
+
         $data['create_time'] = date('Y-m-d H:i:s');
         
         $data_goods['cart_id'] = $data['cart_id'];
@@ -601,6 +603,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         unset($data['token']);
 
         $data['sn'] = self::getSn();
+
+        $data['order_status'] = 1;
 
         $data['create_time'] = date('Y-m-d H:i:s');
 
