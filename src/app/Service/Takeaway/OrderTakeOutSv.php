@@ -938,7 +938,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         }
 
         // 添加订单地址
-        //$info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
+        $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
 
         $data_goods['shop_id'] = $data['shop_id'];
 
