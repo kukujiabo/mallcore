@@ -394,15 +394,6 @@ class OrderTakeOut extends BaseApi {
 
     $params = $this->retriveRuleParams('add');
 
-    $regulation = array(
-      'way' => 'required',
-      'shop_id' => 'required',
-      'address_id' => 'required',
-      'cart_id' => 'required',
-    );
-
-    \App\Verification($params, $regulation);
-
     return $this->dm->add($params);
   
   }
