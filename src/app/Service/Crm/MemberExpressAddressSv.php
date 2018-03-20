@@ -104,17 +104,10 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         }
 
-        try{
+        $data['id'] = rand(100000000, 999999999);
 
-            $data['id'] = rand(100000000, 999999999);
+        return self::add($data);
 
-            return self::add($data);
-
-        } catch (\Exception $e){
-
-            throw new InternalServerErrorException('新增失败', 1);
-
-        }
 
     }
   
