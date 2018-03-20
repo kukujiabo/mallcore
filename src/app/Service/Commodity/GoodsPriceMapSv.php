@@ -44,7 +44,7 @@ class GoodsPriceMapSv extends BaseService {
       
         'goods_id' => $params['goods_id'],
 
-        'goods_name' => $params['goods_name'],
+        'goods_name' => iconv("UTF-8", "GBK//IGNORE", $params['goods_name']),
 
         'user_level' => $params['user_level'],
 
@@ -52,7 +52,7 @@ class GoodsPriceMapSv extends BaseService {
 
         'sku_id' => $sku['sku_id'],
 
-        'sku_name' => $sku['sku_name'],
+        'sku_name' => iconv("UTF-8", "GBK//IGNORE", $sku['sku_name']),
 
         'price' => $sku['price'],
 
@@ -70,7 +70,7 @@ class GoodsPriceMapSv extends BaseService {
 
       'user_level' => $params['user_level'],
 
-      'goods_name' => $params['goods_name'],
+      'goods_name' => iconv("UTF-8", "GBK//IGNORE", $params['goods_name']),
 
       'city_code' => $params['city_code'],
 
