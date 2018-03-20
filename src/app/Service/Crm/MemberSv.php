@@ -269,7 +269,6 @@ class MemberSv extends BaseService implements IMember {
     /**
      * 开启事务处理
      */ 
-    //\PhalApi\DI()->notorm->beginTransaction();
 
     /**
      * 更新会员信息

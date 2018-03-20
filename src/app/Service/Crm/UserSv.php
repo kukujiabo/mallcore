@@ -1145,7 +1145,7 @@ class UserSv extends BaseService implements IUser {
 
       'reg_time' => $time,
 
-      'memo' => '微信小程序注册'
+      'memo' => 'mini register'
     
     );
 
@@ -1156,26 +1156,14 @@ class UserSv extends BaseService implements IUser {
      */
 
     $account = array( 
+
+      'id' => rand(100000000, 99999999),
       
       'uid' => $uid,
     
       'created_at' => date('Y-m-d H:i:s')
     
     );
-
-    /**
-     * 判断是否关联pos
-     */
-
-    if (IS_POSS) {
-
-      $account['card_id'] = PosSv::getAvailableCardId();
-
-    } else {
-    
-      $account['card_id'] = '';
-    
-    }
 
     MemberAccountSv::add($account);
 
@@ -1207,7 +1195,7 @@ class UserSv extends BaseService implements IUser {
 
       $data_member['reg_time'] = $data_member_account['created_at'] = date("Y-m-d H:i:s");
 
-      $data_member['memo'] = '小程序登录注册';
+      $data_member['memo'] = 'mini register';
 
       // 添加会员
       MemberSv::addMember($data_member);
@@ -1218,19 +1206,7 @@ class UserSv extends BaseService implements IUser {
 
       }
 
-      /**
-       * 判断是否连接pos
-       */
-      if (IS_POSS) {
-
-        // 获取会员卡号
-        $data_member_account['card_id'] = PosSv::getAvailableCardId();
-
-      } else {
-      
-        $data_member_account['card_id'] = '';
-      
-      }
+      $data_member_account['id'] = rand(100000000, 999999999);
 
       // 添加会员账户
       MemberAccountSv::addMemberAccount($data_member_account);
