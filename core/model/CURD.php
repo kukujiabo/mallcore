@@ -160,7 +160,9 @@ trait CURD {
 
     if (is_array($id)) {
 
-      return $orm->where($id)->fetchOne();
+      $condition= $this->queryFieldFilter($id);
+
+      return $orm->where($condition)->fetchOne();
 
     } else {
 
