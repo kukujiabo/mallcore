@@ -373,7 +373,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
      */
     public function orderList($data) {
     
-      $user = UserSv::getUserByToken($condition['token']);
+      $user = UserSv::getUserByToken($data['token']);
     
       $uid = $user['uid'];
 
