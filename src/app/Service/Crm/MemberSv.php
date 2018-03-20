@@ -289,7 +289,7 @@ class MemberSv extends BaseService implements IMember {
 
     $mupdate = 0;
   
-    !empty($memberUpdate) ? $mupdate = self::update($user['uid'], $memberUpdate) : null;
+    !empty($memberUpdate) ? $mupdate = self::update($uid, $memberUpdate) : null;
 
 
     /**
@@ -306,7 +306,7 @@ class MemberSv extends BaseService implements IMember {
 
     $uupdate = 0;
 
-    !empty($userUpdate) ? $uupdate = UserSv::update($user['uid'], $userUpdate) : null;
+    !empty($userUpdate) ? $uupdate = UserSv::update($uid, $userUpdate) : null;
 
     /**
      * 判断是否有更新
