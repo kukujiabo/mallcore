@@ -491,41 +491,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $data['coupon_money'] = 0;
 
-        if ($data['coupon_id']) {
-
-            $info_coupon = CouponSv::findOne($data['coupon_id']);
-
-            // 验证券
-            CouponSv::isAvailable($info_coupon, $data['shop_id'], $data['goods_money']);
-
-            $where_coupon['total'] = $data['goods_money'];
-
-            $where_coupon['coupon_id'] = $data['coupon_id'];
-
-            $where_coupon['info_coupon'] = $info_coupon;
-
-            // 获取优惠券总价
-            $coupon_money = CouponSv::calculate($where_coupon);
-
-            if ($coupon_money['type'] == 3){
-
-                // 包邮券判断
-
-            } else {
-
-                $data['coupon_money'] = $coupon_money['money'];
-
-            }
-
-        }
-
-        if ($data['point']) {
-
-            // 积分抵用价格
-            $data['point_money'] = 0;
-
-        }
-
         unset($data['address_id']);
 
         unset($data['cart_id']);
@@ -540,65 +505,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $balance = 0;
 
-        if ($data['user_money'] > 0 && $money > 0) {
-
-            // 单一支付判断余额
-            $data['user_money'] = $money;
-
-            // 获取可用额度
-
-            $res = null;
-
-            $member_acc_where['uid'] = $data['buyer_id'];
-
-            if ($module == 1) {
-
-                $res = MemberAccountSv::getPossDetail($member_acc_where);
-
-            } elseif($module == 2) {
-
-                $res = MemberAccountSv::getDetails($member_acc_where);
-
-            }
-
-            $balance = $res['balance'] ? $res['balance'] : 0;
-
-            // if ($balance > 0) {
-
-            //     // 根据订单额度获取使用余额额度
-
-            //     if ($money > $balance) {
-
-            //         $data['user_money'] = $balance;
-
-            //     } else {
-
-            //         $data['user_money'] = $money;
-
-            //     }
-
-            // }
-
-        } else {
-
-            $data['user_money'] = 0;
-
-        }
-
-        $data['pay_money'] = $money - $data['user_money'] - $data['user_platform_money'] - $data['promotion_money'];
-
         // 开启事务处理
-        // \PhalApi\DI()->notorm->beginTransaction();
 
         if ($data['pay_money'] <= 0) {
 
             $data['pay_money'] = 0;
-
-            // $data['order_status'] = 2;
-
-            // $data['pay_status'] = 2;
-
-            // $data['pay_time'] = date("Y-m-d H:i:s");
 
         }
 
@@ -615,70 +526,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         // 添加订单
         $data_goods['order_id'] = $data_address['order_id'] = $id = self::add($data);
 
-        // $from = 12;
-
-        // 使用积分
-        // if ($data['point'] > 0) {
-
-        //     $info_member_point = MemberAccountSv::minuAccountPoints($data['buyer_id'], $data['point'], $from, $id);
-
-        // }
-
-        // 使用余额
-        // if ($data['user_money'] > 0) {
-
-        //     if ($module == 1) {
-
-        //         $record = array(
-        //           'uid' => $data['buyer_id'],
-        //           'account_type' => 2,
-        //           'shop_id' => $data['shop_id'],
-        //           'sign' => -1,
-        //           'number' => $data['user_money'],
-        //           'customary_number' => $customary_number,
-        //           'from_type' => 1,
-        //           'data_id' => $id,
-        //           'text' => '线上外卖下单使用会员卡余额',
-        //           'create_time' => date('Y-m-d H:i:s')
-        //         );
-
-        //         // 减少余额记录操作
-        //         MemberAccountRecordSv::add($record);
-
-        //         $info_member_account = MemberAccountSv::findOne(array('uid'=>$data['buyer_id']));
-
-        //         $data_balance['sCardID'] = $info_member_account['card_id'];
-
-        //         $data_balance['iAddValue'] = -1 * $data['user_money'];
-
-        //         $data_balance['iGiftValue'] = '0';
-
-        //         $data_balance['sMemo'] = '外卖下单消费，单号：' . $data['sn'];
-
-        //         // 通知pos使用余额
-        //         $info_balance = PosSv::increaseBalance($data_balance);
-
-        //         if ($info_balance['Status'] != 1) {
-
-        //             throw new OrderTakeOutException(ErrorCode::OrderTakeOutSv['ORDER_USE_BALANCE_POS_ERR_MSG'], ErrorCode::OrderTakeOutSv['ORDER_USE_BALANCE_POS_ERR_CODE'], $id);
-                    
-        //         }
-
-        //     } elseif ($module == 2) {
-
-        //         $info_member_money = MemberAccountSv::minuAccountMoney($data['buyer_id'], $data['user_money'], $from, $id);
-
-        //     }
-
-        // }
-
-        // 使用优惠券
-        if ($data['coupon_id']) {
-
-            CouponSv::useCoupon($info_coupon, $data['shop_id'], $data['goods_money'], $id);
-
-        }
-
         // 添加订单地址
         $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
 
@@ -693,44 +540,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $info_cart_goods = CartTakeOutSv::cartEmpty($condition_cart);
 
         // 提交事务
-        // \PhalApi\DI()->notorm->commit();
-
         $info_return['id'] = $id;
         
         $info_return['sn'] = $data['sn'];
-
-        try {
-
-          $date = date('Y-m-d H:i:s');
-        
-          $orderTemplate = array(
-           
-            'short_id' => 'OPENTM406161651',
-
-            'mobile' => $info_user['user_tel'],
-
-            'object_key' => 'orderId',
-
-            'object_id' => $id,
-
-            'contents' => "first\$\$下单成功！||keyword1\$\$路每家嘉宝体验店||keyword2\$\${$date}||keyword3\$\$点击详情查看||keyword4\$\${$data['order_money']}"
-
-          );
-
-          WechatTemplateMessageSv::generalMessage($orderTemplate);
-
-        } catch (\Exception $e) {
-        
-        
-        }
-        
-
-        if ($balance > 0 && $money > 0 && $balance < $money) {
-
-            throw new OrderTakeOutException(ErrorCode::MemberAccountSv['MINU_ACCT_MONEY_LESS_MSG'], ErrorCode::MemberAccountSv['MINU_ACCT_MONEY_LESS_CODE']);
-            
-        }
-
 
         return $info_return;
 
