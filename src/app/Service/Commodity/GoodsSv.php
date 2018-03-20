@@ -402,7 +402,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           'city_code' => $condition['city_code'],
 
-          'user_level' => $good['goods_id'],
+          'user_level' => $condition['user_level'],
 
           'sku_id' => 0
         
