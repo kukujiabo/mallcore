@@ -26,6 +26,18 @@ class GoodsPriceMapSv extends BaseService {
 
     $dataSet = array();
 
+    $condition = array(
+    
+      'goods_id' => $params['goods_id'],
+
+      'city_code' => $params['city_code'],
+
+      'user_level' => $params['user_level']
+    
+    );
+
+    self::batchRemove($condition);
+
     foreach($skus as $sku) {
     
       $newPrice = array(
