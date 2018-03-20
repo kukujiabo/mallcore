@@ -25,11 +25,11 @@ class AuthFilter implements Filter {
        
        }
 
-       if (empty($token) && $way == 1) {
+       //if (empty($token) && $way == 1) {
 
-          throw new AuthException(ErrorCode::Auth['TOKEN_MISSED_MSG'], ErrorCode::Auth['TOKEN_MISSED_CODE']);
-                      
-       }
+       //   throw new AuthException(ErrorCode::Auth['TOKEN_MISSED_MSG'], ErrorCode::Auth['TOKEN_MISSED_CODE']);
+       //               
+       //}
 
        $member = RedisClient::get('member_info', $token);
 
