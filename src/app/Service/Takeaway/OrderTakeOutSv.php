@@ -387,13 +387,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $orders = self::queryList($condition, '*', 'create_time desc', $data['page'], $data['page_size']);
 
-      if(empty($orders)) {
+      if(empty($orders['list'])) {
       
-        return null;
+        return $orders;
       
       }
 
-      foreach($orders as $key => $order) {
+      foreach($orders['list'] as $key => $order) {
       
         $condition = array(
         
@@ -403,11 +403,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $goods = OrderTakeOutGoodsSv::getList($condition);
       
-        $orders[$key]['order_goods'] = $goods;
+        $orders['list'][$key]['order_goods'] = $goods;
 
         $address = OrderTakeOutAddressSv::findOne($condition);
 
-        $orders[$key]['order_address'] = $address;
+        $orders['list'][$key]['order_address'] = $address;
       
       }
 
