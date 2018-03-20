@@ -436,7 +436,31 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function getDetails($condition) {
 
-      return self::findOne($condition);
+    $good = self::findOne($condition);
+
+    if ($condition['city_code'] && $condition['user_level']) {
+    
+      $priceRule = GoodsPriceMapSv::findOne(array(
+      
+        'city_code' => $condition['city_code'],
+        
+        'user_level' => $condition['user_level'],
+
+        'goods_id' => $good['goods_id'],
+
+        'sku_id' => 0
+      
+      ));
+
+      if ($priceRule) {
+      
+        $good['price'] = $priceRule['price'];
+      
+      }
+    
+    }
+
+    return $good;
 
   }
 
