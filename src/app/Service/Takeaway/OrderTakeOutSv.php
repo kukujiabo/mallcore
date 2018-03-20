@@ -170,7 +170,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
             $vs['goods_money'] = $v['goods_money'];
 
-            $vs['buyer_message'] = $v['buyer_message'];
+            $vs['buyer_message'] = iconv('GBK', 'UTF-8', $v['buyer_message']);
 
             $vs['card_id'] = $v['card_id'];
 
@@ -552,25 +552,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $balance = 0;
 
-        // 开启事务处理
-
-        if ($data['pay_money'] <= 0) {
-
-            $data['pay_money'] = 0;
-
-        }
-
-        if ($data['pay_money'] <= 0 && $data['user_money'] <= 0) {
-
-            $data['order_status'] = 2;
-
-            $data['pay_status'] = 2;
-
-            $data['pay_time'] = date("Y-m-d H:i:s");
-
-        }
-
         $data['id'] = rand(100000000, 999999999);
+
+        $data['buyer_message'] = iconv('GBK', 'UTF-8', $data['buyer_message']);
 
         // 添加订单
         self::add($data);
@@ -691,22 +675,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $data['pay_money'] = $money - $data['user_money'] - $data['user_platform_money'] - $data['promotion_money'];
 
-        if ($data['pay_money'] <= 0) {
-
-            $data['pay_money'] = 0;
-
-        }
-
-        if ($data['pay_money'] <= 0 && $data['user_money'] <= 0) {
-
-            $data['order_status'] = 2;
-
-            $data['pay_status'] = 2;
-
-            $data['pay_time'] = date("Y-m-d H:i:s");
-
-        }
-
         $data['id'] = time();
 
         $data['shop_id'] = 0;
@@ -717,7 +685,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $data['buyer_id'] = 1;
 
-        $data['out_trade_no'] = time();
+        $data['buyer_message'] = iconv('GBK', 'UTF-8', $data['buyer_message']);
 
         self::add($data);
         
