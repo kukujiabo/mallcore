@@ -247,8 +247,12 @@ class MemberSv extends BaseService implements IMember {
    *           块用户的逻辑不会互相干扰.
    */
   public function edit($data) {
+
+    if ($data['uid'] && $data['way'] == 2) {
+
+      $uid = $data['uid'];
     
-    if ($data['token']) {
+    } else if ($data['token']) {
 
       /**
        * 通过token获取缓存会员数据，获取数据失败会抛出异常
@@ -256,9 +260,10 @@ class MemberSv extends BaseService implements IMember {
 
       $user = UserSv::getUserByToken($data['token']);
 
+      $uid = $user['uid'];
+
     }
 
-    $uid = $user['uid'];
 
     /**
      * 修改会员信息包括 会员基本信息（member）和 用户基本信息（user），需要分别处理
