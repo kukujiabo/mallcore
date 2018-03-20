@@ -58,7 +58,7 @@ class GoodsPriceMapSv extends BaseService {
       
         'city_name' => iconv("UTF-8", "GBK//IGNORE", $params['city_name']),
 
-        'price' => $sku['price'],
+        'price' => floatval($sku['price']),
 
         'created_at' => date('Y-m-d H:i:s')
 
