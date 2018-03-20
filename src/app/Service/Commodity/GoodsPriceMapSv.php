@@ -44,7 +44,7 @@ class GoodsPriceMapSv extends BaseService {
       
         'goods_id' => $params['goods_id'],
 
-        'goods_name' => iconv("UTF-8", "GBK//IGNORE", $params['goods_name']),
+        'goods_name' => iconv("UTF-8", "GBK", $params['goods_name']),
 
         'user_level' => $params['user_level'],
 
@@ -52,11 +52,11 @@ class GoodsPriceMapSv extends BaseService {
 
         'sku_id' => $sku['sku_id'],
 
-        'sku_name' => iconv("UTF-8", "GBK//IGNORE", $sku['sku_name']),
+        'sku_name' => iconv("UTF-8", "GBK", $sku['sku_name']),
 
-        'level_name' => iconv("UTF-8", "GBK//IGNORE", $params['level_name']),
+        'level_name' => iconv("UTF-8", "GBK", $params['level_name']),
       
-        'city_name' => iconv("UTF-8", "GBK//IGNORE", $params['city_name']),
+        'city_name' => iconv("UTF-8", "GBK", $params['city_name']),
 
         'price' => floatval($sku['price']),
 
@@ -74,7 +74,7 @@ class GoodsPriceMapSv extends BaseService {
 
       'user_level' => $params['user_level'],
 
-      'goods_name' => iconv("UTF-8", "GBK//IGNORE", $params['goods_name']),
+      'goods_name' => iconv("UTF-8", "GBK", $params['goods_name']),
 
       'city_code' => $params['city_code'],
 
@@ -86,9 +86,9 @@ class GoodsPriceMapSv extends BaseService {
 
       'created_at' => date('Y-m-d H:i:s'),
 
-      'level_name' => iconv("UTF-8", "GBK//IGNORE", $params['level_name']),
+      'level_name' => iconv("UTF-8", "GBK", $params['level_name']),
       
-      'city_name' => iconv("UTF-8", "GBK//IGNORE", $params['city_name'])
+      'city_name' => iconv("UTF-8", "GBK", $params['city_name'])
     
     );
 
