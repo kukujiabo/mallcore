@@ -22,7 +22,7 @@ class GoodsPriceMapSv extends BaseService {
   
     $params['created_at'] = date('Y-m-d H:i:s');
 
-    $skus = json_decode($params['skus']);
+    $skus = json_decode($params['skus'], true);
 
     $dataSet = array();
 
