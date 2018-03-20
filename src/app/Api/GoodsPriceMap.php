@@ -16,6 +16,8 @@ class GoodsPriceMap extends BaseApi {
       
         'goods_id'  => 'goods_id|int|true||商品id',
 
+        'goods_name' => 'goods_name|string|true||商品名称',
+
         'user_level'  => 'user_level|int|true||用户等级',
 
         'city_code'  => 'city_code|int|true||城市编码',

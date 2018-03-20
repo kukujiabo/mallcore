@@ -44,11 +44,15 @@ class GoodsPriceMapSv extends BaseService {
       
         'goods_id' => $params['goods_id'],
 
+        'goods_name' => $params['goods_name'],
+
         'user_level' => $params['user_level'],
 
         'city_code' => $params['city_code'],
 
         'sku_id' => $sku['sku_id'],
+
+        'sku_name' => $sku['sku_name'],
 
         'price' => $sku['price'],
 
@@ -65,6 +69,8 @@ class GoodsPriceMapSv extends BaseService {
       'goods_id' => $params['goods_id'],
 
       'user_level' => $params['user_level'],
+
+      'goods_name' => $params['goods_name'],
 
       'city_code' => $params['city_code'],
 
