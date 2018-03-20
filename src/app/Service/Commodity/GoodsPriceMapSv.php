@@ -62,9 +62,9 @@ class GoodsPriceMapSv extends BaseService {
 
       'created_at' => date('Y-m-d H:i:s')
     
-    )
+    );
 
-    $dataSet[] = $good
+    $dataSet[] = $good;
 
     return self::batchAdd($dataSet);
   
