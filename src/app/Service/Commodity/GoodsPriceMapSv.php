@@ -54,13 +54,13 @@ class GoodsPriceMapSv extends BaseService {
 
         'sku_name' => iconv("UTF-8", "GBK//IGNORE", $sku['sku_name']),
 
-        'price' => $sku['price'],
-
-        'created_at' => date('Y-m-d H:i:s'),
-
         'level_name' => iconv("UTF-8", "GBK//IGNORE", $params['level_name']),
       
         'city_name' => iconv("UTF-8", "GBK//IGNORE", $params['city_name'])
+
+        'price' => $sku['price'],
+
+        'created_at' => date('Y-m-d H:i:s'),
 
       );
 
