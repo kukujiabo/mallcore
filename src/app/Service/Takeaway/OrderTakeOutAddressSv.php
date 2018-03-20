@@ -71,16 +71,12 @@ class OrderTakeOutAddressSv extends BaseService implements IOrderTakeOutAddress 
         unset($info_address['deleted_at']);
 
         $data_order_address = array_merge($data_order_address,$info_address);
+        
+        $data_order_address['id'] = rand(100000000, 999999999);
 
-        try{
+        self::add($data_order_address);
 
-            return self::add($data_order_address);
-
-        } catch (\Exception $e){
-
-            throw new InternalServerErrorException('新增失败', 1);
-
-        }
+        return $data_order_address['id'];
 
     }
 
