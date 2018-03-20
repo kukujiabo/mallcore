@@ -684,7 +684,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $data_goods['price'] = $info_goods['price'];
 
-        $data_goods['id'] = time();
+        $data_goods['id'] = rand(100000000, 999999999);
 
         // 添加订单商品
         $info_order_goods = OrderTakeOutGoodsSv::addOrderGoods($data_goods);
