@@ -20,7 +20,11 @@ class GoodsPriceMap extends BaseApi {
 
         'user_level'  => 'user_level|int|true||用户等级',
 
+        'level_name'  => 'level_name|string|true||等级名称',
+
         'city_code'  => 'city_code|int|true||城市编码',
+
+        'city_name' => 'city_name|string|true||城市名称',
 
         'price' => 'price|float|true||价格',
 

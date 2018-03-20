@@ -56,8 +56,12 @@ class GoodsPriceMapSv extends BaseService {
 
         'price' => $sku['price'],
 
-        'created_at' => date('Y-m-d H:i:s')
+        'created_at' => date('Y-m-d H:i:s'),
+
+        'level_name' => $params['level_name'],
       
+        'city_name' => $params['city_name']
+
       );
 
       array_push($dataSet, $newPrice);
@@ -80,7 +84,11 @@ class GoodsPriceMapSv extends BaseService {
 
       'price' => $params['price'],
 
-      'created_at' => date('Y-m-d H:i:s')
+      'created_at' => date('Y-m-d H:i:s'),
+
+      'level_name' => $params['level_name'],
+      
+      'city_name' => $params['city_name']
     
     );
 
