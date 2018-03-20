@@ -43,7 +43,7 @@ class GoodsSkuDm {
    */
   public function getAll($condition) {
 
-    return GoodsSkuSv::all($condition);
+    return GoodsSkuSv::getAll($condition);
   
   }
 

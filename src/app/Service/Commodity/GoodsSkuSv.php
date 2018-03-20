@@ -16,6 +16,36 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
     use CurdSv;
 
+    public function getAll($condition) {
+    
+      $skus = self::all($condition);
+
+      foreach($skus as $key => $sku) {
+      
+        $priceRule = GoodsPriceMapSv::findOne(array(
+        
+          'sku_id' => $sku['sku_id'],
+
+          'city_code' => $condition['city_code'],
+
+          'user_level' => $condition['user_level']
+        
+        ));
+
+        if ($priceRule) {
+        
+          $skus[$key]['price'] = $priceRule['price'];
+        
+        }
+      
+      }
+
+      return $skus;
+
+    
+    
+    }
+
     /**
      * 获取列表
      */
