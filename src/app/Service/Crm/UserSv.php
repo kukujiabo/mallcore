@@ -1133,7 +1133,9 @@ class UserSv extends BaseService implements IUser {
     
     );
 
-    $uid = self::add($newUser);
+    self::add($newUser);
+
+    $uid = $newUser['uid'];
 
     /**
      * 添加会员信息
