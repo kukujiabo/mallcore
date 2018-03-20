@@ -588,8 +588,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
      */
     public function purchase($data) {
 
-        $module = RedisClient::get('system_config', 'account_is_poss') ? 1 : 2;
-
         if ($data['way'] == 1 && $data['token']) {
 
             $info_user = UserSv::getUserByToken($data['token']);
@@ -682,8 +680,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $data['shop_name'] = '';
 
         $data['address_id'] = 0;
-
-        $data['buyer_id'] = 1;
 
         $data['buyer_message'] = iconv('UTF-8', 'GBK', $data['buyer_message']);
 
