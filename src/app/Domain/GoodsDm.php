@@ -92,4 +92,10 @@ class GoodsDm {
   
   }
 
+  public function getAllGoods() {
+  
+    return GoodsSv::all();
+  
+  }
+
 }

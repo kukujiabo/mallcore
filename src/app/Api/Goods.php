@@ -860,6 +860,10 @@ class Goods extends BaseApi {
             'sku_id' => 'sku_id|int|false||sku商品id',
 
       ),
+
+      'getAllGoods' => array(
+      
+      )
       
     ));
 
@@ -1026,6 +1030,18 @@ class Goods extends BaseApi {
     \App\Verification($conditions, $regulation);
 
     return $this->dm->queryCount($conditions);
+  
+  }
+
+  /**
+   * 查询所有商品
+   * @desc 查询所有商品
+   *
+   * @return int ret
+   */
+  public function getAllGoods() {
+  
+    return $this->dm->getAllGoods($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
