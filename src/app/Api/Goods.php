@@ -125,6 +125,11 @@ class Goods extends BaseApi {
 
         'queryList' => array(
 
+
+            'city_code' => 'city_code|int|false||城市代码',
+
+            'user_level' => 'user_level|int|false||用户等级',
+
             'goods_id' => 'goods_id|int|false||表序号',
 
             'goods_name' => 'goods_name|string|false||商品名称',
