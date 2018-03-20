@@ -394,7 +394,7 @@ class GoodsSv extends BaseService implements IGoods {
 
     if ($condition['city_code'] && $condition['user_level']) {
 
-      foreach($goods as $good) {
+      foreach($goods['list'] as $key => $good) {
       
         $priceRule = GoodsPriceMapSv::findOne(array(
         
@@ -410,7 +410,7 @@ class GoodsSv extends BaseService implements IGoods {
       
         if ($priceRule) {
         
-          $goods['price'] = $priceRule['price'];
+          $goods['list'][$key]['price'] = $priceRule['price'];
         
         }
         
