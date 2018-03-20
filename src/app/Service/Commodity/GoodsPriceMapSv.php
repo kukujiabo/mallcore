@@ -74,6 +74,8 @@ class GoodsPriceMapSv extends BaseService {
 
       'city_code' => $params['city_code'],
 
+      'sku_name' => '',
+
       'sku_id' => 0,
 
       'price' => $params['price'],
