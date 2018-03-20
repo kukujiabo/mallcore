@@ -248,7 +248,11 @@ class OrderTakeOut extends BaseApi {
       
         'token' => 'token|string|true||用户令牌',
 
-        'order_status' => 'order_status|int|false||订单状态'
+        'order_status' => 'order_status|int|false||订单状态',
+
+        'page' => 'page|int|false|1|页码',
+
+        'page_size' => 'page_size|int|false|10|每页条数'
       
       )
 
