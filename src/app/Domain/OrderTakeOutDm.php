@@ -118,4 +118,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 订单列表查询
+   */
+  public function orderList($params) {
+  
+    return OrderTakeOutSv::orderList($params);
+  
+  }
+
 }

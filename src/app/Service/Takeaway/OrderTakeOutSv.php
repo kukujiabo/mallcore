@@ -369,6 +369,29 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     }
 
     /**
+     * 查询订单列表
+     */
+    public function orderList($data) {
+    
+      $user = UserSv::getUserByToken($condition['token']);
+    
+      $uid = $user['uid'];
+
+      $condition = array(
+      
+        'buyer_id' => $uid,
+
+        'order_status' => $data['order_status']
+      
+      );
+
+      $orders = self::queryList($condition, '*', 'create_time desc', $data['page'], $data['page_size']);
+
+      return $orders;
+    
+    }
+
+    /**
      * 获取数量
      */
     public function getCount($condition) {

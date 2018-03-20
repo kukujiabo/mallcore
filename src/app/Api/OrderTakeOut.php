@@ -242,6 +242,16 @@ class OrderTakeOut extends BaseApi {
 
       ),
 
+      'orderList' => array(
+
+        'way' => 'way|int|true|1|途径 1-前台会员 2-后台管理员',
+      
+        'token' => 'token|string|true||用户令牌',
+
+        'order_status' => 'order_status|int|false||订单状态'
+      
+      )
+
     ));
 
   }
@@ -370,8 +380,11 @@ class OrderTakeOut extends BaseApi {
     $params = $this->retriveRuleParams('payOrderTakeOut');
 
     $regulation = array(
+
       'token' => 'required',
+
       'sn' => 'required',
+
     );
 
     \App\Verification($params, $regulation);
@@ -632,6 +645,18 @@ class OrderTakeOut extends BaseApi {
   public function updateOrderStatusByOrderNo() {
   
     return $this->dm->updateOrderStatusByOrderNo($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询订单列表
+   * @desc 订单列表
+   *
+   * @return array list
+   */
+  public function orderList() {
+  
+    return $this->dm->orderList($this->retriveRuleParams(__FUNCTION__));
   
   }
 
