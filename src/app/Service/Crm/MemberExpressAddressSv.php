@@ -252,30 +252,6 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         $info = self::findOne($condition);
 
-        $result = ShopSv::getQqCoordinate($info['address']);
-
-        $latitude = $info['latitude'] = $result['location']['lat'];
-
-        $longitude = $info['longitude'] = $result['location']['lng'];
-
-        $info['is_out_of_range'] = 2;
-
-        if ($shop_id) {
-
-            $info_shop = ShopSv::findOne($shop_id);
-
-            $distance = ShopSv::getdistance($info_shop['longitude'], $info_shop['latitude'], $longitude, $latitude);
-
-            $info['distance'] = $distance;
-
-            if ($info_shop['shop_scope'] != 0 && $distance > $info_shop['shop_scope']) {
-
-                $info['is_out_of_range'] = 1;
-
-            }
-
-        }
-
         return $info;
 
     }
