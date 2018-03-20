@@ -88,5 +88,17 @@ class GoodsPriceMapSv extends BaseService {
   
   }
 
+  public function getList($params) {
+
+    $query = array();
+
+    $params['goods_name'] ? $query['goods_name'] = $params['goods_name'] : '';
+    
+    $params['sku_name'] ? $query['sku_name'] = $params['sku_name'] : '';
+  
+    return self::queryList($query, '*', 'created_at desc', $params['page'], $params['page_size']);
+  
+  }
+
 
 }

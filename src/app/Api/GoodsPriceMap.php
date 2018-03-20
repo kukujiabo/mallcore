@@ -28,6 +28,18 @@ class GoodsPriceMap extends BaseApi {
       
       ),
 
+      'getList' => array(
+      
+        'goods_name' => 'goods_name|string|false||商品名称',
+
+        'sku_name' => 'sku_name|string|false||sku名称',
+
+        'page' => 'page|int|false|1|页码',
+
+        'page_size' => 'page_size|int|false|20|每页条数'
+      
+      ),
+
       'updateRule' => array(
       
       
@@ -55,6 +67,18 @@ class GoodsPriceMap extends BaseApi {
   public function addRule() {
   
     return $this->dm->addRule($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 获取列表
+   * @desc 获取列表
+   *
+   * @return int
+   */
+  public function getList() {
+  
+    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
   
   }
 

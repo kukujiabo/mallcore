@@ -14,4 +14,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function getList($data) {
+  
+    return GoodsPriceMapSv::getList($data);
+  
+  }
+
 }
