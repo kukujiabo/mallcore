@@ -523,8 +523,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         }
 
+        $data['id'] = rand(100000000, 999999999);
+
         // 添加订单
-        $data_goods['order_id'] = $data_address['order_id'] = $id = self::add($data);
+        self::add($data);
+
+        $data_goods['order_id'] = $data_address['order_id'] = $id = $data['id'];
 
         // 添加订单地址
         $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
