@@ -22,7 +22,51 @@ class GoodsPriceMapSv extends BaseService {
   
     $params['created_at'] = date('Y-m-d H:i:s');
 
-    return self::add($params);
+    $skus = json_decode($params['skus']);
+
+    $dataSet = array();
+
+    foreach($skus as $sku) {
+    
+      $newPrice = array(
+      
+        'goods_id' => $params['goods_id'],
+
+        'user_level' => $params['user_level'],
+
+        'city_code' => $params['city_code'],
+
+        'sku_id' => $sku['sku_id'],
+
+        'price' => $sku['price'],
+
+        'created_at' => date('Y-m-d H:i:s')
+      
+      );
+
+      array_push($dataSet, $newPrice);
+    
+    }
+
+    $good = array(
+    
+      'goods_id' => $params['goods_id'],
+
+      'user_level' => $params['user_level'],
+
+      'city_code' => $params['city_code'],
+
+      'sku_id' => 0,
+
+      'price' => $params['price'],
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    )
+
+    $dataSet[] = $good
+
+    return self::batchAdd($dataSet);
   
   }
 

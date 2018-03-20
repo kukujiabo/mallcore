@@ -16,16 +16,13 @@ class GoodsPriceMap extends BaseApi {
       
         'goods_id'  => 'goods_id|int|true||商品id',
 
-        'sku_id'  => 'sku_id|int|true||skuId',
-
         'user_level'  => 'user_level|int|true||用户等级',
-
-        'price'  => 'price|float|true||价格',
 
         'city_code'  => 'city_code|int|true||城市编码',
 
-        'priority'  => 'priority|int|true||优先级',
+        'price' => 'price|float|true||价格',
 
+        'skus' => 'skus|string|true||sku'
       
       ),
 
