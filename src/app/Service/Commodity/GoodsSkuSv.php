@@ -21,7 +21,29 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
      */
     public function getList($condition) {
 
-        return self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+      $skus = self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+
+      foreach($skus['list'] as $key => $sku) {
+      
+        $priceRule = GoodsPriceMapSv::findOne(array(
+        
+          'sku_id' => $sku['sku_id'],
+
+          'city_code' => $condition['city_code'],
+
+          'user_level' => $condition['user_level']
+        
+        ));
+
+        if ($priceRule) {
+        
+          $skus['list'][$key]['price'] = $priceRule['price'];
+        
+        }
+      
+      }
+
+      return $skus;
 
     }
 
@@ -30,7 +52,25 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
      */
     public function getDetail($condition) {
 
-        return self::findOne($condition);
+      $sku = self::findOne($condition);
+
+      $priceRule = GoodsPriceMapSv::findOne(array(
+      
+        'sku_id' => $sku['sku_id'],
+
+        'city_code' => $condition['city_code'],
+
+        'user_level' => $condition['user_level']
+      
+      ));
+
+      if ($priceRule) {
+      
+        $sku['price'] = $priceRule['price'];
+      
+      }
+
+      return $sku;
 
     }
 

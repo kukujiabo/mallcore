@@ -53,6 +53,10 @@ class GoodsSku extends BaseApi {
 
             'queryList' => array(
 
+                'city_code' => 'city_code|int|false||城市代码',
+
+                'user_level' => 'user_level|int|false||用户等级',
+
                 'sku_id' => 'sku_id|int|false||表序号',
 
                 'shop_id' => 'shop_id|int|false||店铺id',
@@ -210,6 +214,10 @@ class GoodsSku extends BaseApi {
             ),
 
             'getDetail' => array(
+
+                'city_code' => 'city_code|int|false||城市代码',
+
+                'user_level' => 'user_level|int|false||用户等级',
 
                 'sku_id' => 'sku_id|int|true||表序号',
 
