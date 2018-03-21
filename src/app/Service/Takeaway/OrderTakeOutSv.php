@@ -481,7 +481,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $condition = array(
         
-          'id' => implode(',' $orderIds)
+          'id' => implode(',', $orderIds)
 
         );
 
