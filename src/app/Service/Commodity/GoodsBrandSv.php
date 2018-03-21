@@ -22,6 +22,8 @@ class GoodsBrandSv extends BaseService {
    */
   public function addBrand($data) {
 
+    $data['brand_name'] = iconv('UTF-8', 'GBK', $data['brand_name']);
+
     $data['created_at'] = date('Y-m-d H:i:s');
 
     $data['introduction'] = addslashes($data['introduction']);
