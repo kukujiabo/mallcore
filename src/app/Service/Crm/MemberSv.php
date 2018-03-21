@@ -287,6 +287,12 @@ class MemberSv extends BaseService implements IMember {
 
     }
 
+    if ($memberUpdate['member_name']) {
+    
+      $memberUpdate['member_name'] = iconv('UTF-8', 'GBK', $memberUpdate['member_name']);
+    
+    }
+
     $mupdate = 0;
   
     !empty($memberUpdate) ? $mupdate = self::update($uid, $memberUpdate) : null;
