@@ -427,7 +427,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
         $orderTakeOutGoods = new OrderTakeOutGoods();
 
-        $orderGoods = $orderTakeOutGoods->orm()->where("(goods_name like ? or sku_name like ?)", array("%{$keyword}%", "%{$keyword}%"))->limit($page * $pageSize, $pageSize)->fetchRows();
+        $orderGoods = $orderTakeOutGoods->orm()->where("goods_name like ? or sku_name like ?", array("%{$keyword}%", "%{$keyword}%"))->limit($page * $pageSize, $pageSize)->fetchRows();
       
         return $orderGoods;
       
