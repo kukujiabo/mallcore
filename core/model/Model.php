@@ -51,7 +51,7 @@ class Model {
   /**
    * 构造函数
    */
-  protected function __construct() {
+  public function __construct() {
 
     if (!isset($this->_table)) {
 
