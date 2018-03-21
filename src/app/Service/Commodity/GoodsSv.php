@@ -144,7 +144,7 @@ class GoodsSv extends BaseService implements IGoods {
       }
 
       $data['thumbnail'] = $params['thumbnail'];
-      $data['goods_name'] = $params['goods_name'];
+      $data['goods_name'] = iconv('UTF-8', 'GBK', $params['goods_name']);
       $data['is_sku'] = $params['is_sku'];
       $data['shop_id'] = $params['shop_id'];
       $data['goods_number'] = $params['goods_number'];
@@ -154,8 +154,8 @@ class GoodsSv extends BaseService implements IGoods {
       $data['market_price'] = $params['market_price'];
       $data['goods_weight'] = $params['goods_weight'];
       $data['stock'] = $params['stock'];
-      $data['introduction'] = $params['introduction'] ? $params['introduction'] : '';
-      $data['description'] = $params['description'] ? $params['description'] : '';
+      $data['introduction'] = $params['introduction'] ? iconv('UTF-8', 'GBK', $params['introduction']) : '';
+      $data['description'] = $params['description'] ? iconv('UTF-8', 'GBK', $params['description']) : '';
       $data['brand_id'] = $params['brand_id'] ? $params['brand_id'] : '';
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
@@ -206,7 +206,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           } else {
 
-              $v['id'] = rand(10000000, 999999999);
+              $v['id'] = rand(100000000, 999999999);
 
               // 添加商品图片
               $img[] = GoodsImagesSv::addData($v);
@@ -245,7 +245,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           $data_attribute['goods_id'] = $goods_id;
 
-          $data_attribute['attr_value'] = $v['attr_name'];
+          $data_attribute['attr_value'] = iconv('UTF-8', 'GBK', $v['attr_name']);
 
           $info_goods_attribute = GoodsAttributeSv::findOne($data_attribute);
 
@@ -374,6 +374,8 @@ class GoodsSv extends BaseService implements IGoods {
               $v['shop_id'] = 0;
 
               $v['market_price'] = 0;
+
+              $v['sku_name'] = iconv('UTF-8', 'GBK', $v['sku_name']);
 
               $arr['sku']['sku_id'][] = GoodsSkuSv::addGoodsSku($v);
 
