@@ -1076,6 +1076,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $newOrderId = rand(100000000, 999999999);
 
+      $totalPrice = 0;
+
       /**
        * 检查商品
        */
@@ -1116,6 +1118,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $orderGood['goods_money'] = $sku['price'] * $orderGood['num'];
 
+        $totalPrice += $orderGood['goods_money'];
+
         array_push($newOrderGoods, $orderGood);
       
       }
@@ -1127,6 +1131,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $order['sn'] = self::getSn();
 
       $order['order_status'] = 1;
+
+      $order['order_money'] = $totalPrice;
 
       $order['create_time'] = date('Y-m-d H:i:s');
 
@@ -1140,7 +1146,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
 
-      return array('sn' => $order['sn'], 'order_id' => $newOrderId);
+      return array('sn' => $order['sn'], 'order_id' => $newOrderId, 'price': $totalPrice );
 
     }
 
