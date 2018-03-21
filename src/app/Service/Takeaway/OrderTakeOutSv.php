@@ -1129,7 +1129,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'num' => $orderGood['num'],
 
-          'goods_money' = $sku['price'] * $orderGood['num'],
+          'goods_money' => $sku['price'] * $orderGood['num'],
 
           'goods_picture' => $orderGood['goods_picture']
         
