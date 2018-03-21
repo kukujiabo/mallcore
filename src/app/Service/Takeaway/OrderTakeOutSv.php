@@ -1108,15 +1108,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         }
 
-        $orderGoods['id'] = rand(100000000, 999999999);
+        $orderGood['id'] = rand(100000000, 999999999);
 
-        $orderGoods['order_take_out_id'] = $newOrderId;
+        $orderGood['order_take_out_id'] = $newOrderId;
 
-        $orderGoods['price'] = $sku['price'];
+        $orderGood['price'] = $sku['price'];
 
-        $orderGoods['goods_money'] = $sku['price'] * $orderGood['num'];
+        $orderGood['goods_money'] = $sku['price'] * $orderGood['num'];
 
-        array_push($newOrderGoods, $orderGoods);
+        array_push($newOrderGoods, $orderGood);
       
       }
 
