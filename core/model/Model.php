@@ -97,7 +97,7 @@ class Model {
   /**
    * 获取orm实例
    */
-  protected function orm() {
+  public function orm() {
 
     $tableName = $this->_table;
   
