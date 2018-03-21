@@ -104,9 +104,17 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         }
 
-        unset($condition['way']);
+        $carts = all($condition);
 
-        return self::queryCount($condition);
+        $count = 0;
+
+        foreach($carts as $cart) {
+        
+          $count += $cart['num'];
+        
+        }
+
+        return $count;
 
     }
 
