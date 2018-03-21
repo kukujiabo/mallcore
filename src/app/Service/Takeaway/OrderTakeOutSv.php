@@ -21,7 +21,6 @@ use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsPriceMapSv;
 use App\Service\Crm\MemberAccountSv;
 use App\Service\Crm\MemberAccountRecordSv;
-use App\Service\Crm\MemberSv;
 use App\Service\Crm\CouponSv;
 use App\Library\RedisClient;
 use App\Service\Poss\PosSv;
