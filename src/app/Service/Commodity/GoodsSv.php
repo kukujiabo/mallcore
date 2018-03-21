@@ -273,7 +273,7 @@ class GoodsSv extends BaseService implements IGoods {
               
               $data_attribute_value = array();
 
-              $data_attribute_value['attr_value'] = $vo;
+              $data_attribute_value['attr_value'] = iconv('UTF-8', 'GBK', $vo);
 
               $data_attribute_value['attr_id'] = $attr_id;
 
@@ -332,11 +332,11 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data_attr['attr_id'] = $attribute_array[$vo['attr_id']]['attr_id'];
 
-              $data_attr['attr_val'] = $attribute_array[$vo['attr_id']]['attr_val'][$vo['attr_val']];
+              $data_attr['attr_val'] = iconv('UTF-8', 'GBK', $attribute_array[$vo['attr_id']]['attr_val'][$vo['attr_val']]);
 
               $data_attr['attrKey'] = $vo['attr_id'];
 
-              $data_attr['attrValue'] = $vo['attr_val'];
+              $data_attr['attrValue'] = iconv('UTF-8', 'GBK', $vo['attr_val']);
 
               $attr_val[] = $data_attr;
 
