@@ -262,8 +262,12 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data_attribute['attr_id'] = rand(100000000, 999999999);
 
+              $data_attribute['active'] = 1;
+
               // 添加商品规格
-              $attr_id = $arr['attr']['attr_id'][] = GoodsAttributeSv::addGoodsAttribute($data_attribute);
+              GoodsAttributeSv::addGoodsAttribute($data_attribute);
+
+              $attr_id = $arr['attr']['attr_id'][] = $data_attribute['attr_id'];
 
           }
 
@@ -294,8 +298,12 @@ class GoodsSv extends BaseService implements IGoods {
 
                   $data_attribute_value['attr_value_id'] = rand(100000000, 999999999);
 
+                  $data_attribute_value['active'] = 1;
+
                   // 添加商品规格项
-                  $attr_value_id = $arr['attr_value'][$attr_id][] = GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
+                  GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
+
+                  $attr_value_id = $arr['attr_value'][$attr_id][] = $data_attribute_value['attr_value_id'];
 
               }
 
@@ -332,11 +340,11 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data_attr['attr_id'] = $attribute_array[$vo['attr_id']]['attr_id'];
 
-              $data_attr['attr_val'] = iconv('UTF-8', 'GBK', $attribute_array[$vo['attr_id']]['attr_val'][$vo['attr_val']]);
+              $data_attr['attr_val'] = $attribute_array[$vo['attr_id']]['attr_val'][$vo['attr_val']];
 
               $data_attr['attrKey'] = $vo['attr_id'];
 
-              $data_attr['attrValue'] = iconv('UTF-8', 'GBK', $vo['attr_val']);
+              $data_attr['attrValue'] = $vo['attr_val'];
 
               $attr_val[] = $data_attr;
 
@@ -353,13 +361,13 @@ class GoodsSv extends BaseService implements IGoods {
           }
 
 
-          $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
+          $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode(iconv$attr_val);
 
           $info_sku = GoodsSkuSv::findOne($where_sku);
 
-          $v['attr_value_items'] = iconv('UTF-8', 'GBK', $v['attr_value_items']);
+          $v['attr_value_items'] = $v['attr_value_items'];
 
-          $v['attr_value_items_format'] = iconv('UTF-8', 'GBK', $v['attr_value_items_format']);
+          $v['attr_value_items_format'] = $v['attr_value_items_format'];
 
           if ($info_sku) {
 
