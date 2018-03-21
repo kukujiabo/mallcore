@@ -25,6 +25,7 @@ use App\Library\RedisClient;
 use App\Service\Poss\PosSv;
 use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
+use App\Model\OrderTakeOutGoods;
 
 /**
  * 外卖订单
@@ -377,41 +378,60 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
       $uid = $user['uid'];
 
-      $condition = array(
-      
-        'buyer_id' => $uid,
+      if (!$data['keyword']) {
 
-        'order_status' => $data['order_status']
-      
-      );
-
-      $orders = self::queryList($condition, '*', 'create_time desc', $data['page'], $data['page_size']);
-
-      if(empty($orders['list'])) {
-      
-        return $orders;
-      
-      }
-
-      foreach($orders['list'] as $key => $order) {
-      
         $condition = array(
         
-          'order_take_out_id' => $order['id']
+          'buyer_id' => $uid,
+
+          'order_status' => $data['order_status']
         
         );
 
-        $goods = OrderTakeOutGoodsSv::getList($condition);
+
+        $orders = self::queryList($condition, '*', 'create_time desc', $data['page'], $data['page_size']);
+
+        if(empty($orders['list'])) {
+        
+          return $orders;
+        
+        }
+
+        foreach($orders['list'] as $key => $order) {
+        
+          $condition = array(
+          
+            'order_take_out_id' => $order['id']
+          
+          );
+
+          $goods = OrderTakeOutGoodsSv::getList($condition);
+
+          $orders['list'][$key]['order_goods'] = $goods;
+
+          $address = OrderTakeOutAddressSv::findOne($condition);
+
+          $orders['list'][$key]['order_address'] = $address;
+        
+        }
+
+        return $orders;
+
+      } else {
+
+        $keyword = $data['keyword'];
+
+        $page = $data['page'];
+
+        $pageSize = $data['page_size'];
       
-        $orders['list'][$key]['order_goods'] = $goods;
+        $orderTakeOutGoods = new OrderTakeOutGoods();
 
-        $address = OrderTakeOutAddressSv::findOne($condition);
-
-        $orders['list'][$key]['order_address'] = $address;
+        $orderGoods = $orderTakeOutGoods->orm()->where("(goods_name like ? or sku_name like ?)", array("%{$keyword}%", "%{$keyword}%"))->limit($page * $pageSize, $pageSize)->fetchRows();
+      
+        return $orderGoods;
       
       }
-
-      return $orders;
     
     }
 
