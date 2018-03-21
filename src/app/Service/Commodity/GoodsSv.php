@@ -348,7 +348,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           if ($v['attr_value_items']) {
 
-              $where_sku['attr_value_items'] = $v['attr_value_items'];
+              $where_sku['attr_value_items'] = iconv('UTF-8', 'GBK', $v['attr_value_items']);
 
           }
 
@@ -356,6 +356,10 @@ class GoodsSv extends BaseService implements IGoods {
           $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
 
           $info_sku = GoodsSkuSv::findOne($where_sku);
+
+          $v['attr_value_items'] = iconv('UTF-8', 'GBK', $v['attr_value_items']);
+
+          $v['attr_value_items_format'] = iconv('UTF-8', 'GBK', $v['attr_value_items_format']);
 
           if ($info_sku) {
 
@@ -377,7 +381,11 @@ class GoodsSv extends BaseService implements IGoods {
 
               $v['sku_name'] = iconv('UTF-8', 'GBK', $v['sku_name']);
 
-              $arr['sku']['sku_id'][] = GoodsSkuSv::addGoodsSku($v);
+              $v['active'] = 1;
+
+              GoodsSkuSv::addGoodsSku($v);
+
+              $arr['sku']['sku_id'][] = $v['sku_id'];
 
           }
 

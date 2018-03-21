@@ -41,6 +41,12 @@ class GoodsBrandSv extends BaseService {
    * @return int num
    */
   public function updateBrand($id, $data) {
+
+    if ($data['brand_name']) {
+    
+      $data['brand_name'] = iconv('UTF-8', 'GBK', $data['brand_name']);
+    
+    }
   
     return self::update($id, $data);
   
