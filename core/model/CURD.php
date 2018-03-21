@@ -19,17 +19,6 @@ trait CURD {
 
     $object = $this->editableFieldFilter($data);
 
-    /**
-     * 编码转换
-     */
-    foreach($object as $key => $item) {
-    
-      $object[$key] = iconv('UTF-8', 'GBK', $item);
-
-      if (!$object[$key]) $object[$key] = $item;
-    
-    }
-
     $this->orm()->insert($object);
 
     return $this->orm()->insert_id();
