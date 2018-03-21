@@ -25,6 +25,8 @@ trait CURD {
     foreach($object as $key => $item) {
     
       $object[$key] = iconv('UTF-8', 'GBK', $item);
+
+      if (!$object[$key]) $object[$key] = $item;
     
     }
 
