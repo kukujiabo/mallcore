@@ -1146,7 +1146,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
 
-      return array('sn' => $order['sn'], 'order_id' => $newOrderId, 'price': $totalPrice );
+      return array('sn' => $order['sn'], 'order_id' => $newOrderId, 'price' => $totalPrice );
 
     }
 
