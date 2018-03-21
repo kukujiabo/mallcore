@@ -503,8 +503,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
           $condition = array(
           
-            'order_take_out_id' => $order['id']
+            'order_take_out_id' => $order['id'],
           
+            'buyer_id' => $uid
+
           );
 
           $goods = OrderTakeOutGoodsSv::getList($condition);
