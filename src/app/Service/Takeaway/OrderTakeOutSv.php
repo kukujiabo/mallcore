@@ -427,13 +427,17 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $goodsNameCondition = array(
         
-          'goods_name' => $keyword
+          'goods_name' => $keyword,
+
+          'uid' => $uid
         
         );
 
         $skuNameCondition = array(
         
-          'sku_name' => $keyword
+          'sku_name' => $keyword,
+
+          'uid' => $uid
         
         );
 
@@ -443,19 +447,25 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $mobileCondition = array(
         
-          'mobile' => $keyword
+          'mobile' => $keyword,
+
+          'uid' => $uid
         
         );
 
         $addressCondition = array(
         
-          'address' => $keyword
+          'address' => $keyword,
+
+          'uid' => $uid
         
         );
 
         $consignerCondition = array(
         
-          'consigner' => $keyword 
+          'consigner' => $keyword,
+
+          'uid' => $uid
 
         );
 
@@ -503,10 +513,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
           $condition = array(
           
-            'order_take_out_id' => $order['id'],
+            'order_take_out_id' => $order['id']
           
-            'buyer_id' => $uid
-
           );
 
           $goods = OrderTakeOutGoodsSv::getList($condition);
