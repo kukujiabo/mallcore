@@ -104,7 +104,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         }
 
-        $carts = all($condition);
+        $carts = self::all($condition);
 
         $count = 0;
 
