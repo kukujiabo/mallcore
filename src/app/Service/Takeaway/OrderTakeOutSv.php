@@ -459,11 +459,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         );
 
-        $oa1 = OrderTakeOutAddress::all($mobileCondition);
+        $oa1 = OrderTakeOutAddressSv::all($mobileCondition);
 
-        $oa2 = OrderTakeOutAddress::all($addressCondition);
+        $oa2 = OrderTakeOutAddressSv::all($addressCondition);
 
-        $oa3 = OrderTakeOutAddress::all($consignerCondition);
+        $oa3 = OrderTakeOutAddressSv::all($consignerCondition);
 
         $orderIds = array();
 
