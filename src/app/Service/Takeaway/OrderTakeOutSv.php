@@ -1116,9 +1116,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'uid' => $uid,
         
-          'goods_id' => $good['goods_id'],
+          'goods_id' => $orderGood['goods_id'],
         
-          'goods_name' => $good['goods_name'],
+          'goods_name' => $orderGood['goods_name'],
         
           'sku_id' => $sku['sku_id'],
 
@@ -1142,6 +1142,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $order['id'] = $newOrderId;
 
+      $order['sn'] = self::getSn();
+
       $order['order_status'] = 1;
 
       $order['create_time'] = date('Y-m-d H:i:s');
@@ -1156,7 +1158,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
 
-      return 1;
+      return $newOrderGoods;
 
     }
 
