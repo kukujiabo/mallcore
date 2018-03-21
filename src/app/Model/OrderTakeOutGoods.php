@@ -12,6 +12,10 @@ class OrderTakeOutGoods extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+      'goods_name' => 'like',
+
+      'sku_name' => 'like'
+
     );  
     
 }

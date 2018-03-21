@@ -424,13 +424,53 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $page = $data['page'];
 
         $pageSize = $data['page_size'];
-      
-        $orderTakeOutGoods = new OrderTakeOutGoods();
 
-        $orderGoods = $orderTakeOutGoods->orm()->where("goods_name like ? or sku_name like ?", array("%{$keyword}%", "%{$keyword}%"))->limit($page * $pageSize, $pageSize)->fetchRows();
-      
-        return $orderGoods;
-      
+        $goodsNameCondition = array(
+        
+          'goods_name' => $keyword
+        
+        );
+
+        $skuNameCondition = array(
+        
+          'sku_name' => $keyword
+        
+        );
+
+        $og1 = OrderTakeOutGoodsSv::all($goodsNameCondition);
+
+        $og2 = OrderTakeOutGoodsSv::all($skuNameCondition);
+
+        $mobileCondition = array(
+        
+          'mobile' => $keyword
+        
+        );
+
+        $addressCondition = array(
+        
+          'address' => $keyword
+        
+        );
+
+        $consignCondition = array(
+        
+          'consigner' => $keyword 
+
+        );
+
+        $oa1 = OrderTakeOutAddress::all($mobileCondition);
+
+        $oa2 = OrderTakeOutAddress::all($addressCondition);
+
+        $oa3 = OrderTakeOutAddress::all($consignerCondition);
+
+        $orderIds = array();
+
+        $tmpOrders = array_merge($og1, $og2, $oa1, $oa2, $oa3);
+
+        return $tmpOrders;
+
       }
     
     }

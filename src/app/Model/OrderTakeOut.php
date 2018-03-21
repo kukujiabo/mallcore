@@ -12,6 +12,8 @@ class OrderTakeOut extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+        'id' => 'in',
+
         'create_time' => 'range',
 
         'pay_time' => 'range',

@@ -12,6 +12,12 @@ class OrderTakeOutAddress extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+      'mobile' => 'like',
+
+      'consigner' => 'like',
+
+      'address' => 'like'
+
     );  
     
 }
