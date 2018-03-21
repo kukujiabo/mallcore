@@ -1146,6 +1146,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $order['create_time'] = date('Y-m-d H:i:s');
 
+      $orderAddress['id'] = rand(100000000, 999999999);
+
       $orderAddress['order_take_out_id'] = $newOrderId;
 
       self::add($order);
