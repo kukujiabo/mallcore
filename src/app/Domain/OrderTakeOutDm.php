@@ -127,4 +127,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 重新下单
+   */
+  public function rebuyOrder($params) {
+  
+    return OrderTakeOutSv::rebuyOrder($params);
+  
+  }
+
 }

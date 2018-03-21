@@ -5,6 +5,7 @@ use App\Interfaces\Takeaway\IOrderTakeOut;
 use App\Model\OrderTakeOut;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
+use App\Service\Crm\MemberSv;
 use App\Service\Takeaway\OrderTakeOutGoodsSv;
 use App\Service\Takeaway\OrderTakeOutAddressSv;
 use App\Service\Takeaway\CartTakeOutSv;
@@ -17,6 +18,7 @@ use App\Exception\OrderTakeOutException;
 use App\Service\Shop\ShopSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Commodity\GoodsSv;
+use App\Service\Commodity\GoodsPriceMapSv;
 use App\Service\Crm\MemberAccountSv;
 use App\Service\Crm\MemberAccountRecordSv;
 use App\Service\Crm\MemberSv;
@@ -25,7 +27,6 @@ use App\Library\RedisClient;
 use App\Service\Poss\PosSv;
 use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
-use App\Model\OrderTakeOutGoods;
 
 /**
  * 外卖订单
@@ -1051,5 +1052,112 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         return true;
 
     }
+
+    /**
+     * 重新购买
+     *
+     */
+    public function rebuyOrder($params) {
+    
+      $orderId = $params['order_id'];
+    
+      $user = UserSv::getUserByToken($params['token']);
+
+      $uid = $user['uid'];
+
+      $member = MemberSv::findOne(array('uid' => $uid));
+
+      $order = self::findOne($orderId);
+      
+      $orderAddress = self::findOne(array('order_take_out_id' => $orderId));
+
+      $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $orderId));
+
+      $newOrderGoods = array();
+
+      $newOrderId = rand(100000000, 999999999);
+
+      /**
+       * 检查商品
+       */
+      foreach($orderGoods as $orderGood) {
+      
+        $good = GoodsSv::findOne($orderGood['goods_id']);
+
+        if (empty($good) || !$good['state']) {
+        
+          return 0;
+        
+        }
+      
+        $sku = GoodsSkuSv::findOne($orderGood['sku_id']);
+
+        if (empty($sku) || !$sku['active']) {
+        
+          return 0;
+        
+        }
+
+        /**
+         * 获取商品地域价格
+         */
+        $priceRule = GoodsPriceMapSv::findOne(array('sku_id' => $sku['sku_id'], 'city_code' => $orderAddress['city'], 'user_leve' => $member['member_level']));
+
+        if (!empty($priceRule)) {
+        
+          $sku['price'] = $priceRule['price'];
+        
+        }
+
+        $newOrderSku = array(
+
+          'id' => rand(100000000, 999999999),
+
+          'order_take_out_id' => $newOrderId,
+
+          'uid' => $uid,
+        
+          'goods_id' => $good['goods_id'],
+        
+          'goods_name' => $good['goods_name'],
+        
+          'sku_id' => $sku['sku_id'],
+
+          'sku_name' => $sku['sku_name'],
+
+          'price' => $sku['price'],
+
+          'num' => $orderGood['num'],
+
+          'goods_money' = $sku['price'] * $orderGood['num'],
+
+          'goods_picture' => $orderGood['goods_picture']
+        
+        );
+
+        array_push($newOrderGoods, $newOrderSku);
+      
+      }
+
+      $order['buyer_message'] = '';
+
+      $order['id'] = $newOrderId;
+
+      $order['order_status'] = 1;
+
+      $order['create_time'] = date('Y-m-d H:i:s');
+
+      $orderAddress['order_take_out_id'] = $newOrderId;
+
+      self::add($order);
+
+      OrderTakeOutAddressSv::add($orderAddress);
+
+      OrderTakeOutGoodsSv::add($newOrderGoods);
+
+      return 1;
+
+    }
+
 
 }

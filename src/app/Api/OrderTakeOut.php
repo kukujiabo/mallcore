@@ -260,6 +260,14 @@ class OrderTakeOut extends BaseApi {
 
         'page_size' => 'page_size|int|false|10|每页条数'
       
+      ),
+
+      'rebuyOrder' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+
+        'order_id' => 'order_id|string|true||订单id'
+      
       )
 
     ));
@@ -667,6 +675,18 @@ class OrderTakeOut extends BaseApi {
   public function orderList() {
   
     return $this->dm->orderList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 重新下单
+   * @desc 重新下单
+   *
+   * @return 
+   */
+  public function rebuyOrder() {
+  
+    return $this->dm->rebuyOrder($this->retriveRuleParams(__FUNCTION__));
   
   }
 
