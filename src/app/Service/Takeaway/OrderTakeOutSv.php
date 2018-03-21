@@ -469,7 +469,55 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $tmpOrders = array_merge($og1, $og2, $oa1, $oa2, $oa3);
 
-        return $tmpOrders;
+        foreach($tmpOrders as $order) {
+        
+          if (!in_array($order['order_take_out_id'], $orderIds)) {
+          
+            array_push($orderIds, $order['order_take_out_id']);
+          
+          }
+        
+        }
+
+        $condition = array(
+        
+          'id' => implode(',' $orderIds)
+
+        );
+
+        if ($data['order_status']) {
+        
+          $condition['order_status'] = $data['order_status'];
+        
+        }
+
+        $orders = self::queryList($condition, '*', 'create_time desc', $data['page'], $data['page_size']);
+
+        if(empty($orders['list'])) {
+        
+          return $orders;
+        
+        }
+
+        foreach($orders['list'] as $key => $order) {
+        
+          $condition = array(
+          
+            'order_take_out_id' => $order['id']
+          
+          );
+
+          $goods = OrderTakeOutGoodsSv::getList($condition);
+
+          $orders['list'][$key]['order_goods'] = $goods;
+
+          $address = OrderTakeOutAddressSv::findOne($condition);
+
+          $orders['list'][$key]['order_address'] = $address;
+        
+        }
+
+        return $orders;
 
       }
     
