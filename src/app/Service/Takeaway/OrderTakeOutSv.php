@@ -633,6 +633,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         }
 
+        $member = MemberSv::findOne(array('uid' => $info_user['uid']));
+
+        $memberLevel = $member['member_level'];
+
+        $cityCode = $data['city_code'];
+
+        unset($data['city_code']);
+
         unset($data['way']);
 
         unset($data['token']);
@@ -654,7 +662,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         // 验证地址
 
         // 计算订单商品总价
-        $data['goods_money'] = CartTakeOutSv::disposeGoods($data['cart_id']);
+        $data['goods_money'] = CartTakeOutSv::disposeGoods($data['cart_id'], $cityCode, $memberLevel);
 
         $data['coupon_money'] = 0;
 
@@ -716,6 +724,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         }
 
+        $member = MemberSv::findOne(array('uid' => $info_user['uid']));
+
+        $memberLevel = $member['member_level'];
+
+        $cityCode = $data['city_code'];
+
+        unset($data['city_code']);
+
         unset($data['way']);
 
         unset($data['token']);
@@ -736,9 +752,21 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
             $info_sku_goods = GoodsSkuSv::findOne($data['sku_id']);
 
+            $priceCondition = array(
+            
+              'city_code' => $cityCode,
+
+              'user_level' => $memberLevel,
+
+              'sku_id' => $info_sku_goods['sku_id']
+            
+            );
+
+            $priceRule = GoodsPriceMapSv::findOne($priceCondition);
+
             $data_goods['sku_name'] = $info_sku_goods['sku_name'];
             
-            $info_goods['price'] = $info_sku_goods['price'];
+            $info_goods['price'] = !empty($priceRule) ? $priceRule['price'] : $info_sku_goods['price'];
             
             $info_goods['stock'] = $info_sku_goods['stock'];
 

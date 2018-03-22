@@ -40,6 +40,8 @@ class OrderTakeOut extends BaseApi {
 
         'coupon_id' => 'coupon_id|int|false||使用的优惠券id',
 
+        'city_code' => 'city_code|int|false||城市编码'
+
       ),
 
       'purchase' => array(
@@ -69,6 +71,8 @@ class OrderTakeOut extends BaseApi {
         'buyer_invoice' => 'buyer_invoice|string|false||买家发票信息',
 
         'coupon_id' => 'coupon_id|int|false||使用的优惠券id',
+
+        'city_code' => 'city_code|int|false||城市编码'
 
       ),
 

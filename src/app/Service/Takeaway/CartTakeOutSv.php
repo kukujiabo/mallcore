@@ -9,6 +9,7 @@ use App\Service\Crm\UserSv;
 use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Shop\ShopSv;
+use App\Service\Commodity\GoodsPriceMapSv;
 use PhalApi\Exception;
 
 /**
@@ -264,7 +265,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
      * @param string $cart_id 购物车商品id（英文逗号隔开）
      * @return float $total_prices 订单商品总价
      */
-    public function disposeGoods($cart_id) {
+    public function disposeGoods($cart_id, $cityCode = null, $memberLevel = null) {
 
         $cart_id_array = explode(',', $cart_id);
 
@@ -280,7 +281,27 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         foreach($list_cart_goods as $v) {
 
+          $priceCondition = array(
+          
+            'user_level' => $memberLevel,
+
+            'city_code' => $cityCode,
+
+            'sku_id' => $v['sku_id']
+          
+          );
+
+          $priceRule = GoodsPriceMapSv::findOne($priceCondition);
+
+          if ($priceRule) {
+
+            $total_prices += $priceRule['price'] * $v['num'];
+
+          } else {
+          
             $total_prices += $v['price'] * $v['num'];
+          
+          }
 
         }
 
