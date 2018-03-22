@@ -340,7 +340,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         unset($condition['way']);
 
-        $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+        $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], 'create_time desc', $condition['page'], $condition['page_size']);
 
         foreach ($info['list'] as &$v) {
 
