@@ -361,7 +361,7 @@ class GoodsSv extends BaseService implements IGoods {
           }
 
 
-          $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode(iconv$attr_val);
+          $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
 
           $info_sku = GoodsSkuSv::findOne($where_sku);
 
