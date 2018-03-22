@@ -826,6 +826,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         $info_return['sn'] = $data['sn'];
 
+        $info_return['price'] = $data['goods_money'];
+
         return $info_return;
 
     }
