@@ -134,6 +134,10 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
       }
 
+      $cityCode = $data['city_code'];
+
+      unset($data['city_code']);
+
       unset($data['way']);
 
       $where_cart['goods_id'] = $where_goods['goods_id'] = $data['goods_id'];
@@ -143,6 +147,8 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
       $info_goods = GoodsSv::verifyGoods($where_goods);
 
       $where_cart['buyer_id'] = $data['buyer_id'];
+
+      $member = MemberSv::findOne(array('uid' => $data['buyer_id']));
 
       if ($data['sku_id']) {
 
@@ -154,7 +160,17 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
           $info_goods['stock'] = $info_sku_goods['stock'];
 
-          $info_goods['price'] = $info_sku_goods['price'];
+          $priceRule = GoodsPriceMapSv::findOne(array(
+          
+            'city_code' => $cityCode,
+
+            'sku_id' => $data['sku_id'],
+
+            'user_level' => $member['member_level']
+          
+          ));
+
+          $info_goods['price'] = $priceRule ? $priceRule['price'] : $info_sku_goods['price'];
 
           if ($info_sku_goods['picture']) {
 

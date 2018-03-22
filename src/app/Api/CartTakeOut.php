@@ -44,6 +44,8 @@ class CartTakeOut extends BaseApi {
 
         'bl_id' => 'bl_id|int|false||组合套装ID',
 
+        'city_code' => 'city_code|int|false||城市编码'
+
       ),
 
       'queryList' => array(
