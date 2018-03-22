@@ -1134,7 +1134,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         /**
          * 获取商品地域价格
          */
-        $priceRule = GoodsPriceMapSv::findOne(array('sku_id' => $sku['sku_id'], 'city_code' => $orderAddress['city'], 'user_leve' => $member['member_level']));
+        $priceRule = GoodsPriceMapSv::findOne(array(
+          
+          'sku_id' => $sku['sku_id'], 
+          
+          'city_code' => $orderAddress['city'], 
+          
+          'user_level' => $member['member_level'])
+
+        );
 
         if (!empty($priceRule)) {
         
