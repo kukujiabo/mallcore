@@ -10,6 +10,7 @@ use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Shop\ShopSv;
 use App\Service\Commodity\GoodsPriceMapSv;
+use App\Service\Crm\MemberSv;
 use PhalApi\Exception;
 
 /**
