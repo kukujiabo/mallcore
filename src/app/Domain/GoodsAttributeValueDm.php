@@ -43,7 +43,7 @@ class GoodsAttributeValueDm {
    */
   public function getAll($condition) {
 
-    return GoodsAttributeValueSv::all($condition);
+    return GoodsAttributeValueSv::all($condition, 'sort asc');
   
   }
 
