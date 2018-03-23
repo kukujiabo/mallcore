@@ -273,7 +273,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           $attr_array['attr_id'] = $attr_id;
 
-          foreach ($v['attr_value'] as $vo) {
+          foreach ($v['attr_value'] as $key => $vo) {
               
               $data_attribute_value = array();
 
@@ -299,6 +299,8 @@ class GoodsSv extends BaseService implements IGoods {
                   $data_attribute_value['attr_value_id'] = rand(100000000, 999999999);
 
                   $data_attribute_value['active'] = 1;
+
+                  $data_attribute_value['sort'] = $key;
 
                   // 添加商品规格项
                   GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);

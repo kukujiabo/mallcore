@@ -868,32 +868,6 @@ class UserSv extends BaseService implements IUser {
      * 判断是否需要同步poss
      */
 
-    if (IS_POSS) {
-
-      $acct = MemberAccountSv::findOne(array('uid' => $info_user['uid']));
-
-      $member = MemberSv::findOne(array('uid' => $info_user['uid']));
-    
-      $data_update_pos_member['sDocEntry'] = $acct['pos_id'];
-
-      $data_update_pos_member['sMobile'] = $data['phone'];
-
-      $data_update_pos_member['sVIPName'] = $member['member_name'];
-
-      $data_update_pos_member['sSex'] = $info_user['sex'] == 1 ? '先生' : '女士';
-
-      $data_update_pos_member['sWXOpenID'] = $info_user['wx_openid'] ? $info_user['wx_openid'] : '';
-      
-      $data_update_pos_member['sHealImgURL'] = $info_user['user_headimg'];
-
-      /**
-       * 修改pos会员信息
-       */
-
-      PosSv::updateMemberInfo($data_update_pos_member);
-    
-    }
-
     return $num;
     
   }

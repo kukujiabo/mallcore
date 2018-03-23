@@ -21,7 +21,7 @@ class GoodsAttributeValueSv extends BaseService implements IGoodsAttributeValue 
      */
     public function getList($condition) {
 
-        return self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+        return self::queryList($condition, $condition['fields'], 'sort asc', $condition['page'], $condition['page_size']);
 
     }
 
