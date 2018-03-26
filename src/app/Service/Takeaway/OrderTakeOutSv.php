@@ -1178,7 +1178,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $cartGood['goods_picture'] = $orderGood['goods_picture'];
 
-        array_push($newCartGoods, $orderGood);
+        array_push($newCartGoods, $cartGood);
       
       }
 
