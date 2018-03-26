@@ -1111,7 +1111,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       /**
        * 购物车商品
        */
-      $cartGoods = array();
+      $newCartGoods = array();
 
       $newOrderId = rand(100000000, 999999999);
 
@@ -1157,16 +1157,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         }
 
-        $orderGood['id'] = rand(100000000, 999999999);
-
-        $orderGood['order_take_out_id'] = $newOrderId;
-
-        $orderGood['price'] = $sku['price'];
-
-        $orderGood['goods_money'] = $sku['price'] * $orderGood['num'];
-
-        $totalPrice += $orderGood['goods_money'];
-
         /**
          * 购物车商品
          */
@@ -1188,33 +1178,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $cartGood['goods_picture'] = $orderGood['goods_picture'];
 
-        array_push($newOrderGoods, $orderGood);
+        array_push($newCartGoods, $orderGood);
       
       }
 
-      $order['buyer_message'] = '';
-
-      $order['id'] = $newOrderId;
-
-      $order['sn'] = self::getSn();
-
-      $order['order_status'] = 1;
-
-      $order['order_money'] = $totalPrice;
-
-      $order['create_time'] = date('Y-m-d H:i:s');
-
-      $orderAddress['id'] = rand(100000000, 999999999);
-
-      $orderAddress['order_take_out_id'] = $newOrderId;
-
-      //self::add($order);
-
-      //OrderTakeOutAddressSv::add($orderAddress);
-
-      //OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
-
-      return array('sn' => $order['sn'], 'order_id' => $newOrderId, 'price' => $totalPrice );
+      return $newCartGoods;
 
     }
 
