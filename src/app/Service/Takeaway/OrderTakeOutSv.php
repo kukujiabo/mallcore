@@ -1094,6 +1094,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
       $user = UserSv::getUserByToken($params['token']);
 
+      $cityCode = $params['city_code'];
+
       $uid = $user['uid'];
 
       $member = MemberSv::findOne(array('uid' => $uid));
@@ -1105,6 +1107,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $orderId));
 
       $newOrderGoods = array();
+
+      /**
+       * 购物车商品
+       */
+      $cartGoods = array();
 
       $newOrderId = rand(100000000, 999999999);
 
@@ -1138,7 +1145,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           
           'sku_id' => $sku['sku_id'], 
           
-          'city_code' => $orderAddress['city'], 
+          'city_code' => $cityCode,
           
           'user_level' => $member['member_level'])
 
@@ -1160,6 +1167,27 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $totalPrice += $orderGood['goods_money'];
 
+        /**
+         * 购物车商品
+         */
+        $cartGood['cart_id'] = rand(100000000, 999999999);
+
+        $cartGood['buyer_id'] = $uid;
+
+        $cartGood['goods_id'] = $orderGood['goods_id'];
+
+        $cartGood['sku_id'] = $orderGood['sku_id'];
+
+        $cartGood['goods_name'] = $good['goods_name'];
+
+        $cartGood['sku_name'] = $sku['sku_name'];
+
+        $cartGood['price'] = $orderGood['price'];
+
+        $cartGood['num'] = $orderGood['num'];
+
+        $cartGood['goods_picture'] = $orderGood['goods_picture'];
+
         array_push($newOrderGoods, $orderGood);
       
       }
@@ -1180,11 +1208,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $orderAddress['order_take_out_id'] = $newOrderId;
 
-      self::add($order);
+      //self::add($order);
 
-      OrderTakeOutAddressSv::add($orderAddress);
+      //OrderTakeOutAddressSv::add($orderAddress);
 
-      OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
+      //OrderTakeOutGoodsSv::batchAdd($newOrderGoods);
 
       return array('sn' => $order['sn'], 'order_id' => $newOrderId, 'price' => $totalPrice );
 
