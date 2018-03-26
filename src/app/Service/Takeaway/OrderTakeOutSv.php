@@ -1182,7 +1182,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
       }
 
-      return $newCartGoods;
+      CartTakeOutSv::batchRemove(array('buyer_id' => $uid));
+
+      return CartTakeOutSv::batchAdd($newCartGoods);
 
     }
 
