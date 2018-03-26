@@ -41,8 +41,6 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         $data['num'] = 0;
 
-        $condition['num > ?'] = 0;
-
         return self::batchRemove($condition, $data);
 
     }
