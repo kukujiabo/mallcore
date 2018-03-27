@@ -1229,8 +1229,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     foreach($titles as $key => $title) {
-    
-      $sheet->setCellValue("A{$key}", $title);
+
+      $sheet->setCellValue("{$characters[$key]}1", $title);
     
     }
 
@@ -1260,7 +1260,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         'price' => $order['goods_money'],
 
-        'order_status' => $statusInfo[strval($order['order_status'])],
+        'order_status' => iconv('UTF-8', 'GBK', $statusInfo[strval($order['order_status'])]),
 
         'create_time' => $order['create_time']
       
@@ -1268,7 +1268,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       foreach($valueOrder as $value) {
 
-        $cell = "{$characters[$column]}{$index}";
+	$row = $index + 2;
+
+        $cell = "{$characters[$column]}{$row}";
 
         $sheet->setCellValue($cell, iconv('GBK', 'UTF-8', $value));
 
