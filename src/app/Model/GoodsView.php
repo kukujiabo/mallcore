@@ -14,7 +14,9 @@ class Goodsview extends BaseModel {
 
     protected $_queryOptionRule = array(
 
-      'goods_name' => 'like'
+      'goods_name' => 'like',
+
+      'category_id' => 'in'
 
     );  
     

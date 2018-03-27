@@ -697,169 +697,167 @@ class Goods extends BaseApi {
       
         ),
 
-        'addSkuGoods' => array(
+      'addSkuGoods' => array(
 
-            'brand_id' => 'brand_id|int|true||商品品牌',
+          'brand_id' => 'brand_id|int|true||商品品牌',
 
-            'goods_name' => 'goods_name|string|true||商品名称',
+          'goods_name' => 'goods_name|string|true||商品名称',
 
-            'shop_id' => 'shop_id|int|true||店铺id',
+          'shop_id' => 'shop_id|int|true||店铺id',
 
-            'goods_number' => 'goods_number|string|true||商品编号',
+          'goods_number' => 'goods_number|string|true||商品编号',
 
-            'category_id' => 'category_id|int|true||商品分类id',
+          'category_id' => 'category_id|int|true||商品分类id',
 
-            'no_code' => 'no_code|string|false||erp商品编码',
+          'no_code' => 'no_code|string|false||erp商品编码',
 
-            'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
+          'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
 
-            'price' => 'price|float|true||本店售价（元）',
+          'price' => 'price|float|true||本店售价（元）',
 
-            'market_price' => 'market_price|float|true||市场售价（元）',
+          'market_price' => 'market_price|float|true||市场售价（元）',
 
-            'goods_weight' => 'goods_weight|float|true||重量（克）',
+          'goods_weight' => 'goods_weight|float|true||重量（克）',
 
-            'sales' => 'sales|int|false||销量（件 ）',
+          'sales' => 'sales|int|false||销量（件 ）',
 
-            'is_pinkage' => 'is_pinkage|int|false|1|是否包邮 1-是 2-否',
+          'is_pinkage' => 'is_pinkage|int|false|1|是否包邮 1-是 2-否',
 
-            'pinkage' => 'pinkage|string|false||快递公司（json格式字符串，如：[{"courier":"1","default":1,"freight":10},{"courier":"2","freight":5}]。courier为快递公司id，default为1表示默认快递公司，freight为运费，运费单位：元）',
+          'pinkage' => 'pinkage|string|false||快递公司（json格式字符串，如：[{"courier":"1","default":1,"freight":10},{"courier":"2","freight":5}]。courier为快递公司id，default为1表示默认快递公司，freight为运费，运费单位：元）',
 
-            'stock' => 'stock|int|true||库存设置',
+          'stock' => 'stock|int|true||库存设置',
 
-            'shape' => 'shape|int|false|1|减库存方式 1-拍下立减库存 2-付款减库存 3-永不减少库存',
+          'shape' => 'shape|int|false|1|减库存方式 1-拍下立减库存 2-付款减库存 3-永不减少库存',
 
-            'goods_spec_format' => 'goods_spec_format|string|false||规格描述',
+          'goods_spec_format' => 'goods_spec_format|string|false||规格描述',
 
-            'is_sku' => 'is_sku|int|false|2|规格类型 1-多规格 2-单规格',
+          'is_sku' => 'is_sku|int|false|2|规格类型 1-多规格 2-单规格',
 
-            'attribute' => 'attribute|string|false||商品规格属性（json格式字符串，如：[{"attr_name":"规格1属性名称","attr_value":["属性1第1项规格","属性1第2项规格","属性1第3项规格"]},{"attr_name":"规格2属性名称","attr_value":["属性2第1项规格","属性2第2项规格","属性2第3项规格"]},{"attr_name":"规格3属性名称","attr_value":["属性3第1项规格","属性3第2项规格","属性3第3项规格"]}]。）',
+          'attribute' => 'attribute|string|false||商品规格属性（json格式字符串，如：[{"attr_name":"规格1属性名称","attr_value":["属性1第1项规格","属性1第2项规格","属性1第3项规格"]},{"attr_name":"规格2属性名称","attr_value":["属性2第1项规格","属性2第2项规格","属性2第3项规格"]},{"attr_name":"规格3属性名称","attr_value":["属性3第1项规格","属性3第2项规格","属性3第3项规格"]}]。）',
 
-            'goods_sku' => 'goods_sku|string|false||sku商品（json格式字符串，如：[{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第1项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第1项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第1项规格"}],"attr_value_items":"规格1属性名称_属性1第1项规格;规格2属性名称_属性2第1项规格;规格3属性名称_属性3第1项规格","no_code":"123123","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"1111"},{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第2项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第2项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第3项规格"}],"attr_value_items":"规格1属性名称_属性1第2项规格;规格2属性名称_属性2第2项规格;规格3属性名称_属性3第3项规格","no_code":"123133","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"heihei"}]。）',
+          'goods_sku' => 'goods_sku|string|false||sku商品（json格式字符串，如：[{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第1项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第1项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第1项规格"}],"attr_value_items":"规格1属性名称_属性1第1项规格;规格2属性名称_属性2第1项规格;规格3属性名称_属性3第1项规格","no_code":"123123","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"1111"},{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第2项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第2项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第3项规格"}],"attr_value_items":"规格1属性名称_属性1第2项规格;规格2属性名称_属性2第2项规格;规格3属性名称_属性3第3项规格","no_code":"123133","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"heihei"}]。）',
 
-            'introduction' => 'introduction|string|false||商品描述（商品简介，促销语）',
+          'introduction' => 'introduction|string|false||商品描述（商品简介，促销语）',
 
-            'images' => 'images|string|true||商品图（json格式字符串，如：[{"img":"lsdhfjshgbojs.jpg","is_cover":2},{"img":"123123123.jpg"}]。img为图片地址，is_cover为2表示设为封面/主图）',
-            
-            'thumbnail' => 'thumbnail|string|false||商品缩略图',
+          'images' => 'images|string|true||商品图（json格式字符串，如：[{"img":"lsdhfjshgbojs.jpg","is_cover":2},{"img":"123123123.jpg"}]。img为图片地址，is_cover为2表示设为封面/主图）',
+          
+          'thumbnail' => 'thumbnail|string|false||商品缩略图',
 
-            'description' => 'description|string|false||商品详情（图文）',
+          'description' => 'description|string|false||商品详情（图文）',
 
-            'is_promotion' => 'is_promotion|int|false|1|促销秒杀 1-关闭 2-开启',
+          'is_promotion' => 'is_promotion|int|false|1|促销秒杀 1-关闭 2-开启',
 
-            'promotion_start_time' => 'promotion_start_time|string|false||促销开始日期',
+          'promotion_start_time' => 'promotion_start_time|string|false||促销开始日期',
 
-            'promotion_end_time' => 'promotion_end_time|string|false||促销结束日期',
+          'promotion_end_time' => 'promotion_end_time|string|false||促销结束日期',
 
-            'is_group' => 'is_group|int|false|1|拼团设置 1-关闭 2-开启',
+          'is_group' => 'is_group|int|false|1|拼团设置 1-关闭 2-开启',
 
-            'group_day' => 'group_day|int|false||成团有效时间（单位：天，最大设置为3天）',
+          'group_day' => 'group_day|int|false||成团有效时间（单位：天，最大设置为3天）',
 
-            'group_price' => 'group_price|float|false||拼团价',
+          'group_price' => 'group_price|float|false||拼团价',
 
-            'group_number' => 'group_number|int|false||限定人数（最大限定人数为100人 ）',
+          'group_number' => 'group_number|int|false||限定人数（最大限定人数为100人 ）',
 
-            'is_bargain' => 'is_bargain|int|false|1|砍价设置 1-关闭 2-开启',
+          'is_bargain' => 'is_bargain|int|false|1|砍价设置 1-关闭 2-开启',
 
-            'bargain_day' => 'bargain_day|int|false||砍价有效时间（单位：天，最大设置为5天）',
+          'bargain_day' => 'bargain_day|int|false||砍价有效时间（单位：天，最大设置为5天）',
 
-            'bargain_price' => 'bargain_price|float|false||砍后价格',
+          'bargain_price' => 'bargain_price|float|false||砍后价格',
 
-            'bargain_number' => 'bargain_number|int|false||砍价人数（最大限定人数为100人 ）',
+          'bargain_number' => 'bargain_number|int|false||砍价人数（最大限定人数为100人 ）',
 
-            'is_recommend' => 'is_recommend|int|false|1|推荐到首页 1-关闭 2-开启',
+          'is_recommend' => 'is_recommend|int|false|1|推荐到首页 1-关闭 2-开启',
 
-            // 'recommend_img' => 'recommend_img|string|false||推荐封面',
+          // 'recommend_img' => 'recommend_img|string|false||推荐封面',
 
-            'recommend_title' => 'recommend_title|string|false||推荐标题',
+          'recommend_title' => 'recommend_title|string|false||推荐标题',
 
-            'sort' => 'sort|int|false|0|排序，数字越大，排在越前面',
+          'sort' => 'sort|int|false|0|排序，数字越大，排在越前面',
 
-            'index_show' => 'index_show|int|false|0|首页展示'
+          'index_show' => 'index_show|int|false|0|首页展示'
 
-        ),
+      ),
 
-        'editSkuGoods' => array(
+      'editSkuGoods' => array(
 
-            'goods_id' => 'goods_id|int|true||商品id',
+          'goods_id' => 'goods_id|int|true||商品id',
 
-            'goods_name' => 'goods_name|string|true||商品名称',
+          'goods_name' => 'goods_name|string|true||商品名称',
 
-            'shop_id' => 'shop_id|int|true||店铺id',
+          'shop_id' => 'shop_id|int|true||店铺id',
 
-            'goods_number' => 'goods_number|string|true||商品编号',
+          'goods_number' => 'goods_number|string|true||商品编号',
 
-            'category_id' => 'category_id|int|true||商品分类id',
+          'category_id' => 'category_id|int|true||商品分类id',
 
-            'no_code' => 'no_code|string|false||erp商品编码',
+          'no_code' => 'no_code|string|false||erp商品编码',
 
-            'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
+          'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
 
-            'price' => 'price|float|true||本店售价（元）',
+          'price' => 'price|float|true||本店售价（元）',
 
-            'market_price' => 'market_price|float|true||市场售价（元）',
+          'market_price' => 'market_price|float|true||市场售价（元）',
 
-            'goods_weight' => 'goods_weight|float|true||重量（克）',
+          'goods_weight' => 'goods_weight|float|true||重量（克）',
 
-            'sales' => 'sales|int|false||销量（件 ）',
+          'sales' => 'sales|int|false||销量（件 ）',
 
-            'is_pinkage' => 'is_pinkage|int|false|1|是否包邮 1-是 2-否',
+          'is_pinkage' => 'is_pinkage|int|false|1|是否包邮 1-是 2-否',
 
-            'pinkage' => 'pinkage|string|false||快递公司（json格式字符串，如：[{"courier":"1","default":1,"freight":10},{"courier":"2","freight":5}]。courier为快递公司id，default为1表示默认快递公司，freight为运费，运费单位：元）',
+          'pinkage' => 'pinkage|string|false||快递公司（json格式字符串，如：[{"courier":"1","default":1,"freight":10},{"courier":"2","freight":5}]。courier为快递公司id，default为1表示默认快递公司，freight为运费，运费单位：元）',
 
-            'stock' => 'stock|int|true||库存设置',
+          'stock' => 'stock|int|true||库存设置',
 
-            'shape' => 'shape|int|false|1|减库存方式 1-拍下立减库存 2-付款减库存 3-永不减少库存',
+          'shape' => 'shape|int|false|1|减库存方式 1-拍下立减库存 2-付款减库存 3-永不减少库存',
 
-            'goods_spec_format' => 'goods_spec_format|string|false||规格描述',
+          'goods_spec_format' => 'goods_spec_format|string|false||规格描述',
 
-            'is_sku' => 'is_sku|int|false|2|规格类型 1-多规格 2-单规格',
+          'is_sku' => 'is_sku|int|false|2|规格类型 1-多规格 2-单规格',
 
-            'attribute' => 'attribute|string|false||商品规格属性（json格式字符串，如：[{"attr_name":"规格1属性名称","attr_value":["属性1第1项规格","属性1第2项规格","属性1第3项规格"]},{"attr_name":"规格2属性名称","attr_value":["属性2第1项规格","属性2第2项规格","属性2第3项规格"]},{"attr_name":"规格3属性名称","attr_value":["属性3第1项规格","属性3第2项规格","属性3第3项规格"]}]。）',
+          'attribute' => 'attribute|string|false||商品规格属性（json格式字符串，如：[{"attr_name":"规格1属性名称","attr_value":["属性1第1项规格","属性1第2项规格","属性1第3项规格"]},{"attr_name":"规格2属性名称","attr_value":["属性2第1项规格","属性2第2项规格","属性2第3项规格"]},{"attr_name":"规格3属性名称","attr_value":["属性3第1项规格","属性3第2项规格","属性3第3项规格"]}]。）',
 
-            'goods_sku' => 'goods_sku|string|false||sku商品（json格式字符串，如：[{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第1项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第1项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第1项规格"}],"attr_value_items":"规格1属性名称_属性1第1项规格;规格2属性名称_属性2第1项规格;规格3属性名称_属性3第1项规格","no_code":"123123","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"1111"},{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第2项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第2项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第3项规格"}],"attr_value_items":"规格1属性名称_属性1第2项规格;规格2属性名称_属性2第2项规格;规格3属性名称_属性3第3项规格","no_code":"123133","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"heihei"}]。）',
+          'goods_sku' => 'goods_sku|string|false||sku商品（json格式字符串，如：[{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第1项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第1项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第1项规格"}],"attr_value_items":"规格1属性名称_属性1第1项规格;规格2属性名称_属性2第1项规格;规格3属性名称_属性3第1项规格","no_code":"123123","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"1111"},{"sku":[{"attr_id":"规格1属性名称","attr_val":"属性1第2项规格"},{"attr_id":"规格2属性名称","attr_val":"属性2第2项规格"},{"attr_id":"规格3属性名称","attr_val":"属性3第3项规格"}],"attr_value_items":"规格1属性名称_属性1第2项规格;规格2属性名称_属性2第2项规格;规格3属性名称_属性3第3项规格","no_code":"123133","stock":10,"price":10,"market_price":12,"goods_weight":1.2,"picture":"kasjdhfjskhdf.jpg","sku_name":"heihei"}]。）',
 
-            'introduction' => 'introduction|string|false||商品描述（商品简介，促销语）',
+          'introduction' => 'introduction|string|false||商品描述（商品简介，促销语）',
 
-            'images' => 'images|string|true||商品图（json格式字符串，如：[{"img":"lsdhfjshgbojs.jpg","is_cover":2},{"img":"123123123.jpg"}]。img为图片地址，is_cover为2表示设为封面/主图）',
-            
-            'thumbnail' => 'thumbnail|string|false||商品缩略图',
+          'images' => 'images|string|true||商品图（json格式字符串，如：[{"img":"lsdhfjshgbojs.jpg","is_cover":2},{"img":"123123123.jpg"}]。img为图片地址，is_cover为2表示设为封面/主图）',
+          
+          'thumbnail' => 'thumbnail|string|false||商品缩略图',
 
-            'description' => 'description|string|false||商品详情（图文）',
+          'description' => 'description|string|false||商品详情（图文）',
 
-            'is_promotion' => 'is_promotion|int|false|1|促销秒杀 1-关闭 2-开启',
+          'is_promotion' => 'is_promotion|int|false|1|促销秒杀 1-关闭 2-开启',
 
-            'promotion_start_time' => 'promotion_start_time|string|false||促销开始日期',
+          'promotion_start_time' => 'promotion_start_time|string|false||促销开始日期',
 
-            'promotion_end_time' => 'promotion_end_time|string|false||促销结束日期',
+          'promotion_end_time' => 'promotion_end_time|string|false||促销结束日期',
 
-            'is_group' => 'is_group|int|false|1|拼团设置 1-关闭 2-开启',
+          'is_group' => 'is_group|int|false|1|拼团设置 1-关闭 2-开启',
 
-            'group_day' => 'group_day|int|false||成团有效时间（单位：天，最大设置为3天）',
+          'group_day' => 'group_day|int|false||成团有效时间（单位：天，最大设置为3天）',
 
-            'group_price' => 'group_price|float|false||拼团价',
+          'group_price' => 'group_price|float|false||拼团价',
 
-            'group_number' => 'group_number|int|false||限定人数（最大限定人数为100人 ）',
+          'group_number' => 'group_number|int|false||限定人数（最大限定人数为100人 ）',
 
-            'is_bargain' => 'is_bargain|int|false|1|砍价设置 1-关闭 2-开启',
+          'is_bargain' => 'is_bargain|int|false|1|砍价设置 1-关闭 2-开启',
 
-            'bargain_day' => 'bargain_day|int|false||砍价有效时间（单位：天，最大设置为5天）',
+          'bargain_day' => 'bargain_day|int|false||砍价有效时间（单位：天，最大设置为5天）',
 
-            'bargain_price' => 'bargain_price|float|false||砍后价格',
+          'bargain_price' => 'bargain_price|float|false||砍后价格',
 
-            'bargain_number' => 'bargain_number|int|false||砍价人数（最大限定人数为100人 ）',
+          'bargain_number' => 'bargain_number|int|false||砍价人数（最大限定人数为100人 ）',
 
-            'is_recommend' => 'is_recommend|int|false|1|推荐到首页 1-关闭 2-开启',
+          'is_recommend' => 'is_recommend|int|false|1|推荐到首页 1-关闭 2-开启',
 
-            // 'recommend_img' => 'recommend_img|string|false||推荐封面',
+          'recommend_title' => 'recommend_title|string|false||推荐标题',
 
-            'recommend_title' => 'recommend_title|string|false||推荐标题',
+          'sort' => 'sort|int|false|0|排序，数字越大，排在越前面',
 
-            'sort' => 'sort|int|false|0|排序，数字越大，排在越前面',
+          'index_show' => 'index_show|int|false||首页展示'
 
-            'index_show' => 'index_show|int|false||首页展示'
-
-        ),
+      ),
 
       'getGoodsStock' => array(
 
