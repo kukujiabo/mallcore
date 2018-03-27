@@ -328,7 +328,7 @@ class MemberSv extends BaseService implements IMember {
 
       $updated['uid'] = $uid;
       
-      RedisClient::set('member_info', $data['token'], $updated);
+      //RedisClient::set('member_info', $data['token'], $updated);
 
       return $uupdate ? $uupdate : $mupdate;
     
