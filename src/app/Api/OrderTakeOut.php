@@ -124,6 +124,8 @@ class OrderTakeOut extends BaseApi {
 
         'order' => 'order|string|false||排序',
 
+        'excel' => 'excel|int|false||是否导出excel',
+
         'is_pushed' => 'is_pushed|int|false||是否已推送',
 
         'page' => 'page|int|true|1|页码',

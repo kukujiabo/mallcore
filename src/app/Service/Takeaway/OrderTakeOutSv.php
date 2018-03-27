@@ -336,38 +336,52 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $goods_status = $condition['goods_status'];
 
+      $excel = $condition['excel'];
+
       unset($condition['goods_status']);
 
       unset($condition['token']);
 
+      unset($condition['excel']);
+
       unset($condition['way']);
 
-      $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], 'create_time desc', $condition['page'], $condition['page_size']);
+      if ($excel) {
 
-      foreach ($info['list'] as &$v) {
+        $orders = OrderTakeOutUnionSv::all($condition);
+      
+        $this->exportExcel($orders);
+      
+      } else {
 
-          $info_shop = ShopSv::findOne($v['shop_id']);
+        $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], 'create_time desc', $condition['page'], $condition['page_size']);
 
-          $v['shop_name'] = $info_shop['shop_name'];
+        foreach ($info['list'] as &$v) {
 
-          $v['shop_logo'] = $info_shop['shop_logo'] ? $info_shop['shop_logo'] : $info_shop['shop_banner'];
+            $info_shop = ShopSv::findOne($v['shop_id']);
 
-          if ($goods_status == 1) {
+            $v['shop_name'] = $info_shop['shop_name'];
 
-              $where_order_address['order_take_out_id'] = $v['id'];
+            $v['shop_logo'] = $info_shop['shop_logo'] ? $info_shop['shop_logo'] : $info_shop['shop_banner'];
 
-              // 获取订单商品
-              $info_order_goods = OrderTakeOutGoodsSv::getList($where_order_address);
+            if ($goods_status == 1) {
 
-              $v['goods_list'] = $info_order_goods;
+                $where_order_address['order_take_out_id'] = $v['id'];
 
-          }
+                // 获取订单商品
+                $info_order_goods = OrderTakeOutGoodsSv::getList($where_order_address);
+
+                $v['goods_list'] = $info_order_goods;
+
+            }
+
+        }
+
+        unset($v);
+
+        return $info;
 
       }
-
-      unset($v);
-
-      return $info;
 
   }
 
@@ -1192,19 +1206,47 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
   /**
    * 导出excel
+   * @desc 导出excel
    *
    */
   public function exportExcel($orders) {
   
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Type:application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="01simple.xlsx"');
+    header('Cache-Control: max-age=0');
+      
     $spreadsheet = new Spreadsheet();
+
+    $titles = array(
+    
+      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '下单时间' 
+    
+    );
+
     $sheet = $spreadsheet->getActiveSheet();
-    $value = "Hello World!" . PHP_EOL . "Next Line";
-    $sheet->setCellValue('A1', $value);
-    $sheet->getStyle('A1')->getAlignment()->setWrapText(true);
+
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    foreach($orders as $index => $order) {
+
+      $column = 0;
+
+      foreach($order as $value) {
+
+        $cell = "{$characters[$column]}{$index}";
+
+        $sheet->setCellValue($cell, $value);
+
+      }
+
+    }
 
     $writer = new Xlsx($spreadsheet);
-    $filename = __DIR__ . "/data/hello_world.xlsx";
+
     $writer->save("php://output");
+
+    exit(0);
   
   }
 
