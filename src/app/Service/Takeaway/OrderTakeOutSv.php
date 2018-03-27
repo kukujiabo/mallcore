@@ -350,7 +350,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $orders = OrderTakeoutUnionSv::all($condition);
       
-        $this->exportExcel($orders);
+        self::exportExcel($orders);
       
       } else {
 
