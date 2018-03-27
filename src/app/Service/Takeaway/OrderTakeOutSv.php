@@ -1238,6 +1238,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $sheet->setCellValue($cell, $value);
 
+        $colum++;
+
       }
 
     }
