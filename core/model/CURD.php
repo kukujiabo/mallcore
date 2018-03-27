@@ -76,11 +76,19 @@ trait CURD {
 
     $orm = $this->orm();
 
-    $data = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
+    $object = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
+
+    foreach($object as $key => $value) {
+    
+      $codeValue = iconv('UTF-8', 'GBK', $value);
+
+      $object[$key] = $codeValue ? $codeValue : $value;
+    
+    }
 
     $where = QueryBuilder::makeQuery(array( $this->_primaryKey => $id ), $this->_queryOptionRule);
 
-    return $orm->where($where)->update($data);
+    return $orm->where($where)->update($object);
 
   }
 
@@ -96,11 +104,20 @@ trait CURD {
 
     $orm = $this->orm();
 
-    $data = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
+    $object = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
+
+    foreach($object as $key => $value) {
+    
+      $codeValue = iconv('UTF-8', 'GBK', $value);
+
+      $object[$key] = $codeValue ? $codeValue : $value;
+    
+    }
+
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
   
-    return $orm->where($where)->update($data);
+    return $orm->where($where)->update($object);
   
   }
 
