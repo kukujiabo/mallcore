@@ -274,6 +274,11 @@ class OrderTakeOut extends BaseApi {
 
         'order_id' => 'order_id|string|true||订单id'
       
+      ),
+
+      'exportExcel' => array(
+      
+      
       )
 
     ));
@@ -693,6 +698,18 @@ class OrderTakeOut extends BaseApi {
   public function rebuyOrder() {
   
     return $this->dm->rebuyOrder($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 导出excel
+   * @desc 导出excel
+   *
+   * @return
+   */
+  public function exportExcel() {
+  
+    return $this->dm->exportExcel($this->retriveRuleParams(__FUNCTION__));
   
   }
 

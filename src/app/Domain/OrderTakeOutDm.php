@@ -136,4 +136,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 导出excel
+   */
+  public function exportExcel($params) {
+  
+    return OrderTakeOutSv::exportExcel($params);
+  
+  }
+
 }
