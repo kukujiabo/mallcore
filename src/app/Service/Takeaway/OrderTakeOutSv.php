@@ -1232,13 +1232,27 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $column = 0;
 
-      foreach($order as $value) {
+      $valueOrder = array(
+      
+        'sn' => $order['sn'],
+
+        'consigner' => $order['consigner'],
+
+        'mobile' => $order['mobile'],
+
+        'member_name' => $order['member_name'],
+
+        'price' => $order['goods_money']
+      
+      );
+
+      foreach($valueOrder as $value) {
 
         $cell = "{$characters[$column]}{$index}";
 
         $sheet->setCellValue($cell, $value);
 
-        $colum++;
+        $column++;
 
       }
 
