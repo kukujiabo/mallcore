@@ -21,8 +21,6 @@ class Goods extends BaseApi {
 
         'add' => array(
 
-            'brand_id' => 'brand_id|int|false||品牌id',
-
             'goods_name' => 'goods_name|string|true||商品名称',
 
             'shop_id' => 'shop_id|int|false||店铺id',
@@ -782,6 +780,8 @@ class Goods extends BaseApi {
       'editSkuGoods' => array(
 
           'goods_id' => 'goods_id|int|true||商品id',
+
+          'brand_id' => 'brand_id|int|true||品牌id',
 
           'goods_name' => 'goods_name|string|true||商品名称',
 
