@@ -80,6 +80,7 @@ class GoodsSv extends BaseService implements IGoods {
       }
 
       $data['thumbnail'] = $params['thumbnail'];
+      $data['brand_id'] = $params['brand_id'];
       $data['goods_name'] = $params['goods_name'];
       $data['shop_id'] = $params['shop_id'];
       $data['is_sku'] = $params['is_sku'];
