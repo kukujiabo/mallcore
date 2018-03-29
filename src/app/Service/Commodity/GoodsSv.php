@@ -410,31 +410,32 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function getList($condition) {
 
-    if ($condition['category_id']) {
+    if (isset($condition['category_id'])) {
     
       $categoryId = $condition['category_id'];
     
-    }
+      $categories = GoodsCategorySv::all(array('pid' => $categoryId));
 
-    $categories = GoodsCategorySv::all(array('pid' => $categoryId));
+      if (!empty($categories)) {
 
-    if (!empty($categories)) {
-
-      $categoryIds = array();
-    
-      foreach($categories as $category) {
+        $categoryIds = array();
       
-        array_push($categoryIds, $category['category_id']); 
+        foreach($categories as $category) {
+        
+          array_push($categoryIds, $category['category_id']); 
+        
+        }
+
+        array_push($categoryIds, $categoryId);
       
+        $ids = implode(',', $categoryIds);
+
+        $condition['category_id'] = $ids;
+
       }
 
-      array_push($categoryIds, $categoryId);
-    
-      $ids = implode(',', $categoryIds);
-
-      $condition['category_id'] = $ids;
-
     }
+
 
     $goods = GoodsViewSv::getList($condition);
 
