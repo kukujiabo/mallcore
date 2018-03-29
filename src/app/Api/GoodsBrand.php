@@ -25,6 +25,7 @@ class GoodsBrand extends BaseApi {
       'updateBrand' => array(
       
         'id' => 'id|int|true||品牌id',
+        'brand_avatar' => 'brand_avatar|string|true||品牌缩略图',
         'brand_name' => 'brand_name|string|false||品牌名称',
         'introduction' => 'introduction|string|false||品牌介绍',
         'index_show' => 'index_show|int|false||是否首页展示',

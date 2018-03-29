@@ -19,13 +19,13 @@ trait CURD {
 
     $object = $this->editableFieldFilter($data);
 
-    foreach($object as $key => $value) {
-    
-      $codeValue = iconv('UTF-8', 'GBK', $value);
+    //foreach($object as $key => $value) {
+    //
+    //  $codeValue = iconv('UTF-8', 'GBK', $value);
 
-      $object[$key] = $codeValue ? $codeValue : $value;
-    
-    }
+    //  $object[$key] = $codeValue ? $codeValue : $value;
+    //
+    //}
 
     $this->orm()->insert($object);
 
