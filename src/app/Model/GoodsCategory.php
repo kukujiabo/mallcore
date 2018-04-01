@@ -12,7 +12,9 @@ class GoodsCategory extends BaseModel {
 
     protected $_queryOptionRule = array(
 
-        'category_id' => 'in'  
+      'category_id' => 'in',
+
+      'category_name' => 'like'
 
     );  
     
