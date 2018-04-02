@@ -16,7 +16,7 @@ class GoodsImagesDm {
    */
   public function getAll($data) {
 
-    return GoodsImagesSv::all($data);
+    return GoodsImagesSv::all($data, 'sort asc');
   
   }
 

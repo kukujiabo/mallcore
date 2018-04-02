@@ -157,7 +157,9 @@ class TmpDataSv extends BaseService {
 
           'is_visible' => $good['is_visible'],
           
-          'active' => $good['active'],
+          'active' => 1,
+
+          'sort' => $key + 1,
 
           'create_time' => date('Y-m-d H:i:s'),
 
@@ -195,6 +197,8 @@ class TmpDataSv extends BaseService {
           'no_code' => $good['seq'],
 
           'stock' => 99999,
+
+          'active' => 1,
 
           'create_date' => date('Y-m-d H:i:s')
         

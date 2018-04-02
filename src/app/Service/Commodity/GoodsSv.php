@@ -186,7 +186,7 @@ class GoodsSv extends BaseService implements IGoods {
       // 把所有商品图片改为无效
       GoodsImagesSv::batchUpdate(array('goods_id' => $goods_id, 'status'=> 1), array('status'=>2,'is_cover'=>1));
 
-      foreach ($img_data as $v) {
+      foreach ($img_data as $key => $v) {
 
           $where['goods_id'] = $v['goods_id'] = $goods_id;
 
@@ -208,6 +208,8 @@ class GoodsSv extends BaseService implements IGoods {
           } else {
 
               $v['id'] = rand(100000000, 999999999);
+
+              $v['sort'] = $key;
 
               // 添加商品图片
               $img[] = GoodsImagesSv::addData($v);

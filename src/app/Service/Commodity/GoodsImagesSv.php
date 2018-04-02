@@ -17,8 +17,7 @@ class GoodsImagesSv extends BaseService implements IGoodsImages {
     use CurdSv;
 
     /**
-     * 获取列表
-     */
+     * 获取列表 */
     public function getList($condition) {
 
         return self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
