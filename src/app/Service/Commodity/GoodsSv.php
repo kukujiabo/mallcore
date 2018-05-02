@@ -117,7 +117,7 @@ class GoodsSv extends BaseService implements IGoods {
   }
 
   /**
-   * 添加商品（包含SUK）
+   * 添加商品（包含SKU）
    */
   public function addSkuGoods($params) {
 

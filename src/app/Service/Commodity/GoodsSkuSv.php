@@ -42,8 +42,6 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
       return $skus;
 
-    
-    
     }
 
     /**
