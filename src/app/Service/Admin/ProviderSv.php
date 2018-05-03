@@ -3,6 +3,7 @@ namespace App\Service\Admin;
 
 use App\Service\BaseService;
 use App\Service\Crm\UserSv;
+use Core\Service\CurdSv;
 
 /**
  * 供应商服务类
@@ -10,6 +11,8 @@ use App\Service\Crm\UserSv;
  * @author Meroc Chen <398515393@qq.com>
  */
 class ProviderSv extends BaseService {
+
+  use CurdSv;
 
   /**
    * 新增供应商
