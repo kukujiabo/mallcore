@@ -67,14 +67,13 @@ class ProviderSv extends BaseService {
       'introduction' => $data['introduction'],
       'thumbnail' => $data['thumbnail'],
       'status' => $data['status'],
-      'address' => $data['address'],
       'admin_id' => $uid,
       'created_at' => date('Y-m-d H:i:s')
     );
 
-    $id = self::add($newProvider); 
+    self::add($newProvider); 
 
-    return $id;
+    return $uid;
   
   }
 
