@@ -26,6 +26,15 @@ class Provider extends BaseApi {
         'account' => 'account|string|true||供应商账号',
         'password' => 'password|string|true||供应商密码'
       
+      ),
+
+      'getList' => array(
+      
+        'pname' => 'pname|string|false||供应商名称',
+        'contact' => 'contact|string|false||供应商联系人',
+        'phone' => 'phone|string|false||供应商手机号',
+        'order' => 'order|string|false|created_at desc|排序'
+      
       )
     
     ));
@@ -41,6 +50,18 @@ class Provider extends BaseApi {
   public function addProvider() {
   
     return $this->dm->addProvider($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询供应商列表
+   * @desc 查询供应商列表
+   *
+   * @return array list
+   */
+  public function getList() {
+  
+    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
   
   }
 

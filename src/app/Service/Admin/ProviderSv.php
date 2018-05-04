@@ -80,5 +80,25 @@ class ProviderSv extends BaseService {
   
   }
 
+  /**
+   * 读取供应商列表
+   *
+   * @param array query
+   *
+   * @return array list
+   */
+  public function getList($data) {
+
+    $order = $data['order'];
+    $page = $data['page'];
+    $pageSize = $data['page_size'];
+
+    unset($data['order']);
+    unset($data['page']);
+    unset($data['page_size']);
+  
+    return self::queryList($data, '*', $order, $page, $pageSize);
+  
+  }
 
 }

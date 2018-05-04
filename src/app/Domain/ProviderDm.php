@@ -14,4 +14,13 @@ class ProviderDm {
   
   }
 
+  /**
+   * 获取列表
+   */
+  public function getList($data) {
+  
+    return ProviderSv::getList($data); 
+  
+  }
+
 }
