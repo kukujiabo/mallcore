@@ -71,6 +71,7 @@ class ProviderSv extends BaseService {
       'thumbnail' => $data['thumbnail'],
       'status' => $data['status'],
       'admin_id' => $uid,
+      'account' => $data['account'],
       'created_at' => date('Y-m-d H:i:s')
     );
 
