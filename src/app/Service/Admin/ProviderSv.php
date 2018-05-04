@@ -28,7 +28,7 @@ class ProviderSv extends BaseService {
     $newAccount = array(
       'uid' => $uid,
       'user_name' => $data['account'],
-      'password' => md5($data['password']),
+      'user_password' => md5($data['password']),
       'is_system' => 1,
       'reg_time' => date('Y-m-d H:i:s'),
       'status' => 1,
