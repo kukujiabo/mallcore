@@ -40,6 +40,11 @@ class Provider extends BaseApi {
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页条数'
       
+      ),
+
+      'getAll' => array(
+      
+      
       )
     
     ));
@@ -70,5 +75,16 @@ class Provider extends BaseApi {
   
   }
 
+  /**
+   * 获取全部供应商
+   * @desc 获取全部供应商
+   *
+   * @return 
+   */
+  public function getAll() {
+  
+    return $this->dm->getAll();  
+  
+  }
 
 }
