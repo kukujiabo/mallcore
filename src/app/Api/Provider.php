@@ -33,6 +33,9 @@ class Provider extends BaseApi {
         'pname' => 'pname|string|false||供应商名称',
         'contact' => 'contact|string|false||供应商联系人',
         'phone' => 'phone|string|false||供应商手机号',
+        'account' => 'account|string|false||供应商账号',
+        'province' => 'province|string|false||供应商省份',
+        'city' => 'city|string|false||供应商城市',
         'order' => 'order|string|false|created_at desc|排序',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页条数'
