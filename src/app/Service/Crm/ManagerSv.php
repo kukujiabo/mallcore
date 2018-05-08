@@ -11,6 +11,8 @@ use Core\Service\CurdSv;
  */
 class ManagerSv extends BaseService {
 
+  use CurdSv;
+
   /**
    * 新增项目经理
    * @desc 新增项目经理
