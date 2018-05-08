@@ -11,6 +11,8 @@ use Core\Service\CurdSv;
  */
 class WorkSpaceSv extends BaseService {
 
+  use CurdSv;
+
   /**
    * 新增工地数据
    *
