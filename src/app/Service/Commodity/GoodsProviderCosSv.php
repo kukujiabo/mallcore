@@ -34,7 +34,7 @@ class GoodsProviderCosSv extends BaseService {
         'goods_id' => $data['goods_id'],
         'cost' => $sku['price'],
         'sku_name' => $sku['sku_name'],
-        'goods_name' => $sku['goods_name'],
+        'goods_name' => $data['goods_name'],
         'provider_id' => $data['provider_id'],
         'created_at' => date('Y-m-d H:i:s')
         
