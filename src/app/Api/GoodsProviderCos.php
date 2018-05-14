@@ -17,7 +17,7 @@ class GoodsProviderCos extends BaseApi {
         'goods_id' => 'goods_id|int|true||商品id',
         'provider_id' => 'provider_id|int|true||供应商id',
         'cost' => 'cost|float|true||商品进价',
-        'goods_name' => 'goods_name|int|true||商品skuid',
+        'goods_name' => 'goods_name|int|true||商品名称',
         'skus' => 'skus|string|true||商品规格'
       
       )
