@@ -38,4 +38,25 @@ class UserAdminSv extends BaseService implements IUserAdmin {
 
   }
 
+  /**
+   * 查询管理员信息
+   *
+   * @return array data
+   */
+  public function getAdminInfo($id) {
+
+    $info = UserAdminSv::findOne($condition['uid']);
+
+    if (in_array('provider', $info['admin_group'])) {
+    
+      $provider = ProviderSv::findOne(array('account' => $info['user_name']));
+
+      $info['provider_id'] = $provider['id'];
+    
+    }
+  
+    return $info
+  
+  }
+
 }
