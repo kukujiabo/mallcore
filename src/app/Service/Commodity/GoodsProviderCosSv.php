@@ -62,5 +62,26 @@ class GoodsProviderCosSv extends BaseService {
   
   }
 
+  /**
+   * 商品列表
+   *
+   * @param array list
+   *
+   * @return array data
+   */
+  public function getList($params) {
+  
+    $query = array();
+
+    $params['goods_name'] ? $query['goods_name'] = $params['goods_name'] : '';
+    
+    $params['sku_name'] ? $query['sku_name'] = $params['sku_name'] : '';
+
+    $query['provider_id'] = $params['provider_id']
+  
+    return self::queryList($query, '*', 'created_at desc', $params['page'], $params['page_size']);
+  
+  }
+
 
 }
