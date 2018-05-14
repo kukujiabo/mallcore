@@ -24,7 +24,7 @@ class GoodsProviderCosSv extends BaseService {
 
     $datas = array();
 
-    $skus = json_decode($data['skus']);
+    $skus = json_decode($data['skus'], true);
 
     foreach($skus as $sku) {
     
