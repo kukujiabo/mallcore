@@ -21,10 +21,32 @@ class GoodsProviderCosSv extends BaseService {
    * @return int id
    */
   public function addGoodsCos($data) {
-  
-    $price = array(
+
+    $datas = array();
+
+    $skus = json_decode($data['skus']);
+
+    foreach($skus as $sku) {
     
-      'sku_id' => $data['sku_id'],
+      $skuPrice = array(
+
+        'sku_id' => $sku['sku_id'],
+        'goods_id' => $data['goods_id'],
+        'cost' => $sku['cost'],
+        'sku_name' => $sku['sku_name'],
+        'goods_name' => $sku['goods_name'],
+        'created_at' => date('Y-m-d H:i:s'),
+        'provider_id' => $data['provider_id']
+        
+      );
+
+      array_push($datas, $skuPrice);
+    
+    }
+
+    $goodPrice = array(
+    
+      'sku_id' => 0,
       'goods_id' => $data['goods_id'],
       'provider_id' => $data['provider_id'],
       'cost' => $data['cost'],
@@ -33,8 +55,10 @@ class GoodsProviderCosSv extends BaseService {
       'created_at' => date('Y-m-d H:i:s')
     
     );
+
+    $datas[] = $goodPrice
   
-    return self::add($price);
+    return self::add($datas);
   
   }
 
