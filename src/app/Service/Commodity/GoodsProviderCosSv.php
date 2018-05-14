@@ -58,7 +58,7 @@ class GoodsProviderCosSv extends BaseService {
 
     $datas[] = $goodPrice
   
-    return self::add($datas);
+    return self::batchAdd($datas);
   
   }
 
