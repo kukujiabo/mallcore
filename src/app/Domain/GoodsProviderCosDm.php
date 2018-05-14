@@ -32,4 +32,13 @@ class GoodsProviderCosDm {
   
   }
 
+  /**
+   * 修改价格
+   */
+  public function updateCos($data) {
+  
+    return GoodsProviderCosSv::updateCos($data);
+  
+  }
+
 }

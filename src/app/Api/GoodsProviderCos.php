@@ -36,6 +36,14 @@ class GoodsProviderCos extends BaseApi {
       
         'id' => 'id|int|false||价格id'
       
+      ),
+
+      'updateCos' => array(
+      
+        'id' => 'id|int|true||价格id',
+        'cost' => 'cost|float|false||价格id',
+        'sale_price' => 'sale_price|float|false||价格id'
+      
       )
     
     ));
@@ -78,5 +86,16 @@ class GoodsProviderCos extends BaseApi {
   
   }
 
+  /**
+   * 更新价格
+   * @desc 更新价格
+   *
+   * @return int num
+   */
+  public function updateCos() {
+  
+    return $this->dm->updateCos($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }

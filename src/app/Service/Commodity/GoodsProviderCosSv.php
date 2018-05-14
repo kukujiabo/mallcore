@@ -96,4 +96,21 @@ class GoodsProviderCosSv extends BaseService {
   
   }
 
+  /**
+   * 更新价格
+   *
+   * @param int 
+   *
+   * @return int num
+   */
+  public function updateCos() {
+  
+    $id = $data['id'];
+
+    unset($data['id']);
+  
+    return self::update($id, $data);
+
+  }
+
 }
