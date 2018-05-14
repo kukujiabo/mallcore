@@ -35,8 +35,8 @@ class GoodsProviderCosSv extends BaseService {
         'cost' => $sku['price'],
         'sku_name' => $sku['sku_name'],
         'goods_name' => $sku['goods_name'],
-        'created_at' => date('Y-m-d H:i:s'),
-        'provider_id' => $data['provider_id']
+        'provider_id' => $data['provider_id'],
+        'created_at' => date('Y-m-d H:i:s')
         
       );
 
@@ -48,10 +48,10 @@ class GoodsProviderCosSv extends BaseService {
     
       'sku_id' => 0,
       'goods_id' => $data['goods_id'],
-      'provider_id' => $data['provider_id'],
       'cost' => $data['cost'],
-      'goods_name' => $data['goods_name'],
       'sku_name' => $data['goods_name'],
+      'goods_name' => $data['goods_name'],
+      'provider_id' => $data['provider_id'],
       'created_at' => date('Y-m-d H:i:s')
     
     );
