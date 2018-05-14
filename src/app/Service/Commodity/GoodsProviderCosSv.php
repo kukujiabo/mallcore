@@ -77,7 +77,7 @@ class GoodsProviderCosSv extends BaseService {
     
     $params['sku_name'] ? $query['sku_name'] = $params['sku_name'] : '';
 
-    $query['provider_id'] = $params['provider_id']
+    $query['provider_id'] = $params['provider_id'];
   
     return self::queryList($query, '*', 'created_at desc', $params['page'], $params['page_size']);
   

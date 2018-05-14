@@ -26,6 +26,7 @@ class GoodsProviderCos extends BaseApi {
       
         'goods_name' => 'goods_name|string|false||商品名称',
         'sku_name' => 'sku_name|string|false||商品规格名称',
+        'provider_id' => 'provider_id|int|false||供应商id',
         'page' => 'page|int|false|1||页码',
         'page_size' => 'page_size|int|false|2||每页条数',
       
