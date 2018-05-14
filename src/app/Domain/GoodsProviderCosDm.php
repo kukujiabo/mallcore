@@ -23,4 +23,13 @@ class GoodsProviderCosDm {
   
   }
 
+  /**
+   * 获取价格详情
+   */
+  public function getDetail($data) {
+  
+    return GoodsProviderCosSv::getDetail($data);
+  
+  }
+
 }

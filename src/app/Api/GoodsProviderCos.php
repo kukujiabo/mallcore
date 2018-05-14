@@ -30,6 +30,12 @@ class GoodsProviderCos extends BaseApi {
         'page' => 'page|int|false|1||页码',
         'page_size' => 'page_size|int|false|2||每页条数',
       
+      ),
+
+      'getDetail' => array(
+      
+        'id' => 'id|int|false||价格id'
+      
       )
     
     ));
@@ -57,6 +63,18 @@ class GoodsProviderCos extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 获取详情
+   * @desc 获取详情
+   *
+   * @return array detail
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
   
   }
 

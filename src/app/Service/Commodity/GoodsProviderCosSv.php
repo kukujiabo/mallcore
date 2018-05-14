@@ -83,5 +83,17 @@ class GoodsProviderCosSv extends BaseService {
   
   }
 
+  /**
+   * 获取供应商价格详情
+   *
+   * @param array data
+   *
+   * @return 
+   */
+  public function getDetail($data) {
+  
+    return self::findOne($data['id']); 
+  
+  }
 
 }
