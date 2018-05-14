@@ -103,7 +103,7 @@ class GoodsProviderCosSv extends BaseService {
    *
    * @return int num
    */
-  public function updateCos() {
+  public function updateCos($data) {
   
     $id = $data['id'];
 
