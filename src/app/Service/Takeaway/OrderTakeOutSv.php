@@ -881,7 +881,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $payment = array(
             'pay_type' => 2, // 支付类型
             'out_trade_no' => $data['sn'],
-            'money' => 1,// $data['goods_money'],
+            'money' => 0.01,// $data['goods_money'],
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'open_id' => $info_user['wx_openid'],
             'nonce_str' => md5($info_user['wx_openid'] . time()),
