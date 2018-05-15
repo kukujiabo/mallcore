@@ -881,7 +881,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $payment = array(
             'pay_type' => 2, // 支付类型
             'out_trade_no' => $data['sn'],
-            'money' => $data['goods_money'],
+            'money' => 1,// $data['goods_money'],
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'open_id' => $info_user['wx_openid'],
             'nonce_str' => md5($info_user['wx_openid'] . time()),
@@ -889,7 +889,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         );
 
         //调用微信预支付
-        return PaySv::wechatPayAction($payment);
+        $payInfo = PaySv::wechatPayAction($payment);
+
+        $payInfo['sn'] = $data['sn'];
+        $payInfo['price'] = $data['goods_money'];
+        $payInfo['id'] = $id;
+
+        return $payInfo;
       
       } else {
 
