@@ -6,6 +6,8 @@ use App\Model\OrderTakeOut;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
 use App\Service\Crm\MemberSv;
+use App\Service\Crm\ManagerSvManagerSv
+use App\Service\Admin\ProviderSv;
 use App\Service\Takeaway\OrderTakeOutGoodsSv;
 use App\Service\Takeaway\OrderTakeOutAddressSv;
 use App\Service\Takeaway\CartTakeOutSv;
@@ -770,11 +772,21 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $data['payment_type'] = $payType;
 
+      $providerId = 0;
+
       if ($data['way'] == 1 && $data['token']) {
 
           $info_user = UserSv::getUserByToken($data['token']);
 
           $data['buyer_id'] = $info_user['uid'];
+
+          $manager = ManagerSv::findOne(array('phone' => $info_user['user_tel']));
+
+          if ($manager) {
+          
+            $providerId = $manager['pid'];
+          
+          }
 
       }
 
@@ -884,6 +896,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $data['shop_name'] = '';
 
       $data['address_id'] = 0;
+
+      $data['provider_id'] = $providerId;
 
       $data['buyer_message'] = iconv('UTF-8', 'GBK', $data['buyer_message']);
 
