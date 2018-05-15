@@ -734,6 +734,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function purchase($data) {
 
+      $payType = $data['pay_type'];
+
+      unset($data['pay_type']);
+
+      $data['payment_type'] = $payType;
+
       if ($data['way'] == 1 && $data['token']) {
 
           $info_user = UserSv::getUserByToken($data['token']);
@@ -868,13 +874,35 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 添加订单商品
       $info_order_goods = OrderTakeOutGoodsSv::addOrderGoods($data_goods);
 
-      $info_return['id'] = $id;
+
+      if ($payType == 1) {
       
-      $info_return['sn'] = $data['sn'];
+        //构造预支付数据
+        $payment = array(
+            'pay_type' => 2, // 支付类型
+            'out_trade_no' => $data['sn'],
+            'money' => $data['goods_money'],
+            'ip_address' => $_SERVER['REMOTE_ADDR'],
+            'open_id' => $info_user['wx_openid'],
+            'nonce_str' => md5($info_user['wx_openid'] . time()),
+            'body' => "{$member['nick_name']} 下单支付 {$data['money']}"
+        );
 
-      $info_return['price'] = $data['goods_money'];
+        //调用微信预支付
+        return PaySv::wechatPayAction($payment);
+      
+      } else {
 
-      return $info_return;
+        $info_return['id'] = $id;
+        
+        $info_return['sn'] = $data['sn'];
+
+        $info_return['price'] = $data['goods_money'];
+      
+        return $info_return;
+      
+      }
+
 
   }
 

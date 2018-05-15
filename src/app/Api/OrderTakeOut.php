@@ -72,7 +72,9 @@ class OrderTakeOut extends BaseApi {
 
         'coupon_id' => 'coupon_id|int|false||使用的优惠券id',
 
-        'city_code' => 'city_code|int|false||城市编码'
+        'city_code' => 'city_code|int|false||城市编码',
+
+        'pay_type' => 'pay_type|int|false|1|支付方式'
 
       ),
 

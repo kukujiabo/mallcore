@@ -77,13 +77,13 @@ class PaySv extends BaseService implements IPay {
      */
     public function __construct() {
 
-      $this->appId = ConfigSv::getConfigValueByKey('ruixuan_mini_appId');
+      $this->appId = ConfigSv::getConfigValueByKey('mini_appid');
 
-      $this->appSecret = ConfigSv::getConfigValueByKey('ruixuan_mini_secret');
+      $this->appSecret = ConfigSv::getConfigValueByKey('mini_appsecret');
 
-      $this->mchId = ConfigSv::getConfigValueByKey('ruixuan_mini_mch_id');
+      $this->mchId = ConfigSv::getConfigValueByKey('mini_mch_id');
 
-      $this->partnerKey = ConfigSv::getConfigValueByKey('ruixuan_mini_pay_key');
+      $this->partnerKey = ConfigSv::getConfigValueByKey('mini_pay_key');
     
       $wechatConfig = array(
         'appid' => $this->appId,
