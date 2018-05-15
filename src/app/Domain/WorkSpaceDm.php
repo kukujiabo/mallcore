@@ -50,7 +50,7 @@ class WorkSpaceDm {
     
     );
 
-    return $this->getList($condition);
+    return self::getList($condition);
   
   }
 
