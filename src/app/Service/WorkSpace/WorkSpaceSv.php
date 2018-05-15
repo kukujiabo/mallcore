@@ -50,7 +50,7 @@ class WorkSpaceSv extends BaseService {
    */
   public function getList($data, $order, $page, $pageSize) {
   
-    return self::getList($data, '*', $order, $page, $pageSize);
+    return self::queryList($data, '*', $order, $page, $pageSize);
   
   }
 
