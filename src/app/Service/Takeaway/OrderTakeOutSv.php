@@ -639,6 +639,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function adds($data) {
 
+      $payType = $data['payment_type'] = $data['pay_type'];
+
+      unset($data['pay_type']);
+
       $module = RedisClient::get('system_config', 'account_is_poss') ? 1 : 2;
 
       if ($data['way'] == 1 && $data['token']) {
@@ -718,14 +722,40 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 删除购物车商品
       $info_cart_goods = CartTakeOutSv::cartEmpty($condition_cart);
 
-      // 提交事务
-      $info_return['id'] = $id;
-      
-      $info_return['sn'] = $data['sn'];
+      if ($payType == 1) {
 
-      $info_return['price'] = $data['goods_money'];
+        //构造预支付数据
+        $payment = array(
+            'pay_type' => 2, // 支付类型
+            'out_trade_no' => $data['sn'],
+            'money' => 0.01,// $data['goods_money'],
+            'ip_address' => $_SERVER['REMOTE_ADDR'],
+            'open_id' => $info_user['wx_openid'],
+            'nonce_str' => md5($info_user['wx_openid'] . time()),
+            'body' => "{$member['nick_name']} 下单支付 {$data['money']}"
+        );
 
-      return $info_return;
+        //调用微信预支付
+        $payInfo = PaySv::wechatPayAction($payment);
+
+        $payInfo['sn'] = $data['sn'];
+        $payInfo['price'] = $data['goods_money'];
+        $payInfo['id'] = $id;
+
+        return $payInfo;
+
+      } else {
+
+        // 提交事务
+        $info_return['id'] = $id;
+        
+        $info_return['sn'] = $data['sn'];
+
+        $info_return['price'] = $data['goods_money'];
+
+        return $info_return;
+
+      }
 
   }
 
