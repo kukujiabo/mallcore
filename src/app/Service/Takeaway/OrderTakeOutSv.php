@@ -6,7 +6,7 @@ use App\Model\OrderTakeOut;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
 use App\Service\Crm\MemberSv;
-use App\Service\Crm\ManagerSvManagerSv
+use App\Service\Crm\ManagerSv;
 use App\Service\Admin\ProviderSv;
 use App\Service\Takeaway\OrderTakeOutGoodsSv;
 use App\Service\Takeaway\OrderTakeOutAddressSv;
