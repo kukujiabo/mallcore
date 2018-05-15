@@ -36,7 +36,7 @@ class WorkSpaceDm {
    */
   public function getListByToken($data) {
   
-    $user = getUserByToken($data['token']);
+    $user = UserSv::getUserByToken($data['token']);
 
     $manager = ManagerSv::findOne(array('user_tel' => $user['user_tel']));
 
