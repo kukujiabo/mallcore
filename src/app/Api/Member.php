@@ -96,13 +96,22 @@ class Member extends BaseApi {
         
         'memo' => 'memo|string|false||备注',
         
-        'user_name'  => array('name' => 'user_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '帐号（手机号码）'),
+        'user_name'  => array('name' => 'user_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '用户名称'),
+
+        'user_tel'  => array('name' => 'user_tel', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '手机号码'),
+
         'user_password'  => array('name' => 'user_password', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '密码明文'),
+
         'user_headimg'  => array('name' => 'user_headimg', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '用户头像'),
+
         'real_name'  => array('name' => 'real_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '真实姓名'),
+
         'nick_name'  => array('name' => 'nick_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '昵称'),
+
         'birthday'  => array('name' => 'birthday', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '生日'),
+
         'location'  => array('name' => 'location', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '所在地'),
+
         'sex'  => array('name' => 'sex', 'type' => 'int', 'require' => false, 'default' => '', 'desc' => '性别 0-保密 1-男 2-女'),
       
       ),
