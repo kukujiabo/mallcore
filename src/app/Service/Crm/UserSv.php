@@ -452,6 +452,10 @@ class UserSv extends BaseService implements IUser {
     
       $info['provider_id'] = $provider['id'];
     
+    } else {
+
+      $info['provider_id'] = 0;
+
     }
 
     if (!$info) {
