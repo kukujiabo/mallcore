@@ -62,6 +62,8 @@ class MemberSv extends BaseService implements IMember {
     
     'user_password', 
 
+    'user_tel', 
+
     'user_headimg', 
     
     'real_name', 

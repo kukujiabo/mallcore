@@ -38,6 +38,7 @@ class User extends BaseApi {
                 'nick_name'  => array('name' => 'nick_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '昵称'),
                 'birthday'  => array('name' => 'birthday', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '生日'),
                 'location'  => array('name' => 'location', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '所在地'),
+                'user_tel'  => array('name' => 'user_tel', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '手机号'),
                 // 'card'  => array('name' => 'card', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '身份证'),
                 'sex'  => array('name' => 'sex', 'type' => 'int', 'require' => false, 'default' => '', 'desc' => '性别 0-保密 1-男 2-女'),
             ),
