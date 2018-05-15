@@ -29,6 +29,7 @@ use App\Service\Crm\MemberWechatSv;
 use App\Service\Crm\ChannelSv;
 use App\Service\Wechat\WechatUtilsSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
+use App\Service\Admin\ProviderSv;
 
 /**
  * 用户信息类
@@ -444,6 +445,14 @@ class UserSv extends BaseService implements IUser {
     }
 
     $info = RedisClient::get($key_name, $token, true);
+
+    $provider = ProviderSv::findOne(array('account' => $info['user_name']));    
+
+    if ($provider) {
+    
+      $info['provider_id'] = $provider['id'];
+    
+    }
 
     if (!$info) {
 
