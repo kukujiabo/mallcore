@@ -34,6 +34,12 @@ class WorkSpace extends BaseApi {
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false||每页条数'
       
+      ),
+
+      'getListByToken' => array(
+        'token' => 'token|string|true||令牌',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|20|每页条数'
       )
     
     ));
@@ -61,6 +67,18 @@ class WorkSpace extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 根据token获取工地列表
+   * @desc 根据token获取工地列表
+   *
+   * @return array list
+   */
+  public function getListByToken() {
+  
+    return $this->dm->getListByToken($this->retriveRuleParams(__FUNCTION__));
   
   }
 
