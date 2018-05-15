@@ -42,15 +42,11 @@ class WorkSpaceDm {
 
     $condition = array(
     
-      'pid' => $manager['pid'],
-
-      'page' => $data['page'],
-
-      'page_size' => $data['page_size']
+      'pid' => $manager['pid']
     
     );
 
-    return self::getList($condition);
+    return WorkSpaceSv::getList($condition, 'id desc', $data['page'], $data['page_size']);
   
   }
 
