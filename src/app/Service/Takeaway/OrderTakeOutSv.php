@@ -645,6 +645,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       unset($data['pay_type']);
 
+      $providerId = 0;
+
       $module = RedisClient::get('system_config', 'account_is_poss') ? 1 : 2;
 
       if ($data['way'] == 1 && $data['token']) {
@@ -652,6 +654,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           $info_user = UserSv::getUserByToken($data['token']);
 
           $data['buyer_id'] = $info_user['uid'];
+
+          $manager = ManagerSv::findOne(array('phone' => $info_user['user_tel']));
+
+          if ($manager) {
+          
+            $providerId = $manager['pid'];
+          
+          }
 
       }
 
@@ -703,6 +713,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $balance = 0;
 
       $data['id'] = rand(100000000, 999999999);
+
+      $data['provider_id'] = $providerId;
 
       $data['buyer_message'] = iconv('UTF-8', 'GBK', $data['buyer_message']);
 
