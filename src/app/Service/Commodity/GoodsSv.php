@@ -469,6 +469,20 @@ class GoodsSv extends BaseService implements IGoods {
     $goods = GoodsViewSv::getList($condition);
 
     if ($manager) {
+
+      foreach($goodcos as $gc) {
+      
+        foreach($goods['list'] as $key => $good) {
+        
+          if ($gc['goods_id'] == $good['goods_id']) {
+          
+            $goods['list'][$key]['price'] = $gc['sale_price'];
+          
+          }
+        
+        }
+      
+      }
     
     
     } elseif ($condition['city_code'] && $condition['user_level']) {
