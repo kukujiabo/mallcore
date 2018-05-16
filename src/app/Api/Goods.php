@@ -123,6 +123,8 @@ class Goods extends BaseApi {
 
         'queryList' => array(
 
+            'token' => 'token|string|false||用户令牌',
+
             'city_code' => 'city_code|int|false||城市代码',
 
             'user_level' => 'user_level|int|false||用户等级',

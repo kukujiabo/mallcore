@@ -2,6 +2,9 @@
 namespace App\Service\Commodity;
 
 use App\Service\BaseService;
+use App\Service\Crm\UserSv;
+use App\Service\Crm\ManagerSv;
+use App\Service\Commodity\GoodProviderCosSv;
 use App\Interfaces\Commodity\IGoods;
 use App\Model\Goods;
 use Core\Service\CurdSv;
@@ -439,10 +442,36 @@ class GoodsSv extends BaseService implements IGoods {
 
     }
 
+    if ($condition['token']) {
+    
+      $user = UserSv::getUserByToken($condition['token']);
+
+      $manager = ManagerSv::findOne(array('phone' => $user['user_tel']));
+
+      if ($manager) {
+      
+        $goodcos = GoodsProviderCosSv::all(array('provider_id' => $manager['pid'], 'sku_id' => 0)); 
+
+        $gids = array();
+
+        foreach($goodcos as $gc) {
+        
+          array_push($gids, $gc['goods_id']);
+        
+        }
+
+        $condition['goods_id'] = implode(',', $gids);
+      
+      }
+
+    }
 
     $goods = GoodsViewSv::getList($condition);
 
-    if ($condition['city_code'] && $condition['user_level']) {
+    if ($manager) {
+    
+    
+    } elseif ($condition['city_code'] && $condition['user_level']) {
 
       foreach($goods['list'] as $key => $good) {
       
