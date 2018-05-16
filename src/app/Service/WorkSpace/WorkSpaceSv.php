@@ -2,6 +2,8 @@
 namespace App\Service\WorkSpace;
 
 use App\Service\BaseService;
+use App\Service\Admin\ProviderSv;
+use App\Service\Crm\UserSv;
 use Core\Service\CurdSv;
 
 /**
@@ -49,6 +51,20 @@ class WorkSpaceSv extends BaseService {
    * @return
    */
   public function getList($data, $order, $page, $pageSize) {
+
+    if ($data['token']) {
+    
+      $infoUser = UserSv::getUserByToken($data['token']); 
+
+      $provider = ProviderSv::findOne(array('account' => $infoUser['user_name']));
+
+      if ($provider) {
+      
+         $data['pid'] = $provider['id'];
+      
+      }
+    
+    }
   
     return self::queryList($data, '*', $order, $page, $pageSize);
   
