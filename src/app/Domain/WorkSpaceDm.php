@@ -38,7 +38,13 @@ class WorkSpaceDm {
   
     $user = UserSv::getUserByToken($data['token']);
 
-    $manager = ManagerSv::findOne(array('user_tel' => $user['user_tel']));
+    $manager = ManagerSv::findOne(array('phone' => $user['user_tel']));
+
+    if (!$manager) {
+    
+      return null;
+    
+    }
 
     $condition = array(
     
@@ -46,7 +52,7 @@ class WorkSpaceDm {
     
     );
 
-    return WorkSpaceSv::getList($condition, 'id desc', $data['page'], $data['page_size']);
+    return WorkSpaceSv::all($condition);
   
   }
 
