@@ -394,6 +394,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
             
             }
 
+            $manager = ManagerSv::findOne(array('phone' => $v['user_tel']));
+
+            if ($manager) {
+            
+              $v['manager_name'] = $manager['name'];
+            
+            }
+
         }
 
         unset($v);
