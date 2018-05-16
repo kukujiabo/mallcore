@@ -8,6 +8,7 @@ use App\Service\Crm\UserSv;
 use App\Service\Crm\MemberSv;
 use App\Service\Crm\ManagerSv;
 use App\Service\Admin\ProviderSv;
+use App\Service\WorkSpace\WorkSpaceSv;
 use App\Service\Takeaway\OrderTakeOutGoodsSv;
 use App\Service\Takeaway\OrderTakeOutAddressSv;
 use App\Service\Takeaway\CartTakeOutSv;
@@ -375,6 +376,22 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
                 $v['goods_list'] = $info_order_goods;
 
+            }
+
+            if ($v['workspace_id']) {
+            
+              $workspace = WorkSpaceSv::findOne(array('id' => $v['workspace_id']));
+
+              $v['workspace_name'] = $workspace['name'];
+            
+            }
+
+            if ($v['provider_id']) {
+
+              $provider = ProviderSv::findOne(array('id' => $v['provider_id']));
+            
+              $v['provider_name'] = $provider['pname'];
+            
             }
 
         }
