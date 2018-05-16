@@ -470,6 +470,8 @@ class GoodsSv extends BaseService implements IGoods {
 
     }
 
+    unset($condition['way']);
+
     $goods = GoodsViewSv::getList($condition);
 
     if ($manager) {
