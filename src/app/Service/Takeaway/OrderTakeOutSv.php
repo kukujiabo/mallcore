@@ -337,7 +337,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       } elseif ($condition['way'] == 2 && $condition['token']) {
       
-          $info_user = UserSv::getUserByToken($condition['token']);
+          $info_user = UserSv::getAdminToken($condition['token']);
 
           $provider = ProviderSv::findOne(array('account' => $info_user['user_name']));
 
@@ -415,8 +415,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
             }
 
         }
-
-        unset($v);
 
         return $info;
 
