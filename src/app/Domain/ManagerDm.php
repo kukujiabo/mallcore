@@ -30,7 +30,16 @@ class ManagerDm {
     unset($data['page_size']);
     unset($data['order']);
   
-    return ManagerSv::getList();
+    return ManagerSv::getList($data, $order, $page, $pageSize);
+  
+  }
+
+  /**
+   * 查询所有条目
+   */
+  public function getAll($data) {
+  
+    return ManagerSv::all($data);
   
   }
 
