@@ -55,7 +55,7 @@ class UserAdminSv extends BaseService implements IUserAdmin {
     
     }
   
-    return $info
+    return $info;
   
   }
 
