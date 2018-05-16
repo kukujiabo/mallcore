@@ -125,6 +125,8 @@ class Goods extends BaseApi {
 
             'token' => 'token|string|false||用户令牌',
 
+            'way' => 'way|int|false||来源',
+
             'city_code' => 'city_code|int|false||城市代码',
 
             'user_level' => 'user_level|int|false||用户等级',

@@ -26,6 +26,7 @@ class WorkSpace extends BaseApi {
 
       'getList' => array(
       
+        'token' => 'token|string|true||用户令牌',
         'pid' => 'pid|int|false||供应商id',
         'name' => 'name|string|false||工地名称',
         'province' => 'province|string|false||省份id',

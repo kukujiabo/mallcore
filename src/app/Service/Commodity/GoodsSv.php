@@ -442,11 +442,11 @@ class GoodsSv extends BaseService implements IGoods {
 
     }
 
-    if ($condition['token']) {
-    
-      $user = UserSv::getUserByToken($condition['token']);
+    if ($condition['way'] != 2) {
 
-      if (!$user['is_system']) {
+      if ($condition['token']) {
+      
+        $user = UserSv::getUserByToken($condition['token']);
 
         $manager = ManagerSv::findOne(array('phone' => $user['user_tel']));
 
