@@ -446,22 +446,26 @@ class GoodsSv extends BaseService implements IGoods {
     
       $user = UserSv::getUserByToken($condition['token']);
 
-      $manager = ManagerSv::findOne(array('phone' => $user['user_tel']));
+      if (!$user['is_system']) {
 
-      if ($manager) {
-      
-        $goodcos = GoodsProviderCosSv::all(array('provider_id' => $manager['pid'], 'sku_id' => 0)); 
+        $manager = ManagerSv::findOne(array('phone' => $user['user_tel']));
 
-        $gids = array();
-
-        foreach($goodcos as $gc) {
+        if ($manager && $manager['pid'] > 0) {
         
-          array_push($gids, $gc['goods_id']);
+          $goodcos = GoodsProviderCosSv::all(array('provider_id' => $manager['pid'], 'sku_id' => 0)); 
+
+          $gids = array();
+
+          foreach($goodcos as $gc) {
+          
+            array_push($gids, $gc['goods_id']);
+          
+          }
+
+          $condition['goods_id'] = implode(',', $gids);
         
         }
 
-        $condition['goods_id'] = implode(',', $gids);
-      
       }
 
     }
