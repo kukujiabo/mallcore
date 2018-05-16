@@ -14,6 +14,8 @@ class ManagerWorkspaceSv extends BaseService {
   use CurdSv;
 
   public function addNew($data) {
+
+    $data['created_at'] = date('Y-m-d H:i:s');
   
     return self::add($data);  
   
