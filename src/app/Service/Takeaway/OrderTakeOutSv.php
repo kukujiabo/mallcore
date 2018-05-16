@@ -333,7 +333,17 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           $info_user = UserSv::getUserByToken($condition['token']);
 
-          $condition['buyer_id'] = $info_user['uid'];
+          $provider = ProviderSv::findOne(array('account' => $info_user['user_name']));
+
+          if ($manager) {
+
+            $condition['provider_id'] = $provider['id'];
+
+          } else {
+
+            $condition['buyer_id'] = $info_user['uid'];
+
+          }
 
       }
 
