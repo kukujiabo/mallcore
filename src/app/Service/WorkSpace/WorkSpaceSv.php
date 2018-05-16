@@ -32,7 +32,7 @@ class WorkSpaceSv extends BaseService {
       'city' => $data['city'],
       'contact' => $data['contact'],
       'phone' => $data['phone'],
-      'status' => $data['status'],
+      'status' => 1,
       'created_at' => date('Y-m-d H:i:s')
     );
 
