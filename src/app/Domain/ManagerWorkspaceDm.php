@@ -15,4 +15,10 @@ class ManagerWorkspaceDm {
   
   }
 
+  public function getList($data) {
+  
+    return ManagerWorkspaceSv::getList($data);
+  
+  }
+
 }

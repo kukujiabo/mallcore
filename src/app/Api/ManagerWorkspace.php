@@ -20,7 +20,17 @@ class ManagerWorkspace extends BaseApi {
         'min_credit' => 'min_credit|float|true||最大额度',
         'max_credit' => 'max_credit|float|true||最小额度'
       
-      ) 
+      ),
+
+      'getList' => array(
+    
+        'mid' => 'min|int|false||经理id',
+        'wid' => 'wid|int|false||工地id',
+        'status' => 'status|int|false||状态',
+        'page' => 'page|int|false||页码',
+        'page_size' => 'page_size|int|false||页码',
+    
+      )
     
     ));
   
@@ -38,5 +48,16 @@ class ManagerWorkspace extends BaseApi {
   
   }
 
+  /**
+   * 获取关联列表
+   * @desc 获取关联列表
+   *
+   * @return array list
+   */
+  public function getList() {
+  
+    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }
