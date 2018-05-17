@@ -65,7 +65,7 @@ class WorkSpaceSv extends BaseService {
 
     $wids = array();
 
-    foreach($manageWorkspace as $mw) {
+    foreach($managerWorkspace as $mw) {
     
       array_push($wids, $mw['wid']);
     
@@ -75,7 +75,7 @@ class WorkSpaceSv extends BaseService {
 
     foreach($workspace as $key => $value) {
     
-      foreach($manageWorkspace as $mw) {
+      foreach($managerWorkspace as $mw) {
       
         if ($value['id'] = $mw['mid']) {
         
