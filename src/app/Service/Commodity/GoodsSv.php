@@ -199,14 +199,15 @@ class GoodsSv extends BaseService implements IGoods {
 
           if ($info_img) {
 
-              $data = $v;
+              //$data = $v;
 
-              $data['id'] = $info_img['id'];
+              //$data['id'] = $info_img['id'];
 
-              $data['status'] = 1;
+              //$data['status'] = 1;
 
-              // 更新商品图片
-              $img[$info_img['id']] = GoodsImagesSv::edit($data);
+              //// 更新商品图片
+              //$img[$info_img['id']] = GoodsImagesSv::edit($data);
+              GoodsImageSv::update($info_img['id'], array('status' => 1));
 
           } else {
 
