@@ -85,7 +85,19 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
         unset($condition['way']);
 
-        return self::all($condition, $condition['order']);
+        $datas = self::all($condition, $condition['order']);
+
+        foreach($datas as $key => $data) {
+        
+          $sku = GoodsSkuSv::findOne($data['sku_id']);
+
+          $datas[$key]['price'] = $sku['price'];
+
+          $datas[$key]['tax_off_price'] = $sku['tax_off_price'];
+        
+        }
+
+        return $datas;
 
     }
 
