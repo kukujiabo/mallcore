@@ -887,6 +887,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           $priceRule = GoodsPriceMapSv::findOne($priceCondition);
 
           $data_goods['sku_name'] = $info_sku_goods['sku_name'];
+
+          $data_goods['no_code'] = $info_sku_goods['no_code'];
           
           $info_goods['price'] = !empty($priceRule) ? $priceRule['price'] : $info_sku_goods['price'];
           
@@ -1456,8 +1458,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $good = GoodsSv::findOne(array('goods_id' => $order['goods_id']));
 
+      $signKey = "wechatcode={$userInfo['wx_openid']}wechatname={$member['member_name']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+
+      $signSecret = md5($signKey);
+
       $newAsync = array(
-      
+
+        'sign'  => $signSecret,
         'userid' => $order['buyer_id'],
         'cmanager' => $manager ? $manager['name'] : $userInfo['user_name'],
         'wechatcode' => $userInfo['wx_openid'],
