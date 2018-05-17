@@ -79,7 +79,7 @@ class WorkSpaceSv extends BaseService {
       
         if ($value['id'] = $mw['mid']) {
         
-          $workspace['rest_credit'] = $mw['rest_credit'];
+          $workspace[$key]['rest_credit'] = $mw['rest_credit'];
         
         }
       
