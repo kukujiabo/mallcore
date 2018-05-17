@@ -52,21 +52,42 @@ class WorkSpaceSv extends BaseService {
    */
   public function getList($data, $order, $page, $pageSize) {
 
-    if ($data['token']) {
+    return self::queryList($data, '*', $order, $page, $pageSize);
+  
+  }
+
+  /**
+   *
+   */
+  public function getAllByMid($data) {
+  
+    $managerWorkspace = ManagerWorkspaceSv::all(array('mid' => $data['mid']));
+
+    $wids = array();
+
+    foreach($manageWorkspace as $mw) {
     
-      $infoUser = UserSv::getUserByToken($data['token']); 
-
-      $provider = ProviderSv::findOne(array('account' => $infoUser['user_name']));
-
-      if ($provider) {
-      
-         $data['pid'] = $provider['id'];
-      
-      }
+      array_push($wids, $mw['wid']);
     
     }
-  
-    return self::queryList($data, '*', $order, $page, $pageSize);
+
+    $workspace = self::all(array('id' => implode(',', $wids)));
+
+    foreach($workspace as $key => $value) {
+    
+      foreach($manageWorkspace as $mw) {
+      
+        if ($value['id'] = $mw['mid']) {
+        
+          $workspace['rest_credit'] = $mw['rest_credit'];
+        
+        }
+      
+      } 
+    
+    }
+
+    return $workspace;
   
   }
 
