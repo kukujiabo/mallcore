@@ -772,6 +772,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 删除购物车商品
       $info_cart_goods = CartTakeOutSv::cartEmpty($condition_cart);
 
+      if ($data['workspace_id']) {
+      
+        $wm = ManagerWorkspaceSv::findOne(array('mid' => $manager['id'], 'wid' => $data['workspace_id']));
+
+        ManagerWorkspaceSv::update($wm['id'], array('rest_credit' => $wm['rest_credit'] - $data['goods_money']));
+      
+      }
+
       if ($payType == 1) {
 
         //构造预支付数据
