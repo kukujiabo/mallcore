@@ -14,6 +14,8 @@ class OrderTakeOut extends BaseModel {
 
         'id' => 'in',
 
+        'sn' => 'in',
+
         'create_time' => 'range',
 
         'pay_time' => 'range',

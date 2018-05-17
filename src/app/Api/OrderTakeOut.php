@@ -289,6 +289,14 @@ class OrderTakeOut extends BaseApi {
       'exportExcel' => array(
       
       
+      ),
+
+      'audit' => array(
+      
+        'cas' => 'cas|string|true||帐套号',
+
+        'order_nos' => 'order_nos|string|true||订单号'
+      
       )
 
     ));
@@ -720,6 +728,18 @@ class OrderTakeOut extends BaseApi {
   public function exportExcel() {
   
     return $this->dm->exportExcel($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 审核订单
+   * @desc 审核订单
+   *
+   * @return
+   */
+  public function audit() {
+  
+    return $this->dm->audit($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

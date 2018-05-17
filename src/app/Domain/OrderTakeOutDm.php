@@ -145,4 +145,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 审核订单，同步u8
+   */
+  public function audit($data) {
+  
+    return OrderTakeOutSv::audit($data);
+  
+  }
+
 }
