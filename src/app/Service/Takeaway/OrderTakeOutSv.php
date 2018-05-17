@@ -1438,6 +1438,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $cas = explode(',', $data['cas']);
 
+    $asyncs = array();
+
     foreach($orders as $key => $order) {
 
       /**
@@ -1468,18 +1470,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'creceiverphone' => $address['mobile'],
         'cmemo' => $order['buyer_message'],
         'caccid' => $cas[$key],
-        'autoid' => rand(100000000, 999999999),
-        'cinvcode' => $order['buyer_id'],
-        'iquantity' => $order['buyer_id'],
-        'iprice' => $order['buyer_id'],
-        'imoney' => $order['buyer_id'],
-        'cbmemo' => $order['buyer_id']
+        'autoid' => rand(100000000, 999999999)
       
       );
-    
-    
+
+      array_push($asyncs, $newAsyncs);
     
     }
+
+    return $asyncs;
   
   }
 
