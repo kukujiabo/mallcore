@@ -1469,18 +1469,18 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         'sign'  => $signSecret,
         'userid' => $order['buyer_id'],
-        'cmanager' => $manager ? $manager['name'] : $userInfo['user_name'],
+        'cmanager' => iconv("GBK//IGNORE", "UTF-8", ($manager ? $manager['name'] : $userInfo['user_name'])),
         'wechatcode' => $userInfo['wx_openid'],
-        'wechatname' => $member['member_name'],
+        'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
         'wechatphone' => $userInfo['user_tel'],
         'csocode' => $sn,
         'ddate' => $order['create_time'],
         'cdepcode' => "",
         'cpersoncode' => "",
-        'creceiver' => $address['consigner'],
-        'creceiveraddress' => $address['address'],
+        'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
+        'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
         'creceiverphone' => $address['mobile'],
-        'cmemo' => $order['buyer_message'],
+        'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
         'caccid' => $cas[$key]
       
       );
