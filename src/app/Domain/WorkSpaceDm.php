@@ -48,11 +48,11 @@ class WorkSpaceDm {
 
     $condition = array(
     
-      'pid' => $manager['pid']
+      'mid' => $manager['id']
     
     );
 
-    return WorkSpaceSv::all($condition);
+    return getAllByMid::($condition);
   
   }
 
