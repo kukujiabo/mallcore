@@ -1474,7 +1474,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
       );
 
-      array_push($asyncs, $newAsyncs);
+      array_push($asyncs, $newAsync);
     
     }
 
