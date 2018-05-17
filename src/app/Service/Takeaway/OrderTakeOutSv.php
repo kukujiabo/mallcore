@@ -1458,7 +1458,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
-      $signKey = "wechatcode={$userInfo['wx_openid']}wechatname={$member['member_name']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+      $sn = trim($order['sn']);
+
+      $signKey = "csocode={$sn}ddate={$order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
       $signSecret = md5($signKey);
 
@@ -1470,7 +1472,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatcode' => $userInfo['wx_openid'],
         'wechatname' => $member['member_name'],
         'wechatphone' => $userInfo['user_tel'],
-        'csocode' => trim($order['sn']),
+        'csocode' => $sn,
         'ddate' => $order['create_time'],
         'cdepcode' => 1,
         'cpersoncode' => 1,
