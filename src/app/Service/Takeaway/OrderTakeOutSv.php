@@ -1452,7 +1452,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $order['id']));
 
-      $good = GoodSv::findOne(array('goods_id' => $order['goods_id']));
+      $good = GoodsSv::findOne(array('goods_id' => $order['goods_id']));
 
       $newAsync = array(
       
