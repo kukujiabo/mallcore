@@ -44,7 +44,9 @@ class OrderTakeOut extends BaseApi {
 
         'workspace_id' => 'workspace_id|int|false|1|工地id',
 
-        'city_code' => 'city_code|int|false||城市编码'
+        'city_code' => 'city_code|int|false||城市编码',
+
+        'invoice' => 'invoice|int|false|1|发票'
 
       ),
 
@@ -79,6 +81,8 @@ class OrderTakeOut extends BaseApi {
         'city_code' => 'city_code|int|false||城市编码',
 
         'workspace_id' => 'workspace_id|int|false||工地id',
+
+        'invoice' => 'invoice|int|false|1|发票',
 
         'pay_type' => 'pay_type|int|false|1|支付方式'
 
