@@ -52,7 +52,7 @@ class WorkSpaceDm {
     
     );
 
-    return getAllByMid::($condition);
+    return WorkSpaceSv::getAllByMid($condition);
   
   }
 
