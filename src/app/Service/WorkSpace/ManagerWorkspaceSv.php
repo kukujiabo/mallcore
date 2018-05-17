@@ -3,6 +3,7 @@ namespace App\Service\WorkSpace;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use App\Service\Crm\ManagerSv;
 
 /**
  * 项目经理关联工地服务
@@ -31,7 +32,20 @@ class ManagerWorkspaceSv extends BaseService {
     unset($data['page_size']);
     unset($data['order']);
 
-    return self::queryList($data, '*', $order, $page, $pageSize);
+    $list = self::queryList($data, '*', $order, $page, $pageSize);
+
+    foreach($list as $key => $item) {
+    
+      $manager = ManagerSv::findOne($item['mid']);
+      
+      $workspace = WorkSpaceSv::findOne($item['wid']);
+
+      $list[$key]['mname'] = $manager['name'];
+      $list[$key]['wname'] = $workspace['name'];
+    
+    }
+
+    return $list;
   
   }
 
