@@ -927,8 +927,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       unset($data['address_id']);
 
-      unset($data['goods_id']);
-
       unset($data['quantity']);
 
       unset($data['sku_id']);
@@ -1426,6 +1424,62 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     $writer->save("php://output");
 
     exit(0);
+  
+  }
+
+  /**
+   * 审核订单，同步u8
+   *
+   *
+   */
+  public function audit($data) {
+  
+    $orders = self::all(array('sn' => $data['order_nos']));
+
+    $cas = explode(',', $data['cas']);
+
+    foreach($orders as $key => $order) {
+
+      /**
+       * 判断是否项目经理
+       */
+
+      $userInfo = UserSv::findOne($order['buyer_id']);
+
+      $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
+
+      $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $order['id']));
+
+      $good = GoodSv::findOne(array('goods_id' => $order['goods_id']));
+
+      $newAsync = array(
+      
+        'userid' => $order['buyer_id'],
+        'cmanager' => $manager ? $manager['name'] : $userInfo['user_name'],
+        'wechatcode' => $userInfo['wx_openid'],
+        'wechatname' => $userInfo['user_name'],
+        'wechatphone' => $userInfo['user_tel'],
+        'csocode' => $order['sn'],
+        'ddate' => $order['create_time'],
+        'cdepcode' => 1,
+        'cpersoncode' => 1,
+        'creceiver' => $address['consigner'],
+        'creceiveraddress' => $address['address'],
+        'creceiverphone' => $address['mobile'],
+        'cmemo' => $order['buyer_message'],
+        'caccid' => $cas[$key],
+        'autoid' => rand(100000000, 999999999),
+        'cinvcode' => $order['buyer_id'],
+        'iquantity' => $order['buyer_id'],
+        'iprice' => $order['buyer_id'],
+        'imoney' => $order['buyer_id'],
+        'cbmemo' => $order['buyer_id']
+      
+      );
+    
+    
+    
+    }
   
   }
 
