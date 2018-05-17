@@ -1456,7 +1456,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $order['id']));
 
-      $good = GoodsSv::findOne(array('goods_id' => $order['goods_id']));
+      $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
       $signKey = "wechatcode={$userInfo['wx_openid']}wechatname={$member['member_name']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
@@ -1478,10 +1478,27 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'creceiveraddress' => $address['address'],
         'creceiverphone' => $address['mobile'],
         'cmemo' => $order['buyer_message'],
-        'caccid' => $cas[$key],
-        'autoid' => rand(100000000, 999999999)
+        'caccid' => $cas[$key]
       
       );
+
+      $newAsync['detail'] = array();
+
+      foreach($goods as $good) {
+      
+        $orderGood = array(
+        
+          'autoid' => $good['id'],
+          'cinvcode' => $good['no_code'],
+          'iquantity' => $good['num'],
+          'iprice' => $good['price'],
+          'imoney' => $good['goods_money']
+        
+        );
+
+        array_push($newAsync['detail'], $orderGood);
+      
+      }
 
       array_push($asyncs, $newAsync);
     
