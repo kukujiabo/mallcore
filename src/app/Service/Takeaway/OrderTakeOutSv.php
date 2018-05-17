@@ -1448,6 +1448,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $userInfo = UserSv::findOne($order['buyer_id']);
 
+      $member = MemberSv::findOne($order['buyer_id']);
+
       $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
 
       $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $order['id']));
@@ -1459,7 +1461,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'userid' => $order['buyer_id'],
         'cmanager' => $manager ? $manager['name'] : $userInfo['user_name'],
         'wechatcode' => $userInfo['wx_openid'],
-        'wechatname' => $userInfo['user_name'],
+        'wechatname' => $member['member_name'],
         'wechatphone' => $userInfo['user_tel'],
         'csocode' => $order['sn'],
         'ddate' => $order['create_time'],
