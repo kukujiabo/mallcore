@@ -226,6 +226,18 @@ class MemberSv extends BaseService implements IMember {
 
     }
 
+    $manager = ManagerSv::findOne(array('phone' => $user_info['user_tel']));
+
+    if ($manager && $manager['pid'] > 0) {
+    
+      $info['provider'] = $manager['pid'];
+    
+    } else {
+
+      $info['provider'] = 0;
+
+    }
+
     return $info;
 
   }
