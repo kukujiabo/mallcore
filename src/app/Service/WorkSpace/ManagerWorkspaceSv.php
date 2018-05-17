@@ -34,14 +34,14 @@ class ManagerWorkspaceSv extends BaseService {
 
     $list = self::queryList($data, '*', $order, $page, $pageSize);
 
-    foreach($list as $key => $item) {
+    foreach($list['list'] as $key => $item) {
     
       $manager = ManagerSv::findOne($item['mid']);
       
       $workspace = WorkSpaceSv::findOne($item['wid']);
 
-      $list[$key]['mname'] = $manager['name'];
-      $list[$key]['wname'] = $workspace['name'];
+      $list['list'][$key]['mname'] = $manager['name'];
+      $list['list'][$key]['wname'] = $workspace['name'];
     
     }
 
