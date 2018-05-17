@@ -32,6 +32,7 @@ use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use App\Library\Http;
 
 /**
  * 外卖订单
@@ -1506,8 +1507,20 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
     }
 
-    return $asyncs;
-  
+    $responses = array();
+
+    foreach($asyncs as $trans) {
+    
+      $header = array( 'Content-Type:application/json;charset=utf-8' );
+    
+      $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salevoucher", json_encode($trans), $header);
+    
+      array_push($responses, $response);
+    
+    }
+
+    return $responses;
+
   }
 
 }
