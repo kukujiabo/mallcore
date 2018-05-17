@@ -17,6 +17,7 @@ class ManagerWorkspaceSv extends BaseService {
   public function addNew($data) {
 
     $data['created_at'] = date('Y-m-d H:i:s');
+    $data['rest_credit'] = $data['max_credit'];
   
     return self::add($data);  
   
