@@ -9,6 +9,7 @@ use App\Service\Crm\MemberSv;
 use App\Service\Crm\ManagerSv;
 use App\Service\Admin\ProviderSv;
 use App\Service\WorkSpace\WorkSpaceSv;
+use App\Service\WorkSpace\ManagerWorkspaceSv;
 use App\Service\Takeaway\OrderTakeOutGoodsSv;
 use App\Service\Takeaway\OrderTakeOutAddressSv;
 use App\Service\Takeaway\CartTakeOutSv;
@@ -965,6 +966,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 添加订单商品
       $info_order_goods = OrderTakeOutGoodsSv::addOrderGoods($data_goods);
 
+      if ($data['workspace_id']) {
+      
+        $wm = ManagerWorkspaceSv::findOne(array('mid' => $manager['id'], 'wid' => $data['workspace_id']));
+
+        ManagerWorkspaceSv::update($wm['id'], array('rest_credit' => $wm['rest_credit'] - $data['goods_money']));
+      
+      }
 
       if ($payType == 1) {
       
