@@ -62,19 +62,6 @@ class GoodsSv extends BaseService implements IGoods {
       // 商品图片
       $img_data = json_decode($params['images'], true);
 
-      foreach ($img_data as $v) {
-
-          if ($v['is_cover'] == 2) {
-
-              // 商品主图
-              $data['picture'] = $v['img'];
-
-              break;
-
-          }
-
-      }
-
       // 未设置主图默认用第一张
       if (!isset($data['picture']) && isset($img_data[0])) {
 
@@ -207,7 +194,6 @@ class GoodsSv extends BaseService implements IGoods {
 
               // 更新商品图片
               $img[$info_img['id']] = GoodsImagesSv::edit($data);
-              //GoodsImageSv::update($info_img['id'], array('status' => 1));
 
           } else {
 
