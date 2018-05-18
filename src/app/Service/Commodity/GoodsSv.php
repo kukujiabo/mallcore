@@ -192,6 +192,8 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data['status'] = 1;
 
+              $data['sort'] = $key;
+
               // 更新商品图片
               $img[$info_img['id']] = GoodsImagesSv::edit($data);
 
