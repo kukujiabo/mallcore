@@ -1410,7 +1410,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       foreach($valueOrder as $value) {
 
-	$row = $index + 2;
+	    $row = $index + 2;
 
         $cell = "{$characters[$column]}{$row}";
 
@@ -1469,7 +1469,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         'sign'  => $signSecret,
         'userid' => $order['buyer_id'],
-        'cmanager' => iconv("GBK//IGNORE", "UTF-8", ($manager ? $manager['name'] : $userInfo['user_name'])),
         'wechatcode' => $userInfo['wx_openid'],
         'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
         'wechatphone' => $userInfo['user_tel'],
@@ -1477,6 +1476,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'ddate' => $order['create_time'],
         'cdepcode' => "",
         'cpersoncode' => "",
+        'binvoice' => 0,
+        "cbuserid" => "",
+        'cbuserphone' => "",
         'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
         'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
         'creceiverphone' => $address['mobile'],
