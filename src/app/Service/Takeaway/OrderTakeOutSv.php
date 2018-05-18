@@ -729,7 +729,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 验证地址
 
       // 计算订单商品总价
-      $data['goods_money'] = CartTakeOutSv::disposeGoods($data['cart_id'], $cityCode, $memberLevel);
+      $data['goods_money'] = CartTakeOutSv::disposeGoods($data['cart_id'], $cityCode, $memberLevel, $data['invoice']);
 
       $data['coupon_money'] = 0;
 
@@ -905,7 +905,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           $data_goods['no_code'] = $info_sku_goods['no_code'];
           
-          $info_goods['price'] = !empty($priceRule) ? $priceRule['price'] : $info_sku_goods['price'];
+          $info_goods['price'] = !empty($priceRule) ? ( $data['invoice'] ? $priceRule['tax_off_price'] : $priceRule['price'] ) : ( $data['invoice'] ? $info_sku_goods['tax_off_price'] : $info_sku_goods['price']);
           
           $info_goods['stock'] = $info_sku_goods['stock'];
 

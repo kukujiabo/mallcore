@@ -197,6 +197,8 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
       
       $data['price'] = $info_goods['price'];
 
+      $data['tax_off_price'] = $info_goods['tax_off_price'];
+
       $data['goods_picture'] = $info_goods['thumbnail'];
 
       if ($info_cart) {
@@ -292,7 +294,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
      * @param string $cart_id 购物车商品id（英文逗号隔开）
      * @return float $total_prices 订单商品总价
      */
-    public function disposeGoods($cart_id, $cityCode = null, $memberLevel = null) {
+    public function disposeGoods($cart_id, $cityCode = null, $memberLevel = null, $invoice = 0) {
 
         $cart_id_array = explode(',', $cart_id);
 
@@ -322,11 +324,11 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
           if ($priceRule) {
 
-            $total_prices += $priceRule['price'] * $v['num'];
+            $total_prices += ($invoice ? $priceRule['tax_off_price'] : $priceRule['price']) * $v['num'];
 
           } else {
           
-            $total_prices += $v['price'] * $v['num'];
+            $total_prices += ($invoice ? $v['tax_off_price'] : $v['price']) * $v['num'];
           
           }
 
