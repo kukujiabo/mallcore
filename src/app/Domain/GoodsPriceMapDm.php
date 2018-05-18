@@ -20,4 +20,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function edit($data) {
+  
+    return GoodsPriceMapSv::edit($data);
+  
+  }
+
 }

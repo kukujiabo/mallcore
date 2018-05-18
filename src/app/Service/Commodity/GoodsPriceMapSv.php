@@ -60,6 +60,8 @@ class GoodsPriceMapSv extends BaseService {
 
         'price' => floatval($sku['price']),
 
+        'tax_off_price' => $sku['tax_off_price'],
+
         'created_at' => date('Y-m-d H:i:s')
 
       );
@@ -84,6 +86,8 @@ class GoodsPriceMapSv extends BaseService {
 
       'price' => $params['price'],
 
+      'tax_off_price' => $params['tax_off_price'],
+
       'created_at' => date('Y-m-d H:i:s'),
 
       'level_name' => iconv("UTF-8", "GBK", $params['level_name']),
@@ -95,6 +99,20 @@ class GoodsPriceMapSv extends BaseService {
     $dataSet[] = $good;
 
     return self::batchAdd($dataSet);
+  
+  }
+
+  public function edit($params) {
+
+    $update = array(
+    
+      'price' => $params['price'],
+
+      'tax_off_price' => $params['tax_off_price']
+    
+    );
+
+    return self::update($params['id'], $update);
   
   }
 
