@@ -1549,7 +1549,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
       $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salevoucher", json_encode($trans), $header);
 
-      $result = json_decode($response);
+      $result = json_decode($response, true);
 
       if ($result['status'] == 0) {
       
