@@ -708,8 +708,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $cityCode = $data['city_code'];
 
-      unset($data['city_code']);
-
       unset($data['way']);
 
       unset($data['token']);
@@ -870,8 +868,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $memberLevel = $member['member_level'];
 
       $cityCode = $data['city_code'];
-
-      unset($data['city_code']);
 
       unset($data['way']);
 
@@ -1510,7 +1506,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatphone' => $userInfo['user_tel'],
         'csocode' => $sn,
         'ddate' => $order['create_time'],
-        'cdepcode' => "110000",
+        'cdepcode' => $order['city_code'],
         'cpersoncode' => "",
         'binvoice' => 0,
         "cbuserid" => "",
