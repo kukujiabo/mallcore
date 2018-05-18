@@ -755,6 +755,24 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $data['buyer_message'] = iconv('UTF-8', 'GBK', $data['buyer_message']);
 
+      if ($data['invoice'] == 1) {
+      
+        $data['cas'] = 802;
+      
+      } else {
+      
+        if ($data['provider_id'] > 0) {
+        
+          $data['cas'] = 802;
+        
+        } else {
+        
+          $data['cas'] = 801;
+        
+        }
+      
+      }
+
       // 添加订单
       self::add($data);
 
@@ -957,6 +975,24 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $data['provider_id'] = $providerId;
 
       $data['buyer_message'] = iconv('UTF-8', 'GBK', $data['buyer_message']);
+
+      if ($data['invoice'] == 1) {
+      
+        $data['cas'] = 802;
+      
+      } else {
+      
+        if ($data['provider_id'] > 0) {
+        
+          $data['cas'] = 802;
+        
+        } else {
+        
+          $data['cas'] = 801;
+        
+        }
+      
+      }
 
       self::add($data);
       
@@ -1516,7 +1552,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $header = array( 'Content-Type:application/json;charset=utf-8' );
     
       $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salevoucher", json_encode($trans), $header);
-    
+      
       array_push($responses, $response);
     
     }
