@@ -183,6 +183,8 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
           $info_goods['price'] = $priceRule ? $priceRule['price'] : $info_sku_goods['price'];
 
+          $info_goods['tax_off_price'] = $priceRule ? $priceRule['tax_off_price'] : $info_sku_goods['tax_off_price'];
+
           if ($info_sku_goods['picture']) {
 
               $info_goods['picture'] = $info_sku_goods['picture'];
