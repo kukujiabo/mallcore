@@ -40,6 +40,8 @@ class GoodsImagesSv extends BaseService implements IGoodsImages {
 
         $data['created_at'] = date("Y-m-d H:i:s");
 
+        $data['status'] = 1;
+
         return self::add($data);
 
     }
