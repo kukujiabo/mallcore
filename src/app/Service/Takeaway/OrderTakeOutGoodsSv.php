@@ -40,7 +40,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
     /**
      * 批量添加订单商品
      */
-    public function addOrderGoodsAll($data) {
+    public function addOrderGoodsAll($data, $invoice = 0) {
 
         $data_goods['uid'] = $data['uid'];
 
@@ -74,7 +74,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
             $data_goods['goods_name'] = $v['goods_name'];
 
-            $data_goods['price'] = $v['price'];
+            $data_goods['price'] = $invoice ? $v['tax_off_price'] : $v['price'];
 
             $data_goods['cost_price'] = $info_goods['cost_price'];
 
@@ -82,7 +82,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
             $data_goods['num'] = $v['num'];
 
-            $data_goods['goods_money'] = $v['num'] * $v['price'];
+            $data_goods['goods_money'] = $v['num'] * ($invoice ? $v['tax_off_price'] : $v['price']);
 
             $data_goods['goods_picture'] = $v['goods_picture'];
 

@@ -780,7 +780,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
 
       // 添加订单商品
-      $info_order_goods = OrderTakeOutGoodsSv::addOrderGoodsAll($data_goods);
+      $info_order_goods = OrderTakeOutGoodsSv::addOrderGoodsAll($data_goods, $data['invoice']);
 
       $condition_cart['buyer_id'] = $data['buyer_id'];
 
@@ -940,7 +940,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $data_goods['cost_price'] = $info_goods['cost_price'];
 
       // 计算订单商品总价
-      $data['goods_money'] = $data_goods['goods_money'] = $data['quantity'] * $info_goods['price'];
+      $data['goods_money'] = $data_goods['goods_money'] = $data['quantity'] *  ($data['invoice'] ? $info_goods['tax_off_price'] : $info_goods['price']);
 
       unset($data['address_id']);
 
@@ -1000,7 +1000,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $data_goods['shop_id'] = $data['shop_id'];
 
-      $data_goods['price'] = $info_goods['price'];
+      $data_goods['price'] = $data['invoice'] ? $info_goods['tax_off_price'] : $info_goods['price'];
 
       $data_goods['id'] = rand(100000000, 999999999);
 
