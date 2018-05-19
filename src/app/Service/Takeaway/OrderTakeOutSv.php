@@ -1344,6 +1344,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       if (!empty($priceRule)) {
       
         $sku['price'] = $priceRule['price'];
+
+        $sku['tax_off_price'] = $priceRule['tax_off_price'];
       
       }
 
@@ -1363,6 +1365,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $cartGood['sku_name'] = $sku['sku_name'];
 
       $cartGood['price'] = $orderGood['price'];
+
+      $cartGood['tax_off_price'] = $sku['tax_off_price'];
 
       $cartGood['num'] = $orderGood['num'];
 
