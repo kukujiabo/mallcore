@@ -1508,7 +1508,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'ddate' => $order['create_time'],
         'cdepcode' => $order['city_code'],
         'cpersoncode' => "",
-        'binvoice' => 0,
+        'binvoice' => $order['invoice'],
         "cbuserid" => "",
         'cbuserphone' => "",
         'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
