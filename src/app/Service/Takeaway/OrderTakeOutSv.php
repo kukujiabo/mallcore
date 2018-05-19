@@ -1543,7 +1543,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $responses = array();
 
-    foreach($asyncs as $trans) {
+    foreach($asyncs as $key => $trans) {
     
       $header = array( 'Content-Type:application/json;charset=utf-8' );
     
@@ -1553,7 +1553,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       if ($result['status'] == 0) {
       
-        self::update($order['id'], array('audit' => 1));
+        self::update($orders[$key]['id'], array('audit' => 1));
       
       }
       
