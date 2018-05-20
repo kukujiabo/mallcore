@@ -1364,7 +1364,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $cartGood['sku_name'] = $sku['sku_name'];
 
-      $cartGood['price'] = $orderGood['price'];
+      $cartGood['price'] = $sku['price'];
 
       $cartGood['tax_off_price'] = $sku['tax_off_price'];
 
