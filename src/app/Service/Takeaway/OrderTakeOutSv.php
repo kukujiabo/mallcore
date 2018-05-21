@@ -309,7 +309,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $newAsync = array(
 
           'sign'  => $signSecret,
-          'userid' => $order['buyer_id'],
+          'userid' => $info_order['buyer_id'],
           'wechatcode' => $userInfo['wx_openid'],
           'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
           'wechatphone' => $userInfo['user_tel'],
