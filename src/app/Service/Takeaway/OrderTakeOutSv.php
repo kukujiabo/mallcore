@@ -357,9 +357,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         }
         
-        return $result;
+      }
 
-  }
+      return $info;
+
+  t}
 
   /**
    * 外卖订单回调通知
