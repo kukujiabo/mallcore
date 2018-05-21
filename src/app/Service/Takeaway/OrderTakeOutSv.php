@@ -302,7 +302,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $sn = trim($info_order['sn']);
 
-        $signKey = "cretcode={$sn}ddate={$order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+        $signKey = "cretcode={$sn}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
         $signSecret = md5($signKey);
 
