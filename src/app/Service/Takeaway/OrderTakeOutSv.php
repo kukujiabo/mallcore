@@ -335,6 +335,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           $orderGood = array(
           
             'autoid' => $good['id'],
+            'iunsid' => $good['id'],
             'cinvcode' => $good['no_code'],
             'iquantity' => $good['num'],
             'iprice' => $good['price'],
