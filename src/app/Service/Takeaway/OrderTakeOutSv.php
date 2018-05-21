@@ -358,6 +358,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           self::update($orders[$key]['id'], array('audit' => 0));
         
         }
+
+        return $result;
         
       }
 
