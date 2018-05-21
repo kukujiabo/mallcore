@@ -283,7 +283,81 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 添加外卖订单操作者记录
       OrderTakeOutLogSv::add($table_order_log_data);
 
-      return $info;
+      /**
+       * 已审核订单同步u8
+       */
+      if ($info_order['audit']) {
+      
+        $userInfo = UserSv::findOne($info_order['buyer_id']);
+
+        $member = MemberSv::findOne($info_order['buyer_id']);
+
+        $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
+
+        $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $info_order['id']));
+
+        $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $info_order['id']));
+
+        $sn = trim($order['sn']);
+
+        $signKey = "cretcode={$sn}ddate={$order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+
+        $signSecret = md5($signKey);
+
+        $newAsync = array(
+
+          'sign'  => $signSecret,
+          'userid' => $order['buyer_id'],
+          'wechatcode' => $userInfo['wx_openid'],
+          'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
+          'wechatphone' => $userInfo['user_tel'],
+          'cretcode' => $sn,
+          'csocode' => $sn,
+          'ddate' => $order['create_time'],
+          'cdepcode' => $order['city_code'],
+          'binvoice' => $order['invoice'],
+          "cbuserid" => "",
+          'cbuserphone' => "",
+          'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
+          'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
+          'creceiverphone' => $address['mobile'],
+          'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
+          'caccid' => $cas[$key]
+        
+        );
+
+        $newAsync['detail'] = array();
+
+        foreach($goods as $good) {
+        
+          $orderGood = array(
+          
+            'autoid' => $good['id'],
+            'cinvcode' => $good['no_code'],
+            'iquantity' => $good['num'],
+            'iprice' => $good['price'],
+            'imoney' => $good['goods_money']
+          
+          );
+
+          array_push($newAsync['detail'], $orderGood);
+        
+        }
+
+      
+        $header = array( 'Content-Type:application/json;charset=utf-8' );
+    
+        $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salereturnvoucher", json_encode($newAsync), $header);
+
+        $result = json_decode($response, true);
+
+        if ($result['status'] == 0) {
+        
+          self::update($orders[$key]['id'], array('audit' => 0));
+        
+        }
+        
+        return $result;
 
   }
 
