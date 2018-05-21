@@ -300,7 +300,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $info_order['id']));
 
-        $sn = trim($order['sn']);
+        $sn = trim($info_order['sn']);
 
         $signKey = "cretcode={$sn}ddate={$order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
