@@ -261,6 +261,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function cancelOrder($data) {
 
+      $table_order_log_data['id'] = rand(100000000, 999999999);
+
       $table_order_log_data['description'] = $data['comment'];
 
       $table_order_log_data['order_sn'] = $condition['sn'] = $data['order_sn'];
