@@ -52,6 +52,8 @@ class WechatDm {
 
       $user['token'] = $params['token'];
 
+      UserSv::updates($user);
+
       return $data;
     
     } else {
