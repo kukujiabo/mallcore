@@ -45,14 +45,12 @@ class WechatDm {
     $data = WechatUtilsSv::getMiniTempCode($accessToken, $user['uid'], '/pages/mall/mall');
 
     if ($data) {
+
+      $updateData = array();
     
-      $user['qr_code'] = $data;
+      $updateData['qr_code'] = $data;
 
-      $user['way'] = 1;
-
-      $user['token'] = $params['token'];
-
-      UserSv::updates($user);
+      UserSv::update($user['uid'], $updateData['qr_code']);
 
       return $data;
     
