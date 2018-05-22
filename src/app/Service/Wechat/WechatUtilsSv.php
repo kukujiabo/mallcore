@@ -339,7 +339,7 @@ class WechatUtilsSv extends BaseService {
 
       if ($result > 0) {
       
-        return md5($scene) . '.jpg'
+        return md5($scene) . '.jpg';
       
       } else {
       
