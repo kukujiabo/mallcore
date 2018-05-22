@@ -2,6 +2,8 @@
 namespace App\Domain;
 
 use App\Service\Wechat\WechatSv;
+use App\Service\Wechat\WechatUtilsSv;
+use App\Service\Crm\UserSv;
 
 /**
  * 微信类
@@ -25,6 +27,38 @@ class WechatDm {
   public function wechatMessagePush($params) {
   
     return WechatSv::wechatMessagePush($params);
+
+  }
+
+  public function getMiniTempCode($params) {
+
+    $user = UserSv::getUserByToken($params['token']);
+
+    if ($user['qr_code']) {
+    
+      return $user['qr_code'];
+    
+    }
+
+    $accessToken = WechatUtilsSv::getAccessToken('mini_access_token');
+    
+    $data = WechatUtilsSv::getMiniTempCode($accessToken, $user['uid'], '/pages/mall/mall');
+
+    if ($data) {
+    
+      $user['qr_code'] = $data;
+
+      $user['way'] = 1;
+
+      $user['token'] = $params['token'];
+
+      return $data;
+    
+    } else {
+    
+      return 0;
+    
+    }
 
   }
 

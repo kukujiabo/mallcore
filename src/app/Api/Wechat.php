@@ -29,6 +29,12 @@ class Wechat extends BaseApi {
         'msg_signature' => 'msg_signature|string|false||签名参数',
                                                                  
        ),
+
+       'getMiniTempCode' => array(
+       
+        'token'  => 'token|string|true||用户令牌'
+       
+       )
     
     ));
   
@@ -50,5 +56,17 @@ class Wechat extends BaseApi {
 
   }
 
+
+  /**
+   * 微信小程序码
+   * @desc 微信小程序码
+   *
+   * @return string path
+   */
+  public function getMiniTempCode() {
+  
+    return $this->dm->getMiniTempCode($this->retriveRuleParams(__FUNCTION__));  
+  
+  }
 
 }
