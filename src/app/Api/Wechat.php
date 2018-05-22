@@ -32,7 +32,7 @@ class Wechat extends BaseApi {
 
        'getMiniTempCode' => array(
        
-        'token'  => 'token|string|true||用户令牌'
+          'token'  => 'token|string|true||用户令牌'
        
        )
     

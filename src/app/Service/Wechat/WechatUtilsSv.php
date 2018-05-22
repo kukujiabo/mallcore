@@ -312,8 +312,10 @@ class WechatUtilsSv extends BaseService {
      * @return string bytes of image
      */
     public function getMiniTempCode($accessToken, $scene, $page, $width = 400, $autoColor = true, $lineColor = [ "r" => 0, "g" => 0, "b" => 0]) {
+
+      $api = \PhalApi\DI()->config->get('wechat.GET_SMALL_PROGRAM_CODE');
     
-      $url = str_replace( '{ACCESS_TOKEN}', $accessToken, WechatApi::GET_SMALL_PROGRAM_CODE );
+      $url = str_replace( '{ACCESS_TOKEN}', $accessToken, $api );
 
       $data = [
       
