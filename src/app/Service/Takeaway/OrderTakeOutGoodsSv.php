@@ -94,7 +94,17 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         }
 
-        return self::batchAdd($data_goods_all);
+        $i = 0;
+
+        foreach($data_goods_all as $good) {
+        
+          $i++;
+
+          self::add($good);
+        
+        }
+
+        return $i;
 
     }
 
