@@ -50,7 +50,11 @@ class WechatDm {
     
       $updateData['qr_code'] = $data;
 
-      UserSv::update($user['uid'], $updateData['qr_code']);
+      $updateData['token'] = $params['token'];
+
+      $updateData['way'] = 1;
+
+      UserSv::updates($updateData);
 
       return $data;
     
