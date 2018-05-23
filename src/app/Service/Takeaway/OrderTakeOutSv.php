@@ -1465,7 +1465,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
       $i++;
 
-      self::add($good);
+      CartTakeOutSv::add($cgood);
     
     }
 
