@@ -1459,7 +1459,17 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     CartTakeOutSv::batchRemove(array('buyer_id' => $uid));
 
-    return CartTakeOutSv::batchAdd($newCartGoods);
+    $i = 0;
+
+    foreach($newCartGoods as $cgood) {
+    
+      $i++;
+
+      self::add($good);
+    
+    }
+
+    return $i;
 
   }
 
