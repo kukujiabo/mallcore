@@ -42,7 +42,7 @@ class WechatDm {
 
     $accessToken = WechatUtilsSv::getAccessToken('mini_access_token');
     
-    $data = WechatUtilsSv::getMiniTempCode($accessToken, $user['uid'], '' + $user['id']);
+    $data = WechatUtilsSv::getMiniTempCode($accessToken, $user['uid'], '');
 
     if ($data) {
 
