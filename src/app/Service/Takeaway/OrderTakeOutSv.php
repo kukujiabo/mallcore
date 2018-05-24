@@ -1582,7 +1582,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
 
-      $address = OrderTakeOutAddressSv::findOne(array('order_takeout_id' => $order['id']));
+      $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $order['id']));
 
       $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
