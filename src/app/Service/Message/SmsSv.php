@@ -26,7 +26,11 @@ class SmsSv extends BaseService {
 
     $tpCode = ConfigSv::getConfigValueByKey('submail_tmp_code_verify');
 
-    return Sms::sendSms($mobile, $tpCode, array('code' => $code));
+    $result = Sms::sendSms($mobile, $tpCode, array('code' => $code));
+
+    $result['right_code'] = $code;
+
+    return $result;
   
   }
 
