@@ -39,6 +39,7 @@ class MobileVerifyCodeSv extends BaseService {
     }
   
     $data = array(
+      'id' => rand(100000000, 999999999),
       'code' => $code,
       'mobile' => $mobile,
       'created_at' => date('Y-m-d H:i:s'),
