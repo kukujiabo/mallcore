@@ -1592,6 +1592,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $signSecret = md5($signKey);
 
+      if ($userInfo['reference']) {
+      
+        $cbUser = UserSv::findOne($userInfo['reference']);
+      
+      }
+
       $newAsync = array(
 
         'sign'  => $signSecret,
@@ -1604,8 +1610,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'cdepcode' => $order['city_code'],
         'cpersoncode' => "",
         'binvoice' => $order['invoice'],
-        "cbuserid" => "",
-        'cbuserphone' => "",
+        "cbuserid" => $cbUser['uid'],
+        'cbuserphone' => $cnUser['user_tel'],
         'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
         'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
         'creceiverphone' => $address['mobile'],
