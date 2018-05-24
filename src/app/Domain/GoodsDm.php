@@ -94,7 +94,27 @@ class GoodsDm {
 
   public function getAllGoods() {
   
-    return GoodsSv::all();
+    $goods = GoodsSv::all();
+
+    $allGoods = array();
+
+    foreach($goods as $good) {
+
+      $goodInfo = array(
+
+       'goods_id' => $good['goods_id'],
+
+       'goods_name' => $good['goods_name']
+
+      );
+
+                 array_push($allGoods, $goodInfo);
+
+               }
+
+        return $allGoods;
+      
+
   
   }
 
