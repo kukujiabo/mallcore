@@ -255,7 +255,7 @@ class UserSv extends BaseService implements IUser {
    * @return string $info.mobile
    * @return string $info.token
    */
-  public function miniIdentifyAuth($openId, $unionId) {
+  public function miniIdentifyAuth($openId, $unionId, $recommend = '') {
 
     /**
      * 根据用户openid查询用户是否已注册
@@ -283,7 +283,7 @@ class UserSv extends BaseService implements IUser {
        * 用户未注册，为用户注册
        */
     
-      $uid = self::miniRegister($openId, $unionId);
+      $uid = self::miniRegister($openId, $unionId, $recommend);
 
       return array(
       
@@ -554,7 +554,7 @@ class UserSv extends BaseService implements IUser {
    *
    * @return
    */
-  public function codeLogin($code, $type) {
+  public function codeLogin($code, $type, $recommend = '') {
   
     $result = '';
 
@@ -601,7 +601,7 @@ class UserSv extends BaseService implements IUser {
      * $auth.token
      */
 
-    $auth = self::miniIdentifyAuth($result['openid'], $result['unionid']);
+    $auth = self::miniIdentifyAuth($result['openid'], $result['unionid'], $recommend);
 
     $response = array(
     
@@ -641,7 +641,7 @@ class UserSv extends BaseService implements IUser {
        * 微信code登录
        */
 
-      return self::codeLogin($data['code'], $data['type']);
+      return self::codeLogin($data['code'], $data['type'], $data['recommend']);
 
     } elseif (!empty($data['username']) && !empty($data['password'])) {
 
@@ -1088,7 +1088,7 @@ class UserSv extends BaseService implements IUser {
    *
    * @param string $openId
    */
-  public function miniRegister($openId, $unionId = '')  {
+  public function miniRegister($openId, $unionId = '', $recommend = '')  {
 
     /**
      * 添加用户信息（openid, unionid, is_member, is_system ）
@@ -1119,6 +1119,12 @@ class UserSv extends BaseService implements IUser {
       'hidden_identity' => self::createSecretKey($openId, 'mini')
     
     );
+
+    if ($recommend) {
+    
+      $newUser['reference'] = $recommend;
+    
+    }
 
     self::add($newUser);
 

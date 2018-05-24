@@ -22,6 +22,8 @@ class Member extends BaseApi {
 
         'code' => 'code|string|true||微信的code',
 
+        'recommend' => 'recommend|string|false||微信的code'
+
       ),
 
       'add' => array(
