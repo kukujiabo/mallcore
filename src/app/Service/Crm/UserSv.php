@@ -1154,7 +1154,7 @@ class UserSv extends BaseService implements IUser {
 
     $account = array( 
 
-      'id' => rand(100000000, 99999999),
+      'id' => rand(100000000, 999999999),
       
       'uid' => $uid,
     
