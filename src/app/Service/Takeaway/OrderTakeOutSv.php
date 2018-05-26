@@ -1,5 +1,5 @@
 <?php 
-  namespace App\Service\Takeaway;
+namespace App\Service\Takeaway;
 
 use App\Service\BaseService;
 use App\Interfaces\Takeaway\IOrderTakeOut;
@@ -454,7 +454,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
       } else {
 
-        $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], 'create_time desc', $condition['page'], $condition['page_size']);
+        if ($condition['recommend_phone']) {
+        
+          $or = "(user_tel = {$condition['recommend_phone']} OR recommend_phone = {$condition['recommend_phone']})";
+        
+        }
+
+        unset($condition['recommend_phone']);
+
+        $info = OrderTakeoutUnionSv::queryList($condition, $condition['fields'], 'create_time desc', $condition['page'], $condition['page_size'], $or);
 
         foreach ($info['list'] as &$v) {
 

@@ -140,6 +140,8 @@ class OrderTakeOut extends BaseApi {
 
         'is_pushed' => 'is_pushed|int|false||是否已推送',
 
+        'recommend_phone' => 'recommend_phone|string|false||业务员手机号',
+
         'page' => 'page|int|true|1|页码',
 
         'page_size' => 'page_size|int|true|20|每页数据条数'

@@ -111,7 +111,7 @@ trait CurdSv {
    *
    * @return array $list
    */
-  public function queryList($condition, $fields, $order, $page, $pageSize) { 
+  public function queryList($condition, $fields, $order, $page, $pageSize, $or = NULL) { 
     
     $className = get_class();
 
@@ -119,7 +119,7 @@ trait CurdSv {
 
     $model = "App\\Model\\{$modelName[count($modelName) - 1]}";
 
-    $totalCount = $model::number($condition);
+    $totalCount = $model::number($condition, $or);
 
     $queryResult = '';
 
@@ -135,7 +135,7 @@ trait CurdSv {
 
       $offset = ($queryPage - 1) * (INT)$querySize;
 
-      $queryResult = $model::queryList($condition, $fields, $order, $offset, $querySize);
+      $queryResult = $model::queryList($condition, $fields, $order, $offset, $querySize, $or);
 
     }
 
@@ -179,7 +179,7 @@ trait CurdSv {
    *
    * @return int num
    */
-  public function queryCount($condition) {
+  public function queryCount($condition, $or = null) {
   
     $className = get_class();
 
@@ -187,7 +187,7 @@ trait CurdSv {
 
     $model = "App\\Model\\{$modelName[count($modelName) - 1]}";
 
-    return $model::number($condition);
+    return $model::number($condition, $or);
   
   }
 
@@ -217,7 +217,7 @@ trait CurdSv {
    *
    * @return array $data
    */
-  public function all($condition, $order = '') {
+  public function all($condition, $order = '', $or = null) {
 
     $className = get_class();
   
@@ -225,7 +225,7 @@ trait CurdSv {
 
     $model = "App\\Model\\{$modelName[count($modelName) - 1]}";
 
-    return $model::all($condition, $order);
+    return $model::all($condition, $order, $or);
 
   }
 
