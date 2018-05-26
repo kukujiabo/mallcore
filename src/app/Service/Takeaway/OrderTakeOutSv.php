@@ -1711,8 +1711,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    * @return number price
    */
   public function getSalesAmount() {
+
+    $otu = new OrderTakeoutUnion();
   
-    return OrderTakeoutUnion::orm()->where(' recommend_phone IS NOT ?', NULL)->where('order_status > ?', 1)->sum('order_money');
+    return $otu::orm()->where(' recommend_phone IS NOT ?', NULL)->where('order_status > ?', 1)->sum('order_money');
   
   }
 
