@@ -1,4 +1,5 @@
-<?php namespace App\Service\Takeaway;
+<?php 
+  namespace App\Service\Takeaway;
 
 use App\Service\BaseService;
 use App\Interfaces\Takeaway\IOrderTakeOut;
@@ -33,6 +34,7 @@ use App\Service\Wechat\WechatTemplateMessageSv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Library\Http;
+use App\Model\OrderTakeoutUnion;
 
 /**
  * 外卖订单
