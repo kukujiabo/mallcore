@@ -53,6 +53,7 @@ class User extends BaseApi {
                 'user_tel_bind' => 'user_tel_bind|int|false||手机号是否绑定 0 未绑定 1 绑定',
                 'is_system' => 'is_system|int|false||是否是系统后台管理员 0-不是 1-是',
                 'is_member' => 'is_member|int|false||是否是前台会员 0-不是 1-是',
+                'reference' => 'reference|string|false||上级会员',
                 'reg_time' => 'reg_time|string|false||注册时间',
                 'fields' => 'fields|string|false|*|查询字段',
                 'order' => 'order|string|false||排序',
