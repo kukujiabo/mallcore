@@ -163,4 +163,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 查询业务员销售总额
+   */
+  public function getSalesAmount() {
+  
+    return OrderTakeOutSv::getSalesAmount();
+  
+  }
+
 }

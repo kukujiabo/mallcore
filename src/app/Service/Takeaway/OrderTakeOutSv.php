@@ -1703,4 +1703,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
   }
 
+  /**
+   * 查询业务员销售总额
+   *
+   * @return number price
+   */
+  public function getSalesAmount() {
+  
+    return OrderTakeoutUnion::orm()->where(' recommend_phone IS NOT ?', NULL)->where('order_status > ?', 1)->sum('order_money');
+  
+  }
+
 }

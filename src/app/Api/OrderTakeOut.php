@@ -307,6 +307,11 @@ class OrderTakeOut extends BaseApi {
       
         'order_id' => 'order_id|string|true||订单号'
       
+      ),
+
+      'getSalesAmount' => array(
+      
+      
       )
 
     ));
@@ -762,6 +767,18 @@ class OrderTakeOut extends BaseApi {
   public function removeOrder() {
   
     return $this->dm->removeOrder($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询营业员总额
+   * @desc  查询营业员总额
+   *
+   * @return number price
+   */
+  public function getSalesAmount() {
+
+    return $this->dm->getSalesAmount($this->retriveRuleParams(__FUNCTION__));
   
   }
 
