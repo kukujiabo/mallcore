@@ -1666,4 +1666,32 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
   }
 
+  /**
+   * 删除订单
+   * @desc 删除订单
+   *
+   * @return int num
+   */
+  public function removeOrder($params) {
+  
+    $orderId = $params['order_id'];
+
+    /**
+     * 删除订单商品数据
+     */
+    OrderTakeOutGoodsSv::batchRemove(array( 'order_take_out_id' => $orderId ));
+
+    /**
+     * 删除订单地址数据
+     */
+    OrderTakeOutAddressSv::batchRemove(array('order_take_out_id' => $orderId));
+  
+
+    /**
+     * 删除订单主数据
+     */
+    return self::remove($orderId);
+
+  }
+
 }

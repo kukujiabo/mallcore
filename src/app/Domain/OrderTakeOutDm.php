@@ -154,4 +154,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 删除订单
+   */
+  public function removeOrder($params) {
+    
+    return OrderTakeOutSv::removeOrder($params);
+  
+  }
+
 }
