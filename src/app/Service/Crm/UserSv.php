@@ -660,7 +660,7 @@ class UserSv extends BaseService implements IUser {
    */
   public function queryUserList($condition){
       
-    return self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+    return MemberUnionInfoSv::getList($condition);
 
   }
 

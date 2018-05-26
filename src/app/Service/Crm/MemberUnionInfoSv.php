@@ -47,6 +47,11 @@ class MemberUnionInfoSv extends BaseService {
       $query['reg_time'] = strlen($query['reg_time']) ? "{$query['reg_time']};el|{$data['reg_end_time']}" : "el|{$data['reg_end_time']}";
     
     }
+    if ($data['reference']) {
+    
+      $query['reference'] = $data['reference'];
+    
+    }
 
     $query['is_system'] = 0;
 
@@ -54,7 +59,7 @@ class MemberUnionInfoSv extends BaseService {
 
     $order = $data['order'] ? $data['order'] : 'uid desc';
 
-    return self::queryList($query, $fields, $order, $data['page'], $data['pageSize']);
+    return self::queryList($query, $fields, $order, $data['page'], $data['page_size']);
   
   }
 
