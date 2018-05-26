@@ -28,7 +28,10 @@ class GoodsPriceMap extends BaseApi {
 
         'price' => 'price|float|true||价格',
 
+        'tax_off_price' => 'tax_off_price|float|false||含税价格',
+
         'skus' => 'skus|string|true||sku'
+
       
       ),
 
