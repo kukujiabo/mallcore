@@ -721,6 +721,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       }
 
+      //获取业务员
+      if ($info_user['reference']) {
+      
+        $reference = UserSv::findOne($info_user['reference']);
+
+        $info_order['recommend_phone'] = $reference['user_tel'];
+      
+      }
+
       $info_shop = ShopSv::findOne($info_order['shop_id']);
 
       $info_order['shop_name'] = $info_shop['shop_name'];
