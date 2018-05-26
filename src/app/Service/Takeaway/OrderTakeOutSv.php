@@ -269,13 +269,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $info_order = self::findOne($condition);
 
-      if ($info_order['order_status'] == -1) {
+      if ($info_order['order_status'] == 0) {
 
           throw new OrderTakeOutException(ErrorCode::OrderTakeOutSv['ORDER_CANCEL_ERR_MSG'], ErrorCode::OrderTakeOutSv['ORDER_CANCEL_ERR_CODE'], $data['order_sn']);
           
       }
 
-      $order_data['order_status'] = -1;
+      $order_data['order_status'] = 0;
 
       $table_order_log_data['created_at'] = $order_data['cancel_time'] = date("Y-m-d H:i:s");
 
