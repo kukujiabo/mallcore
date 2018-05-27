@@ -24,7 +24,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
      */
     public function getList($condition) {
 
-        return self::all($condition, $condition['order']);
+        return self::all($condition, $condition['order'], '*');
 
     }
 
