@@ -86,6 +86,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['no_code'] = $params['no_code'] ? $params['no_code'] : '';
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
+      $data['citis'] = $params['cities'];
 
       // 添加商品主数据
       $goods_id = $params['goods_id'];
@@ -150,6 +151,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['brand_id'] = $params['brand_id'] ? $params['brand_id'] : '';
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
+      $data['cities'] = $params['cities'];
 
       // 添加商品主数据
       $params['goods_id'] = $goods_id = self::addGoods($data);

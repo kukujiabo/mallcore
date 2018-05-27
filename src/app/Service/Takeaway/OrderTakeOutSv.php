@@ -472,16 +472,16 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
             $v['shop_logo'] = $info_shop['shop_logo'] ? $info_shop['shop_logo'] : $info_shop['shop_banner'];
 
-            //if ($goods_status == 1) {
+            if ($goods_status == 1) {
 
-            //    $where_order_address['order_take_out_id'] = $v['id'];
+                $where_order_address['order_take_out_id'] = $v['id'];
 
-            //    // 获取订单商品
-            //    $info_order_goods = OrderTakeOutGoodsSv::getList($where_order_address);
+                // 获取订单商品
+                $info_order_goods = OrderTakeOutGoodsSv::getList($where_order_address);
 
-            //    $v['goods_list'] = $info_order_goods;
+                $v['goods_list'] = $info_order_goods;
 
-            //}
+            }
 
             if ($v['workspace_id']) {
             
