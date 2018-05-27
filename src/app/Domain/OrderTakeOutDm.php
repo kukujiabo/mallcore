@@ -166,9 +166,9 @@ class OrderTakeOutDm {
   /**
    * 查询业务员销售总额
    */
-  public function getSalesAmount() {
+  public function getSalesAmount($params) {
   
-    return OrderTakeOutSv::getSalesAmount();
+    return OrderTakeOutSv::getSalesAmount($params);
   
   }
 

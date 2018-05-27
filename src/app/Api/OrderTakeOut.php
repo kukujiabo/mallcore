@@ -313,6 +313,53 @@ class OrderTakeOut extends BaseApi {
 
       'getSalesAmount' => array(
       
+        'order_id' => 'order_id|string|false||表序号',
+
+        'sn' => 'sn|string|false||订单编号',
+
+        'buyer_id' => 'buyer_id|string|false||用户id',
+
+        'shop_id' => 'shop_id|int|false||卖家店铺id',
+        
+        'card_id' => 'card_id|string|false||会员卡号',
+        
+        'user_tel' => 'user_tel|string|false||手机号',
+        
+        'member_name' => 'member_name|string|false||用户名',
+        
+        'consigner' => 'consigner|string|false||收货人',
+
+        'mobile' => 'mobile|string|false||收货人手机号',
+
+        'order_status' => 'order_status|int|false||订单状态 1-未支付 2-已支付 3-已签收',
+
+        'shipping_status' => 'shipping_status|int|false||订单配送状态 1-未配送 2-配送中 3-已配送',
+
+        'create_time' => 'create_time|string|false||创建时间',
+        
+        'consign_time' => 'consign_time|string|false||发货时间',
+
+        'sign_time' => 'sign_time|string|false||买家签收时间',
+
+        'finish_time' => 'finish_time|string|false||完成时间',
+
+        'pay_time' => 'pay_time|string|false||支付时间',
+        
+        'cancel_time' => 'cancel_time|string|false||取消时间',
+        
+        'shipping_time' => 'shipping_time|string|false||买家要求的配送时间',
+
+        'goods_status' => 'goods_status|int|false|1|1-取订单商品 2-不取订单商品',
+
+        'fields' => 'fields|string|false|*|查询字段',
+
+        'order' => 'order|string|false||排序',
+
+        'excel' => 'excel|int|false||是否导出excel',
+
+        'is_pushed' => 'is_pushed|int|false||是否已推送',
+
+        'recommend_phone' => 'recommend_phone|string|false||业务员手机号'
       
       )
 

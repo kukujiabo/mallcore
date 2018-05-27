@@ -1718,11 +1718,72 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    *
    * @return number price
    */
-  public function getSalesAmount() {
+  public function getSalesAmount($condition) {
 
-    $otu = new OrderTakeoutUnion();
-  
-    return $otu->orm()->where(' recommend_phone IS NOT ?', NULL)->where('order_status > ?', 1)->sum('order_money');
+    if ($condition['way'] == 1 && $condition['token']) {
+
+        $info_user = UserSv::getUserByToken($condition['token']);
+
+        $condition['buyer_id'] = $info_user['uid'];
+
+    } elseif ($condition['way'] == 2 && $condition['token']) {
+    
+        $info_user = UserSv::getAdminToken($condition['token']);
+
+        $provider = ProviderSv::findOne(array('account' => $info_user['user_name']));
+
+        if ($provider) {
+
+          $condition['provider_id'] = $provider['id'];
+
+        }
+    
+    }
+
+    $goods_status = $condition['goods_status'];
+
+    $excel = $condition['excel'];
+
+    unset($condition['goods_status']);
+
+    unset($condition['token']);
+
+    unset($condition['excel']);
+
+    unset($condition['way']);
+
+
+    if ($condition['recommend_phone']) {
+    
+      $or = "(user_tel = {$condition['recommend_phone']} OR recommend_phone = {$condition['recommend_phone']})";
+    
+    }
+
+    unset($condition['recommend_phone']);
+
+    if ($or) {
+
+      $orders = OrderTakeoutUnionSv::all($condition, NULL, $or);
+
+    } else {
+
+      $orders = OrderTakeoutUnionSv::all($condition);
+
+    }
+
+    $totalPrice = 0;
+
+    foreach($orders as $order) {
+    
+      if ($order['order_status'] > 1) {
+      
+        $totalPrice += $order['order_money'];
+      
+      }
+    
+    }
+
+    return $totalPrice;
   
   }
 
