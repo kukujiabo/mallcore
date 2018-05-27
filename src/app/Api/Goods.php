@@ -745,6 +745,8 @@ class Goods extends BaseApi {
           
           'thumbnail' => 'thumbnail|string|false||商品缩略图',
 
+          'cities' => 'cities|string|false||商品销售城市',
+
           'description' => 'description|string|false||商品详情（图文）',
 
           'is_promotion' => 'is_promotion|int|false|1|促销秒杀 1-关闭 2-开启',
@@ -798,6 +800,8 @@ class Goods extends BaseApi {
           'no_code' => 'no_code|string|false||erp商品编码',
 
           'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
+
+          'cities' => 'cities|string|false||商品销售城市',
 
           'price' => 'price|float|true||本店售价（元）',
 
