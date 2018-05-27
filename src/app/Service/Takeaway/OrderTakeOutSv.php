@@ -1763,7 +1763,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     if ($or) {
 
-      $orders = OrderTakeoutUnionSv::all($condition, NULL, $or);
+      $orders = OrderTakeoutUnionSv::all($condition, NULL, '*', $or);
 
     } else {
 

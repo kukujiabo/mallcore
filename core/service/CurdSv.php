@@ -217,7 +217,7 @@ trait CurdSv {
    *
    * @return array $data
    */
-  public function all($condition, $order = '', $or = null) {
+  public function all($condition, $order = '', $fields = '*', $or = null) {
 
     $className = get_class();
   
@@ -225,7 +225,7 @@ trait CurdSv {
 
     $model = "App\\Model\\{$modelName[count($modelName) - 1]}";
 
-    return $model::all($condition, $order, $or);
+    return $model::all($condition, $order, $field, $or);
 
   }
 
