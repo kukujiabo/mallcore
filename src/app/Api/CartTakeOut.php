@@ -56,7 +56,7 @@ class CartTakeOut extends BaseApi {
 
         'cart_id' => 'cart_id|string|false||购物车id',
 
-        'sku_id' => 'selected_id|string|false||选择商品id',
+        'sku_id' => 'sku_id|string|false||选择商品id',
 
         'buyer_id' => 'buyer_id|string|false||用户id',
 
