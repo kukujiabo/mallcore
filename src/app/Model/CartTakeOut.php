@@ -18,6 +18,8 @@ class CartTakeOut extends BaseModel {
         
         'num' => 'range',
 
+        'sku_id' => 'in'
+
     );
 
     protected $_updateOptionRule = array(
