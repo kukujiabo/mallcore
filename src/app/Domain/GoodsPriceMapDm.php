@@ -32,4 +32,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function remove($data) {
+  
+    return GoodsPriceMapSv::remove($data['id']);
+  
+  }
+
 }

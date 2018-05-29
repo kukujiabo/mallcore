@@ -66,6 +66,12 @@ class GoodsPriceMap extends BaseApi {
       
         'data' => 'data|string|true||批量编辑数据'
       
+      ),
+
+      'remove' => array(
+      
+        'id' => 'id|int|true||删除价格'
+      
       )
     
     ));
@@ -121,6 +127,18 @@ class GoodsPriceMap extends BaseApi {
   public function batchEdit() {
   
     return $this->dm->batchEdit($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 删除价格接口
+   * @desc 删除价格接口
+   *
+   * @return int num
+   */
+  public function remove() {
+  
+    return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
   
   }
 
