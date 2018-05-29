@@ -1630,7 +1630,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'cpersoncode' => "",
         'binvoice' => $order['invoice'],
         "cbuserid" => $cbUser['uid'],
-        'cbuserphone' => $cnUser['user_tel'],
+        'cbuserphone' => $cbUser['user_tel'],
         'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
         'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
         'creceiverphone' => $address['mobile'],
