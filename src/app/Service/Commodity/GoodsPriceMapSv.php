@@ -131,7 +131,7 @@ class GoodsPriceMapSv extends BaseService {
 
   public function batchEdit($params) {
   
-    $batchData = json_decode($params['data']);
+    $batchData = json_decode($params['data'], true);
 
     $i = 0;
   
