@@ -20,24 +20,28 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
     
       $skus = self::all($condition);
 
-      foreach($skus as $key => $sku) {
-      
-        $priceRule = GoodsPriceMapSv::findOne(array(
-        
-          'sku_id' => $sku['sku_id'],
+      if ($condition['city_code']) {
 
-          'city_code' => $condition['city_code'],
-
-          'user_level' => $condition['user_level']
+        foreach($skus as $key => $sku) {
         
-        ));
+          $priceRule = GoodsPriceMapSv::findOne(array(
+          
+            'sku_id' => $sku['sku_id'],
 
-        if ($priceRule) {
-        
-          $skus[$key]['price'] = $priceRule['price'];
+            'city_code' => $condition['city_code'],
+
+            'user_level' => $condition['user_level']
+          
+          ));
+
+          if ($priceRule) {
+          
+            $skus[$key]['price'] = $priceRule['price'];
+          
+          }
         
         }
-      
+
       }
 
       return $skus;
@@ -51,24 +55,28 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
       $skus = self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
 
-      foreach($skus['list'] as $key => $sku) {
-      
-        $priceRule = GoodsPriceMapSv::findOne(array(
-        
-          'sku_id' => $sku['sku_id'],
+      if ($condition['city_code']) {
 
-          'city_code' => $condition['city_code'],
-
-          'user_level' => $condition['user_level']
+        foreach($skus['list'] as $key => $sku) {
         
-        ));
+          $priceRule = GoodsPriceMapSv::findOne(array(
+          
+            'sku_id' => $sku['sku_id'],
 
-        if ($priceRule) {
-        
-          $skus['list'][$key]['price'] = $priceRule['price'];
+            'city_code' => $condition['city_code'],
+
+            'user_level' => $condition['user_level']
+          
+          ));
+
+          if ($priceRule) {
+          
+            $skus['list'][$key]['price'] = $priceRule['price'];
+          
+          }
         
         }
-      
+
       }
 
       return $skus;
@@ -82,20 +90,24 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
       $sku = self::findOne($condition);
 
-      $priceRule = GoodsPriceMapSv::findOne(array(
-      
-        'sku_id' => $sku['sku_id'],
+      if ($condition['city_code']) {
 
-        'city_code' => $condition['city_code'],
+        $priceRule = GoodsPriceMapSv::findOne(array(
+        
+          'sku_id' => $sku['sku_id'],
 
-        'user_level' => $condition['user_level']
-      
-      ));
+          'city_code' => $condition['city_code'],
 
-      if ($priceRule) {
-      
-        $sku['price'] = $priceRule['price'];
-      
+          'user_level' => $condition['user_level']
+        
+        ));
+
+        if ($priceRule) {
+        
+          $sku['price'] = $priceRule['price'];
+        
+        }
+
       }
 
       return $sku;
