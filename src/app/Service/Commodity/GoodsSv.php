@@ -376,6 +376,10 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data_sku['active'] = 1;
 
+              $data_sku['cities'] = implode(',', $data_sku['checkList']);
+
+              unset($data['checkList']);
+
               $arr['sku'][$info_sku['sku_id']] = GoodsSkuSv::edit($data_sku);
 
           } else {
@@ -389,6 +393,10 @@ class GoodsSv extends BaseService implements IGoods {
               $v['sku_name'] = iconv('UTF-8', 'GBK', $v['sku_name']);
 
               $v['active'] = 1;
+
+              $v['cities'] = implode(',', $v['checkList']);
+              
+              unset($v['checkList']);
 
               GoodsSkuSv::addGoodsSku($v);
 
