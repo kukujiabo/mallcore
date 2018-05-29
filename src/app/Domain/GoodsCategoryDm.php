@@ -16,7 +16,7 @@ class GoodsCategoryDm {
    */
   public function getAll($data) {
 
-    return GoodsCategorySv::all($data);
+    return GoodsCategorySv::all($data, 'sort desc');
   
   }
 
