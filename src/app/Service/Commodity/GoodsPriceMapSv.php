@@ -129,4 +129,24 @@ class GoodsPriceMapSv extends BaseService {
   }
 
 
+  public function batchEdit($params) {
+  
+    $batchData = json_decode($params['data']);
+
+    $i = 0;
+  
+    foreach($batchData as $data) {
+    
+      $id = $data['id'];
+
+      unset($data['id']);
+    
+      $i += self::update($id, $data);
+    
+    }
+
+    return $i;
+  
+  }
+
 }

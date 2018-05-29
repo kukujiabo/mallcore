@@ -26,4 +26,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function batchEdit($data) {
+  
+    return GoodsPriceMapSv::batchEdit($data);
+  
+  }
+
 }

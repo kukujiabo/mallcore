@@ -60,6 +60,12 @@ class GoodsPriceMap extends BaseApi {
       'getRules' => array(
       
       
+      ),
+
+      'batchEdit' => array(
+      
+        'data' => 'data|string|true||批量编辑数据'
+      
       )
     
     ));
@@ -103,6 +109,18 @@ class GoodsPriceMap extends BaseApi {
   public function edit() {
   
     return $this->dm->edit($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 批量编辑接口
+   * @desc 批量编辑接口
+   *
+   * @return int num
+   */
+  public function batchEdit() {
+  
+    return $this->dm->batchEdit($this->retriveRuleParams(__FUNCTION__));
   
   }
 
