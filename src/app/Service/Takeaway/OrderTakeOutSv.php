@@ -1508,7 +1508,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '下单时间' 
+      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '下单时间', '商品名称', '商品数量', '商品单价', '商品总价', '商品编码'
     
     );
 
@@ -1536,33 +1536,49 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $column = 0;
 
-      $valueOrder = array(
-      
-        'sn' => $order['sn'],
+      $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
-        'consigner' => $order['consigner'],
+      foreach($orderGoods as $orderGood) {
 
-        'mobile' => $order['mobile'],
+        $valueOrder = array(
+        
+          'sn' => $order['sn'],
 
-        'member_name' => $order['member_name'],
+          'consigner' => $order['consigner'],
 
-        'price' => $order['goods_money'],
+          'mobile' => $order['mobile'],
 
-        'order_status' => iconv('UTF-8', 'GBK', $statusInfo[strval($order['order_status'])]),
+          'member_name' => $order['member_name'],
 
-        'create_time' => $order['create_time']
-      
-      );
+          'price' => $order['goods_money'],
 
-      foreach($valueOrder as $value) {
+          'order_status' => iconv('UTF-8', 'GBK', $statusInfo[strval($order['order_status'])]),
 
-	    $row = $index + 2;
+          'create_time' => $order['create_time'],
 
-        $cell = "{$characters[$column]}{$row}";
+          'sku_name' => $orderGood['sku_name'],
 
-        $sheet->setCellValue($cell, iconv('GBK', 'UTF-8', $value));
+          'num' => $orderGood['num'],
 
-        $column++;
+          'price' => $orderGood['price'],
+
+          'goods_money' => $orderGood['goods_money'],
+
+          'no_code' => $orderGood['no_code']
+
+        );
+
+        foreach($valueOrder as $value) {
+
+	        $row = $index + 2;
+
+          $cell = "{$characters[$column]}{$row}";
+
+          $sheet->setCellValue($cell, iconv('GBK', 'UTF-8', $value));
+
+          $column++;
+
+        }
 
       }
 
