@@ -1532,6 +1532,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
     );
 
+    $row = 2;
+
     foreach($orders as $order) {
 
       $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
@@ -1568,8 +1570,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         foreach($valueOrder as $value) {
 
-	        $row = $index + 2;
-
           $cell = "{$characters[$column]}{$row}";
 
           $sheet->setCellValue($cell, iconv('GBK', 'UTF-8', $value));
@@ -1577,6 +1577,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           $column++;
 
         }
+
+        $row++;
 
       }
 
