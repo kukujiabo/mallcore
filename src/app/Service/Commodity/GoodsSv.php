@@ -571,7 +571,7 @@ class GoodsSv extends BaseService implements IGoods {
     /**
      * 查询商品主图
      */
-    $good['goods_image'] = GoodsImageSv::all(array('goods_id' => $good['goods_id'], 'status' => 1 ));
+    $good['goods_image'] = GoodsImagesSv::all(array('goods_id' => $good['goods_id'], 'status' => 1 ));
 
 
     return $good;
