@@ -103,6 +103,13 @@ class User extends BaseApi {
 
               'code' => 'code|string|true||验证码',
             
+            ),
+            'updateReference' => array(
+            
+              'uid' => 'uid|int|true||用户id',
+
+              'phone' => 'phone|string|true||业务员手机号',
+            
             )
 
         ));
@@ -436,6 +443,18 @@ class User extends BaseApi {
     public function changePhone() {
     
       return $this->dm->changePhone($this->retriveRuleParams(__FUNCTION__));
+    
+    }
+
+    /**
+     * 更新业务员
+     * @desc 更新业务员
+     *
+     * @return 
+     */
+    public function updateReference() {
+    
+      return $this->dm->updateReference($this->retriveRuleParams(__FUNCTION__));
     
     }
 
