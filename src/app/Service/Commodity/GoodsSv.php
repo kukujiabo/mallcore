@@ -558,6 +558,22 @@ class GoodsSv extends BaseService implements IGoods {
     
     }
 
+    /**
+     * 查询品牌
+     */
+    $good['brand'] = GoodsBrandSv::findOne(array('id' => $good['brand_id']));
+
+    /**
+     * 查询分类
+     */
+    $good['category'] = GoodsCategorySv::findOne(array('category_id' => $good['category_id']));
+
+    /**
+     * 查询商品主图
+     */
+    $good['goods_image'] = GoodsImageSv::all(array('goods_id' => $good['goods_id', 'status' => 1 ]));
+
+
     return $good;
 
   }
