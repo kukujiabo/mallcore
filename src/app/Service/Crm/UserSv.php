@@ -1444,4 +1444,38 @@ class UserSv extends BaseService implements IUser {
   
   }
 
+  /**
+   * 更新会员上级业务员
+   * @desc 更新会员上级业务员
+   *
+   * @return 
+   */
+  public function updateReference($params) {
+  
+    $uid = $params['uid'];
+
+    $reference = self::findOne(array('user_tel' => $params['phone']));
+
+    if (!$reference) {
+    
+      return 0;
+
+    }
+
+    self::update($uid, array('reference' => $reference['uid']));
+
+    $member = MemberSv::findOne(array('uid' => $reference['uid']));
+
+    $newReference = array(
+    
+      'name' => $member['member_name'],
+
+      'phone' => $reference['user_tel']
+    
+    );
+
+    return $newReference;
+  
+  }
+
 }

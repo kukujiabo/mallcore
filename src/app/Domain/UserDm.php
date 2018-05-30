@@ -118,4 +118,14 @@ class UserDm {
     
     }
 
+    /**
+     * 更新业务员
+     *
+     */
+    public function updateReference($params) {
+    
+      return UserSv::updateReference($params); 
+    
+    }
+
 }
