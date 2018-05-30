@@ -206,9 +206,9 @@ class Member extends BaseApi {
 
         'reg_end_time' => 'reg_end_time|string|false||注册结束时间',
 
-        'page' => 'page|string|false||页码',
+        'page' => 'page|int|false||页码',
 
-        'pageSize' => 'pageSize|string|false||每页条数'
+        'page_size' => 'page_size|int|false||每页条数'
 
       ),
 
