@@ -1534,11 +1534,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     foreach($orders as $index => $order) {
 
-      $column = 0;
-
       $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
       foreach($orderGoods as $orderGood) {
+        
+        $column = 0;
 
         $valueOrder = array(
         
