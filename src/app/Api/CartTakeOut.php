@@ -200,6 +200,12 @@ class CartTakeOut extends BaseApi {
 
         'cart_id' => 'cart_id|int|true||购物车id'
       
+      ),
+
+      'removeSelectedGoods' => array(
+      
+        'cart_id' => 'cart_id|string|true||购物车id'
+      
       )
       
     ));
@@ -384,6 +390,18 @@ class CartTakeOut extends BaseApi {
     $condition = $this->retriveRuleParams(__FUNCTION__);
 
     return $this->dm->remove($condition);
+  
+  }
+
+  /**
+   * 删除选中的商品
+   * @desc 删除选中的商品
+   *
+   * @return 
+   */
+  public function removeSelectedGoods() {
+  
+    return $this->dm->removeSelectedGoods($this->retriveRuleParams(__FUNCTION__));
   
   }
 

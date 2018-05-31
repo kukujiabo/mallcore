@@ -74,5 +74,14 @@ class CartTakeOutDm {
     return CartTakeOutSv::remove($id);
   
   }
+
+  /**
+   * 删除选中商品
+   */
+  public function removeSelectedGoods($params) {
+  
+    return CartTakeOutSv::removeSelectedGoods($params);
+  
+  }
     
 }

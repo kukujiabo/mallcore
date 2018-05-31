@@ -399,5 +399,18 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
 
     }
 
+    /**
+     * 删除购物车选中商品
+     * @desc  删除购物车选中商品
+     *
+     * @return
+     */
+    public function removeSelectedGoods($params) {
+    
+      $ids = $params['cart_id'];
+
+      return self::batchRemove($ids);
+    
+    }
 
 }
