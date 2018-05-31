@@ -151,6 +151,8 @@ class Goods extends BaseApi {
             
             'price' => 'price|float|false||商品原价格',
 
+            'no_code' => 'no_code|float|false||商品编码',
+
             'market_price' => 'market_price|float|false||市场价',
 
             'promotion_price' => 'promotion_price|float|false||商品促销价格',

@@ -471,6 +471,20 @@ class GoodsSv extends BaseService implements IGoods {
 
     unset($condition['way']);
 
+    if ($condition['code_code']) {
+    
+      $goodsSku = GoodsSkuSv::findOne(array('no_code' => $condition['no_code']));
+
+      unset($condition['no_code']);
+
+      if ($goodsSku) {
+      
+        $condition['goods_id'] = $goodsSku['goods_id'];
+      
+      }
+    
+    }
+
     $goods = GoodsViewSv::getList($condition);
 
     if ($manager) {
