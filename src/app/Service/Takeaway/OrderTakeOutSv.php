@@ -1229,6 +1229,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $data['driver_name'] = iconv('UTF-8', 'GBK', $data['driver_name']);
       
       }
+      if ($data['sn']) {
+      
+        $condition['sn'] = $data['sn'];
+      
+      }
 
       unset($data['order_id']);
 

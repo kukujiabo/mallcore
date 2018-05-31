@@ -182,7 +182,9 @@ class OrderTakeOut extends BaseApi {
 
         'token' => 'token|string|false||用户令牌（way为1则必传）',
 
-        'order_id' => 'order_id|string|true||订单编号',
+        'order_id' => 'order_id|string|||订单id',
+
+        'sn' => 'sn|string|true||订单号',
 
         'shop_id' => 'shop_id|int|false||卖家店铺id',
 
@@ -203,6 +205,10 @@ class OrderTakeOut extends BaseApi {
         'consign_time' => 'consign_time|string|false||配送时间',
 
         'pay_time' => 'pay_time|string|false||支付时间',
+
+        'export_code' => 'export_code|string|false||出库单号',
+
+        'return_code' => 'return_code|string|false||退货单号',
         
         'cancel_time' => 'cancel_time|string|false||取消时间',
       
