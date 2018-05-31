@@ -385,12 +385,6 @@ class OrderTakeOut extends BaseApi {
 
     $params = $this->retriveRuleParams(__FUNCTION__);
 
-    $regulation = array(
-      'order_sn' => 'required',
-      'status' => 'required',
-    );
-
-    \App\Verification($params, $regulation);
 
     return $this->dm->updateOrderTakeOut($params);
 
@@ -540,14 +534,6 @@ class OrderTakeOut extends BaseApi {
 
     $params = $this->retriveRuleParams('update');
 
-    $regulation = array(
-
-      'order_id' => 'required',
-
-    );
-
-    \App\Verification($params, $regulation);
-    
     return $this->dm->update($params);
   
   }
