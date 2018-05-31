@@ -182,9 +182,9 @@ class OrderTakeOut extends BaseApi {
 
         'token' => 'token|string|false||用户令牌（way为1则必传）',
 
-        'order_id' => 'order_id|string|||订单id',
+        'order_id' => 'order_id|string|false||订单id',
 
-        'sn' => 'sn|string|true||订单号',
+        'sn' => 'sn|string|false||订单号',
 
         'shop_id' => 'shop_id|int|false||卖家店铺id',
 
