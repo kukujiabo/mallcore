@@ -471,7 +471,7 @@ class GoodsSv extends BaseService implements IGoods {
 
     unset($condition['way']);
 
-    if ($condition['code_code']) {
+    if ($condition['no_code']) {
     
       $goodsSku = GoodsSkuSv::findOne(array('no_code' => $condition['no_code']));
 
