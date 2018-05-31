@@ -407,7 +407,7 @@ class CartTakeOutSv extends BaseService implements ICartTakeOut {
      */
     public function removeSelectedGoods($params) {
     
-      $ids = $params['cart_id'];
+      $ids['cart_id'] = $params['cart_id'];
 
       return self::batchRemove($ids);
     
