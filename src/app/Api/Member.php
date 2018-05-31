@@ -198,6 +198,8 @@ class Member extends BaseApi {
 
         'member_level' => 'member_level|string|false||会员等级',
 
+        'reference' => 'reference|string|false||会员业务员id',
+
         'user_tel' => 'user_tel|string|false||会员手机号',
 
         'card_id' => 'card_id|string|false||会员卡号',
