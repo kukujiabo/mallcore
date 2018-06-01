@@ -146,5 +146,16 @@ class GoodsCategorySv extends BaseService implements IGoodsCategory {
     
     }
     
+    /**
+     * 获取全部分类
+     * @desc 获取全部分类
+     *
+     * @return array list
+     */
+    public function getAll($condition) {
+    
+      return self::all($condition);
+    
+    }
 
 }

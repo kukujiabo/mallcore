@@ -223,6 +223,16 @@ class GoodsCategory extends BaseApi {
 
               'category_id' => 'category_id|int|true||商品分类id'
             
+            ),
+
+            'getAll' => array(
+            
+              'pid' => 'pid|int|false||上级分类id',
+
+              'category_id' => 'category_id|int|false||分类id',
+
+              'category_name' => 'category_name|string|false||分类名称',
+            
             )
 
         ));
@@ -384,6 +394,18 @@ class GoodsCategory extends BaseApi {
     public function remove() {
     
       return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
+    
+    }
+
+    /**
+     * 查询符合条件的全部分类
+     * @desc 查询符合条件的全部分类
+     *
+     * @return array list
+     */
+    public function getAll() {
+    
+      return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
     
     }
 

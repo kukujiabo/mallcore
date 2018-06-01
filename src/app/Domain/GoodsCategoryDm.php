@@ -86,4 +86,13 @@ class GoodsCategoryDm {
   
   }
 
+  /**
+   * 查询全部分类
+   */
+  public function getAll($condition) {
+  
+    return GoodsCategorySv::getAll($condition);
+  
+  }
+
 }

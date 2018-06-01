@@ -24,6 +24,7 @@ use App\Service\Shop\ShopSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsPriceMapSv;
+use App\Service\Commodity\GoodsCategorySv;
 use App\Service\Crm\MemberAccountSv;
 use App\Service\Crm\MemberAccountRecordSv;
 use App\Service\Crm\CouponSv;
@@ -437,6 +438,37 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $goods_status = $condition['goods_status'];
 
       $excel = $condition['excel'];
+
+      /**
+       * 根据分类筛选，包括本分类和次级分类
+       *
+       */
+
+      $category = GoodsCategorySv::findOne(array('category_id' => $data['category_id']));
+
+      $subCategories = GoodsCategorySv::all(array('pid' => $data['category_id']));
+
+      $ids = array();
+
+      array_push($ids, $category['category_id']);
+
+      foreach($subCategories as $subCategory) {
+      
+        array_push($ids, $subCategory['category_id']);
+      
+      }
+  
+      $goods = GoodsSv::all(array('category_id' => implode(',', $ids)));
+
+      $gids = array();
+
+      foreach($goods as $good) {
+      
+        array_push($gids, $good['goods_id']);
+      
+      }
+
+      $condition['goods_id'] = implode(',', $gids);
 
       unset($condition['goods_status']);
 
@@ -1805,6 +1837,20 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     }
 
     return $totalPrice;
+  
+  }
+
+  /**
+   * 业务员业绩
+   * @desc 业务员业绩
+   *
+   * @return array list
+   */
+  public function getSalesAchievement($data) {
+
+  
+
+
   
   }
 

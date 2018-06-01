@@ -14,6 +14,8 @@ class GoodsCategory extends BaseModel {
 
       'category_id' => 'in',
 
+      'pid' => 'range',
+
       'category_name' => 'like'
 
     );  
