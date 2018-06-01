@@ -28,7 +28,9 @@ class OrderTakeOut extends BaseModel {
         
         'finish_time' => 'range',
 
-        'order_id' => 'in'
+        'order_id' => 'in',
+
+        'goods_id' => 'in'
 
     );  
     
