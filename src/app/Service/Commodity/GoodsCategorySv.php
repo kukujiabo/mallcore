@@ -154,7 +154,7 @@ class GoodsCategorySv extends BaseService implements IGoodsCategory {
      */
     public function getAll($condition) {
     
-      return self::all($condition);
+      return self::all($condition, 'sort desc');
     
     }
 
