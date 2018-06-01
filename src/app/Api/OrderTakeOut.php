@@ -100,6 +100,8 @@ class OrderTakeOut extends BaseApi {
 
         'buyer_id' => 'buyer_id|string|false||用户id',
 
+        'category_id' => 'category_id|string|false||商品分类id',
+
         'shop_id' => 'shop_id|int|false||卖家店铺id',
         
         'card_id' => 'card_id|string|false||会员卡号',
