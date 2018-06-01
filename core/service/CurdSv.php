@@ -225,7 +225,7 @@ trait CurdSv {
 
     $model = "App\\Model\\{$modelName[count($modelName) - 1]}";
 
-    return $model::all($condition, $order, $field, $or);
+    return $model::all($condition, $order, $fields, $or);
 
   }
 

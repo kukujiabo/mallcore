@@ -32,6 +32,7 @@ class OrderTakeOut extends BaseModel {
 
         'goods_id' => 'in'
 
+
     );  
     
 }

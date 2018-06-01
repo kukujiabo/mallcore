@@ -14,7 +14,9 @@ class Goods extends BaseModel {
 
       'goods_id' => 'in',
 
-      'goods_name' => 'like'
+      'goods_name' => 'like',
+
+      'category_id' => 'in'
 
     );  
     

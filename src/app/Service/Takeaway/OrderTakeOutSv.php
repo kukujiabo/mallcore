@@ -444,31 +444,47 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
        *
        */
 
-      $category = GoodsCategorySv::findOne(array('category_id' => $data['category_id']));
+      if ($condition['category_id']) {
 
-      $subCategories = GoodsCategorySv::all(array('pid' => $data['category_id']));
+        $category = GoodsCategorySv::findOne(array('category_id' => $condition['category_id']));
 
-      $ids = array();
+        $subCategories = GoodsCategorySv::all(array('pid' => $condition['category_id']));
 
-      array_push($ids, $category['category_id']);
+        $ids = array();
 
-      foreach($subCategories as $subCategory) {
-      
-        array_push($ids, $subCategory['category_id']);
-      
-      }
+        array_push($ids, $category['category_id']);
+
+        foreach($subCategories as $subCategory) {
+        
+          array_push($ids, $subCategory['category_id']);
+        
+        }
   
-      $goods = GoodsSv::all(array('category_id' => implode(',', $ids)));
+        $goods = GoodsSv::all(array('category_id' => implode(',', $ids)));
 
-      $gids = array();
+        $gids = array();
 
-      foreach($goods as $good) {
-      
-        array_push($gids, $good['goods_id']);
-      
+        foreach($goods as $good) {
+        
+          array_push($gids, $good['goods_id']);
+        
+        }
+
+        $orderGoods = OrderTakeOutGoodsSv::all(array('goods_id' => implode(',', $gids)), NULL, 'order_take_out_id');
+
+        $orderIds = array();
+
+        foreach($orderGoods as $orderGood) {
+        
+          array_push($orderIds, $orderGood['order_take_out_id']);
+        
+        }
+
+        $condition['id'] = implode(',', $orderIds);
+
+        unset($condition['category_id']);
+
       }
-
-      $condition['goods_id'] = implode(',', $gids);
 
       unset($condition['goods_status']);
 
