@@ -439,6 +439,20 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $excel = $condition['excel'];
 
+      if ($condition['start_time'] && $condition['end_time']) {
+      
+        $condition['created_at'] = "eg|{$condition['start_time']};el|{$condition['end_time']}";
+      
+      } elseif ($condition['start_time']) {
+      
+        $condition['created_at'] = "eg|{$condition['start_time']}";
+      
+      } elseif ($condition['end_time']) {
+      
+        $condition['created_at'] = "el|{$condition['end_time']}";
+      
+      }
+
       /**
        * 根据分类筛选，包括本分类和次级分类
        *
@@ -470,7 +484,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         }
 
-        $orderGoods = OrderTakeOutGoodsSv::all(array('goods_id' => implode(',', $gids)), NULL, 'order_take_out_id');
+        $orderGoods = OrderTakeOutGoodsSv::all(array('goods_id' => implode(',', $gids), 'created_at' => $condition['created_at']), NULL, 'order_take_out_id');
 
         $orderIds = array();
 
@@ -1895,20 +1909,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     }
 
     return $totalPrice;
-  
-  }
-
-  /**
-   * 业务员业绩
-   * @desc 业务员业绩
-   *
-   * @return array list
-   */
-  public function getSalesAchievement($data) {
-
-  
-
-
   
   }
 
