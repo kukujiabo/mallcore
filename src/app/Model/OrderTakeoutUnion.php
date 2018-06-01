@@ -13,6 +13,8 @@ class OrderTakeoutUnion extends BaseModel {
 
    'create_time' => 'range',
 
+   'created_at' => 'range',
+
   );
 
 }
