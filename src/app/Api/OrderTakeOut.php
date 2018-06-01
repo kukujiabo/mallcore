@@ -332,6 +332,8 @@ class OrderTakeOut extends BaseApi {
         'card_id' => 'card_id|string|false||会员卡号',
         
         'user_tel' => 'user_tel|string|false||手机号',
+
+        'category_id' => 'category_id|string|false||分类id',
         
         'member_name' => 'member_name|string|false||用户名',
         

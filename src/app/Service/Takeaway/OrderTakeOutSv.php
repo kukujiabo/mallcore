@@ -1811,16 +1811,58 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $goods_status = $condition['goods_status'];
 
-    $excel = $condition['excel'];
-
     unset($condition['goods_status']);
 
     unset($condition['token']);
 
-    unset($condition['excel']);
-
     unset($condition['way']);
 
+    /**
+     * 根据分类筛选，包括本分类和次级分类
+     *
+     */
+
+    if ($condition['category_id']) {
+
+      $category = GoodsCategorySv::findOne(array('category_id' => $condition['category_id']));
+
+      $subCategories = GoodsCategorySv::all(array('pid' => $condition['category_id']));
+
+      $ids = array();
+
+      array_push($ids, $category['category_id']);
+
+      foreach($subCategories as $subCategory) {
+      
+        array_push($ids, $subCategory['category_id']);
+      
+      }
+  
+      $goods = GoodsSv::all(array('category_id' => implode(',', $ids)));
+
+      $gids = array();
+
+      foreach($goods as $good) {
+      
+        array_push($gids, $good['goods_id']);
+      
+      }
+
+      $orderGoods = OrderTakeOutGoodsSv::all(array('goods_id' => implode(',', $gids)), NULL, 'order_take_out_id');
+
+      $orderIds = array();
+
+      foreach($orderGoods as $orderGood) {
+      
+        array_push($orderIds, $orderGood['order_take_out_id']);
+      
+      }
+
+      $condition['id'] = implode(',', $orderIds);
+
+      unset($condition['category_id']);
+
+    }
 
     if ($condition['recommend_phone']) {
     
