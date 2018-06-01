@@ -12,15 +12,6 @@ use App\Service\Commodity\GoodsCategorySv;
 class GoodsCategoryDm {
 
   /**
-   * 获取全部
-   */
-  public function getAll($data) {
-
-    return GoodsCategorySv::all($data, 'sort desc');
-  
-  }
-
-  /**
    * 新增
    */
   public function add($data) {
