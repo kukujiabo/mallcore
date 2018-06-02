@@ -45,4 +45,10 @@ class ProviderDm {
   
   }
 
+  public function edit($params) {
+  
+    return ProviderSv::edit($params);
+  
+  }
+
 }

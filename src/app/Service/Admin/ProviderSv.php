@@ -30,8 +30,7 @@ class ProviderSv extends BaseService {
       'user_name' => $data['account'],
       'user_password' => md5($data['password']),
       'is_system' => 1,
-      'reg_time' => date('Y-m-d H:i:s'),
-      'status' => 1,
+      'reg_time' => date('Y-m-d H:i:s'), 'status' => 1,
       'user_headimg' => $data['thumbnail'],
       'user_status' => 1
     );
@@ -120,6 +119,36 @@ class ProviderSv extends BaseService {
     $providerInfo['thumbnail'] = $accountInfo['user_headimg'];
 
     return $providerInfo;
+  
+  }
+
+  /**
+   * 更新装修公司信息
+   * @desc 更新装修公司信息
+   *
+   * @param array params
+   *
+   * @return int num
+   */
+  public function edit($params) {
+  
+    $id = $params['id'];
+
+    $providerInfo = self::findOne($id);
+
+    if ($params['password']) {
+    
+      $user = UserSv::findOne(array('user_name' => $providerInfo['account']));
+
+      UserSv::update($user['uid'], md5($params['password']);
+    
+      unset($params['password']);
+
+    }
+
+    unset($params['id']);
+     
+    return self::update($id, $params);
   
   }
 
