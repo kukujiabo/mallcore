@@ -140,7 +140,7 @@ class ProviderSv extends BaseService {
     
       $user = UserSv::findOne(array('user_name' => $providerInfo['account']));
 
-      UserSv::update($user['uid'], md5($params['password']);
+      UserSv::update($user['uid'], md5($params['password']));
     
       unset($params['password']);
 
