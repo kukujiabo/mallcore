@@ -58,8 +58,8 @@ class Provider extends BaseApi {
         'province' => 'province|string|false||装修公司省份',
         'city' => 'city|string|false||装修公司城市',
         'introduction' => 'introduction|string|false||装修公司简介',
-        'thumbnail' => 'thumbnail|string|false||装修公司图标'
-        'password' => 'password|string|false||装修公司密码'
+        'thumbnail' => 'thumbnail|string|false||装修公司图标',
+        'password' => 'password|string|false||装修公司密码',
         'status' => 'status|int|false||装修公司状态'
       
       ),
