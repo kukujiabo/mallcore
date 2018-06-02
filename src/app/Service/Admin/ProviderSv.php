@@ -102,4 +102,19 @@ class ProviderSv extends BaseService {
   
   }
 
+  /**
+   * 根据id获取单条记录详情
+   *
+   * @param array params
+   *
+   * @return array object
+   */
+  public function getDetail($params) {
+  
+    $query = array( 'id' => $params['id'] );
+      
+    return self::findOne($query);
+  
+  }
+
 }

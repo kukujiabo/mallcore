@@ -36,4 +36,13 @@ class ProviderDm {
   
   }
 
+  /**
+   * 获取装修公司详情
+   */
+  public function getDetail($params) {
+  
+    return ProviderSv::getDetail($params);
+  
+  }
+
 }

@@ -2,7 +2,7 @@
 namespace App\Api;
 
 /**
- * 供应商接口
+ * 装修公司接口
  *
  * @author Meroc Chen <398515393@qq.com> 2018-05-03
  */
@@ -25,6 +25,12 @@ class Provider extends BaseApi {
         'status' => 'status|int|false|1|供应商状态',
         'account' => 'account|string|true||供应商账号',
         'password' => 'password|string|true||供应商密码'
+      
+      ),
+
+      'getDetail' => array(
+      
+        'id' => 'id|int|true||装修公司id'
       
       ),
 
