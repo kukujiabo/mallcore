@@ -113,7 +113,13 @@ class ProviderSv extends BaseService {
   
     $query = array( 'id' => $params['id'] );
       
-    return self::findOne($query);
+    $providerInfo = self::findOne($query);
+
+    $accountInfo = UserSv::findOne(array('user_name' => $providerInfo['account']));
+
+    $providerInfo['thumbnail'] = $accountInfo['user_headimg'];
+
+    return $providerInfo;
   
   }
 
