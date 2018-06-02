@@ -55,6 +55,7 @@ class Provider extends BaseApi {
         'contact' => 'contact|string|false||装修公司联系人',
         'phone' => 'phone|string|false||装修公司手机号',
         'account' => 'account|string|false||装修公司账号',
+        'address' => 'address|string|false||装修公司地址',
         'province' => 'province|string|false||装修公司省份',
         'city' => 'city|string|false||装修公司城市',
         'introduction' => 'introduction|string|false||装修公司简介',
