@@ -33,7 +33,7 @@ use App\Service\Poss\PosSv;
 use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use App\Library\Http;
 use App\Model\OrderTakeoutUnion;
 
@@ -1566,7 +1566,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Type:application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="01simple.xlsx"');
+    header('Content-Disposition: attachment;filename="01simple.xls"');
     header('Cache-Control: max-age=0');
       
     $spreadsheet = new Spreadsheet();
@@ -1657,7 +1657,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     }
 
-    $writer = new Xlsx($spreadsheet);
+    $writer = new Xls($spreadsheet);
 
     $writer->save("php://output");
 
