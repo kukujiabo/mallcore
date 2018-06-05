@@ -1573,7 +1573,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '下单时间', '商品名称', '商品数量', '商品总价', '商品编码'
+      '订单编号', '商品编码', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
     
     );
 
@@ -1611,6 +1611,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
           'sn' => $order['sn'],
 
+          'no_code' => $orderGood['no_code'],
+
+          'export_code' => $order['export_code'],
+
           'consigner' => $order['consigner'],
 
           'mobile' => $order['mobile'],
@@ -1621,15 +1625,19 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'order_status' => iconv('UTF-8', 'GBK', $statusInfo[strval($order['order_status'])]),
 
-          'create_time' => $order['create_time'],
-
           'sku_name' => $orderGood['sku_name'],
 
           'num' => $orderGood['num'],
 
           'goods_money' => $orderGood['goods_money'],
 
-          'no_code' => $orderGood['no_code']
+          'create_time' => $order['create_time'],
+
+          'pay_time' => $order['create_time'],
+
+          'consign_time' => $order['consign_time'],
+
+          'sign_time' => $order['sign_time']
 
         );
 
