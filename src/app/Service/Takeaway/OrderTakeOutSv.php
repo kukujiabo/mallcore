@@ -1623,7 +1623,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'price' => $order['order_money'],
 
-          'order_status' => iconv('UTF-8', 'GBK', $statusInfo[strval($order['order_status'])]),
+          'order_status' => $statusInfo[strval($order['order_status'])],
 
           'sku_name' => $orderGood['sku_name'],
 
@@ -1645,7 +1645,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           $cell = "{$characters[$column]}{$row}";
 
-          $sheet->setCellValue($cell, iconv('GBK', 'UTF-8', $value));
+          $sheet->setCellValue($cell, $value);
 
           $column++;
 
