@@ -90,7 +90,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
             $data_goods['shop_id'] = $v['shop_id'];
 
-            $data_goods['id'] = rand(100000000, 999999999);
+            //$data_goods['id'] = rand(100000000, 999999999);
 
             $data_goods['create_time'] = date('Y-m-d');
 
@@ -110,6 +110,50 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         return $i;
 
+    }
+
+    /**
+     * 退货
+     *
+     */
+    public function returnGoods($data) {
+    
+      $order = OrderTakeOutSv::findOne(array('sn' => $data['sn']));
+
+      $goods = json_decode($data['goods'], true);
+
+      $newOrderGoods = array();
+
+      $i = 0;
+
+      foreach($goods as $good) {
+      
+        $sku = self::findOne(array('order_take_out_id' => $order['id'], 'no_code' => $good['no_code']));
+
+        unset($sku['id']);
+
+        $sku['num'] = $good['num'];
+
+        $sku['price'] = $sku['price'] * -1;
+
+        $sku['goods_money'] = $sku['price'] * $good['num'];
+
+        $sku['returned'] = 1;
+
+        $sku['return_code'] = $data['return_code'];
+
+        $sku['created_at'] = time();
+
+        $sku['goods_name'] = iconv("GBK//IGNORE", "UTF-8", $sku['goods_name']);
+
+        $sku['sku_name'] = iconv("GBK//IGNORE", "UTF-8", $sku['sku_name']);
+      
+        array_push($newOrderGoods, $sku);
+      
+      }
+
+      return self::batchAdd($newOrderGoods);
+    
     }
 
 }

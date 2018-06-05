@@ -103,6 +103,14 @@ class OrderTakeOutGoods extends BaseApi {
         'shop_id' => 'shop_id|int|false||店铺ID',
       
       ),
+
+      'returnGoods' => array(
+      
+        'sn' => 'sn|string|true||订单编号',
+        'return_code' => 'return_code|string|true||退货单号',
+        'goods' => 'goods|string|true||退货商品'
+      
+      )
       
     ));
 
@@ -188,6 +196,18 @@ class OrderTakeOutGoods extends BaseApi {
     \App\Verification($conditions, $regulation);
 
     return $this->dm->queryCount($conditions);
+  
+  }
+
+  /**
+   * 退货
+   * @desc 退货
+   *
+   * @return 
+   */
+  public function returnGoods() {
+  
+    return $this->dm->returnGoods($this->retriveRuleParams(__FUNCTION__));  
   
   }
 

@@ -36,5 +36,11 @@ class OrderTakeOutGoodsDm {
     return OrderTakeOutGoodsSv::queryCount($condition);
 
   }
+
+  public function returnGoods($data) {
+  
+    return OrderTakeOutGoodsSv::returnGoods($data);
+  
+  }
     
 }
