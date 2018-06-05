@@ -40,7 +40,7 @@ class OrderTakeOut extends BaseApi {
 
         'coupon_id' => 'coupon_id|int|false||使用的优惠券id',
 
-        'pay_type' => 'pay_typey|int|false|1|支付方式',
+        'pay_type' => 'pay_type|int|false|1|支付方式',
 
         'workspace_id' => 'workspace_id|int|false|1|工地id',
 
