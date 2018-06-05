@@ -264,7 +264,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function cancelOrder($data) {
 
-      $table_order_log_data['id'] = rand(100000000, 999999999);
+      //$table_order_log_data['id'] = rand(100000000, 999999999);
 
       $table_order_log_data['description'] = $data['comment'];
 
@@ -909,7 +909,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $balance = 0;
 
-      $data['id'] = rand(100000000, 999999999);
+      //$data['id'] = rand(100000000, 999999999);
 
       $data['provider_id'] = $providerId;
 
@@ -934,9 +934,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       }
 
       // 添加订单
-      self::add($data);
+      $orderId = self::add($data);
 
-      $data_goods['order_id'] = $data_address['order_id'] = $id = $data['id'];
+      $data_goods['order_id'] = $data_address['order_id'] = $id = $orderId;
 
       // 添加订单地址
       $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
@@ -1152,10 +1152,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
       }
 
-      self::add($data);
+      $orderId = self::add($data);
       
       // 添加订单
-      $data_goods['order_take_out_id'] = $data_address['order_id'] = $id = $data['id'];
+      $data_goods['order_take_out_id'] = $data_address['order_id'] = $id = $orderId;
 
       // 添加订单地址
       $info_order_address = OrderTakeOutAddressSv::addOrderAddress($data_address);
@@ -1470,8 +1470,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
      */
     $newCartGoods = array();
 
-    $newOrderId = rand(100000000, 999999999);
-
     $totalPrice = 0;
 
     /**
@@ -1519,7 +1517,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       /**
        * 购物车商品
        */
-      $cartGood['cart_id'] = rand(100000000, 999999999);
+      //$cartGood['cart_id'] = rand(100000000, 999999999);
 
       $cartGood['buyer_id'] = $uid;
 

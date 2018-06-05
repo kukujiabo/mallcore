@@ -1098,11 +1098,9 @@ class UserSv extends BaseService implements IUser {
 
     $date = date('Y-m-d');
 
-    $key = time() . '';
-  
     $newUser = array(
 
-      'uid' => substr($key, 3, 7) . rand(10,99),
+       //'uid' => substr($key, 3, 7) . rand(10,99),
     
       'wx_openid' => $openId,
 
@@ -1126,9 +1124,7 @@ class UserSv extends BaseService implements IUser {
     
     }
 
-    self::add($newUser);
-
-    $uid = $newUser['uid'];
+    $uid = self::add($newUser);
 
     /**
      * 添加会员信息
@@ -1154,7 +1150,7 @@ class UserSv extends BaseService implements IUser {
 
     $account = array( 
 
-      'id' => rand(100000000, 999999999),
+      //'id' => rand(100000000, 999999999),
       
       'uid' => $uid,
     
@@ -1205,7 +1201,7 @@ class UserSv extends BaseService implements IUser {
 
       }
 
-      $data_member_account['id'] = rand(100000000, 999999999);
+      //$data_member_account['id'] = rand(100000000, 999999999);
 
       // 添加会员账户
       MemberAccountSv::addMemberAccount($data_member_account);

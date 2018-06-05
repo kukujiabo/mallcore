@@ -23,11 +23,10 @@ class ProviderSv extends BaseService {
    */
   public function addProvider($data) {
 
-    $uid = rand(100000000, 999999999);
+    //$uid = rand(100000000, 999999999);
 
     $newAccount = array(
-      'uid' => $uid,
-      'user_name' => $data['account'],
+      //'user_name' => $data['account'],
       'user_password' => md5($data['password']),
       'is_system' => 1,
       'reg_time' => date('Y-m-d H:i:s'), 'status' => 1,
@@ -35,9 +34,9 @@ class ProviderSv extends BaseService {
       'user_status' => 1
     );
 
-    $uid = $newAccount['uid'];
+    //$uid = $newAccount['uid'];
 
-    UserSv::add($newAccount);
+    $uid = UserSv::add($newAccount);
 
     $newSysAdmin = array(
       'uid' => $uid,
@@ -50,7 +49,7 @@ class ProviderSv extends BaseService {
     UserAdminSv::add($newSysAdmin);
 
     $newSysAdminGroup = array(
-      'id' => rand(100000000, 999999999),
+      //'id' => rand(100000000, 999999999),
       'uid' => $uid,
       'group_id' => 2,
       'status' => 1,

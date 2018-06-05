@@ -201,7 +201,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           } else {
 
-              $v['id'] = rand(100000000, 999999999);
+              //$v['id'] = rand(100000000, 999999999);
 
               $v['sort'] = $key;
 
@@ -257,7 +257,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           } else {
 
-              $data_attribute['attr_id'] = rand(100000000, 999999999);
+              //$data_attribute['attr_id'] = rand(100000000, 999999999);
 
               $data_attribute['active'] = 1;
 
@@ -293,7 +293,7 @@ class GoodsSv extends BaseService implements IGoods {
 
               } else {
 
-                  $data_attribute_value['attr_value_id'] = rand(100000000, 999999999);
+                  //$data_attribute_value['attr_value_id'] = rand(100000000, 999999999);
 
                   $data_attribute_value['active'] = 1;
 
@@ -384,7 +384,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           } else {
 
-              $v['sku_id'] = rand(100000000, 999999999);
+              //$v['sku_id'] = rand(100000000, 999999999);
 
               $v['shop_id'] = 0;
 

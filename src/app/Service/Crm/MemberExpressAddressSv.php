@@ -106,7 +106,7 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         $data = eval('return '.iconv("UTF-8", "GBK//IGNORE", var_export($data,true)).';');
 
-        $data['id'] = rand(100000000, 999999999);
+        //$data['id'] = rand(100000000, 999999999);
 
         return self::add($data);
 
