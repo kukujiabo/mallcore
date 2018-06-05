@@ -57,11 +57,6 @@ class GoodsPriceMap extends BaseApi {
       
       ),
 
-      'getRules' => array(
-      
-      
-      ),
-
       'batchEdit' => array(
       
         'data' => 'data|string|true||批量编辑数据'
