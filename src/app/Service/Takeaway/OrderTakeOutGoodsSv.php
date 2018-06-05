@@ -33,7 +33,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
      */
     public function addOrderGoods($data) {
 
-      $data['create_time'] = date('Y-m-d H:i:s');
+      $data['created_at'] = time();
 
       return self::add($data);
 
@@ -92,7 +92,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
             //$data_goods['id'] = rand(100000000, 999999999);
 
-            $data_goods['create_time'] = date('Y-m-d');
+            $data_goods['created_at'] = time();
 
             $data_goods_all[] = $data_goods;
 
@@ -132,7 +132,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         unset($sku['id']);
 
-        $sku['num'] = $good['num'];
+        $sku['num'] = $good['num'] * -1;
 
         $sku['price'] = $sku['price'] * -1;
 
@@ -144,10 +144,6 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         $sku['created_at'] = time();
 
-        $sku['goods_name'] = iconv("GBK//IGNORE", "UTF-8", $sku['goods_name']);
-
-        $sku['sku_name'] = iconv("GBK//IGNORE", "UTF-8", $sku['sku_name']);
-      
         array_push($newOrderGoods, $sku);
       
       }
