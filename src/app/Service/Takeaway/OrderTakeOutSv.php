@@ -1574,14 +1574,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Type:application/vnd.ms-excel');
-    header('Content-Disposition: attachment;filename="01simple.xls"');
+
+    header('Content-Disposition: attachment;filename="订单数据.xlsx"');
     header('Cache-Control: max-age=0');
       
     $spreadsheet = new Spreadsheet();
 
     $titles = array(
     
-      '订单编号', '收货人', '收货联系电话', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
+      '订单编号', '收货人', '收货联系电话', '收货地址', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
     
     );
 
@@ -1622,6 +1623,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'consigner' => iconv('GBK', 'UTF-8', $order['consigner']),
 
           'mobile' => $order['mobile'],
+
+          'address' => iconv('GBK', 'UTF-8', $order['address']),
 
           'member_name' => iconv('GBK', 'UTF-8', $order['member_name']),
 
