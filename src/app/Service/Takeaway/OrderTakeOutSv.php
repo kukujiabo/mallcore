@@ -1615,15 +1615,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'mobile' => $order['mobile'],
 
-          'member_name' => $order['member_name'],
+          'member_name' => iconv('GBK', 'UTF-8', $order['member_name']),
 
           'price' => $order['order_money'],
 
-          'order_status' => $statusInfo[strval($order['order_status'])],
+          'order_status' => iconv('GBK', 'UTF-8', $statusInfo[strval($order['order_status'])]),
 
-          'sku_name' => iconv('GBK', 'utf-8', $orderGood['sku_name']),
-          
           'no_code' => $orderGood['no_code'],
+
+          'sku_name' => iconv('GBK', 'UTF-8', $orderGood['sku_name']),
 
           'num' => $orderGood['num'],
 
