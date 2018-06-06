@@ -121,9 +121,7 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
         $data['create_date'] = date("Y-m-d H:i:s");
 
-        self::add($data);
-
-        return $data['sku_id'];
+        return self::add($data);
 
     }
 

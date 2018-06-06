@@ -59,9 +59,7 @@ class GoodsAttributeSv extends BaseService implements IGoodsAttribute {
 
         $data['create_time'] = date("Y-m-d H:i:s");
 
-        self::add($data);
-
-        return $data['attr_id'];
+        return self::add($data);
 
     }
 

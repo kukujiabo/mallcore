@@ -262,9 +262,9 @@ class GoodsSv extends BaseService implements IGoods {
               $data_attribute['active'] = 1;
 
               // 添加商品规格
-              GoodsAttributeSv::addGoodsAttribute($data_attribute);
+              $attrId = GoodsAttributeSv::addGoodsAttribute($data_attribute);
 
-              $attr_id = $arr['attr']['attr_id'][] = $data_attribute['attr_id'];
+              $attr_id = $arr['attr']['attr_id'][] = $attrId;
 
           }
 
@@ -300,9 +300,9 @@ class GoodsSv extends BaseService implements IGoods {
                   $data_attribute_value['sort'] = $key;
 
                   // 添加商品规格项
-                  GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
+                  $attrValueId = GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
 
-                  $attr_value_id = $arr['attr_value'][$attr_id][] = $data_attribute_value['attr_value_id'];
+                  $attr_value_id = $arr['attr_value'][$attr_id][] = $attrValueId;
 
               }
 
