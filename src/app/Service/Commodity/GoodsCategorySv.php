@@ -85,8 +85,6 @@ class GoodsCategorySv extends BaseService implements IGoodsCategory {
 
         $data['category_name'] = iconv('UTF-8', 'GBK', $data['category_name']);
 
-        $data['category_id'] = time();
-
         $data['created_at'] = date("Y-m-d H:i:s");
 
         return self::add($data);

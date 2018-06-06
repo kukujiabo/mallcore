@@ -597,13 +597,9 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function addGoods($data) {
 
-      $data['goods_id'] = time();
-
       $data['create_time'] = date("Y-m-d H:i:s");
 
-      self::add($data);
-
-      return $data['goods_id'];
+      return self::add($data);
 
   }
 
