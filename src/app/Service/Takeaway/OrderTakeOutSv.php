@@ -33,7 +33,7 @@ use App\Service\Poss\PosSv;
 use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Library\Http;
 use App\Model\OrderTakeoutUnion;
 
@@ -1573,7 +1573,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '商品编码', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
+      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
     
     );
 
@@ -1611,7 +1611,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
           'sn' => $order['sn'],
 
-          'no_code' => $orderGood['no_code'],
 
           'export_code' => $order['export_code'],
 
@@ -1625,7 +1624,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'order_status' => $statusInfo[strval($order['order_status'])],
 
-          'sku_name' => $orderGood['sku_name'],
+          'sku_name' => iconv('GBK', 'utf-8', $orderGood['sku_name']),
+          
+          'no_code' => $orderGood['no_code'],
 
           'num' => $orderGood['num'],
 
@@ -1657,7 +1658,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     }
 
-    $writer = new Xls($spreadsheet);
+    $writer = new Xlsx($spreadsheet);
 
     $writer->save("php://output");
 
