@@ -15,17 +15,21 @@ trait CURD {
    *
    * @return string $id
    */
-  protected function add(Array $data) {
+  protected function add(Array $data, $convert = true) {
 
     $object = $this->editableFieldFilter($data);
 
-    //foreach($object as $key => $value) {
-    //
-    //  $codeValue = iconv('UTF-8', 'GBK', $value);
+    if ($convert) {
 
-    //  $object[$key] = $codeValue ? $codeValue : $value;
-    //
-    //}
+      foreach($object as $key => $value) {
+      
+        $codeValue = iconv('UTF-8', 'GBK', $value);
+
+        $object[$key] = $codeValue ? $codeValue : $value;
+      
+      }
+
+    }
 
     $this->orm()->insert($object);
 
@@ -40,24 +44,28 @@ trait CURD {
    *
    * @return int num
    */
-  protected function batchAdd(Array $dataSet) {
+  protected function batchAdd(Array $dataSet, $convert = true) {
 
     $objectSet = array();
+
+    if ($convert) {
   
-    foreach($dataSet as $data) {
-    
-      $object = $this->editableFieldFilter($data);
+      foreach($dataSet as $data) {
+      
+        $object = $this->editableFieldFilter($data);
 
-      //foreach($object as $key => $value) {
-      //
-      //  $codeValue = iconv('UTF-8//IGNORE', 'GBK', $value);
+        foreach($object as $key => $value) {
+        
+          $codeValue = iconv('UTF-8', 'GBK', $value);
 
-      //  $object[$key] = $codeValue ? $codeValue : $value;
-      //
-      //}
+          $object[$key] = $codeValue ? $codeValue : $value;
+        
+        }
 
-      array_push($objectSet, $object);
-    
+        array_push($objectSet, $object);
+      
+      }
+
     }
 
     return $this->orm()->insert_multi($objectSet);
