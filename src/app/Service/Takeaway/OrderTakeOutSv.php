@@ -1641,13 +1641,13 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'goods_money' => $orderGood['goods_money'],
 
-          'create_time' => $order['create_time'],
+          'create_time' => $order['create_time'] ? explode(' ', $order['create_time'])[0] : '',
 
-          'pay_time' => $order['create_time'],
+          'pay_time' => $order['pay_time'] ? explode(' ', $order['pay_time'])[0] : '',
 
-          'consign_time' => $order['consign_time'],
+          'consign_time' => $order['consign_time'] ? explode(' ', $order['consign_time'])[0] : '',
 
-          'sign_time' => $order['sign_time']
+          'sign_time' => $order['sign_time'] ? explode(' ', $order['sign_time'])[0] : ''
 
         );
 
