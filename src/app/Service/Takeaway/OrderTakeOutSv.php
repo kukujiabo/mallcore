@@ -1611,9 +1611,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
           'sn' => $order['sn'],
 
-
-          'export_code' => $order['export_code'],
-
           'consigner' => $order['consigner'],
 
           'mobile' => $order['mobile'],
