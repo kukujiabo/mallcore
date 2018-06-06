@@ -1619,7 +1619,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'price' => $order['order_money'],
 
-          'order_status' => iconv('GBK', 'UTF-8', $statusInfo[strval($order['order_status'])]),
+          'order_status' => $statusInfo[strval($order['order_status'])],
 
           'pay_status' => $order['pay_status'] ? '已支付' : '未支付',
 
