@@ -510,7 +510,15 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       if ($excel) {
 
-        $orders = OrderTakeoutUnionSv::all($condition);
+        if ($condition['recommend_phone']) {
+        
+          $or = "(user_tel = {$condition['recommend_phone']} OR recommend_phone = {$condition['recommend_phone']})";
+        
+        }
+
+        unset($condition['recommend_phone']);
+
+        $orders = OrderTakeoutUnionSv::all($condition, 'create_time desc', '*', $or);
       
         self::exportExcel($orders);
       
@@ -1573,7 +1581,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '收货人', '收货联系电话', '会员名称', '订单金额', '订单状态', '支付状态', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
+      '订单编号', '收货人', '收货联系电话', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
     
     );
 
@@ -1616,6 +1624,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'mobile' => $order['mobile'],
 
           'member_name' => iconv('GBK', 'UTF-8', $order['member_name']),
+
+          'recommend_phone' => $order['recommend_phone'], 
 
           'price' => $order['order_money'],
 
