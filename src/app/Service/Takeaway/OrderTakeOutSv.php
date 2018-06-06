@@ -1597,11 +1597,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $statusInfo = array(
     
-      '-1' => '已取消',
-      '1' => '待付款',
-      '2' => '待发货',
-      '3' => '待收货',
-      '4' => '已完成'
+      '已取消',
+      '待付款',
+      '待发货',
+      '待收货',
+      '已完成'
     
     );
 
@@ -1629,7 +1629,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           'price' => $order['order_money'],
 
-          'order_status' => $statusInfo[strval($order['order_status'])],
+          'order_status' => $statusInfo[$order['order_status']],
 
           'pay_status' => $order['pay_status'] ? '已支付' : '未支付',
 
