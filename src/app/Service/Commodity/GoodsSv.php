@@ -384,8 +384,6 @@ class GoodsSv extends BaseService implements IGoods {
 
           } else {
 
-              //$v['sku_id'] = rand(100000000, 999999999);
-
               $v['shop_id'] = 0;
 
               $v['market_price'] = 0;
@@ -398,9 +396,9 @@ class GoodsSv extends BaseService implements IGoods {
               
               unset($v['checkList']);
 
-              GoodsSkuSv::addGoodsSku($v);
+              $skuId = GoodsSkuSv::addGoodsSku($v);
 
-              $arr['sku']['sku_id'][] = $v['sku_id'];
+              $arr['sku']['sku_id'][] = $skuId;
 
           }
 
