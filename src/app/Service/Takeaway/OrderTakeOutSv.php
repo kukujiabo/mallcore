@@ -285,9 +285,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 取消订单
       $info = self::batchUpdate($condition, $order_data);
 
-      // 添加外卖订单操作者记录
-      OrderTakeOutLogSv::add($table_order_log_data);
-
       /**
        * 已审核订单同步u8
        */
