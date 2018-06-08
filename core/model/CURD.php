@@ -48,25 +48,25 @@ trait CURD {
 
     $objectSet = array();
 
-    //if ($convert) {
+    if ($convert) {
   
-    //  foreach($dataSet as $data) {
-    //  
-    //    $object = $this->editableFieldFilter($data);
+      foreach($dataSet as $data) {
+      
+        $object = $this->editableFieldFilter($data);
 
-    //    foreach($object as $key => $value) {
-    //    
-    //      $codeValue = iconv('UTF-8', 'GBK', $value);
+        //foreach($object as $key => $value) {
+        //
+        //  $codeValue = iconv('UTF-8', 'GBK', $value);
 
-    //      $object[$key] = $codeValue ? $codeValue : $value;
-    //    
-    //    }
+        //  $object[$key] = $codeValue ? $codeValue : $value;
+        //
+        //}
 
-    //    array_push($objectSet, $object);
-    //  
-    //  }
+        array_push($objectSet, $object);
+      
+      }
 
-    //}
+    }
 
     return $this->orm()->insert_multi($objectSet);
   
