@@ -792,7 +792,6 @@ class UserSv extends BaseService implements IUser {
 
     $way = $data['way'];
 
-    unset($data['uid']);
 
     unset($data['token']);
 
@@ -809,6 +808,8 @@ class UserSv extends BaseService implements IUser {
     } else {
     
       $uid = $data['uid'];
+
+      unset($data['uid']);
     
     }
 
