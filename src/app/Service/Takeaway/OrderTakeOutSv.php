@@ -1127,8 +1127,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $data['pay_money'] = $money - $data['user_money'] - $data['user_platform_money'] - $data['promotion_money'];
 
-      $data['id'] = time();
-
       $data['shop_id'] = 0;
       
       $data['shop_name'] = '';

@@ -835,4 +835,16 @@ class OrderTakeOut extends BaseApi {
   
   }
 
+  /**
+   * 回退商品
+   * @decs 回退商品
+   *
+   * @return int 
+   */
+  public function returnGoods() {
+  
+    return $this->dm->returnGoods($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
 }
