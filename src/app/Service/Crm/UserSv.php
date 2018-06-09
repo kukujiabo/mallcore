@@ -806,6 +806,10 @@ class UserSv extends BaseService implements IUser {
 
       $user_info = array_merge($user_info, $data);
 
+    } else {
+    
+      $uid = $data['uid'];
+    
     }
 
     $info = self::update($uid, $data);
