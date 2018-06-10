@@ -314,7 +314,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
           'wechatphone' => $userInfo['user_tel'],
           'cretcode' => $sn,
-          'csocode' => $sn,
+          'csocode' => $sn . rand(100, 999),
           'ddate' => $info_order['create_time'],
           'cdepcode' => $info_order['city_code'],
           'binvoice' => $info_order['invoice'],
