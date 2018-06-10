@@ -1951,7 +1951,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
     $info_order = self::findOne(array('sn' => $sn));
 
-    $goods = OrderTakeOutGoodsSv::all(array('sku_id' => $data['sku_id'], 'order_take_out_id' => $info_order['id']), '*', 'id desc');
+    $goods = OrderTakeOutGoodsSv::all(array('sku_id' => $data['sku_id'], 'order_take_out_id' => $info_order['id']));
 
     $count = 0;
 
@@ -1975,7 +1975,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $info_order['id']));
 
-      $signKey = "cretcode={$sn}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+      $date = date('Y-m-d H:i:s', $good['created_at']);
+
+      $signKey = "cretcode={$sn}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
       $signSecret = md5($signKey);
 
@@ -1994,7 +1996,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatphone' => $userInfo['user_tel'],
         'cretcode' => $sn,
         'csocode' => $sn,
-        'ddate' => $info_order['create_time'],
+        'ddate' => $date,
         'cdepcode' => $info_order['city_code'],
         'binvoice' => $info_order['invoice'],
         "cbuserid" => $cbUser['uid'] ? $cbUser['uid'] : "",
