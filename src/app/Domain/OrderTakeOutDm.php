@@ -172,4 +172,13 @@ class OrderTakeOutDm {
   
   }
 
+  /**
+   * 退货
+   */
+  public function orderAfterSale($data) {
+  
+    return OrderTakeOutSv::orderAfterSale($data); 
+  
+  }
+
 }

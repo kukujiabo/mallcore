@@ -1939,4 +1939,109 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
   }
 
+  /**
+   * 订单售后
+   *
+   * @param array data
+   *
+   */
+  function orderAfterSale($data) {
+
+    $sn = $data['sn'];
+  
+    $info_order = self::findOne(array('sn' => $sn));
+
+    $goods = OrderTakeOutGoodsSv::all(array('sku_id' => $data['sku_id'], 'order_take_out_id' => $info_order['id']), '*', 'id desc');
+
+    $count = 0;
+
+    foreach($goods as $good) {
+    
+      $count += $good['num'];
+    
+    }
+
+    $num = $data['num'];
+
+    if ($count >= $num) {
+
+      $good = $goods[0];
+
+      $userInfo = UserSv::findOne($info_order['buyer_id']);
+
+      $member = MemberSv::findOne($info_order['buyer_id']);
+
+      $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
+
+      $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $info_order['id']));
+
+      $signKey = "cretcode={$sn}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+
+      $signSecret = md5($signKey);
+
+      if ($userInfo['reference']) {
+      
+        $cbUser = UserSv::findOne($userInfo['reference']);
+      
+      }
+
+      $newAsync = array(
+
+        'sign'  => $signSecret,
+        'userid' => $info_order['buyer_id'],
+        'wechatcode' => $userInfo['wx_openid'],
+        'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
+        'wechatphone' => $userInfo['user_tel'],
+        'cretcode' => $sn,
+        'csocode' => $sn,
+        'ddate' => $info_order['create_time'],
+        'cdepcode' => $info_order['city_code'],
+        'binvoice' => $info_order['invoice'],
+        "cbuserid" => $cbUser['uid'] ? $cbUser['uid'] : "",
+        'cbuserphone' => $cbUser['user_tel'] ? $cbUser['user_tel'] : "",
+        'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
+        'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
+        'creceiverphone' => $address['mobile'],
+        'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
+        'caccid' => $info_order['cas']
+      
+      );
+
+      $newAsync['detail'] = array();
+
+      $orderGood = array(
+      
+        'autoid' => $good['id'],
+        'iunsid' => $good['id'],
+        'cinvcode' => $good['no_code'],
+        'iquantity' => $num,
+        'iprice' => abs($good['price']),
+        'imoney' => $good['price'] * $num
+      
+      );
+
+      array_push($newAsync['detail'], $orderGood);
+      
+      $header = array( 'Content-Type:application/json;charset=utf-8' );
+      
+      $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salereturnvoucher", json_encode($newAsync), $header);
+
+      $result = json_decode($response, true);
+
+      if ($result['status'] == 0) {
+      
+        self::update($orders[$key]['id'], array('audit' => 0));
+      
+      }
+   
+      return $result;
+    
+    } else {
+    
+      return array('status' => -1, 'msg' => '退货数量已达上限');
+    
+    }
+  
+  }
+
 }

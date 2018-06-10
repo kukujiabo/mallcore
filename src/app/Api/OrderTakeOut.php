@@ -379,6 +379,14 @@ class OrderTakeOut extends BaseApi {
 
         'recommend_phone' => 'recommend_phone|string|false||业务员手机号'
       
+      ),
+
+      'orderAfterSale' => array(
+      
+        'sn' => 'sn|string|true||订单号',
+        'sku_id' => 'sku_id|int|true||订单商品编号',
+        'num' => 'sn|string|true||订单号'
+      
       )
 
     ));
@@ -844,6 +852,18 @@ class OrderTakeOut extends BaseApi {
   public function returnGoods() {
   
     return $this->dm->returnGoods($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 订单商品退货
+   * @desc 订单商品退货
+   *
+   * @return
+   */
+  public function orderAfterSale() {
+  
+    return $this->dm->orderAfterSale($this->retriveRuleParams(__FUNCTION__));  
   
   }
 
