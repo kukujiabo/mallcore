@@ -1481,8 +1481,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
      * 检查商品
      */
     foreach($orderGoods as $orderGood) {
-    
+
       $good = GoodsSv::findOne($orderGood['goods_id']);
+
+      if ($orderGood['num'] < 0) {
+      
+        continue;
+      
+      }
 
       if (empty($good) || !$good['state']) {
       
