@@ -302,7 +302,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $sn = trim($info_order['sn']);
 
-        $signKey = "cretcode={$sn}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+        $cretcode = $sn . rand(100, 999) . rand(10, 99);
+
+        $signKey = "cretcode={$cretcode}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
         $signSecret = md5($signKey);
 
@@ -313,8 +315,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'wechatcode' => $userInfo['wx_openid'],
           'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
           'wechatphone' => $userInfo['user_tel'],
-          'cretcode' => $sn,
-          'csocode' => $sn . rand(100, 999),
+          'cretcode' => $cretcode,
+          'csocode' => $sn,
           'ddate' => $info_order['create_time'],
           'cdepcode' => $info_order['city_code'],
           'binvoice' => $info_order['invoice'],
