@@ -891,7 +891,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       // 验证商品
 
-      CartTakeOutSv::verify($data['cart_id'], $data['buyer_id']);
+      //CartTakeOutSv::verify($data['cart_id'], $data['buyer_id']);
 
       $data_address['address_id'] = $data['address_id'];
 
