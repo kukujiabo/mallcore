@@ -1991,7 +1991,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $date = date('Y-m-d H:i:s');
 
-      $cretcode = trim($sn) . rand(1000, 9999);
+      $cretcode = substr(trim($sn) . rand(1000, 9999), 4, strlen($cretcode) - 4);
 
       $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
