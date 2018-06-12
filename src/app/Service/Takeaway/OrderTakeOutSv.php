@@ -2008,7 +2008,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatcode' => $userInfo['wx_openid'],
         'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
         'wechatphone' => $userInfo['user_tel'],
-        'cretcode' => $sn,
+        'cretcode' => $sn . rand(1000, 9999),
         'csocode' => $sn,
         'ddate' => $date,
         'cdepcode' => $info_order['city_code'],
