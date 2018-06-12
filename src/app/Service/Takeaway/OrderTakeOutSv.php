@@ -1991,7 +1991,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $date = date('Y-m-d H:i:s');
 
-      $signKey = "cretcode={$sn}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+      $cretcode = $sn . rand(1000, 9999);
+
+      $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
       $signSecret = md5($signKey);
 
@@ -2008,7 +2010,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatcode' => $userInfo['wx_openid'],
         'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
         'wechatphone' => $userInfo['user_tel'],
-        'cretcode' => $sn . rand(1000, 9999),
+        'cretcode' => $cretcode,
         'csocode' => $sn,
         'ddate' => $date,
         'cdepcode' => $info_order['city_code'],
