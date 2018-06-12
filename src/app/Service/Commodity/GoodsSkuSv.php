@@ -147,6 +147,8 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
 
         $condition['goods_id'] = $data['goods_id'];
 
+        $condition['goods_id'] = $data['goods_id'];
+
         $info_sku = self::findOne($condition);
 
         if (!$info_sku) {

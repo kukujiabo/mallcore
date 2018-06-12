@@ -1989,7 +1989,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $info_order['id']));
 
-      $date = date('Y-m-d H:i:s', $good['created_at']);
+      $date = date('Y-m-d H:i:s');
 
       $signKey = "cretcode={$sn}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
