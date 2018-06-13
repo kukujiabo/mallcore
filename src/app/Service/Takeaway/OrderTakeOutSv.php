@@ -1290,19 +1290,24 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
           $condition['id'] = $data['order_id'];
 
+      } elseif ($data['sn']) {
+      
+        $condition['sn'] = $data['sn'];
+      
+      } else {
+      
+        return 0;
+      
       }
+
       if ($data['driver_name']) {
       
         $data['driver_name'] = iconv('UTF-8', 'GBK', $data['driver_name']);
       
       }
-      if ($data['sn']) {
-      
-        $condition['sn'] = $data['sn'];
-      
-      }
 
       unset($data['order_id']);
+      unset($data['sn']);
 
       return self::batchUpdate($condition, $data);
 
