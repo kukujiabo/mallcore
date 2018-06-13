@@ -1327,7 +1327,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       }
 
-      return $sn;
+      return trim($sn);
 
   }
 
