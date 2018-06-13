@@ -192,6 +192,8 @@ class OrderTakeOut extends BaseApi {
 
         'sn' => 'sn|string|false||订单号',
 
+        'cas' => 'cas|string|false||帐套号',
+
         'shop_id' => 'shop_id|int|false||卖家店铺id',
 
         'order_status' => 'order_status|int|false||订单状态 1-未支付 2-已支付 3-已完成',
