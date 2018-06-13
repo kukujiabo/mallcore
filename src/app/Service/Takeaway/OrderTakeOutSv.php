@@ -264,8 +264,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function cancelOrder($data) {
 
-      //$table_order_log_data['id'] = rand(100000000, 999999999);
-
       $table_order_log_data['description'] = $data['comment'];
 
       $table_order_log_data['order_sn'] = $condition['sn'] = $data['order_sn'];
@@ -302,7 +300,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $sn = trim($info_order['sn']);
 
-        $cretcode = $sn . rand(100, 999) . rand(10, 99);
+        $cretcode = $sn . rand(100, 999) . rand(1, 9);
+
+        $cretcode = substr($cretcode, 4, strlen($sn));
 
         $signKey = "cretcode={$cretcode}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
