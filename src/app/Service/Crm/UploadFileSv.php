@@ -3,6 +3,8 @@ namespace App\Service\Crm;
 
 use App\Service\BaseService;
 use App\Interfaces\Crm\IUploadFile;
+use App\Service\Takeaway\OrderTakeOutSv;
+use App\Service\Takeaway\OrderTakeOutGoodsSv;
 
 use PHPExcel_IOFactory;
 use PHPExcel;
@@ -27,7 +29,7 @@ class UploadFileSv extends BaseService implements IUploadFile {
 
         $reader = PHPExcel_IOFactory::createReader('Excel2007'); // 读取 excel 文档
 
-        $PHPExcel = $reader->load($path); // 文档名称
+        $PHPExcel = $reader->load('/Users/merocchen/merocZone/project/php/mallcore/src/app/Service/Crm/matched.xlsx'); // 文档名称
 
         $sheet = $PHPExcel->getSheet(0); // 读取第一个工作表(编号从 0 开始)
 
@@ -70,7 +72,7 @@ class UploadFileSv extends BaseService implements IUploadFile {
 
         } else {
 
-            for ($row = 0; $row < $highestRow; $row++) {
+            for ($row = 1; $row < $highestRow; $row++) {
 
                 $arrays = array();
 
@@ -89,6 +91,14 @@ class UploadFileSv extends BaseService implements IUploadFile {
                 }
 
                 $array[$row] = $arrays;
+
+                $order = OrderTakeOutSv::findOne(array('sn' => $arrays[0]));
+
+                if ($order && $arrays[2]) {
+
+                  OrderTakeOutGoodsSv::batchUpdate(array('order_take_out_id' => $order['id']), array('return_code' => $arrays[2]));
+
+                }
 
             }
 

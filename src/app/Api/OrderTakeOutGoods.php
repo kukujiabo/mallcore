@@ -110,6 +110,28 @@ class OrderTakeOutGoods extends BaseApi {
         'return_code' => 'return_code|string|true||退货单号',
         'goods' => 'goods|string|true||退货商品'
       
+      ),
+
+      'getAll' => array(
+      
+        'order_take_out_id' => 'order_take_out_id|int|false||外卖订单id 表order_take_out的id',
+      
+        'uid' => 'uid|int|false||用户id',
+
+        'goods_id' => 'goods_id|int|false||商品ID',
+        
+        'goods_name' => 'goods_name|string|false||商品名称',
+
+        'sku_id' => 'sku_id|int|false||skuID',
+
+        'sku_name' => 'sku_name|string|false||sku名称',
+
+        'price' => 'price|float|false||商品价格',
+
+        'cost_price' => 'cost_price|float|false||商品成本价',
+
+        'num' => 'num|int|false||购买数量'
+      
       )
       
     ));
@@ -140,7 +162,7 @@ class OrderTakeOutGoods extends BaseApi {
       'shop_id' => 'required',
     );
 
-    \App\Verification($params, $regulation);
+    \App\Verification($params, $regulation); 
 
     return $this->dm->add($params);
   
@@ -208,6 +230,18 @@ class OrderTakeOutGoods extends BaseApi {
   public function returnGoods() {
   
     return $this->dm->returnGoods($this->retriveRuleParams(__FUNCTION__));  
+  
+  }
+
+  /**
+   * 获取全部
+   * @desc 获取全部
+   *
+   * @return
+   */
+  public function getAll() {
+  
+    return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
   
   }
 

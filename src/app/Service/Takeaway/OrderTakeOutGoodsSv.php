@@ -112,6 +112,12 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
     }
 
+    public function getAll($data) {
+    
+      return self::all($data);
+    
+    }
+
     /**
      * 退货
      *
