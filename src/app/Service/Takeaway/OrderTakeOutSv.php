@@ -1938,13 +1938,25 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $totalPrice = 0;
 
+    $orderIds = array();
+
     foreach($orders as $order) {
     
       if ($order['order_status'] > 1) {
       
-        $totalPrice += $order['order_money'];
+    //    $totalPrice += $order['order_money'];
+        //
+        array_push($orderIds, $order['id']);
       
       }
+    
+    }
+
+    $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => implode(',', $orderIds)));
+
+    foreach($orderGoods as $orderGood) {
+    
+      $totalPrice += $orderGood['goods_money'];
     
     }
 

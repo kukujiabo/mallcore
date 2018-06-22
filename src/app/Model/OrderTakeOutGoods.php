@@ -12,6 +12,8 @@ class OrderTakeOutGoods extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+      'order_take_out_id' => 'in',
+
       'goods_name' => 'like',
 
       'sku_name' => 'like',
