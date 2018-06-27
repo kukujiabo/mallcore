@@ -439,8 +439,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $excel = $condition['excel'];
 
       if ($condition['start_time'] && $condition['end_time']) {
+        
+        $startTime = date('Y-m-d H:i:s', $condition['start_time'])
+
+        $endTime = date('Y-m-d H:i:s', $condition['end_time'])
       
-        $condition['created_at'] = "eg|{$condition['start_time']};el|{$condition['end_time']}";
+        $condition['created_at'] = "eg|{$startTime};el|{$endTime}";
       
       } elseif ($condition['start_time']) {
       
