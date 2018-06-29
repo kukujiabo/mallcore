@@ -118,6 +118,10 @@ class OrderTakeOut extends BaseApi {
 
         'shipping_status' => 'shipping_status|int|false||订单配送状态 1-未配送 2-配送中 3-已配送',
 
+        'reg_start' => 'reg_start|string|false||用户注册时间',
+
+        'reg_end' => 'reg_end|string|false||用户注册时间',
+
         'start_time' => 'start_time|string|false||开始时间',
 
         'end_time' => 'end_time|string|false||结束时间',
