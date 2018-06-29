@@ -37,14 +37,19 @@ class MemberUnionInfoSv extends BaseService {
       $query['status'] = $data['status'];
     
     }
+
     if ($data['reg_start_time']) {
     
-      $query['reg_time'] = "eg|{$data['reg_start_time']}";
+      $startTime = date('Y-m-d H:i:s', $data['reg_start_time']);
+
+      $query['reg_time'] = "eg|{$startTime}";
     
     }
     if ($data['reg_end_time']) {
+
+      $endTime = date('Y-m-d H:i:s', $data['reg_end_time'] + 86400);
     
-      $query['reg_time'] = strlen($query['reg_time']) ? "{$query['reg_time']};el|{$data['reg_end_time']}" : "el|{$data['reg_end_time']}";
+      $query['reg_time'] = strlen($query['reg_time']) ? "{$query['reg_time']};el|{$endTime}" : "el|{$endTime}";
     
     }
     if ($data['reference']) {
