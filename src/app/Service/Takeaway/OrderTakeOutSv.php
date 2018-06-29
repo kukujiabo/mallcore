@@ -1896,8 +1896,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     unset($condition['way']);
 
     /**
-     * 根据分类筛选，包括本分类和次级分类
-     *
+     * 用户下单时间筛选
      */
     if ($condition['start_time'] && $condition['end_time']) {
       
@@ -1920,6 +1919,36 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $condition['create_time'] = "el|{$endTime}";
     
     }
+
+    /**
+     * 用户注册时间筛选
+     */
+    if ($condition['reg_start'] && $condition['reg_end']) {
+      
+      $startTime = date('Y-m-d', $condition['reg_start']);
+
+      $endTime = date('Y-m-d', $condition['reg_end'] + 86400);
+    
+      $condition['reg_time'] = "eg|{$startTime};el|{$endTime}";
+    
+    } elseif ($condition['reg_start']) {
+    
+      $startTime = date('Y-m-d', $condition['reg_start']);
+
+      $condition['reg_time'] = "eg|{$startTime}";
+    
+    } elseif ($condition['reg_end']) {
+    
+      $endTime = date('Y-m-d', $condition['reg_end'] + 86400);
+
+      $condition['reg_time'] = "el|{$endTime}";
+    
+    }
+
+    /**
+     * 根据分类筛选，包括本分类和次级分类
+     *
+     */
 
     if ($condition['category_id']) {
 
