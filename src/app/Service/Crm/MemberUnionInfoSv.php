@@ -37,6 +37,11 @@ class MemberUnionInfoSv extends BaseService {
       $query['status'] = $data['status'];
     
     }
+    if ($data['remark']) {
+    
+      $query['remark'] = $data['remark'];
+    
+    }
 
     if ($data['reg_start_time']) {
     
