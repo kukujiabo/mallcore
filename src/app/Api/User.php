@@ -35,6 +35,7 @@ class User extends BaseApi {
                 'user_password'  => array('name' => 'user_password', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '密码明文'),
                 'user_headimg'  => array('name' => 'user_headimg', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '用户头像'),
                 'real_name'  => array('name' => 'real_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '真实姓名'),
+                'remark'  => array('name' => 'remark', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '备注'),
                 'nick_name'  => array('name' => 'nick_name', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '昵称'),
                 'birthday'  => array('name' => 'birthday', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '生日'),
                 'location'  => array('name' => 'location', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '所在地'),
