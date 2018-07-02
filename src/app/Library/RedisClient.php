@@ -24,9 +24,9 @@ class RedisClient {
 
     if (is_array($value)) {
     
-      foreach($value as $key => $field) {
+      foreach($value as $vkey => $field) {
       
-        $value[$key] = iconv('UTF-8//IGNORE', 'GBK', $field);
+        $value[$vkey] = iconv('GBK//IGNORE', 'UTF-8', $field);
       
       }
     
