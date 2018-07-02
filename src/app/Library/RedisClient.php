@@ -22,6 +22,16 @@ class RedisClient {
    */
   public static function set($collection, $key, $value) {
 
+    if (is_array($value)) {
+    
+      foreach($value as $key => $field) {
+      
+        $value[$key] = iconv('UTF-8//IGNORE', 'GBK', $field)
+      
+      }
+    
+    }
+
     $value = is_array($value) ? json_encode($value) : $value;
 
     $redis = self::getInstance();
