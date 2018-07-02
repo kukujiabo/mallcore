@@ -22,15 +22,15 @@ class RedisClient {
    */
   public static function set($collection, $key, $value) {
 
-    if (is_array($value)) {
-    
-      foreach($value as $vkey => $field) {
-      
-        $value[$vkey] = iconv('GBK//IGNORE', 'UTF-8', $field);
-      
-      }
-    
-    }
+    //if (is_array($value)) {
+    //
+    //  foreach($value as $vkey => $field) {
+    //  
+    //    $value[$vkey] = iconv('GBK//IGNORE', 'UTF-8', $field);
+    //  
+    //  }
+    //
+    //}
 
     $value = is_array($value) ? json_encode($value) : $value;
 
