@@ -1659,7 +1659,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $valueOrder = array(
         
-          'sn' => $order['sn'] . '',
+          'sn' => $order['sn'] . '  ',
           
           'cas' => $order['cas'],
 
