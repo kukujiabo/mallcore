@@ -1621,7 +1621,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '帐套号', '收货人', '收货联系电话', '收货地址', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '出库单号', '退货单号', '商品编码', '商品名称', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
+      '订单编号', '帐套号', '收货人', '收货联系电话', '收货地址', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '出库单号', '退货单号', '商品编码', '商品名称', '二级分类', '三级分类', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
     
     );
 
@@ -1634,6 +1634,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $sheet->setCellValue("{$characters[$key]}1", $title);
     
     }
+
+    $sheet->getColumnDimension('A')->setWidth(30);
 
     $statusInfo = array(
     
@@ -1649,7 +1651,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     foreach($orders as $order) {
 
-      $orderGoods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
+      $orderGoods = VOrderTakeOutUnionInfoSv::all(array('order_take_out_id' => $order['id']));
 
       foreach($orderGoods as $index => $orderGood) {
         
@@ -1657,7 +1659,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $valueOrder = array(
         
-          'sn' => $order['sn'],
+          'sn' => $order['sn'] . '',
           
           'cas' => $order['cas'],
 
@@ -1684,6 +1686,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'no_code' => $orderGood['no_code'],
 
           'sku_name' => iconv('GBK', 'UTF-8', $orderGood['sku_name']),
+
+          'senior_cateogory' => iconv('GBK', 'UTF-8', $orderGood['senior_category_name']),
+
+          'sub_category' => iconv('GBK', 'UTF-8', $orderGood['sub_category_name']),
 
           'num' => $orderGood['num'],
 
