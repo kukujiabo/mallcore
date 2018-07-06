@@ -65,6 +65,8 @@ class ConfigImageSv extends BaseService {
 
     if (isset($data['state'])) $options['state'] = $data['state'];
 
+    if (!isset($options['city_code'])) $options['city_code'] = 0;
+
     return self::all($options, 'display_order desc');
   
   }
