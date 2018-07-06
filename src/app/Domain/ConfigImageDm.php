@@ -49,5 +49,11 @@ class ConfigImageDm {
     return ConfigImageSv::remove($params['id']);
   
   }
-
+      
+  public function getAll($params) {
+  
+    return ConfigImageSv::getAll($params);
+  
+  }
+      
 }

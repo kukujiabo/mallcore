@@ -61,6 +61,10 @@ class ConfigImage extends BaseApi {
         'id' => 'id|int|false||图片id'
       
       ),
+
+      'getAll' => array(
+      
+      )
     
     ));
   
@@ -110,5 +114,15 @@ class ConfigImage extends BaseApi {
   
   }
 
+  /**
+   * 查询全部
+   * 
+   * @return array list
+   */
+  public function getAll() {
+  
+    return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }
