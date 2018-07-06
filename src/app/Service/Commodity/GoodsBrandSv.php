@@ -24,8 +24,6 @@ class GoodsBrandSv extends BaseService {
 
     $cities = $data['cities'];
 
-    unset($data['cities']);
-
     $data['brand_name'] = iconv('UTF-8', 'GBK', $data['brand_name']);
 
     $data['created_at'] = date('Y-m-d H:i:s');
@@ -82,8 +80,6 @@ class GoodsBrandSv extends BaseService {
 
     $cities = $data['cities'];
 
-    unset($data['cities']);
-  
     $num = self::update($id, $data);
 
     if ($cities) {
