@@ -129,7 +129,7 @@ class GoodsBrandSv extends BaseService {
    *
    * @return array list
    */
-  public function listQuery($cityCode, $all = 0, $page = 1, $pageSize = 20) {
+  public function cityList($cityCode, $all = 0, $page = 1, $pageSize = 20) {
 
     $options['city_code'] = $cityCode;
 

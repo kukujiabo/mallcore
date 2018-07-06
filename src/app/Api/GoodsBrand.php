@@ -35,6 +35,15 @@ class GoodsBrand extends BaseApi {
       
       ),
 
+      'cityList' => array(
+      
+        'city_code' => 'city_code|string|true||城市编码',
+        'all' => 'all|int|false|0|是否获取全部',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|20|每页数据条数'
+      
+      ),
+
       'listQuery' => array(
       
         'brand_name' => 'brand_name|string|false||品牌名称',
@@ -120,6 +129,18 @@ class GoodsBrand extends BaseApi {
   public function getDetail() {
   
     return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 城市展示品牌列表
+   * @desc 城市展示品牌列表
+   *
+   * @return array list
+   */
+  public function cityList() {
+  
+    return $this->dm->cityList($this->retriveRuleParams(__FUNCTION__));
   
   }
 
