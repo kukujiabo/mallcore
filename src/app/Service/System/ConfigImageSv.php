@@ -59,6 +59,8 @@ class ConfigImageSv extends BaseService {
 
     if (isset($data['module'])) $options['module'] = $data['module'];
 
+    if (isset($data['city_code'])) $options['city_code'] = $data['city_code'];
+
     if (isset($data['type'])) $options['type'] = $data['type'];
 
     if (isset($data['state'])) $options['state'] = $data['state'];

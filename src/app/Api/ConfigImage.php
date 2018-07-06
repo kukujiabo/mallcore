@@ -18,7 +18,9 @@ class ConfigImage extends BaseApi {
       
         'type' => 'type|int|true||图片业务类型',
 
-        'url' => 'url|string|true||图片链接'
+        'url' => 'url|string|true||图片链接',
+
+        'city_code' => 'city_code|string|false||城市编码'
       
       ),
     
@@ -45,6 +47,8 @@ class ConfigImage extends BaseApi {
       'getList' => array(
       
         'module' => 'module|int|false||所属模块',
+
+        'city_code' => 'city_code|int|false||所属城市',
 
         'type' => 'type|int|false||所属类型',
 
