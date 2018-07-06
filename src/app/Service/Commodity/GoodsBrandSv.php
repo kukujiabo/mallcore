@@ -22,13 +22,45 @@ class GoodsBrandSv extends BaseService {
    */
   public function addBrand($data) {
 
+    $cities = $data['cities'];
+
+    unset($data['cities']);
+
     $data['brand_name'] = iconv('UTF-8', 'GBK', $data['brand_name']);
 
     $data['created_at'] = date('Y-m-d H:i:s');
 
     $data['introduction'] = addslashes($data['introduction']);
 
-    return self::add($data);
+    $id = self::add($data);
+
+    if ($cities) {
+
+      $brandCities = array();
+    
+      $cityArr = explode(',', $cities);
+
+      foreach($cityArr as $cityCode) {
+      
+        $newBrandCity = array(
+        
+          'city_code' => $cityCode,
+        
+          'brand_code' => $id,
+
+          'created_at' => date('Y-m-d H:i:s')
+        
+        );
+
+        array_push($brandCities, $newBrandCity);
+      
+      }
+
+      BrandDisplayCitySv::batchAdd($brandCities);
+    
+    }
+
+    return $id;
   
   }
 
@@ -47,8 +79,69 @@ class GoodsBrandSv extends BaseService {
       $data['brand_name'] = iconv('UTF-8', 'GBK', $data['brand_name']);
     
     }
+
+    $cities = $data['cities'];
+
+    unset($data['cities']);
   
-    return self::update($id, $data);
+    $num = self::update($id, $data);
+
+    if ($cities) {
+
+      $brandCities = array();
+
+      BrandDisplayCitySv::batchRemove(array('brand_code' => $id));
+
+      $cityArr = explode(',', $cities);
+
+      foreach($cityArr as $cityCode) {
+      
+        $newBrandCity = array(
+        
+          'city_code' => $cityCode,
+        
+          'brand_code' => $id,
+
+          'created_at' => date('Y-m-d H:i:s')
+        
+        );
+
+        array_push($brandCities, $newBrandCity);
+      
+      }
+
+      BrandDisplayCitySv::batchAdd($brandCities);
+
+    }
+    
+    return $num;
+  
+  }
+
+  /**
+   * 查询品牌城市列表
+   *
+   * @param string brandName
+   * @param string brandCode
+   * @param int all
+   * @param int page
+   * @param int pageSize
+   *
+   * @return array list
+   */
+  public function listQuery($cityCode, $all = 0, $page = 1, $pageSize = 20) {
+
+    $options['city_code'] = $cityCode;
+
+    if (!$all) {
+    
+      return VBrandCitySv::queryList($options, '*', 'id desc', $page, $pageSize);
+    
+    } else {
+    
+      return VBrandCitySv::all($options);
+    
+    }
   
   }
 
