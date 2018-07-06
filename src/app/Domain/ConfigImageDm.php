@@ -46,7 +46,7 @@ class ConfigImageDm {
    */
   public function remove($params) {
   
-    return ConfigImageSv::remove($params['id']);
+    return ConfigImageSv::removeImage($params);
   
   }
       

@@ -90,4 +90,18 @@ class ConfigImageSv extends BaseService {
   
   }
 
+  public function removeImage($data) {
+  
+    if ($data['id']) {
+    
+      self::remove($data['id']);
+    
+    } elseif ($data['city_code']) {
+    
+      return self::batchRemove(array('city_code' => $data['city_code']));
+    
+    }
+  
+  }
+
 }

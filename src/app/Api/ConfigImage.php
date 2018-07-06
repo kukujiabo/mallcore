@@ -58,7 +58,8 @@ class ConfigImage extends BaseApi {
 
       'remove' => array(
       
-        'id' => 'id|int|false||图片id'
+        'id' => 'id|int|false||图片id',
+        'city_code' => 'city_code|string|false||城市编码'
       
       ),
 
