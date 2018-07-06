@@ -80,7 +80,7 @@ class ConfigImageSv extends BaseService {
    */
   public function getAll($data) {
   
-    return self::all($data, 'display_order desc')
+    return self::all($data, 'display_order desc');
   
   }
 
