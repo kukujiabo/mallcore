@@ -71,4 +71,17 @@ class ConfigImageSv extends BaseService {
   
   }
 
+  /**
+   * 获取全部图片
+   *
+   * @param array data
+   *
+   * @return array list
+   */
+  public function getAll($data) {
+  
+    return self::all($data, 'display_order desc')
+  
+  }
+
 }
