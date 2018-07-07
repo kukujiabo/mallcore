@@ -82,7 +82,7 @@ class GoodsBrandDm {
 
   public function cityList($params) {
   
-    return GoodsBrandSv::cityList($params['city_code'], $params['all'], $params['page'], $params['page_size']);
+    return GoodsBrandSv::cityList($params['city_code'], $params['index_show'], $params['all'], $params['page'], $params['page_size']);
   
   }
 
