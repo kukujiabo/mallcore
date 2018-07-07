@@ -125,9 +125,11 @@ class GoodsBrandSv extends BaseService {
    *
    * @return array list
    */
-  public function cityList($cityCode, $all = 0, $page = 1, $pageSize = 20) {
+  public function cityList($cityCode, $indexShow, $all = 0, $page = 1, $pageSize = 20) {
 
-    $options['city_code'] = $cityCode;
+    $options['city_code'] = $cityCode ? $cityCode : 310100;
+
+    $options['index_show'] = $indexShow;
 
     if (!$all) {
     

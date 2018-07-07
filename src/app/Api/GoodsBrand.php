@@ -39,6 +39,7 @@ class GoodsBrand extends BaseApi {
       
         'city_code' => 'city_code|string|true||城市编码',
         'all' => 'all|int|false|0|是否获取全部',
+        'index_show' => 'index_show|int|false||是否首页展示',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页数据条数'
       

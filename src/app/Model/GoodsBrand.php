@@ -10,7 +10,9 @@ class GoodsBrand extends BaseModel {
 
   protected $_queryOptionRule = array(
   
-    'brand_name' => 'like'
+    'brand_name' => 'like',
+
+    'cities' => 'like'
   
   );
 
