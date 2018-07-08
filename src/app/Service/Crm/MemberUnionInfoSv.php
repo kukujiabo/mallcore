@@ -3,6 +3,8 @@ namespace App\Service\Crm;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 /**
  * 用户联合信息
@@ -69,8 +71,73 @@ class MemberUnionInfoSv extends BaseService {
 
     $order = $data['order'] ? $data['order'] : 'uid desc';
 
-    return self::queryList($query, $fields, $order, $data['page'], $data['page_size']);
-  
+    if (!$data['excel']) {
+
+      return self::queryList($query, $fields, $order, $data['page'], $data['page_size']);
+
+    } else {
+    
+      $members = self::all($query, 'reg_time desc);' 
+
+      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      header('Content-Type:application/vnd.ms-excel');
+
+      header('Content-Disposition: attachment;filename="订单数据.xlsx"');
+      header('Cache-Control: max-age=0');
+        
+      $spreadsheet = new Spreadsheet();
+
+      $titles = array( '姓名', '手机号', '推荐人', '推荐人手机号', '下单数', '下单总金额');
+    
+      $sheet = $spreadsheet->getActiveSheet();
+
+      $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+      foreach($titles as $key => $title) {
+
+        $sheet->setCellValue("{$characters[$key]}1", $title);
+      
+      }
+
+      $row = 2;
+
+      foreach($members as $member) {
+
+        $column = 0;
+      
+        $memberData = array(
+        
+          'member_name' => $member['member_name'],
+          'user_tel' => $member['user_tel'],
+          'recommend_user' => $member['recommend_user'],
+          'recommend_phone' => $member['recommend_phone'],
+          'num' => $member['num'],
+          'sum_money' => $member['sum_money']
+        
+        );
+
+        foreach($memberData as $md) {
+        
+          $cell = "{$characters[$column]}{$row}";
+
+          $sheet->setCellValue($cell, $md);
+
+          $column++;
+        
+        }
+
+        $row++;
+
+      }
+
+      $writer = new Xlsx($spreadsheet);
+
+      $writer->save("php://output");
+
+      exit(0);
+
+    }
+
   }
 
 }

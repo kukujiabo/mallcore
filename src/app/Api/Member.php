@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Api;
 
 use PhalApi\Api;
@@ -193,6 +192,8 @@ class Member extends BaseApi {
       'memberUnionInfo' => array(
 
         'token' => 'token|string|true||用户令牌',
+
+        'excel' => 'excel|int|false||是否导出excel',
 
         'member_name' => 'member_name|string|false||会员名称',
 
