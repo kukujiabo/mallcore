@@ -77,7 +77,7 @@ class MemberUnionInfoSv extends BaseService {
 
     } else {
     
-      $members = self::all($query, 'reg_time desc);' 
+      $members = self::all($query, 'reg_time desc');
 
       header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       header('Content-Type:application/vnd.ms-excel');
