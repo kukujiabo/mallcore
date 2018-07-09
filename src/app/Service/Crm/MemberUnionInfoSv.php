@@ -109,7 +109,7 @@ class MemberUnionInfoSv extends BaseService {
         
           'member_name' => iconv('GBK//IGNORE', 'UTF-8', $member['member_name']),
           'user_tel' => $member['user_tel'],
-          'member_name' => iconv('GBK//IGNORE', 'UTF-8', $member['recommend_user']),
+          'recommend_user' => iconv('GBK//IGNORE', 'UTF-8', $member['recommend_user']),
           'recommend_phone' => $member['recommend_phone'],
           'num' => $member['num'],
           'sum_money' => $member['sum_money']
