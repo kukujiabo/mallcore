@@ -1826,7 +1826,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       if ($result['status'] == 0) {
       
-        self::update($orders[$key]['id'], array('audit' => 1));
+        self::update($orders[$key]['id'], array('audit' => 1, 'audit_time' => date('Y-m-d H:i:s')));
       
       }
       
