@@ -82,7 +82,7 @@ class MemberUnionInfoSv extends BaseService {
       header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       header('Content-Type:application/vnd.ms-excel');
 
-      header('Content-Disposition: attachment;filename="订单数据.xlsx"');
+      header('Content-Disposition: attachment;filename="会员数据.xlsx"');
       header('Cache-Control: max-age=0');
         
       $spreadsheet = new Spreadsheet();
