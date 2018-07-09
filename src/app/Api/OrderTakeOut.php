@@ -122,6 +122,10 @@ class OrderTakeOut extends BaseApi {
 
         'reg_end' => 'reg_end|string|false||用户注册时间',
 
+        'audit_start' => 'audit_start|string|false||审核开始时间',
+
+        'audit_end' => 'audit_end|string|false||审核结束时间',
+
         'start_time' => 'start_time|string|false||开始时间',
 
         'end_time' => 'end_time|string|false||结束时间',

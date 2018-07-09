@@ -465,6 +465,32 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       }
 
       /**
+       * 审核时间筛选
+       */
+
+      if ($condition['audit_start'] && $condition['audit_end']) {
+        
+        $startTime = date('Y-m-d', $condition['audit_start']);
+
+        $endTime = date('Y-m-d', $condition['audit_end'] + 86400);
+      
+        $condition['audit_time'] = "eg|{$startTime};el|{$endTime}";
+      
+      } elseif ($condition['audit_start']) {
+      
+        $startTime = date('Y-m-d', $condition['audit_start']);
+
+        $condition['audit_time'] = "eg|{$startTime}";
+      
+      } elseif ($condition['audit_end']) {
+      
+        $endTime = date('Y-m-d', $condition['audit_end'] + 86400);
+
+        $condition['audit_time'] = "el|{$endTime}";
+      
+      }
+
+      /**
        * 用户注册时间筛选
        */
       if ($condition['reg_start'] && $condition['reg_end']) {

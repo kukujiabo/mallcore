@@ -32,7 +32,9 @@ class OrderTakeOut extends BaseModel {
 
         'goods_id' => 'in',
 
-        'created_at' => 'range'
+        'created_at' => 'range',
+
+        'audit_time' => 'range'
 
 
     );  
