@@ -1647,7 +1647,29 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $titles = array(
     
-      '订单编号', '帐套号', '收货人', '收货联系电话', '收货地址', '会员名称', '业务员手机号', '订单金额', '订单状态', '支付状态', '出库单号', '退货单号', '商品编码', '商品名称', '二级分类', '三级分类', '商品数量', '商品总价', '下单时间', '支付时间', '发货时间', '签收时间'
+      '订单编号', 
+      '帐套号', 
+      '收货人', 
+      '收货联系电话', 
+      '收货地址', 
+      '会员名称', 
+      '业务员手机号', 
+      '订单金额', 
+      '订单状态', 
+      '支付状态', 
+      '出库单号', 
+      '退货单号', 
+      '商品编码', 
+      '商品名称', 
+      '二级分类', 
+      '三级分类', 
+      '商品数量', 
+      '商品总价', 
+      '审核时间', 
+      '下单时间', 
+      '支付时间', 
+      '发货时间',
+      '签收时间'
     
     );
 
@@ -1720,6 +1742,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'num' => $orderGood['num'],
 
           'goods_money' => $orderGood['goods_money'],
+
+          'audit_time' => $order['audit_time'] ? explode(' ', $order['audit_time'])[0] : '',
 
           'create_time' => $order['create_time'] ? explode(' ', $order['create_time'])[0] : '',
 
