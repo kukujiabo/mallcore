@@ -39,6 +39,8 @@ class Goods extends BaseApi {
             
             'price' => 'price|float|true||商品原价格',
 
+            'max_price' => 'max_price|float|true||商品原价格',
+
             'market_price' => 'market_price|float|false||市场价',
 
             'promotion_price' => 'promotion_price|float|false||商品促销价格',
@@ -717,6 +719,8 @@ class Goods extends BaseApi {
 
           'state' => 'state|int|true|0|商品状态 0下架，1正常，10违规（禁售）',
 
+          'max_price' => 'max_price|float|true||商品原价格',
+
           'price' => 'price|float|true||本店售价（元）',
 
           'market_price' => 'market_price|float|true||市场售价（元）',
@@ -806,6 +810,8 @@ class Goods extends BaseApi {
           'cities' => 'cities|string|false||商品销售城市',
 
           'price' => 'price|float|true||本店售价（元）',
+
+          'max_price' => 'max_price|float|true||商品原价格',
 
           'market_price' => 'market_price|float|true||市场售价（元）',
 
