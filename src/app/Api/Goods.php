@@ -29,6 +29,8 @@ class Goods extends BaseApi {
 
             'brand_id' => 'brand_id|int|false||品牌id',
 
+            'brand_id' => 'brand_id|int|false||品牌id',
+
             'promotion_type' => 'promotion_type|int|true|0|促销类型 0无促销，1团购，2限时折扣',
 
             'promote_id' => 'promote_id|int|false||促销活动ID',
@@ -134,6 +136,8 @@ class Goods extends BaseApi {
             'user_level' => 'user_level|int|false||用户等级',
 
             'goods_id' => 'goods_id|int|false||表序号',
+
+            'sign' => 'sign|string|false||签名',
 
             'goods_name' => 'goods_name|string|false||商品名称',
 
@@ -709,6 +713,8 @@ class Goods extends BaseApi {
 
           'goods_name' => 'goods_name|string|true||商品名称',
 
+          'sign' => 'sign|string|false||商品标签',
+
           'shop_id' => 'shop_id|int|true||店铺id',
 
           'goods_number' => 'goods_number|string|true||商品编号',
@@ -789,13 +795,13 @@ class Goods extends BaseApi {
 
       ),
 
-      'editSkuGoods' => array(
-
-          'goods_id' => 'goods_id|int|true||商品id',
+      'editSkuGoods' => array( 'goods_id' => 'goods_id|int|true||商品id',
 
           'brand_id' => 'brand_id|int|true||品牌id',
 
           'goods_name' => 'goods_name|string|true||商品名称',
+
+          'sign' => 'sign|string|false||商品标签',
 
           'shop_id' => 'shop_id|int|true||店铺id',
 

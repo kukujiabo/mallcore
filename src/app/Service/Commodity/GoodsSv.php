@@ -74,6 +74,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['goods_name'] = $params['goods_name'];
       $data['shop_id'] = $params['shop_id'];
       $data['is_sku'] = $params['is_sku'];
+      $data['sign'] = $params['sign'];
       $data['goods_number'] = $params['goods_number'];
       $data['category_id'] = $params['category_id'];
       $data['state'] = $params['state'];
@@ -142,6 +143,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['shop_id'] = $params['shop_id'];
       $data['goods_number'] = $params['goods_number'];
       $data['category_id'] = $params['category_id'];
+      $data['sign'] = $params['sign'];
       $data['state'] = $params['state'];
       $data['price'] = $params['price'];
       $data['max_price'] = $params['max_price'];
