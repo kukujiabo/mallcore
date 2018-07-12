@@ -34,7 +34,7 @@ class WechatDm {
 
     $user = UserSv::getUserByToken($params['token']);
 
-    if ($user['qr_code']) {
+    if (trim($user['qr_code'])) {
     
       return $user['qr_code'];
     
