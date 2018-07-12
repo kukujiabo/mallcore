@@ -528,7 +528,7 @@ class MemberSv extends BaseService implements IMember {
 
     if (!$data['appid']) {
 
-      $appid = ConfigSv::getConfigValueByKey('ruixuan_mini_appId');
+      $appid = ConfigSv::getConfigValueByKey('mini_appid');
 
     } else {
 

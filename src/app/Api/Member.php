@@ -348,8 +348,6 @@ class Member extends BaseApi {
 
     );
 
-    \App\Verification($condition, $regulation);
-
     return $this->dm->decryptData($condition);
   
   }
