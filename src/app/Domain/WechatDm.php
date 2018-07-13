@@ -32,7 +32,9 @@ class WechatDm {
 
   public function getMiniTempCode($params) {
 
-    $user = UserSv::getUserByToken($params['token']);
+    $cache = UserSv::getUserByToken($params['token']);
+
+    $user = UserSv::findOne($cache['uid']);
 
     if (trim($user['qr_code'])) {
     
