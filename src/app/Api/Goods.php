@@ -19,6 +19,12 @@ class Goods extends BaseApi {
 
     return $this->rules(array(
 
+        'getRecommendGoods' => array(
+        
+          'sn' => 'sn|string|true||订单编号'
+        
+        ),
+
         'add' => array(
 
             'goods_name' => 'goods_name|string|true||商品名称',
@@ -1070,6 +1076,17 @@ class Goods extends BaseApi {
   public function getAllGoods() {
   
     return $this->dm->getAllGoods($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 查询订单推荐商品
+   * @decgj 查询订单推荐商品
+   *
+   */
+  public function getRecommendGoods() {
+  
+    return $this->dm->getRecommendGoods($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

@@ -15,6 +15,8 @@ use App\Service\Commodity\GoodsAttributeValueSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Commodity\GoodsViewSv;
 use App\Service\Commodity\GoodsBrandSv; 
+use App\Service\Takeaway\OrderTakeOutSv;
+use App\Service\Takeaway\OrderTakeOutGoodsSv;
 
 /**
  * 商品
@@ -711,6 +713,24 @@ class GoodsSv extends BaseService implements IGoods {
      * 删除商品属性
      */
     GoodsAttributeValueSv::batchRemove(array( 'goods_id' => $goodsId ), false);
+  
+  }
+
+  public function getRecommendList($data) {
+  
+    $order = OrderTakeOutSv::findOne(array('sn' => $data['sn']));
+  
+    $ogds = OrderTakeOutSv::all(array('order_take_out_id' => $order['id']));
+
+    $goodsSign = array();
+
+    foreach($ogds as $ogd) {
+    
+      array_push($goodsSign, $ogd['sign']);
+    
+    }
+
+    return self::all(array('sign' => implode(',', $goodsSign)));
   
   }
 

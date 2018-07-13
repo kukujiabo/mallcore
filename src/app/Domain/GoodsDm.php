@@ -118,4 +118,10 @@ class GoodsDm {
   
   }
 
+  public function getRecommendList($data) {
+  
+    return GoodsSv::getRecommendList($data);
+  
+  }
+
 }
