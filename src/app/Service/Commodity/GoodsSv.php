@@ -720,17 +720,21 @@ class GoodsSv extends BaseService implements IGoods {
   
     $order = OrderTakeOutSv::findOne(array('sn' => $data['sn']));
   
-    $ogds = OrderTakeOutSv::all(array('order_take_out_id' => $order['id']));
-
-    $goodsSign = array();
-
-    $goodsId = array();
+    $ogds = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id']));
 
     foreach($ogds as $ogd) {
     
-      array_push($goodsSign, $ogd['sign']);
-
       array_push($goodsId, $ogd['goods_id']);
+    
+    }
+
+    $ogoods = self::all(array('goods_id' => implode(',', $goodsId)));
+
+    $goodsSign = array();
+
+    foreach($ogoods as $ogood) {
+    
+      array_push($goodsSign, $ogood['sign']);
     
     }
 
