@@ -335,11 +335,13 @@ class WechatUtilsSv extends BaseService {
     
       $img = Http::httpPost($url, $params, null, null, null, 'raw');
 
-      $result = file_put_contents(API_ROOT . '/codes/' . md5($scene . time()) . '.jpg', $img);
+      $imgName = md5($scene . time());
+
+      $result = file_put_contents(API_ROOT . '/codes/' . $imgName . '.jpg', $img);
 
       if ($result > 0) {
       
-        return md5($scene) . '.jpg';
+        return $imgName . '.jpg';
       
       } else {
       
