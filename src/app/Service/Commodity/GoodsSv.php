@@ -724,14 +724,32 @@ class GoodsSv extends BaseService implements IGoods {
 
     $goodsSign = array();
 
+    $goodsId = array();
+
     foreach($ogds as $ogd) {
     
       array_push($goodsSign, $ogd['sign']);
+
+      array_push($goodsId, $ogd['goods_id']);
     
     }
 
-    return self::all(array('sign' => implode(',', $goodsSign)));
+    $goods = self::all(array('sign' => implode(',', $goodsSign)));
+
+    $returnGoods = array();
+
+    foreach($goods as $key => $good) {
+    
+      if (!in_array($good['goods_id'], $goodsId)) {
+      
+        array_push($returnGoods, $good);
+      
+      }
+    
+    }
   
+    return $returnGoods;
+
   }
 
 }
