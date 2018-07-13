@@ -716,7 +716,7 @@ class GoodsSv extends BaseService implements IGoods {
   
   }
 
-  public function getRecommendList($data) {
+  public function getRecommendGoods($data) {
   
     $order = OrderTakeOutSv::findOne(array('sn' => $data['sn']));
   

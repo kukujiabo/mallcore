@@ -115,12 +115,11 @@ class GoodsDm {
         return $allGoods;
       
 
-  
   }
 
-  public function getRecommendList($data) {
+  public function getRecommendGoods($data) {
   
-    return GoodsSv::getRecommendList($data);
+    return GoodsSv::getRecommendGoods($data);
   
   }
 
