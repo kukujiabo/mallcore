@@ -79,7 +79,9 @@ class UserSv extends BaseService implements IUser {
       // 获取后台权限
       $info['jurisdiction'] = self::getAdminJurisdiction($info['uid']);
 
-      $where_admin['uid'] = $where_admin_group['uid'] = $info['uid'];
+      $where_admin_group['uid'] = $info['uid'];
+
+      $where_admin['uid'] = $info['instance_id'];
 
       // 获取后台管理员信息
       $info_admin = UserAdminSv::findOne($where_admin);
