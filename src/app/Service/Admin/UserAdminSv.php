@@ -84,7 +84,7 @@ class UserAdminSv extends BaseService implements IUserAdmin {
     
       'instance_id' => $adminId,
 
-      'user_name' => $data['admin_name'],
+      'user_name' => $data['account'],
 
       'user_password' => md5($data['password']),
 
