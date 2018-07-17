@@ -94,6 +94,20 @@ class UserAdmin extends BaseApi {
         'token' => 'token|string|true||后台管理员令牌',
       
       ),
+
+      'addAcct' => array(
+      
+        'token' => 'token|string|true||后台管理员令牌',
+      
+        'account' => 'token|string|true||后台管理员令牌',
+      
+        'password' => 'password|string|true||后台管理员令牌',
+
+        'auth' => 'auth|string|true||后台管理员令牌',
+
+        'city_code' => 'city_code|string|true||后台管理员令牌',
+
+      )
       
     ));
 
@@ -248,6 +262,18 @@ class UserAdmin extends BaseApi {
 
     return $this->dm->queryList($conditions);
 
+  }
+
+  /**
+   * 新增账号
+   * @desc 新增账号
+   *
+   * @return int id
+   */
+  public function addAcct() {
+  
+    return $this->dm->addAcct($this->retriveRuleParams(__FUNCTION__));
+  
   }
 
 }

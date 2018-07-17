@@ -59,4 +59,75 @@ class UserAdminSv extends BaseService implements IUserAdmin {
   
   }
 
+  /**
+   * 添加账号
+   *
+   * @return int id
+   */
+  public function addAcct($data) {
+
+    $newAdmin = array(
+    
+      'admin_name' => $data['account'],
+
+      'group_id_array' => 1,
+
+      'is_admin' => 1,
+
+      'admin_status' => 1
+    
+    );
+
+    $adminId = self::add($newAdmin);
+  
+    $newUser = array(
+    
+      'instance_id' => $adminId,
+
+      'user_name' => $data['admin_name'],
+
+      'user_password' => md5($data['password']),
+
+      'user_status' => 1,
+
+      'is_system' => 1,
+
+      'status' => 1
+    
+    );
+  
+    $uid = UserSv::add($newUser);
+
+    $newAdminGroup = array(
+    
+      'uid' => $uid,
+
+      'status' => 1,
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    );
+
+    switch($data['auth']) {
+    
+      case 1:
+
+        $newAdminGroup['group_id'] = 4;
+
+        $newAdminGroup['city_code'] = $data['city_code'];
+
+        break;
+
+      case 2:
+
+        break;
+
+    }
+
+    $relatId = UserAdminGroupSv::add($newAdminGroup); 
+
+    return $uid;
+  
+  }
+
 }

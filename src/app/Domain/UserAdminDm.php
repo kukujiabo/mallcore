@@ -80,4 +80,10 @@ class UserAdminDm {
 
   }
 
+  public function addAcct($params) {
+  
+    return UserSv::addAcct($params);
+  
+  }
+
 }
