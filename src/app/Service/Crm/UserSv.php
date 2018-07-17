@@ -94,12 +94,16 @@ class UserSv extends BaseService implements IUser {
 
       $info['admin_group'] = array();
 
+      $info['city_code'] = array();
+
       // 获取后台管理员关联用户组
       $list_admin_group = UserAdminGroupSv::all($where_admin_group);
       
       if ($list_admin_group) {
 
         $list_group = array();
+
+        $list_cities = array();
 
         foreach ($list_admin_group as &$v) {
 
@@ -112,6 +116,12 @@ class UserSv extends BaseService implements IUser {
 
             $list_group[] = $info_group['group_name'];
 
+            if ($info_group['city_code']) {
+            
+              $list_cities[] = $info_group['city_code'];
+            
+            }
+
           }
 
         }
@@ -119,6 +129,8 @@ class UserSv extends BaseService implements IUser {
         unset($v);
 
         $info['admin_group'] = $list_group;
+        
+        $info['city_code'] = $list_cities;
 
       }
 
