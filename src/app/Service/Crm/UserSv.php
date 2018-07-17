@@ -116,12 +116,12 @@ class UserSv extends BaseService implements IUser {
 
             $list_group[] = $info_group['group_name'];
 
-            if ($info_group['city_code']) {
-            
-              $list_cities[] = $info_group['city_code'];
-            
-            }
+          }
 
+          if ($list_admin_group['city_code']) {
+          
+            $list_cities[] = $list_admin_group['city_code'];
+          
           }
 
         }
