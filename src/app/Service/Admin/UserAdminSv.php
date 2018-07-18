@@ -130,4 +130,28 @@ class UserAdminSv extends BaseService implements IUserAdmin {
   
   }
 
+  public function getSysAdminList($params) {
+
+    $query = array();
+
+    if ($params['user_name']) {
+
+      $query['user_name'] = $params['user_name'];
+
+    }
+    if ($params['city_code']) {
+
+      $query['city_code'] = $params['city_code'];
+      
+    }
+    if ($params['auth']) {
+
+      $query['group_id'] = $params['auth'];
+      
+    }
+
+    return VSysAdminSv::queryList($query, $params['fields'], $params['order'], $params['page'], $params['page_size']);
+
+  }
+
 }

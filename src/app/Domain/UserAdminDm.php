@@ -86,4 +86,11 @@ class UserAdminDm {
   
   }
 
+
+  public function getSysAdminList($params) {
+
+    return UserAdminSv::getSysAdminList($params);
+
+  }
+
 }
