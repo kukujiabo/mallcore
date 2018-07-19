@@ -38,4 +38,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function exportExcel($data) {
+  
+    return GoodsPriceMapSv::exportExcel($data);
+  
+  }
+
 }

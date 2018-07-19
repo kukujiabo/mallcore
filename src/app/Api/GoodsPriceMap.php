@@ -67,6 +67,14 @@ class GoodsPriceMap extends BaseApi {
       
         'id' => 'id|int|true||删除价格'
       
+      ),
+
+      'exportExcel' => array(
+      
+        'city_code' => 'city_code|string|true||城市编码',
+
+        'goods_id' => 'goods_id|string|true||商品编码',
+      
       )
     
     ));
@@ -134,6 +142,18 @@ class GoodsPriceMap extends BaseApi {
   public function remove() {
   
     return $this->dm->remove($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 导出excel
+   * @desc 导出excel
+   *
+   * @return 
+   */
+  public function exportExcel() {
+  
+    return $this->dm->exportExcel($this->retriveRuleParams(__FUNCTION__));
   
   }
 

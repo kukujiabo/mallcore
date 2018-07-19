@@ -149,4 +149,100 @@ class GoodsPriceMapSv extends BaseService {
   
   }
 
+  /**
+   * 导出excel
+   * @desc 导出excel
+   *
+   */
+  public function exportExcel($conditions) {
+  
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Type:application/vnd.ms-excel');
+
+    header('Content-Disposition: attachment;filename="价格数据.xlsx"');
+    header('Cache-Control: max-age=0');
+      
+    $spreadsheet = new Spreadsheet();
+
+    $titles = array(
+    
+      '产品名称', 
+      'sku名称', 
+      '等级', 
+      '城市名称', 
+      '普通价格', 
+      '含税价格', 
+      '用户等级', 
+      '城市代码', 
+      '商品代码', 
+      'sku代码'
+    
+    );
+
+    $sheet = $spreadsheet->getActiveSheet();
+
+    $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+    foreach($titles as $key => $title) {
+
+      $sheet->setCellValue("{$characters[$key]}1", $title);
+    
+    }
+
+    $sheet->getColumnDimension('A')->setWidth(30);
+
+    $row = 2;
+
+    $prices = self::all($conditions);
+
+    foreach($price as $prices) {
+
+      $column = 0;
+
+      $valuePrice = array(
+      
+        'goods_id' => $price['goods_id'],
+        
+        'sku_id' => $price['sku_id'],
+
+        'user_level' => $price['user_level'],
+
+        'city_code' => $price['city_code'],
+
+        'price' => $price['price'],
+
+        'tax_off_price' => $price['tax_off_price'],
+
+        'goods_name' => iconv('GBK', 'UTF-8', $price['goods_name']),
+
+        'sku_name' => iconv('GBK', 'UTF-8', $price['sku_name']),
+
+        'level_name' => iconv('GBK', 'UTF-8', $price['level_name']),
+
+        'city_name' => iconv('GBK', 'UTF-8', $price['city_name'])
+
+      );
+
+      foreach($valuePrice $value) {
+
+        $cell = "{$characters[$column]}{$row}";
+
+        $sheet->setCellValue($cell, $value);
+
+        $column++;
+
+      }
+
+      $row++;
+
+    }
+
+    $writer = new Xlsx($spreadsheet);
+
+    $writer->save("php://output");
+
+    exit(0);
+  
+  }
+
 }
