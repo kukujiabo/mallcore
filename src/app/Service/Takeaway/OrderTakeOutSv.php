@@ -1829,6 +1829,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatphone' => $userInfo['user_tel'],
         'csocode' => $sn,
         'ddate' => $order['create_time'],
+        'couponno' => "",
+        'couponmoney' => 0,
         'cdepcode' => $order['city_code'],
         'cpersoncode' => "",
         'binvoice' => $order['invoice'],
