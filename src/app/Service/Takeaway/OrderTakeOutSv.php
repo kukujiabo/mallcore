@@ -304,7 +304,9 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         $cretcode = substr($cretcode, 4, strlen($sn));
 
-        $signKey = "cretcode={$cretcode}ddate={$info_order['create_time']}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+        $date = date('Y-m-d H:i:s');
+
+        $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
         $signSecret = md5($signKey);
 
@@ -317,7 +319,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
           'wechatphone' => $userInfo['user_tel'],
           'cretcode' => $cretcode,
           'csocode' => $sn,
-          'ddate' => $info_order['create_time'],
+          'ddate' => $date,
           'cdepcode' => $info_order['city_code'],
           'binvoice' => $info_order['invoice'],
           "cbuserid" => "",
