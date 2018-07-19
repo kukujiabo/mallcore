@@ -223,7 +223,7 @@ class GoodsPriceMapSv extends BaseService {
 
       );
 
-      foreach($valuePrice $value) {
+      foreach($valuePrice as  $value) {
 
         $cell = "{$characters[$column]}{$row}";
 
