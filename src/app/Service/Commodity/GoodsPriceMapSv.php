@@ -270,6 +270,12 @@ class GoodsPriceMapSv extends BaseService {
     $area = NationwideAreaSv::findOne(array('id' => $data['city_code']));
 
     foreach($sheetData as $row) {
+
+      if (!trim($row[0])) {
+      
+        continue;
+      
+      }
     
       $newData = [
       
