@@ -126,8 +126,10 @@ class GoodsPriceMapSv extends BaseService {
     $params['goods_name'] ? $query['goods_name'] = $params['goods_name'] : '';
     
     $params['sku_name'] ? $query['sku_name'] = $params['sku_name'] : '';
+
+    $params['city_code'] ? $query['city_code'] = $params['city_code'] : '';
   
-    return self::queryList($query, '*', 'created_at desc', $params['page'], $params['page_size']);
+    return self::queryList($query, '*', 'id desc', $params['page'], $params['page_size']);
   
   }
 
