@@ -197,23 +197,11 @@ class GoodsPriceMapSv extends BaseService {
 
     $prices = self::all($conditions);
 
-    foreach($price as $prices) {
+    foreach($prices as $price) {
 
       $column = 0;
 
       $valuePrice = array(
-      
-        'goods_id' => $price['goods_id'],
-        
-        'sku_id' => $price['sku_id'],
-
-        'user_level' => $price['user_level'],
-
-        'city_code' => $price['city_code'],
-
-        'price' => $price['price'],
-
-        'tax_off_price' => $price['tax_off_price'],
 
         'goods_name' => iconv('GBK', 'UTF-8', $price['goods_name']),
 
@@ -221,7 +209,19 @@ class GoodsPriceMapSv extends BaseService {
 
         'level_name' => iconv('GBK', 'UTF-8', $price['level_name']),
 
-        'city_name' => iconv('GBK', 'UTF-8', $price['city_name'])
+        'city_name' => iconv('GBK', 'UTF-8', $price['city_name']),
+      
+        'price' => $price['price'],
+
+        'tax_off_price' => $price['tax_off_price'],
+
+        'user_level' => $price['user_level'],
+
+        'city_code' => $price['city_code'],
+
+        'goods_id' => $price['goods_id'],
+        
+        'sku_id' => $price['sku_id']
 
       );
 
