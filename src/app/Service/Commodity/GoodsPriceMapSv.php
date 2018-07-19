@@ -262,7 +262,7 @@ class GoodsPriceMapSv extends BaseService {
 
     $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, false);
 
-    $dataset = array();
+    $i = 0;
 
     foreach($sheetData as $row) {
     
@@ -281,11 +281,21 @@ class GoodsPriceMapSv extends BaseService {
 
       ];
     
-      array_push($dataset, $newData);
+      $price = self::findOne(array('sku_id' => $newData['sku_id'], 'city_code' => $newData['city_code']));
+
+      if ($price) {
+      
+        self::remove($price['id']);
+      
+      }
+
+      self::add($newData);
+
+      $i++;
     
     }
 
-    return $dataset;
+    return $i;
   
   }
 
