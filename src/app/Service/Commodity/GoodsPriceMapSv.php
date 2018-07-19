@@ -254,11 +254,13 @@ class GoodsPriceMapSv extends BaseService {
    */
   public function importData($data) {
 
-    $fileName = time() . 'xlsx';
+    $fileName = time() . '.xlsx';
   
     copy($data["file_path"], API_ROOT . "/public/uploads/" . $fileName );
 
-    $spreadSheet = IOFactory::load($fileInfo['file_path']);
+    $spreadSheet = IOFactory::load(API_ROOT . '/public/uploads/' . $fileName);
+
+    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, false);
 
     $dataset = array();
 
