@@ -75,6 +75,16 @@ class GoodsPriceMap extends BaseApi {
 
         'goods_id' => 'goods_id|string|true||商品编码',
       
+      ),
+
+      'importData' => array(
+
+        'city_code' => 'city_code|string|true||城市编码',
+
+        'file_path' => 'file_path|string|true||文件路径',
+
+        'orig_name' => 'orig_name|string|true||文件原始名称'
+
       )
     
     ));
@@ -155,6 +165,18 @@ class GoodsPriceMap extends BaseApi {
   
     return $this->dm->exportExcel($this->retriveRuleParams(__FUNCTION__));
   
+  }
+
+  /**
+   * 导入数据
+   * @desc 导入数据
+   *
+   * @return 
+   */
+  public function importData() {
+
+    return $this->dm->importData($this->retriveRuleParams(__FUNCTION__));
+
   }
 
 }

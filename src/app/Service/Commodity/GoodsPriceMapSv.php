@@ -5,6 +5,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 /**
  * 价格体系服务
@@ -244,6 +245,45 @@ class GoodsPriceMapSv extends BaseService {
     $writer->save("php://output");
 
     exit(0);
+  
+  }
+
+  /**
+   * 导入数据
+   *
+   */
+  public function importData($data) {
+
+    $fileName = time() . 'xlsx';
+  
+    copy($data["file_path"], API_ROOT . "/public/uploads/" . $fileName );
+
+    $spreadSheet = IOFactory::load($fileInfo['file_path']);
+
+    $dataset = array();
+
+    foreach($sheetData as $row) {
+    
+      $newData = [
+      
+        'goods_name' => $row[0],
+        'sku_name' => $row[1],
+        'level_name' => $row[2],
+        'city_name' => $row[3],
+        'price' => $row[4],
+        'tax_off_price' => $row[5],
+        'user_level' => $row[6],
+        'city_code' => $data['city_code'],
+        'goods_id' => $row[8],
+        'sku_id' => $row[9]
+
+      ];
+    
+      array_push($dataset, $newData);
+    
+    }
+
+    return $dataset;
   
   }
 

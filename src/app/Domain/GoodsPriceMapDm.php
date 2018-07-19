@@ -44,4 +44,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function importData($data) {
+
+    return GoodsPriceMapSv::importData($data);
+
+  }
+
 }
