@@ -6,6 +6,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Service\Crm\NationWideAreaSv;
 
 /**
  * 价格体系服务
@@ -266,6 +267,8 @@ class GoodsPriceMapSv extends BaseService {
 
     $i = 0;
 
+    $area = NationWideAreaSv::findOne(array('id' => $data['city_code']));
+
     foreach($sheetData as $row) {
     
       $newData = [
@@ -273,7 +276,7 @@ class GoodsPriceMapSv extends BaseService {
         'goods_name' => $row[0],
         'sku_name' => $row[1],
         'level_name' => $row[2],
-        'city_name' => $row[3],
+        'city_name' => $area['name'],
         'price' => $row[4],
         'tax_off_price' => $row[5],
         'user_level' => $row[6],
@@ -291,9 +294,11 @@ class GoodsPriceMapSv extends BaseService {
       
       }
 
-      self::add($newData);
+      if (self::add($newData)) {
 
-      $i++;
+        $i++;
+
+      }
     
     }
 
