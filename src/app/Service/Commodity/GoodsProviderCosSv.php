@@ -2,7 +2,6 @@
 namespace App\Service\Commodity;
 
 use App\Service\BaseService;
-use App\Service\BaseService;
 use Core\Service\CurdSv;
 
 /**
