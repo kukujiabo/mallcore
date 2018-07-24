@@ -17,4 +17,10 @@ class TmpDataDm {
   
   }
 
+  public function updateOrderAuditTime() {
+  
+    TmpDataSv::updateOrderAuditTime();
+  
+  }
+
 }

@@ -6,6 +6,7 @@ use App\Service\Commodity\GoodsBrandSv; use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Commodity\GoodsAttributeSv;
 use App\Service\Commodity\GoodsAttributeValueSv;
+use App\Service\Takeaway\OrderTakeOutSv;
 
 /**
  * 临时数据处理
@@ -220,6 +221,26 @@ class TmpDataSv extends BaseService {
        */
     
     }
+  
+  }
+
+  public function updateOrderAuditTime() {
+  
+    $tmpData = self::all();
+
+    $i = 0;
+
+    foreach($tmpData as $data) {
+    
+      $order = OrderTakeOutSv::findOne(array('sn' => $data['seq']));
+    
+      $result =  OrderTakeOutSv::update($order['id'], array('audit_time' => '2018-07-09'));
+
+      $i += $result;
+    
+    }
+  
+    return $i; 
   
   }
 

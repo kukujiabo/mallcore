@@ -18,6 +18,10 @@ class TmpData extends BaseApi {
       'importGoods' => array(
       
       
+      ),
+
+      'updateOrderAuditTime' => array(
+      
       )
     
     ));
@@ -38,6 +42,12 @@ class TmpData extends BaseApi {
   public function importGoods() {
   
     return $this->dm->importGoods();
+  
+  }
+
+  public function updateOrderAuditTime() {
+  
+    return $this->dm->updateOrderAuditTime();
   
   }
 
