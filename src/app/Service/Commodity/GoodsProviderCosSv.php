@@ -2,6 +2,7 @@
 namespace App\Service\Commodity;
 
 use App\Service\BaseService;
+use App\Service\BaseService;
 use Core\Service\CurdSv;
 
 /**
@@ -113,6 +114,63 @@ class GoodsProviderCosSv extends BaseService {
   
     return self::update($id, $data);
 
+  }
+
+  /**
+   * 导入数据
+   *
+   */
+  public function importData($data) {
+  
+    $fileName = time() . '.xlsx';
+  
+    copy($data["file_path"], API_ROOT . "/public/uploads/" . $fileName );
+
+    $spreadSheet = IOFactory::load(API_ROOT . '/public/uploads/' . $fileName);
+
+    $sheetData = $spreadSheet->getActiveSheet()->toArray(null, true, true, false);
+
+    $i = 0;
+
+    foreach($sheetData as $row) {
+
+      if (!trim($row[0])) {
+      
+        continue;
+      
+      }
+    
+      $newData = [
+      
+        'provider_id' => $data['provider_id'],
+        'goods_name' => $row[0],
+        'sku_name' => $row[1],
+        'cost' => $row[2],
+        'tax_off_price' => $row[3],
+        'goods_id' => $row[4],
+        'sku_id' => $row[5],
+        'created_at' => date('Y-m-d H:i:s'),
+
+      ];
+    
+      $price = self::findOne(array('sku_id' => $newData['sku_id'], 'provider_id' => $newData['provider_id']));
+
+      if ($price) {
+      
+        self::remove($price['id']);
+      
+      }
+
+      if (self::add($newData)) {
+
+        $i++;
+
+      }
+    
+    }
+
+    return $i;
+  
   }
 
 }

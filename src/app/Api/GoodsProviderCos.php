@@ -45,6 +45,16 @@ class GoodsProviderCos extends BaseApi {
         'cost' => 'cost|float|false||价格id',
         'sale_price' => 'sale_price|float|false||价格id'
       
+      ),
+
+      'importData' => array(
+
+        'provider_id' => 'provider_id|int|true||供应商id',
+
+        'file_path' => 'file_path|string|true||文件路径',
+
+        'orig_name' => 'orig_name|string|true||文件原始名称'
+      
       )
     
     ));
@@ -96,6 +106,18 @@ class GoodsProviderCos extends BaseApi {
   public function updateCos() {
   
     return $this->dm->updateCos($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 导入数据
+   * @desc 导入数据
+   *
+   * @return array list
+   */
+  public function importData() {
+  
+    return $this->dm->importData($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

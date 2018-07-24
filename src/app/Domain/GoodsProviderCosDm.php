@@ -41,4 +41,13 @@ class GoodsProviderCosDm {
   
   }
 
+  /**
+   * 导入价格
+   */
+  public function importData($data) {
+
+    return GoodsProviderCosSv::importData($data);
+
+  }
+
 }
