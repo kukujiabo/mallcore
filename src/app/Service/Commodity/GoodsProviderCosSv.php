@@ -148,7 +148,7 @@ class GoodsProviderCosSv extends BaseService {
         'goods_name' => $row[0],
         'sku_name' => $row[1],
         'cost' => $row[2],
-        'tax_off_price' => $row[3],
+        'sale_price' => $row[3],
         'goods_id' => $row[4],
         'sku_id' => $row[5],
         'created_at' => date('Y-m-d H:i:s'),
