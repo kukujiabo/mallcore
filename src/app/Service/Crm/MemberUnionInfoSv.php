@@ -61,7 +61,7 @@ class MemberUnionInfoSv extends BaseService {
     }
     if ($data['reference']) {
     
-      $query['reference'] = $data['reference'];
+      $query['recommend_phone'] = $data['reference'];
     
     }
 
