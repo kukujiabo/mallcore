@@ -226,7 +226,7 @@ class TmpDataSv extends BaseService {
 
   public function updateOrderAuditTime() {
   
-    $tmpData = self::all();
+    $tmpData = self::all(array());
 
     $i = 0;
 

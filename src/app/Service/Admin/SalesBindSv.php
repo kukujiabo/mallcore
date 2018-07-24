@@ -16,17 +16,23 @@ class SalesBindSv extends BaseService {
   
     foreach($mobiles as $mobile) {
 
-      $newBinding = array(
-      
-        'account' => $data['account'],
+      $binded = self::findOne(array('account' => $data['account'], 'sales_phone' => $mobile));
 
-        'sales_phone' => $mobile,
+      if (!$binded) {
 
-        'created_at' => date('Y-m-d H:i:s')
-      
-      );
+        $newBinding = array(
+        
+          'account' => $data['account'],
+
+          'sales_phone' => $mobile,
+
+          'created_at' => date('Y-m-d H:i:s')
+        
+        );
     
-      array_push($newBindings, $newBinding);
+        array_push($newBindings, $newBinding);
+
+      }
     
     }
 
