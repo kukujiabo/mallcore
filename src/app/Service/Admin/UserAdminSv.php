@@ -158,4 +158,11 @@ class UserAdminSv extends BaseService implements IUserAdmin {
 
   }
 
+
+  public function getSalesManager() {
+  
+    return VSalesManagerSv::all();
+  
+  }
+
 }

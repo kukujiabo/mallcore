@@ -93,4 +93,10 @@ class UserAdminDm {
 
   }
 
+  public function getSalesManager($params) {
+  
+    return UserAdminSv::getSalesManager();
+  
+  }
+
 }

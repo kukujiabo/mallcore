@@ -110,6 +110,11 @@ class UserAdmin extends BaseApi {
 
       ),
 
+      'getSalesManager' => array(
+      
+        'token' => 'token|string|true||后台管理员领牌'
+      
+      ),
             
       'getSysAdminList' => array(
             
@@ -301,5 +306,10 @@ class UserAdmin extends BaseApi {
     
   }
 
+  public function getSalesManager() {
+  
+    return $this->dm->getSalesManager($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }
