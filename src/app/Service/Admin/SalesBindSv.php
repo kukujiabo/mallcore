@@ -20,13 +20,13 @@ class SalesBindSv extends BaseService {
       
         'account' => $data['account'],
 
-        'mobile' => $mobile,
+        'sales_phone' => $mobile,
 
         'created_at' => date('Y-m-d H:i:s')
       
       );
     
-      array_push($newBinding, $newBindings);
+      array_push($newBindings, $newBinding);
     
     }
 
