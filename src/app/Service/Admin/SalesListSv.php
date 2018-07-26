@@ -107,7 +107,7 @@ class SalesListSv extends BaseService {
 
       $salesUsers[$key]['tutotal'] = $tUserCnt;
 
-      $salesUsers[$key]['hutotal'] = count($user);
+      $salesUsers[$key]['hutotal'] = count($users);
 
     }
 
