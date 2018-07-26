@@ -40,7 +40,7 @@ class SalesListSv extends BaseService {
 
       $orders = OrderTakeoutUnionSv::all(array('buyer_id' => $saleUser['uid']), null, null, "recommend_phone = {$salesUser['user_tel']}"); 
  
-      $users = UserSv::all(array('reference' => $saleUser['uid']));
+      $users = UserSv::all(array('reference' => $salesUser['uid']));
 
       /**
        * 计算今日订单
