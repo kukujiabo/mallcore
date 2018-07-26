@@ -40,7 +40,7 @@ class SalesListSv extends BaseService {
 
       $orders = OrderTakeoutUnionSv::all(array('buyer_id' => $saleUser['uid']), null, null, "recommend_phone = {$salesUser['user_tel']}"); 
  
-      $users = UserSv::all(array('reference' => $saleUser['member_identity']));
+      $users = UserSv::all(array('reference' => $saleUser['uid']));
 
       /**
        * 计算今日订单
@@ -103,9 +103,9 @@ class SalesListSv extends BaseService {
 
       $salesUsers[$key]['hototal'] = $hOrderCnt;
 
-      $salesUsers[$key]['mutotal'] = $tUserCnt;
+      $salesUsers[$key]['mutotal'] = $mUserCnt;
 
-      $salesUsers[$key]['tutotal'] = $mUserCnt;
+      $salesUsers[$key]['tutotal'] = $tUserCnt;
 
       $salesUsers[$key]['hutotal'] = count($user);
 
