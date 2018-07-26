@@ -83,13 +83,13 @@ class SalesListSv extends BaseService {
 
       foreach($users as $user) {
       
-        if (strtotime($user['reg_time']) < $today) {
+        if (strtotime($user['reg_time']) > $today) {
         
           $tUserCnt++;    
         
         }
 
-        if (strtotime($user['reg_time']) < $month) {
+        if (strtotime($user['reg_time']) > $month) {
         
           $mUserCnt++;
         
