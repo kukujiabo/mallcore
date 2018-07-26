@@ -24,23 +24,27 @@ class SalesListSv extends BaseService {
     
     }
 
-    if ($data['user_tel']) {
-    
-      $query['user_tel'] = $data['user_tel'];
-    
-    }
-
     $salesBinding = SalesBindSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
 
-    $salesPhones = array();
+    $salesUsers = array();
 
-    foreach($salesBinding['list'] as $sale) {
+    if ($data['user_tel']) {
+
+      $salesUsers = UserSv::all(array('user_tel' => $data['user_tel']));
+
+    } else {
     
-      array_push($salesPhones, $sale['sales_phone']);
+      $salesPhones = array();
+
+      foreach($salesBinding['list'] as $sale) {
+      
+        array_push($salesPhones, $sale['sales_phone']);
+      
+      }
+  
+      $salesUsers = UserSv::all(array('user_tel' => implode(',', $salesPhones)));
     
     }
-  
-    $salesUsers = UserSv::all(array('user_tel' => implode(',', $salesPhones)));
 
     foreach($salesUsers as $key => $salesUser) {
 
