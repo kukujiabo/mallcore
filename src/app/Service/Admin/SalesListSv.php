@@ -4,7 +4,7 @@ namespace App\Service\Admin;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
-use App\Serivce\Takeaway\OrderTakeOutUnionSv;
+use App\Service\Takeaway\OrderTakeoutUnionSv;
 
 /**
  *
@@ -38,13 +38,80 @@ class SalesListSv extends BaseService {
 
     foreach($salesUsers as $key => $salesUser) {
 
-      $orders = OrderTakeOutUnionSv::all(array('buyer_id' => $saleUser['uid']), '*', null, "recommend_phone = {$saleUser['user_tel']}"); 
-    
-      $saleUsers[$key]['order'] = $orders;
+      $orders = OrderTakeoutUnionSv::all(array('buyer_id' => $saleUser['uid']), null, null, "recommend_phone = {$salesUser['user_tel']}"); 
+ 
+      $users = UserSv::all(array('reference' => $saleUser['member_identity']));
+
+      /**
+       * 计算今日订单
+       */
+      $tOrderCnt = 0;
+
+      $mOrderCnt = 0;
+
+      $hOrderCnt = 0;
+
+      $today = strtotime(date('Y-m-d'));
+
+      $month = strtotime(date('Y-m-01'));
+
+      foreach ($orders as $order) {
+      
+        if (strtotime($order['created_at']) > $today && $order['order_status'] > 1) {
+        
+          $toOrderCnt++; 
+        
+        }
+
+        if (strtotime($order['created_at']) > $month && $order['order_status'] > 1) {
+        
+          $mOrderCnt++;
+        
+        }
+
+        if ($order['order_status'] > 1) {
+        
+          $hOrderCnt++;
+        
+        }
+      
+      }
+
+      $tUserCnt = 0;
+
+      $mUserCnt = 0;
+
+      foreach($users as $user) {
+      
+        if (strtotime($user['reg_time']) < $today) {
+        
+          $tUserCnt++;    
+        
+        }
+
+        if (strtotime($user['reg_time']) < $month) {
+        
+          $mUserCnt++;
+        
+        }
+
+      }
+
+      $salesUsers[$key]['mototal'] = $mOrderCnt; 
+
+      $salesUsers[$key]['tototal'] = $tOrderCnt;
+
+      $salesUsers[$key]['hototal'] = $hOrderCnt;
+
+      $salesUsers[$key]['mutotal'] = $tUserCnt;
+
+      $salesUsers[$key]['tutotal'] = $mUserCnt;
+
+      $salesUsers[$key]['hutotal'] = count($user);
 
     }
 
-    $salesBinding['list'] = $salesUsers
+    $salesBinding['list'] = $salesUsers;
 
     return $salesBinding;
   
