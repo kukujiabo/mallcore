@@ -43,7 +43,7 @@ class SalesListSv extends BaseService {
       
       }
   
-      $salesUsers = UserSv::all(array('user_tel' => implode(',', $salesPhones)));
+      $salesUsers = MemberUnionDataSv::all(array('user_tel' => implode(',', $salesPhones)));
     
     }
 
