@@ -40,4 +40,12 @@ class SalesBindSv extends BaseService {
   
   }
 
+  public function unbind($data) {
+  
+    $bind = self::findOne(array('account' => $data['account'], 'sales_phone' => $data['sales_phone']));
+  
+    return self::remove($bind['id']);
+  
+  }
+
 }

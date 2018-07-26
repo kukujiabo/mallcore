@@ -11,4 +11,10 @@ class SalesBindDm {
   
   }
 
+  public function unbind($data) {
+  
+    return SalesBindSv::unbind($data);
+  
+  }
+
 }
