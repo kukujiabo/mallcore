@@ -4,7 +4,7 @@ namespace App\Service\Admin;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
-use App\Service\Crm\MemberUnionDataSv;
+use App\Service\Crm\MemberUnionInfoSv;
 use App\Service\Takeaway\OrderTakeoutUnionSv;
 
 /**
@@ -31,7 +31,7 @@ class SalesListSv extends BaseService {
 
     if ($data['user_tel']) {
 
-      $salesUsers = MemberUnionDataSv::all(array('user_tel' => $data['user_tel']));
+      $salesUsers = MemberUnionInfoSv::all(array('user_tel' => $data['user_tel']));
 
     } else {
     
@@ -43,7 +43,7 @@ class SalesListSv extends BaseService {
       
       }
   
-      $salesUsers = MemberUnionDataSv::all(array('user_tel' => implode(',', $salesPhones)));
+      $salesUsers = MemberUnionInfoSv::all(array('user_tel' => implode(',', $salesPhones)));
     
     }
 
