@@ -16,7 +16,9 @@ class MemberUnionInfo extends BaseModel {
 
     'member_name' => 'like',
 
-    'remark' => 'like'
+    'remark' => 'like',
+
+    'user_tel' => 'in'
 
   );
 
