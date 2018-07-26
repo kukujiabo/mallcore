@@ -24,6 +24,12 @@ class SalesListSv extends BaseService {
     
     }
 
+    if ($data['user_tel']) {
+    
+      $query['user_tel'] = $data['user_tel'];
+    
+    }
+
     $salesBinding = SalesBindSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
 
     $salesPhones = array();
