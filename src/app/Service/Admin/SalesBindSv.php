@@ -3,6 +3,7 @@ namespace App\Service\Admin;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
+use App\Service\Crm\UserSv;
 
 class SalesBindSv extends BaseService {
 
@@ -41,9 +42,11 @@ class SalesBindSv extends BaseService {
   }
 
   public function unbind($data) {
-  
-    $bind = self::findOne(array('account' => $data['account'], 'sales_phone' => $data['sales_phone']));
-  
+
+    $user = UserSv::findOne(array('instance_id' => $data['account']));
+
+    $bind = self::findOne(array('account' => $user['uid'], 'sales_phone' => $data['sales_phone']));
+
     return self::remove($bind['id']);
   
   }
