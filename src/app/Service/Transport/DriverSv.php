@@ -41,26 +41,21 @@ class DriverSv extends BaseService {
   
     if ($data['account']) {
     
-      $query['account'] => $data['account'];
+      $query['account'] = $data['account'];
     
     }
     if ($data['name']) {
     
-      $query['name'] => $data['name'];
+      $query['name'] = $data['name'];
     
     }
     if ($data['city_code']) {
     
-      $query['city_code'] => $data['city_code'];
+      $query['city_code'] = $data['city_code'];
     
     }
 
     return self::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']); 
-  
-  }
-
-  public function importData($data) {
-  
   
   }
 
