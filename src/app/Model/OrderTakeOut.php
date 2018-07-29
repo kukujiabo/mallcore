@@ -22,6 +22,8 @@ class OrderTakeOut extends BaseModel {
 
         'shipping_time' => 'range',
 
+        'order_status' => 'range',
+
         'sign_time' => 'range',
 
         'consign_time' => 'range',
