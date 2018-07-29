@@ -36,6 +36,15 @@ class Driver extends BaseApi {
         'account' => 'account|string|true||账号',
         'password' => 'password|string|true||密码'
       
+      ),
+
+      'getOrderList' => array(
+      
+        'driver_phone' => 'driver_phone|string|true||驾驶员电话',
+        'trans' => 'trans|int|0||运输状态',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|20|每页条数'
+      
       )
     
     ));
@@ -67,12 +76,26 @@ class Driver extends BaseApi {
   }
 
   /**
+   * 驾驶员登录
+   * @desc 驾驶员登录
    *
-   *
+   * @return array
    */
   public function login() {
   
     return $this->dm->login($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询送货订单
+   * @desc 查询送货订单
+   *
+   * @return array list
+   */
+  public function getOrderList() {
+  
+    return $this->dm->getOrderList($this->retriveRuleParams(__FUNCTION__));
   
   }
 

@@ -23,4 +23,10 @@ class DriverDm {
   
   }
 
+  public function getOrderList($data) {
+  
+    return DriverSv::getOrderList($data); 
+  
+  }
+
 }
