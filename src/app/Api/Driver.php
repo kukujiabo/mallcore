@@ -25,6 +25,7 @@ class Driver extends BaseApi {
 
         'account' => 'account|string|false||账号',
         'name' => 'name|string|false||姓名',
+        'city_code' => 'city_code|string|true||所属城市',
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false|20|每页条数'
       
