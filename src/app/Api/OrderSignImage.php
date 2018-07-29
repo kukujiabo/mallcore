@@ -14,7 +14,7 @@ class OrderSignImage extends BaseApi {
       'create' => array(
       
         'order_id' => 'order_id|int|true||订单id',
-        'driver_id' => 'driver_id|true|int||驾驶员id',
+        'driver_id' => 'driver_id|int|true||驾驶员id',
         'path' => 'path|string|true||图片路径'
       
       ),

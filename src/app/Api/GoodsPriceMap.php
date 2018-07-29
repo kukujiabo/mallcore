@@ -31,7 +31,6 @@ class GoodsPriceMap extends BaseApi {
         'tax_off_price' => 'tax_off_price|float|false||含税价格',
 
         'skus' => 'skus|string|true||sku'
-
       
       ),
 
