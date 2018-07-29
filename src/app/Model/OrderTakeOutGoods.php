@@ -19,6 +19,8 @@ class OrderTakeOutGoods extends BaseModel {
       'sku_name' => 'like',
 
       'goods_id' => 'in',
+
+      'goods_money' => 'range',
       
       'created_at' => 'range'
 
