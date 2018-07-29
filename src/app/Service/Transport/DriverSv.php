@@ -21,7 +21,7 @@ class DriverSv extends BaseService {
 
       'name' => $data['name'],
     
-      'password' => $data['password'],
+      'password' => md5($data['password']),
 
       'city_code' => $data['city_code'],
 
