@@ -41,7 +41,7 @@ class Driver extends BaseApi {
       'getOrderList' => array(
       
         'driver_phone' => 'driver_phone|string|true||驾驶员电话',
-        'trans' => 'trans|int|0||运输状态',
+        'trans' => 'trans|string|0||运输状态',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|8|每页条数'
       
