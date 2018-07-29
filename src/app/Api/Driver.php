@@ -29,6 +29,13 @@ class Driver extends BaseApi {
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false|20|每页条数'
       
+      ),
+
+      'login' => array(
+      
+        'account' => 'account|string|true||账号',
+        'password' => 'password|string|true||密码'
+      
       )
     
     ));
@@ -56,6 +63,16 @@ class Driver extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   *
+   *
+   */
+  public function login() {
+  
+    return $this->dm->login($this->retriveRuleParams(__FUNCTION__));
   
   }
 

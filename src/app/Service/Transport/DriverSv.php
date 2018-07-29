@@ -14,6 +14,14 @@ class DriverSv extends BaseService {
   use CurdSv;
 
   public function create($data) {
+
+    $user = self::findOne(array('account' => $data['account']));
+
+    if (!$user) {
+    
+      return null;
+    
+    }
   
     $newDriver = [
       
@@ -56,6 +64,30 @@ class DriverSv extends BaseService {
     }
 
     return self::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']); 
+  
+  }
+
+  public function login($data) {
+  
+    $auth = array(
+    
+      'account' => $data['account'],
+    
+      'password' => md5($data['account']);
+    
+    );
+  
+    $user = self::findOne($auth);
+
+    if ($user) {
+    
+      return $user; 
+    
+    } else {
+    
+      return null;
+    
+    }
   
   }
 

@@ -17,4 +17,10 @@ class DriverDm {
   
   }
 
+  public function login($data) {
+  
+    return DriverSv::login($data);
+  
+  }
+
 }
