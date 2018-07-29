@@ -122,4 +122,48 @@ class DriverSv extends BaseService {
   
   }
 
+  public function confirmTrans($data) {
+  
+    if (!$data['driver_phone']) {
+    
+      return null;
+    
+    }
+     
+    $order = OrderTakeOutSv::findOne($data);
+
+    if ($order) {
+    
+      return OrderTakeOutSv::update($order['id'], array( 'trans' => 1 ));
+    
+    } else {
+    
+      return null;   
+    
+    }
+  
+  }
+
+  public function finishTrans($data) {
+  
+    if (!$data['driver_phone']) {
+    
+      return null;
+    
+    }
+     
+    $order = OrderTakeOutSv::findOne($data);
+
+    if ($order) {
+    
+      return OrderTakeOutSv::update($order['id'], array( 'trans' => 2 ));
+    
+    } else {
+    
+      return null;   
+    
+    }
+  
+  }
+
 }

@@ -29,4 +29,16 @@ class DriverDm {
   
   }
 
+  public function confirmTrans($data) {
+  
+    return DriverSv::confirmTrans($data); 
+  
+  }
+
+  public function finishTrans($data) {
+  
+    return DriverSv::finishTrans($data);
+  
+  }
+
 }

@@ -45,6 +45,20 @@ class Driver extends BaseApi {
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|8|每页条数'
       
+      ),
+
+      'confirmTrans' => array(
+      
+        'driver_phone' => 'driver_phone|string|true||驾驶员手机号',
+        'id' => 'id|int|true||订单id'
+      
+      ),
+
+      'finishTrans' => array(
+      
+        'driver_phone' => 'driver_phone|string|true||驾驶员手机号',
+        'id' => 'id|int|true||订单id'
+      
       )
     
     ));
@@ -96,6 +110,30 @@ class Driver extends BaseApi {
   public function getOrderList() {
   
     return $this->dm->getOrderList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 确认开始配送
+   * @desc 确认开始配送
+   *
+   * @return 
+   */
+  public function confirmTrans() {
+  
+    return $this->dm->confirmTrans($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 确认配送完成
+   * @desc 确认配送完成
+   *
+   * @return 
+   */
+  public function finishTrans() {
+  
+    return $this->dm->finishTrans($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
