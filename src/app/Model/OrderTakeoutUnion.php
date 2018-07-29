@@ -17,7 +17,9 @@ class OrderTakeoutUnion extends BaseModel {
 
    'reg_time' => 'range',
 
-   'audit_time' => 'range'
+   'audit_time' => 'range',
+
+   'trans' => 'in'
 
   );
 
