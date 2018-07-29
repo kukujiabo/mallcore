@@ -17,7 +17,7 @@ class DriverSv extends BaseService {
 
     $user = self::findOne(array('account' => $data['account']));
 
-    if (!$user) {
+    if ($user) {
     
       return null;
     
