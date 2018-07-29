@@ -116,7 +116,7 @@ class DriverSv extends BaseService {
 
     $query['driver_phone'] = $data['driver_phone'];
     
-    $orders = OrderTakeoutUnionSv::queryList($query, $data['fields'], 'trans, id desc', $data['page'], $data['page_size']);
+    $orders = OrderTakeoutUnionSv::queryList($query, $data['fields'], 'trans desc, id desc', $data['page'], $data['page_size']);
 
     return $orders;
   
