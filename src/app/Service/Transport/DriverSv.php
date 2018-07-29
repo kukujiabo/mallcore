@@ -101,11 +101,15 @@ class DriverSv extends BaseService {
 
     $query = array();     
 
+    if (!$data['phone']) {
+    
+      return array();
+    
+    }
+
     if ($data['trans']) {
     
       $query['trans'] = $data['trans'];
-    
-      return null;
     
     }
 
