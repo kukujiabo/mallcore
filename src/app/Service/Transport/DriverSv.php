@@ -101,7 +101,7 @@ class DriverSv extends BaseService {
 
     $query = array();     
 
-    if (!$data['phone']) {
+    if (!$data['driver_phone']) {
     
       return array();
     
@@ -113,7 +113,7 @@ class DriverSv extends BaseService {
     
     }
 
-    $query['driver_phone'] = $data['phone'];
+    $query['driver_phone'] = $data['driver_phone'];
     
     $orders = OrderTakeoutUnionSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
 
