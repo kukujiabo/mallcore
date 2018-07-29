@@ -115,7 +115,7 @@ class DriverSv extends BaseService {
 
     foreach($orders as $key => $order) {
     
-      $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id'], 'goods_money' => "eg|1")); 
+      $goods = OrderTakeOutGoodsSv::all(array('order_take_out_id' => $order['id'])); 
 
       $orders[$key]['goods'] = $goods;
     
