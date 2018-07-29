@@ -3,7 +3,7 @@ namespace App\Service\Transport;
 
 use App\Service\BaseService;
 use Core\Service\CurdSv;
-use App\Service\Takeaway\OrderTakeOutUnionSv;
+use App\Service\Takeaway\OrderTakeoutUnionSv;
 
 /**
  * 司机账号管理
@@ -110,7 +110,7 @@ class DriverSv extends BaseService {
 
     $query['driver_phone'] = $data['phone'];
     
-    return OrderTakeOutUnionSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
+    return OrderTakeoutUnionSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
