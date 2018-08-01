@@ -1842,7 +1842,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
         'creceiverphone' => $address['mobile'],
         'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
-        'caccid' => $cas[$key]
+        'caccid' => $order['cas']
       
       );
 
