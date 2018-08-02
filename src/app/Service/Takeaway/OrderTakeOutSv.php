@@ -1881,6 +1881,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       if ($result['status'] == 0) {
       
         self::update($orders[$key]['id'], array('audit' => 1, 'audit_time' => date('Y-m-d H:i:s')));
+
+        /**
+         * 审核成功的订单，为用户添加积分
+         *
+         */
+        MemberAccountSv::addAccountPoint($trans['cbuser_id'], intval($order['order_money']), 1, $orders[$key]['id'], '下单返积分');
       
       }
       
