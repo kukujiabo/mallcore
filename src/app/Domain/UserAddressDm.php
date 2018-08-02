@@ -75,4 +75,10 @@ class UserAddressDm {
 
     }
 
+    public function searchAllAddress($params) {
+    
+      return UserSv::searchAllAddress($params); 
+    
+    }
+
 }

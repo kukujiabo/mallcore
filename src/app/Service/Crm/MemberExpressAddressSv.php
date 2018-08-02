@@ -256,4 +256,19 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
     }
 
+
+    public function searchAllAddress($data) {
+    
+      $user = UserSv::getUserByToken($condition['token']);
+    
+      $content = $data['content'];
+
+      $query = array( 'uid' => $user['uid'] );
+
+      $or = "consigner like '%{$content}%' or mobile like '%{$content}%' or address '%{$content}%'";
+      
+      return self::queryList($query, 'id desc', '*', $or);
+    
+    }
+
 }

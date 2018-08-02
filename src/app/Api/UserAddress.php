@@ -103,6 +103,14 @@ class UserAddress extends BaseApi {
             'remove' => array(
                 'address_id'  => array('name' => 'address_id', 'type' => 'string', 'require' => true, 'default' => '', 'desc' => '地址id'),
             ),
+
+            'searchAllAddress' => array(
+            
+              'token' => 'token|string|true||令牌',
+              'content' => 'content|string|true||关键字',
+            
+            )
+
         ));
     }
     
@@ -292,6 +300,18 @@ class UserAddress extends BaseApi {
 
         return $this->dm->remove($conditions);
 
+    }
+
+    /**
+     * 查询地址
+     * @desc 查询地址
+     *
+     * @return array list
+     */
+    public function searchAllAddress() {
+    
+      return $this->dm->searchAllAddress($this->retriveRuleParams(__FUNCTION__));
+    
     }
 
 }
