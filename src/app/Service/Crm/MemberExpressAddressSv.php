@@ -259,7 +259,7 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
     public function searchAllAddress($data) {
     
-      $user = UserSv::getUserByToken($condition['token']);
+      $user = UserSv::getUserByToken($data['token']);
     
       $content = $data['content'];
 
