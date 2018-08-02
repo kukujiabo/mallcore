@@ -230,7 +230,9 @@ class MemberAccountSv extends BaseService implements IMemberAccount {
      */
     public function addPoints($uid, $point) {
 
-      MemberAccount::updateByUid($uid, array('point' => "+{$point}"));
+      $acctInfo = self::findOne(array('uid' => $uid));
+
+      return MemberAccount::updateByUid($uid, array('point' => intval($acctInfo['point']) + $point));
 
     }
 
