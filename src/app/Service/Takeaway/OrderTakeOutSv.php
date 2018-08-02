@@ -1886,7 +1886,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
          * 审核成功的订单，为用户添加积分
          *
          */
-        MemberAccountSv::addAccountPoint($orders[$key]['buyer_id'], intval($orders[$key]['order_money']), 1, $orders[$key]['id'], '下单返积分');
+        MemberAccountSv::addAccountPoints($orders[$key]['buyer_id'], intval($orders[$key]['order_money']), 1, $orders[$key]['id'], '下单返积分');
       
       }
       
