@@ -267,7 +267,7 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
       $query = array( 'uid' => $user['uid'] );
 
-      $or = "consigner like '%{$content}%' or mobile like '%{$content}%' or address like '%{$encodeContent}%'";
+      $or = "consigner like '%{$encodeContent}%' or mobile like '%{$content}%' or address like '%{$encodeContent}%'";
       
       return self::all($query, 'id desc', '*', $or);
     
