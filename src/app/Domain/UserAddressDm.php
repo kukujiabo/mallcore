@@ -77,7 +77,7 @@ class UserAddressDm {
 
     public function searchAllAddress($params) {
     
-      return UserSv::searchAllAddress($params); 
+      return MemberExpressAddressSv::searchAllAddress($params); 
     
     }
 
