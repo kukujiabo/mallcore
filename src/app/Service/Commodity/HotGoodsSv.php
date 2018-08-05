@@ -35,7 +35,7 @@ class HotGoodsSv extends BaseService {
 
     if ($data['city_code']) {
     
-      $query['city_code'] = $data['city_code'];
+      $query['hot_city'] = $data['city_code'];
     
     }
   
