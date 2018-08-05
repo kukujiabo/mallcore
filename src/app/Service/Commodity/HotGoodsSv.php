@@ -43,4 +43,5 @@ class HotGoodsSv extends BaseService {
   
   }
 
+
 }

@@ -17,4 +17,10 @@ class HotGoodsDm {
   
   }
 
+  public function remove($data) {
+  
+    return HotGoodsSv::remove($data['id']);
+  
+  }
+
 }

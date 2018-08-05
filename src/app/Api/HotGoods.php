@@ -25,6 +25,12 @@ class HotGoods extends BaseApi {
         'page' => 'page|int|true||页码',
         'page_size' => 'page_size|int|true||每页条数'
       
+      ),
+
+      'remove' => array(
+      
+        'id' => 'id|int|true||删除'
+      
       )
     
     ));
@@ -52,6 +58,18 @@ class HotGoods extends BaseApi {
   public function getList() {
   
     return $this->dm->getList($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 删除爆款商品
+   * @desc 删除爆款商品
+   *
+   * @return int num
+   */
+  public function remove() {
+  
+    return $this->dm->remove($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
