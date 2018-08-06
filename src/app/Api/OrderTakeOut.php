@@ -405,7 +405,7 @@ class OrderTakeOut extends BaseApi {
 
       'getOrderNum' => array(
       
-        'token' => 'token|int|true||用户token'
+        'token' => 'token|string|true||用户token'
       
       )
 
