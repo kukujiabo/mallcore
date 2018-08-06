@@ -181,4 +181,10 @@ class OrderTakeOutDm {
   
   }
 
+  public function getOrderNum($data) {
+  
+    return OrderTakeOutSv::getOrderNum($data);
+  
+  }
+
 }

@@ -401,6 +401,12 @@ class OrderTakeOut extends BaseApi {
         'sku_id' => 'sku_id|int|true||订单商品编号',
         'num' => 'num|string|true||退货数量'
       
+      ),
+
+      'getOrderNum' => array(
+      
+        'token' => 'token|int|true||用户token'
+      
       )
 
     ));
@@ -878,6 +884,12 @@ class OrderTakeOut extends BaseApi {
   public function orderAfterSale() {
   
     return $this->dm->orderAfterSale($this->retriveRuleParams(__FUNCTION__));  
+  
+  }
+
+  public function getOrderNum() {
+  
+    return $this->dm->getOrderNum($this->retriveRuleParams(__FUNCTION__));
   
   }
 

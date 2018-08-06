@@ -2213,4 +2213,34 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
   }
 
+  public function getOrderNum($data) {
+  
+    $user = UserSv::getUserByToken(array('token' => $data['token']));
+
+    $orders = self::all(array('buyer_id' => $user['uid'])); 
+
+    $deliverNum = 0;
+
+    $receiveNum = 0;
+  
+    foreach($orders as $order) {
+    
+      if ($order['order_status'] == 1) {
+      
+        $deliverNum++;
+      
+      }
+
+      if ($order['order_status'] == 2) {
+      
+        $receiveNum++;
+      
+      }
+    
+    }
+
+    return array( 'deliver_num' => $deliverNum, 'receive_num' => $receiveNum);
+  
+  }
+
 }
