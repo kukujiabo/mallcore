@@ -2219,19 +2219,27 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
     $orders = self::all(array('buyer_id' => $user['uid'])); 
 
+    $nopayNum = 0;
+
     $deliverNum = 0;
 
     $receiveNum = 0;
   
     foreach($orders as $order) {
-    
+
       if ($order['order_status'] == 1) {
+      
+        $nopayNum++;
+      
+      }
+    
+      if ($order['order_status'] == 2) {
       
         $deliverNum++;
       
       }
 
-      if ($order['order_status'] == 2) {
+      if ($order['order_status'] == 3) {
       
         $receiveNum++;
       
@@ -2239,7 +2247,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     
     }
 
-    return array( 'deliver_num' => $deliverNum, 'receive_num' => $receiveNum);
+    return array( 'nopayNum' => $nopayNum, 'deliver_num' => $deliverNum, 'receive_num' => $receiveNum);
   
   }
 
