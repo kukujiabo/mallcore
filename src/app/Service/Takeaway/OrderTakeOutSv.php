@@ -2215,7 +2215,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
   public function getOrderNum($data) {
   
-    $user = UserSv::getUserByToken(array('token' => $data['token']));
+    $user = UserSv::getUserByToken($data['token']);
 
     $orders = self::all(array('buyer_id' => $user['uid'])); 
 
