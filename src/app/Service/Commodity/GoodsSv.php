@@ -77,6 +77,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['shop_id'] = $params['shop_id'];
       $data['is_sku'] = $params['is_sku'];
       $data['sign'] = $params['sign'];
+      $data['signature'] = $params['signature'];
       $data['goods_number'] = $params['goods_number'];
       $data['category_id'] = $params['category_id'];
       $data['state'] = $params['state'];
@@ -146,6 +147,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['goods_number'] = $params['goods_number'];
       $data['category_id'] = $params['category_id'];
       $data['sign'] = $params['sign'];
+      $data['signature'] = $params['signature'];
       $data['state'] = $params['state'];
       $data['price'] = $params['price'];
       $data['max_price'] = $params['max_price'];
@@ -734,11 +736,11 @@ class GoodsSv extends BaseService implements IGoods {
 
     foreach($ogoods as $ogood) {
     
-      array_push($goodsSign, $ogood['sign']);
+      array_push($goodsSign, $ogood['signature']);
     
     }
 
-    $goods = self::all(array('sign' => implode(',', $goodsSign)));
+    $goods = self::all(array('signature' => implode(',', $goodsSign)));
 
     $returnGoods = array();
 

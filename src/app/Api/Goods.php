@@ -719,7 +719,9 @@ class Goods extends BaseApi {
 
           'goods_name' => 'goods_name|string|true||商品名称',
 
-          'sign' => 'sign|string|false||商品标签',
+          'sign' => 'sign|string|false||商品提示',
+
+          'signature' => 'signature|string|false||商品标签',
 
           'shop_id' => 'shop_id|int|true||店铺id',
 
@@ -807,7 +809,9 @@ class Goods extends BaseApi {
 
           'goods_name' => 'goods_name|string|true||商品名称',
 
-          'sign' => 'sign|string|false||商品标签',
+          'sign' => 'sign|string|false||商品提示',
+
+          'signature' => 'signature|string|false||商品标签',
 
           'shop_id' => 'shop_id|int|true||店铺id',
 
