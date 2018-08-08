@@ -382,8 +382,6 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       // 获取订单详情
       $info_order_take_out = self::findOne($where_order_take_out);
 
-
-
       if (!$info_order_take_out) { 
 
           //外卖订单不存在则抛出异常
@@ -964,6 +962,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $coupon = CouponSv::findOne($data['coupon_id']);
 
         $data['coupon_money'] = $coupon['money'];
+
+        CouponSv::update($data['coupon_id'], array('state' => 2));
       
       } else {
 
@@ -1193,6 +1193,20 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       $data_goods['uid'] = $data_address['uid'] = $data['buyer_id'];
 
       $data['shipping_money'] = 0;
+
+      if ($data['coupon_id']) {
+      
+        $coupon = CouponSv::findOne($data['coupon_id']);
+
+        $data['coupon_money'] = $coupon['money'];
+
+        CouponSv::update($data['coupon_id'], array('state' => 2));
+      
+      } else {
+
+        $data['coupon_money'] = 0;
+
+      }
 
       $data['order_money'] = $data['goods_money'] + $data['shipping_money'];
 
@@ -1845,8 +1859,8 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         'wechatphone' => $userInfo['user_tel'],
         'csocode' => $sn,
         'ddate' => $order['create_time'],
-        'couponno' => "",
-        'couponmoney' => 0,
+        'couponno' => $order['coupon_id'],
+        'couponmoney' => $order['coupon_money'],
         'cdepcode' => $order['city_code'],
         'cpersoncode' => "",
         'binvoice' => $order['invoice'],
