@@ -1210,7 +1210,11 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $data['order_money'] = $data['goods_money'] + $data['shipping_money'];
 
-      $money = $data['order_money'] - $data['point_money'] - $data['coupon_money'];
+      if ($data['coupon_money']) {
+      
+        $data['order_money'] -= $data['coupon_money'];
+      
+      }
 
       $balance = 0;
 
@@ -1275,7 +1279,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $payment = array(
             'pay_type' => 2, // 支付类型
             'out_trade_no' => $data['sn'],
-            'money' => $data['goods_money'],
+            'money' => $data['order_money'],
             'ip_address' => $_SERVER['REMOTE_ADDR'],
             'open_id' => $info_user['wx_openid'],
             'nonce_str' => md5($info_user['wx_openid'] . time()),
@@ -1286,7 +1290,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         $payInfo = PaySv::wechatPayAction($payment);
 
         $payInfo['sn'] = $data['sn'];
-        $payInfo['price'] = $data['goods_money'];
+        $payInfo['price'] = $data['order_money'];
         $payInfo['id'] = $id;
 
         return $payInfo;
@@ -1297,7 +1301,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
         
         $info_return['sn'] = $data['sn'];
 
-        $info_return['price'] = $data['goods_money'];
+        $info_return['price'] = $data['order_money'];
       
         return $info_return;
       
