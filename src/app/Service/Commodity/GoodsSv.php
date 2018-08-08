@@ -491,6 +491,14 @@ class GoodsSv extends BaseService implements IGoods {
     
     }
 
+    if ($condition['city_code']) {
+    
+      $condition['cities'] = $condition['city_code'];
+    
+      unset($condition['city_code']);
+    
+    }
+
     $goods = GoodsViewSv::getList($condition);
 
     if ($manager) {

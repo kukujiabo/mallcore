@@ -20,7 +20,7 @@ class Goodsview extends BaseModel {
 
       'category_id' => 'in',
 
-      'city_code' => 'like',
+      'cities' => 'like',
 
       'sign' => 'in'
 
