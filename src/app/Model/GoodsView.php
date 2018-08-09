@@ -22,7 +22,9 @@ class Goodsview extends BaseModel {
 
       'cities' => 'like',
 
-      'sign' => 'in'
+      'sign' => 'in',
+
+      'signature' => 'like'
 
     );  
     
