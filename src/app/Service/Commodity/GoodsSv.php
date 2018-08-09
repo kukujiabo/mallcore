@@ -93,6 +93,22 @@ class GoodsSv extends BaseService implements IGoods {
       $data['index_show'] = $params['index_show'];
       $data['cities'] = $params['cities'];
 
+      if ($data['signature']) {
+      
+        $signatures = explode(' ', $data['signature']);
+      
+        foreach($signatures as $goodSignature) {
+        
+          if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
+          
+            GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
+          
+          }
+        
+        }
+      
+      }
+
       // 添加商品主数据
       $goods_id = $params['goods_id'];
 
@@ -160,6 +176,23 @@ class GoodsSv extends BaseService implements IGoods {
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
       $data['cities'] = $params['cities'];
+      
+
+      if ($data['signature']) {
+      
+        $signatures = explode(' ', $data['signature']);
+      
+        foreach($signatures as $goodSignature) {
+        
+          if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
+          
+            GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
+          
+          }
+        
+        }
+      
+      }
 
       // 添加商品主数据
       $params['goods_id'] = $goods_id = self::addGoods($data);
