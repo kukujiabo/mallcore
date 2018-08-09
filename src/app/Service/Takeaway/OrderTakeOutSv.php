@@ -2286,7 +2286,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
   public function getTransFirstLocation($data) {
     
-    return TransSv::queryList(array('order_id' => $data['order_id'], '*', 'id desc', 1, 1));
+    return TransSv::queryList(array('order_id' => $data['order_id']), '*', 'id desc', 1, 1);
   
   }
 
