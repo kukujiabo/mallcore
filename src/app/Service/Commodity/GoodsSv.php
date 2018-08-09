@@ -93,9 +93,9 @@ class GoodsSv extends BaseService implements IGoods {
       $data['index_show'] = $params['index_show'];
       $data['cities'] = $params['cities'];
 
-      if ($data['signature']) {
+      if ($params['signature']) {
       
-        $signatures = explode(' ', $data['signature']);
+        $signatures = explode(' ', $params['signature']);
       
         foreach($signatures as $goodSignature) {
         
@@ -178,9 +178,9 @@ class GoodsSv extends BaseService implements IGoods {
       $data['cities'] = $params['cities'];
       
 
-      if ($data['signature']) {
+      if ($params['signature']) {
       
-        $signatures = explode(' ', $data['signature']);
+        $signatures = explode(' ', $params['signature']);
       
         foreach($signatures as $goodSignature) {
         
