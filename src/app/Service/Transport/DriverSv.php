@@ -156,7 +156,7 @@ class DriverSv extends BaseService {
 
     if ($order) {
     
-      return OrderTakeOutSv::update($order['id'], array( 'trans' => 2 ));
+      return OrderTakeOutSv::update($order['id'], array( 'trans' => 2, 'order_status' => 4 ));
     
     } else {
     
