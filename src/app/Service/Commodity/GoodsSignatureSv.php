@@ -8,4 +8,10 @@ class GoodsSignatureSv extends BaseService {
 
   use CurdSv;
 
+  public function getAll() {
+  
+    return self::all(array());
+  
+  }
+
 }
