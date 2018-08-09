@@ -99,7 +99,7 @@ class GoodsSv extends BaseService implements IGoods {
       
         foreach($signatures as $goodSignature) {
         
-          if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
+          if (!GoodsSignatureSv::findOne(array('signature' => iconv('UTF-8', 'GBK', $goodSignature)))) {
           
             GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
           
@@ -184,7 +184,7 @@ class GoodsSv extends BaseService implements IGoods {
       
         foreach($signatures as $goodSignature) {
         
-          if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
+          if (!GoodsSignatureSv::findOne(array('signature' => iconv('UTF-8', 'GBK', $goodSignature)))) {
           
             GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
           
