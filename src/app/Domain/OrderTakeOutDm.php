@@ -187,4 +187,10 @@ class OrderTakeOutDm {
   
   }
 
+  public function getTransFirstLocation($data) {
+  
+    return OrderTakeOutSv::getTransFirstLocation($data);
+  
+  }
+
 }

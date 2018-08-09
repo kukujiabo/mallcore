@@ -407,6 +407,14 @@ class OrderTakeOut extends BaseApi {
       
         'token' => 'token|string|true||用户token'
       
+      ),
+
+      'getTransFirstLocation' => array(
+      
+        'token' => 'token|string|true||用户token',
+
+        'order_id' => 'order_id|int|true||订单id'
+      
       )
 
     ));
@@ -890,6 +898,18 @@ class OrderTakeOut extends BaseApi {
   public function getOrderNum() {
   
     return $this->dm->getOrderNum($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 获取订单当前配送位置
+   * @desc 获取订单当前配送位置
+   *
+   * @return array data
+   */
+  public function getTransFirstLocation() {
+  
+    return $this->dm->getTransFirstLocation($this->retriveRuleParams(__FUNCTION__));
   
   }
 

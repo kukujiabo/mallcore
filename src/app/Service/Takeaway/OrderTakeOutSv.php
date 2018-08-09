@@ -30,6 +30,7 @@ use App\Service\Crm\MemberAccountRecordSv;
 use App\Service\Crm\CouponSv;
 use App\Library\RedisClient;
 use App\Service\Poss\PosSv;
+use App\Service\Transport\TransSv;
 use App\Service\Takeaway\OrderTakeOutDataSv;
 use App\Service\Wechat\WechatTemplateMessageSv;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -2280,6 +2281,12 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
     }
 
     return array( 'nopayNum' => $nopayNum, 'deliver_num' => $deliverNum, 'receive_num' => $receiveNum);
+  
+  }
+
+  public function getTransFirstLocation($data) {
+    
+    return TransSv::queryList(array('order_id' => $data['order_id'], '*', 'id desc', 1, 1));
   
   }
 
