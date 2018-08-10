@@ -738,7 +738,7 @@ class CouponSv extends BaseService implements ICoupon {
 
     foreach($coupons as $coupon) {
     
-      array_push($couponTypeIds as $coupon['coupon_type_id']);
+      array_push($couponTypeIds, $coupon['coupon_type_id']);
     
     }
 
