@@ -369,11 +369,13 @@ class CouponSv extends BaseService implements ICoupon {
 
       'ext_1' => $couponType['ext_1'],
 
+      'coupon_image' => $couponType['coupon_image'],
+
       'ext_2' => $couponType['ext_2']
 
     );
 
-    $insertData['qr_code'] = \App\qrCode($insertData['coupon_code'], true);
+    //$insertData['qr_code'] = \App\qrCode($insertData['coupon_code'], true);
 
     try {
 
