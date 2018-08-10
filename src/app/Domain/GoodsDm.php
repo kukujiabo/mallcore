@@ -104,17 +104,18 @@ class GoodsDm {
 
        'goods_id' => $good['goods_id'],
 
-       'goods_name' => $good['goods_name']
+       'goods_name' => $good['goods_name'],
+
+       'thumbnail' => $good['thumbnail']
 
       );
 
-                 array_push($allGoods, $goodInfo);
+      array_push($allGoods, $goodInfo);
 
-               }
+    }
 
-        return $allGoods;
+    return $allGoods;
       
-
   }
 
   public function getRecommendGoods($data) {
