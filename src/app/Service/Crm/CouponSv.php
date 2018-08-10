@@ -738,8 +738,8 @@ class CouponSv extends BaseService implements ICoupon {
 
     foreach($coupons as $coupon) {
     
-      array_push($couponTypeIds, $coupon['coupon_type_id']);
-    
+      array_push($couponTypeIds, $coupon['key']);
+
     }
 
     $couponTypes = CouponTypeSv::all(array('coupon_type_id' => implode(',', $couponTypeIds)));
@@ -748,7 +748,7 @@ class CouponSv extends BaseService implements ICoupon {
     
       foreach($coupons as $key => $coupon) {
 
-        if ($coupon['coupon_type_id'] == $couponType['coupon_type_id']) {
+        if ($coupon['key'] == $couponType['coupon_type_id']) {
       
           $coupons[$key]['coupon_image'] = $couponType['coupon_image'];
       
