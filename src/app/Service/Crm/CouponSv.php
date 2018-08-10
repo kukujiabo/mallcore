@@ -599,6 +599,8 @@ class CouponSv extends BaseService implements ICoupon {
 
           'ext_2' => $couponType['ext_2'],
 
+          'coupon_image' => $couponType['coupon_image']
+
         );
 
 
