@@ -106,7 +106,9 @@ class GoodsDm {
 
        'goods_name' => $good['goods_name'],
 
-       'thumbnail' => $good['thumbnail']
+       'thumbnail' => $good['thumbnail'],
+
+       'price' => $good['price']
 
       );
 
