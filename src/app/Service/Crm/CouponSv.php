@@ -734,6 +734,30 @@ class CouponSv extends BaseService implements ICoupon {
   
     $coupons = json_decode($params['coupons'], true);
 
+    $couponTypeIds = array();
+
+    foreach($coupons as $coupon) {
+    
+      array_push($couponTypeIds as $coupon['coupon_type_id']);
+    
+    }
+
+    $couponTypes = CouponTypeSv::all(array('coupon_type_id' => implode(',', $couponTypeIds)));
+
+    foreach($couponTypes as $couponType) {
+    
+      foreach($coupons as $key => $coupon) {
+
+        if ($coupon['coupon_type_id'] == $couponType['coupon_type_id']) {
+      
+          $coupons[$key]['coupon_image'] = $couponType['coupon_image'];
+      
+        }
+      
+      }
+    
+    }
+
     $members = null;
 
     if ($params['member_name']) {
