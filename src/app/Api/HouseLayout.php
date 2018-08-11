@@ -16,7 +16,9 @@ class HouseLayout extends BaseApi {
       
         'layout_name' => 'layout_name|string|true||布局名称',
 
-        'info' => 'info|string|false||布局备注'
+        'info' => 'info|string|false||布局备注',
+
+        'attrs' => 'attrs|string|false||布局属性'
       
       ),
     

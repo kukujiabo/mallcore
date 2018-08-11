@@ -24,7 +24,37 @@ class HouseLayoutSv extends BaseService {
     
     );
   
-    return self::add($newData);
+    $id = self::add($newData);
+
+    $attrs = json_decode($newData);
+
+    $layoutAttrs = array();
+
+    foreach($attrs as $attr) {
+    
+      $layout = array(
+      
+        'layout_id' => $id,
+
+        'attr_val' => $attr['attr_val'],
+
+        'num' => $attr['num'],
+
+        'rank' => $attr['rank'],
+
+        'goods' => $attr['goods'],
+
+        'created_at' => date('Y-m-d H:i:s')
+      
+      );
+
+      array_push($layoutAttrs, $layout);
+    
+    } 
+
+    LayoutAttributeSv::batchAdd($layoutAttrs);
+    
+    return $id;
 
   }
 
