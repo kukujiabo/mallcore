@@ -44,7 +44,7 @@ class HouseLayoutSv extends BaseService {
 
         'rank' => $attr['rank'],
 
-        'goods' => $attr['goods'],
+        'goods' => json_encode($attr['goods']),
 
         'created_at' => date('Y-m-d H:i:s')
       
