@@ -19,14 +19,16 @@ class HouseLayoutSv extends BaseService {
     $newData = array(
     
       'layout_name' => $data['layout_name'],
+
       'info' => $data['info'],
-      'create_at' => date('Y-m-d H:i:s')
+
+      'created_at' => date('Y-m-d H:i:s')
     
     );
   
     $id = self::add($newData);
 
-    $attrs = json_decode($newData);
+    $attrs = json_decode($data['attrs']);
 
     $layoutAttrs = array();
 
