@@ -71,4 +71,20 @@ class HouseLayoutSv extends BaseService {
   
   }
 
+  /**
+   * 获取详情
+   *
+   */
+  public function getDetail($data) {
+  
+    $detail = self::findOne($data['id']); 
+
+    $attrs = LayoutAttributeSv::all(array( 'layout_id' => $data['id'] ));
+
+    $detail['attrs'] = json_encode($attrs);
+
+    return $detail;
+  
+  }
+
 }

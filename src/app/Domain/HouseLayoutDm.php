@@ -17,4 +17,10 @@ class HouseLayoutDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return HouseLayoutSv::getDetail($data);
+  
+  }
+
 }

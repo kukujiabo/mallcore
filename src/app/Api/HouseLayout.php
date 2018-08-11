@@ -25,6 +25,12 @@ class HouseLayout extends BaseApi {
       'getAll' => array(
       
       
+      ),
+
+      'getDetail' => array(
+
+        'id' => 'id|int|true||获取布局详情'
+      
       )
     
     ));
@@ -51,6 +57,18 @@ class HouseLayout extends BaseApi {
   public function getAll() {
   
     return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询详情
+   * @desc 查询详情
+   *
+   * @return array data
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__));
   
   }
 
