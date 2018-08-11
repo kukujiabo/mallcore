@@ -23,4 +23,10 @@ class HouseLayoutDm {
   
   }
 
+  public function updateLayout($data) {
+  
+    return HouseLayoutSv::updateLayout($data);
+  
+  }
+
 }

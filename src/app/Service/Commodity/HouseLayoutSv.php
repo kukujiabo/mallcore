@@ -85,4 +85,60 @@ class HouseLayoutSv extends BaseService {
   
   }
 
+  public function updateLayout($data) {
+  
+    $updateData = array(
+    
+      'layout_name' => $data['layout_name'],
+
+      'info' => $data['info'],
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    );
+
+    $updateNum = 0;
+
+    $updateNum += self::update($data['id'], $updateData);
+
+    $attrIds = array();
+
+    $attrs = json_decode($data['attrs']);
+
+    foreach($attrs as $attr) {
+    
+      array_push($attrIds, $attr['id']);
+    
+    }
+
+    $attributes = LayoutAttributeSv::all(array( 'layout_id' => $data['id'] ));
+
+    $oldIds = array();
+    
+    foreach($attributes as $attribute) {
+    
+      array_push($oldIds, $attribute['id']);
+    
+    }
+
+    foreach($oldIds as $oldId) {
+    
+      if(!in_array($oldId, $attrIds)) {
+      
+        $updateNum += LayoutAttributeSv::remove($oldId);  
+      
+      }
+
+    }
+
+    foreach($attrs as $attr) {
+    
+      $updateNum += LayoutAttributeSv::update($attr['id'], $attr); 
+    
+    }
+
+    return $updateNum;
+  
+  }
+
 }
