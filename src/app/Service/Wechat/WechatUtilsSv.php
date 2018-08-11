@@ -321,7 +321,7 @@ class WechatUtilsSv extends BaseService {
 
         'scene' => $scene,
       
-        'page' => "pages/mall/mall",
+        'page' => "pages/index/index",
 
         'width' => $width,
 
