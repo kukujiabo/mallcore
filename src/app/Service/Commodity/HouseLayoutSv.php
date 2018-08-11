@@ -28,7 +28,7 @@ class HouseLayoutSv extends BaseService {
   
     $id = self::add($newData);
 
-    $attrs = json_decode($data['attrs']);
+    $attrs = json_decode($data['attrs'], true);
 
     $layoutAttrs = array();
 
