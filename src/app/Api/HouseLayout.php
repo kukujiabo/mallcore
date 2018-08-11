@@ -50,7 +50,7 @@ class HouseLayout extends BaseApi {
    */
   public function getAll() {
   
-    return $this->dm->getList($this->retriveRuleParams(__FUNCTION__));
+    return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
   
   }
 
