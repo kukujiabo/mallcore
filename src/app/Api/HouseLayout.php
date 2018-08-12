@@ -29,19 +29,25 @@ class HouseLayout extends BaseApi {
 
       'getDetail' => array(
 
-        'id' => 'id|int|true||获取布局详情'
+        'id' => 'id|int|true||id'
       
       ),
 
       'updateLayout' => array(
       
-        'id' => 'id|int|true||获取布局详情',
+        'id' => 'id|int|true||id',
       
         'layout_name' => 'layout_name|string|true||布局名称',
 
         'info' => 'info|string|false||布局备注',
 
         'attrs' => 'attrs|string|false||布局属性'
+      
+      ),
+
+      'removeLayout' => array(
+      
+        'id' => 'id|int|true||id'
       
       )
     
@@ -84,9 +90,27 @@ class HouseLayout extends BaseApi {
   
   }
 
+  /**
+   * 更新布局信息
+   * @desc 更新布局信息
+   *
+   * @return int num
+   */
   public function updateLayout() {
   
     return $this->dm->updateLayout($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 删除布局
+   * @desc 删除布局
+   *
+   * @return int num
+   */
+  public function removeLayout() {
+  
+    return $this->dm->removeLayout($this->retriveRuleParams(__FUNCTION__));
   
   }
 

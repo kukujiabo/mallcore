@@ -141,4 +141,14 @@ class HouseLayoutSv extends BaseService {
   
   }
 
+  public function removeLayout($data) {
+  
+    $num = self::remove($data['id']);
+  
+    $num += LayoutAttributeSv::removeAll(array( 'layout_id' => $data['id'] ));
+
+    return $num;
+  
+  }
+
 }

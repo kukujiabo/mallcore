@@ -29,4 +29,10 @@ class HouseLayoutDm {
   
   }
 
+  public function removeLayout($data) {
+  
+    return HouseLayoutSv::removeLayout($data); 
+  
+  }
+
 }
