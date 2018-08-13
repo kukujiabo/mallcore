@@ -103,7 +103,7 @@ class WechatSceneSv {
     /**
      * 获取用户unionid
      */
-    $access_token = WechatUtilsSv::getAccessToken('access_token_rongyi', $appid, $secret);
+    $access_token = WechatUtilsSv::getAccessToken('wps_access_token', $appid, $secret);
 
     $unionResponse = WechatUtilsSv::getUnionid($openId, $access_token);
 
