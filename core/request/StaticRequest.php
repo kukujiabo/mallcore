@@ -20,7 +20,7 @@ class StaticRequest extends Request {
 
       $query = explode('?', $service);
 
-      $service = substr($query[0], 1, strlen($service) - 1);
+      $service = substr($query[0], 0, strlen($service) - 1);
 
     }
 
