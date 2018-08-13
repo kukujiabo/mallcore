@@ -48,6 +48,8 @@ class WechatTemplateMessage extends BaseApi {
 
         'object_id' => 'object_id|string|false||相关单号',
 
+        'object_key' => 'object_key|string|false||相关键',
+
         'topcolor' => 'topcolor|string|false|#ff0000|顶部颜色',
 
         'template_id' => 'template_id|string|false||推送模版id',
