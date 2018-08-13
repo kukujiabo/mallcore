@@ -114,6 +114,12 @@ class Member extends BaseApi {
         'location'  => array('name' => 'location', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '所在地'),
 
         'sex'  => array('name' => 'sex', 'type' => 'int', 'require' => false, 'default' => '', 'desc' => '性别 0-保密 1-男 2-女'),
+
+        'encryptedData' => 'encryptedData|string|false||加密数据',
+
+        'iv' => 'iv|string|false||加密密钥',
+
+        'signature' => 'signature|string|false||加密签名'
       
       ),
 

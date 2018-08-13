@@ -326,6 +326,18 @@ class MemberSv extends BaseService implements IMember {
 
     $uupdate = 0;
 
+    if ($data['encryptedData']) { //存在加密数据需要解密
+    
+      $decryptedData = self::decryptData($data);
+
+      if ($decryptedData) {
+      
+        $userUpdate['wx_unionid'] = $decryptedData['unionid'];
+
+      }
+    
+    }
+
     !empty($userUpdate) ? $uupdate = UserSv::update($uid, $userUpdate) : null;
 
     /**
