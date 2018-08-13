@@ -332,7 +332,7 @@ class MemberSv extends BaseService implements IMember {
 
       if ($decryptedData) {
       
-        $userUpdate['wx_unionid'] = $decryptedData['unionid'];
+        $userUpdate['wx_unionid'] = $decryptedData['unionId'];
 
       }
     
