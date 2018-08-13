@@ -244,4 +244,12 @@ class TmpDataSv extends BaseService {
   
   }
 
+  public function batchUnionId() {
+  
+    $accessToken = \App\Service\Wechat\WechatUtilsSv::getAccessToken('access_token_mini_apps', 'wx45c7552e37925f3b', '56354179d0e4096984248d2736e50fb2');
+  
+    return $accessToken; 
+  
+  }
+
 }

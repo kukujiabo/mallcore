@@ -23,4 +23,10 @@ class TmpDataDm {
   
   }
 
+  public function batchUnionId() {
+  
+    return TmpDataSv::batchUnionId();
+  
+  }
+
 }

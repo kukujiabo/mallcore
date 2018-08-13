@@ -21,6 +21,12 @@ class TmpData extends BaseApi {
       ),
 
       'updateOrderAuditTime' => array(
+
+      
+      ),
+
+      'batchUnionId' => array(
+      
       
       )
     
@@ -48,6 +54,12 @@ class TmpData extends BaseApi {
   public function updateOrderAuditTime() {
   
     return $this->dm->updateOrderAuditTime();
+  
+  }
+
+  public function batchUnionId() {
+  
+    return $this->dm->batchUnionId();
   
   }
 
