@@ -119,6 +119,8 @@ class Member extends BaseApi {
 
         'iv' => 'iv|string|false||加密密钥',
 
+        'session_key' => 'session_key|string|false||会员令牌',
+
         'signature' => 'signature|string|false||加密签名'
       
       ),
