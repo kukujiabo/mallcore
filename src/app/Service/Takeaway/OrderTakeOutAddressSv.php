@@ -72,8 +72,6 @@ class OrderTakeOutAddressSv extends BaseService implements IOrderTakeOutAddress 
 
         $data_order_address = array_merge($data_order_address,$info_address);
         
-        //$data_order_address['id'] = rand(100000000, 999999999);
-
         return self::add($data_order_address);
 
     }
