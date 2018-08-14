@@ -91,9 +91,7 @@ class HouseLayoutSv extends BaseService {
     
       'layout_name' => $data['layout_name'],
 
-      'info' => $data['info'],
-
-      'created_at' => date('Y-m-d H:i:s')
+      'info' => $data['info']
     
     );
 
