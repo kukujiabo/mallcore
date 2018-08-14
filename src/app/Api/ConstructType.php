@@ -23,6 +23,7 @@ class ConstructType extends BaseApi {
     
       'getAll' => array(
       
+        'get_attr' => 'get_attr|int|false|0|获取属性'
       
       ),
 

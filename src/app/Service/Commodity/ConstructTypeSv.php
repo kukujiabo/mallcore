@@ -48,9 +48,37 @@ class ConstructTypeSv extends BaseService {
   
   }
 
-  public function getAll() {
+  public function getAll($data) {
   
-    return self::all(array()); 
+    $cons = self::all(array()); 
+
+    if ($data['get_attr']) {
+
+      $attributes = ConstructAttributeSv::all(array());
+
+      foreach($cons as $key => $con) {
+
+        if (!$con[$key]['attrs']) {
+        
+          $con[$key]['attrs'] = array();
+        
+        }
+      
+        foreach($attributes as $attribute) {
+        
+          if ($con['id'] == $attribute['layout_id']) {
+          
+            array_push($cons[$key]['attrs'], $attribute);
+          
+          }
+        
+        }
+      
+      }
+
+    }
+
+    return $cons;
   
   }
 
