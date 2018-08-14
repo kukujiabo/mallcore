@@ -66,7 +66,7 @@ class ConstructTypeSv extends BaseService {
       
         foreach($attributes as $attribute) {
         
-          if ($con['id'] == $attribute['layout_id']) {
+          if ($con['id'] == $attribute['construct_id']) {
           
             array_push($cons[$key]['attrs'], $attribute);
           
