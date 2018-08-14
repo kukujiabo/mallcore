@@ -36,7 +36,7 @@ class ConstructType extends BaseApi {
       
         'id' => 'id|int|true||id',
       
-        'name' => 'layout_name|string|true||施工类型名称',
+        'name' => 'name|string|true||施工类型名称',
 
         'remark' => 'remark|string|false||备注',
 
