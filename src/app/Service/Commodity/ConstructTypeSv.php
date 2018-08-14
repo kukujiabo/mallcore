@@ -58,9 +58,9 @@ class ConstructTypeSv extends BaseService {
 
       foreach($cons as $key => $con) {
 
-        if (!$con[$key]['attrs']) {
+        if (!$cons[$key]['attrs']) {
         
-          $con[$key]['attrs'] = array();
+          $cons[$key]['attrs'] = array();
         
         }
       
