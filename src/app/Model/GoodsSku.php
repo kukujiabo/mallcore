@@ -12,6 +12,8 @@ class GoodsSku extends BaseModel {
 
     protected $_queryOptionRule = array(
 
+      'sku_name' => 'like'
+
     );  
     
 }
