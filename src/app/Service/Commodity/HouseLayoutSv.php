@@ -103,7 +103,7 @@ class HouseLayoutSv extends BaseService {
 
     $attrIds = array();
 
-    $attrs = json_decode($data['attrs']);
+    $attrs = json_decode($data['attrs'], true);
 
     foreach($attrs as $attr) {
 
