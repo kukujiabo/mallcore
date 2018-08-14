@@ -1035,7 +1035,14 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
       
       );
 
-      WechatTemplateMessageSv::generalMessage($msgData);
+      try {
+
+        WechatTemplateMessageSv::generalMessage($msgData);
+
+      } catch (\Exception $e) {
+      
+      
+      }
 
       $data_goods['order_id'] = $data_address['order_id'] = $id = $orderId;
 
@@ -1273,6 +1280,35 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       $orderId = self::add($data);
       
+      /**
+       * 下单通知
+       *
+       */
+      $msgData = array(
+      
+        'mobile' => $info_user['user_tel'],
+      
+        'short_id' => 'OPENTM410929003',
+
+        'minipage' => '/pages/order/detail/detal',
+
+        'object_key' => 'order_id',
+
+        'object_id' => $orderId,
+
+        'contents' => "first\$\$小骏马下单||keyword1\$\${$data['sn']}||keyword2\$\${$data['create_time']}||remark\$\${$data['remark']}"
+      
+      );
+
+      try {
+
+        WechatTemplateMessageSv::generalMessage($msgData);
+
+      } catch (\Exception $e) {
+      
+      
+      }
+
       // 添加订单
       $data_goods['order_take_out_id'] = $data_address['order_id'] = $id = $orderId;
 
