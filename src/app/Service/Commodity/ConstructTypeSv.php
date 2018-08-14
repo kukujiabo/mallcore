@@ -64,7 +64,7 @@ class ConstructTypeSv extends BaseService {
   
   }
 
-  public function updateConstruct() {
+  public function updateConstruct($data) {
   
     $updateData = array(
     
