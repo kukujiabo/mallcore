@@ -132,8 +132,12 @@ class HouseLayoutSv extends BaseService {
     foreach($attrs as $attr) {
 
       if ($attr['id']) {
+
+        $id = $attr['id'];
+
+        unset($attr['id']);
     
-        $updateNum += LayoutAttributeSv::update($attr['id'], $attr); 
+        $updateNum += LayoutAttributeSv::update($id, $attr); 
 
       } else {
 
