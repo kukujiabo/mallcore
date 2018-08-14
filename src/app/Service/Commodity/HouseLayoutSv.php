@@ -106,8 +106,12 @@ class HouseLayoutSv extends BaseService {
     $attrs = json_decode($data['attrs']);
 
     foreach($attrs as $attr) {
+
+      if ($attr['id']) {
     
-      array_push($attrIds, $attr['id']);
+        array_push($attrIds, $attr['id']);
+
+      }
     
     }
 
@@ -116,19 +120,13 @@ class HouseLayoutSv extends BaseService {
     $oldIds = array();
     
     foreach($attributes as $attribute) {
-    
-      array_push($oldIds, $attribute['id']);
-    
-    }
 
-    foreach($oldIds as $oldId) {
-    
-      if(!in_array($oldId, $attrIds)) {
+      if (!in_array($attribute['id'], $attrIds)) {
       
-        $updateNum += LayoutAttributeSv::remove($oldId);  
+        $updateNum += LayoutAttributeSv::remove($attribute['id']);  
       
       }
-
+    
     }
 
     foreach($attrs as $attr) {
