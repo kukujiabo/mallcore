@@ -7,8 +7,7 @@ use Core\Service\CurdSv;
 class HouseLayoutSv extends BaseService {
 
   use CurdSv;
-
-  /**
+/**
    * 新建布局
    * @desc 新建布局
    *
@@ -73,11 +72,11 @@ class HouseLayoutSv extends BaseService {
 
       $attributes = LayoutAttributeSv::all(array());
 
-      foreach($layouts as $layout) {
+      foreach($layouts as $key => $layout) {
 
-        if (!$layout['attrs']) {
+        if (!$layouts[$key]['attrs']) {
         
-          $layout['attrs'] = array();
+          $layouts[$key]['attrs'] = array();
         
         }
       
@@ -85,7 +84,7 @@ class HouseLayoutSv extends BaseService {
         
           if ($layout['id'] == $attribute['layout_id']) {
           
-            array_push($layout['attrs'], $attribute);
+            array_push($layouts[$key]['attrs'], $attribute);
           
           }
         
