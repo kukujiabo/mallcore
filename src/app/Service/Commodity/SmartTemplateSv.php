@@ -20,7 +20,7 @@ class SmartTemplateSv extends BaseService {
   
     $id = self::add($newData);
 
-    $goods = json_decode($data['goods']);
+    $goods = json_decode($data['goods'], true);
 
     $newGoods = [];
 
