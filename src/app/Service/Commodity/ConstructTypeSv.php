@@ -54,7 +54,7 @@ class ConstructTypeSv extends BaseService {
   
   }
 
-  public function getDetail() {
+  public function getDetail($data) {
   
     $detail = self::findOne($data['id']); 
 
