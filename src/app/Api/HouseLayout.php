@@ -24,6 +24,7 @@ class HouseLayout extends BaseApi {
     
       'getAll' => array(
       
+        'get_attr' => 'get_attr|int|false|0|是否获取属性'
       
       ),
 

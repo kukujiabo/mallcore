@@ -66,8 +66,36 @@ class HouseLayoutSv extends BaseService {
    * @return array data
    */
   public function getAll($data) {
-  
-    return self::all(array());
+
+    $layouts = self::all(array());
+
+    if ($data['get_attr'] == 1) {
+
+      $attributes = LayoutAttributeSv::all(array());
+
+      foreach($layouts as $layout) {
+
+        if (!$layout['attrs']) {
+        
+          $layout['attrs'] = array();
+        
+        }
+      
+        foreach($attributes as $attribute) {
+        
+          if ($layout['id'] == $attribute['layout_id']) {
+          
+            array_push($layout['attrs'], $attribute);
+          
+          }
+        
+        }
+      
+      }
+
+    }
+
+    return $layouts;
   
   }
 
