@@ -29,4 +29,10 @@ class NewBounDm {
   
   }
 
+  public function checkFetched($data) {
+  
+    return NewBounSv::checkFetched($data);
+  
+  }
+
 }

@@ -35,6 +35,12 @@ class NewBoun extends BaseApi {
 
         'sequence' => 'sequence|string|true||序列'
       
+      ),
+
+      'checkFetched' => array(
+      
+        'token' => 'token|string|true||用户令牌'
+      
       )
     
     )); 
@@ -86,6 +92,18 @@ class NewBoun extends BaseApi {
   public function grantNew() {
   
     return $this->dm->grantNew($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 检查是否领取过新手礼包
+   * @desc 检查是否领取过新手礼包
+   *
+   * @return boolean true/false
+   */
+  public function checkFetched() {
+  
+    return $this->dm->checkFetched($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

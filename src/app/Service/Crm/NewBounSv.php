@@ -92,4 +92,22 @@ class NewBounSv extends BaseService {
   
   }
 
+  public function checkFetched($data) {
+
+    $user = UserSv::getUserByToken($data['token']);
+  
+    $fetched = NewBounFetchedSv::findOne(array( 'member_id' => $user['uid'] ));
+
+    if ($fetched) {
+    
+      return true;
+    
+    } else {
+    
+      return false 
+
+    }
+  
+  }
+
 }
