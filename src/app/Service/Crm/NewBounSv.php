@@ -104,7 +104,7 @@ class NewBounSv extends BaseService {
     
     } else {
     
-      return false 
+      return false;
 
     }
   
