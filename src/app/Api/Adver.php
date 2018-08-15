@@ -40,7 +40,7 @@ class Adver extends BaseApi {
    */
   public function save() {
   
-    return $this->dm->save($this->retriveRuleParams(__FUNCTION__))); 
+    return $this->dm->save($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
