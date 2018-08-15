@@ -36,6 +36,8 @@ class SmartTemplateSv extends BaseService {
 
         'cons_id' => $good['consType'],
 
+        'rank' => $good['rank'],
+
         'created_at' => date('Y-m-d H:i:s')
       
       ); 
