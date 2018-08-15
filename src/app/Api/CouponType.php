@@ -251,6 +251,11 @@ class CouponType extends BaseApi {
 
         'ext_2' => 'ext_2|string|false||商品单品字段'
       
+      ),
+
+      'getAll' => array(
+      
+      
       )
       
     ));
@@ -476,6 +481,12 @@ class CouponType extends BaseApi {
     $data = $this->retriveRuleParams(__FUNCTION__);
   
     return $this->dm->createCouponType($data);
+  
+  }
+
+  public function getAll() {
+  
+    return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

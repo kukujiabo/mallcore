@@ -202,4 +202,10 @@ class CouponTypeSv extends BaseService implements ICouponType {
   
   }
 
+  public function getAll($data) {
+  
+    return self::all(array());
+  
+  }
+
 }

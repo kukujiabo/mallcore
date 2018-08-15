@@ -634,7 +634,7 @@ class CouponSv extends BaseService implements ICoupon {
           
             $insertData['start_time'] = date('Y-m-d H:i:s');
 
-            $insertData['end_time'] = date('Y-m-d H:i:s', (time() + (intval($couponType['valid_days']) * 3600 * 24)));
+            $insertData['end_time'] = date('Y-m-d H:i:s', (time() + (intval($couponType['valid_days']) * (3600 * 24 - 1))));
 
           } else {
           

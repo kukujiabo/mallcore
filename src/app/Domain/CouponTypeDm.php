@@ -96,4 +96,10 @@ class CouponTypeDm {
   
   }
 
+  public function getAll($data) {
+  
+    return CouponTypeSv::getAll($data);
+  
+  }
+
 }
