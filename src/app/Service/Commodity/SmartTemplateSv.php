@@ -84,6 +84,20 @@ class SmartTemplateSv extends BaseService {
 
     $skus = GoodsSkuSv::all(array( 'sku_id' => implode(',', $skuIds)));
 
+    foreach($skus as $key => $sku) {
+
+      foreach($goods as $good) {
+    
+        if ($sku['sku_id'] == $good['sku_id']) {
+
+          $skus[$key] = array_merge($sku, $good);
+
+        }
+
+      }
+    
+    }
+
     $detail['goods'] = $skus;
 
     return $detail;
