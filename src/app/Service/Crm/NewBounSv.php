@@ -57,7 +57,7 @@ class NewBounSv extends BaseService {
 
     $couTypeIds = array();
 
-    foreach($counpons as $coupon) {
+    foreach($coupons as $coupon) {
     
       array_push($couTypeIds, $coupon['coupon_type_id']); 
     
