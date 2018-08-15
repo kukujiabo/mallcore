@@ -10,7 +10,7 @@ class NewBounSv extends BaseService {
 
   public function create($data) {
 
-    $coupons = json_decode($data['coupons']);
+    $coupons = json_decode($data['coupons'], true);
 
     $newBouns = array();
 
