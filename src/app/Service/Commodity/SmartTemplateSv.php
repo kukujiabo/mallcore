@@ -74,7 +74,17 @@ class SmartTemplateSv extends BaseService {
   
     $goods = TemplateGoodsSv::all(array( 'template_id' => $data['id'] ));
 
-    $detail['goods'] = $goods;
+    $skuIds = array();
+
+    foreach($goods as $good) {
+    
+      array_push($skuIds, $good['sku_id']);
+    
+    }
+
+    $skus = GoodsSkuSv::all(array( 'sku_id' => implode(',', $skuIds)));
+
+    $detail['goods'] = $skus;
 
     return $detail;
   
