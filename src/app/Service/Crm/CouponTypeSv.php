@@ -180,7 +180,7 @@ class CouponTypeSv extends BaseService implements ICouponType {
     
       $newct['start_time'] = date('Y-m-d', $data['start_time']);
 
-      $newct['end_time'] = date('Y-m-d', $data['end_time'] + 86400);
+      $newct['end_time'] = date('Y-m-d', $data['end_time'] + 86399);
     
     }
 
