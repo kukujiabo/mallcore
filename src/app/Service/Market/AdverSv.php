@@ -9,16 +9,22 @@ class AdverSv extends BaseService {
   use CurdSv;
 
   public function save($data) {
-  
-    $newAd = array(
-    
-      'img_path' => $data['img_path'],
 
-      'object_id' => $data['object_id']
-    
-    );
+    $newAd = array();
   
-    return self::add($data['id'], $newAd);
+    if ($data['img_path']) {
+    
+      $newAd['img_path']  = $data['img_path'];
+    
+    }
+
+    if ($data['object_id']) {
+    
+      $newAd['object_id'] = $data['object_id'];
+    
+    }
+
+    return self::update($data['id'], $newAd);
   
   }
 
