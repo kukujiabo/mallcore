@@ -68,4 +68,16 @@ class SmartTemplateSv extends BaseService {
   
   }
 
+  public function getDetail($data) {
+  
+    $detail = self::findOne($data['id']);
+  
+    $goods = TemplateGoodsSv::all(array( 'template_id' => $data['id'] ));
+
+    $detail['goods'] = $goods;
+
+    return $detail;
+  
+  }
+
 }

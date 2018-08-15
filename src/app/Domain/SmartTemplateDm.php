@@ -17,4 +17,10 @@ class SmartTemplateDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return SmartTemplateSv::getDetail($data); 
+  
+  }
+
 }
