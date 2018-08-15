@@ -189,6 +189,12 @@ class Coupon extends BaseApi {
 
         'shop_id' => 'shop_id|float|true||门店id,'
       
+      ),
+
+      'getDetail' => array(
+      
+        'code' => 'code|string|true||优惠券编码'
+      
       )
       
     ));
@@ -426,5 +432,16 @@ class Coupon extends BaseApi {
   
   }
   
+  /**
+   * 获取优惠券实例详情
+   * @desc 获取优惠券实例详情
+   *
+   * @return array data
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
 
 }

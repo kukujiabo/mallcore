@@ -107,4 +107,10 @@ class CouponDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return CouponSv::findOne(array('coupon_code' => $data['code'])); 
+  
+  }
+
 }
