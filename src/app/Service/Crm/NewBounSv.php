@@ -66,13 +66,20 @@ class NewBounSv extends BaseService {
     $result = CouponSv::batchGrant($couponTypeIds, $user['uid'], $data['sequence'], '新人礼包');
 
     if ($result > 0) {
+
+      $newFetched = array(
+      
+        'member_id' => $user['uid'],
+
+        'created_at' => date('Y-m-d H:i:s')
+      
+      );
     
-    
-    
-    } else {
-    
+      NewBounFetchedSv::add($newFetched);
     
     }
+
+    return $result;
   
   }
 
