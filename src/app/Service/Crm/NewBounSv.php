@@ -55,7 +55,7 @@ class NewBounSv extends BaseService {
 
     $user = UserSv::getUserByToken($data['token']);
 
-    $counTypeIds = array();
+    $couTypeIds = array();
 
     foreach($counpons as $coupon) {
     
@@ -63,7 +63,7 @@ class NewBounSv extends BaseService {
     
     }
 
-    $result = CouponSv::batchGrant($couponTypeIds, $user['uid'], $data['sequence'], '新人礼包');
+    $result = CouponSv::batchGrant($couTypeIds, $user['uid'], $data['sequence'], '新人礼包');
 
     if ($result > 0) {
 
