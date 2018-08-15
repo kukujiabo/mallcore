@@ -51,7 +51,7 @@ class NewBounSv extends BaseService {
 
   public function grantNew($data) {
   
-    $coupons = self::getAll(); 
+    $coupons = self::getAll(array()); 
 
     $user = UserSv::getUserByToken($data['token']);
 
