@@ -563,7 +563,7 @@ class CouponSv extends BaseService implements ICoupon {
 
       $cid = is_array($couponId) ? $couponId['key'] : $couponId;
 
-      $num = is_array($couponId) ? intval($couponId['num']) : 0;
+      $num = is_array($couponId) ? intval($couponId['num']) : 1;
 
       $couponType = CouponTypeSv::findActiveOne($cid);
 
@@ -603,21 +603,6 @@ class CouponSv extends BaseService implements ICoupon {
 
         );
 
-
-        /**
-         * 设置使用门店
-         */
-
-        if ($couponType['all_shops']) {
-        
-          $insertData['shop_id'] = 0;
-        
-        } else {
-
-          $insertData['shop_id'] = $couponType['shop_id'];
-        
-        }
-
         /**
          * 设置有效期类型
          */
@@ -648,28 +633,26 @@ class CouponSv extends BaseService implements ICoupon {
 
           $insertData['coupon_code'] = $couponType['sequence'] . self::getRandCouponCode();
 
-          $insertData['qr_code'] = \App\qrCode($insertData['coupon_code'], true);
-
           array_push($newCoupons, $insertData);
 
-          try {
+          //try {
 
-            $register = array(
-            
-              'short_id' => 'OPENTM203067265',
+          //  $register = array(
+          //  
+          //    'short_id' => 'OPENTM203067265',
 
-              'uid' => $memberId,
+          //    'uid' => $memberId,
 
-              'contents' => "first\$\$您获得一张优惠券||keyword1\$\${$insertData['coupon_name']}||keyword2\$\$1||keyword3\$\${$datetime}"
+          //    'contents' => "first\$\$您获得一张优惠券||keyword1\$\${$insertData['coupon_name']}||keyword2\$\$1||keyword3\$\${$datetime}"
 
-            );
+          //  );
 
-            WechatTemplateMessageSv::generalMessage($register);
+          //  WechatTemplateMessageSv::generalMessage($register);
 
-          } catch (\Exception $e) {
-          
-          
-          }
+          //} catch (\Exception $e) {
+          //
+          //
+          //}
 
         }
 
