@@ -57,13 +57,14 @@ class NewBounSv extends BaseService {
 
     $couTypeIds = array();
 
+    $result = 0;
+
     foreach($coupons as $coupon) {
     
-      array_push($couTypeIds, $coupon['coupon_type_id']); 
+      $result += CouponSv::grant($coupon['coupon_type_id'], $user['uid']);
     
     }
 
-    $result = CouponSv::batchGrant($couTypeIds, array($user['uid']), $data['sequence'], '新人礼包');
 
     if ($result > 0) {
 
