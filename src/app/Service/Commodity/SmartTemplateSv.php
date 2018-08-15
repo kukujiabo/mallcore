@@ -13,9 +13,13 @@ class SmartTemplateSv extends BaseService {
     $newData = array(
     
       'template_name' => $data['template_name'],
+
       'layout_ids' => $data['layout_ids'],
+
       'min_measure' => $data['min_measure'],
+
       'max_measure' => $data['max_measure'],
+
       'created_at' => date('Y-m-d H:i:s')
     
     );  
@@ -101,6 +105,96 @@ class SmartTemplateSv extends BaseService {
     $detail['goods'] = $skus;
 
     return $detail;
+  
+  }
+
+  public function updateTemplate($data) {
+
+    $id = $data['id'];
+  
+    $newData = array(
+    
+      'template_name' => $data['template_name'],
+
+      'layout_ids' => $data['layout_ids'],
+
+      'min_measure' => $data['min_measure'],
+
+      'max_measure' => $data['max_measure'],
+
+      'created_at' => date('Y-m-d H:i:s')
+    
+    );  
+
+    $updateNum = 0;
+  
+    $updateNum += self::update($id, $newData);
+
+    $goods = json_decode($data['goods'], true);
+
+    $newGoods = [];
+
+    foreach($goods as $good) {
+    
+      $newGood = array(
+      
+        'template_id' => $id,
+
+        'sku_id' => $good['goods_id'],
+
+        'num' => $good['num'],
+
+        'cons_id' => $good['consType'],
+
+        'rank' => $good['rank'],
+
+        'created_at' => date('Y-m-d H:i:s')
+      
+      ); 
+
+      array_push($newGoods, $newGood);
+    
+    }
+
+    $oldGoods = TemplateGoodsSv::all(array( 'template_id' => $id ));
+
+    $newIds = array();
+
+    foreach($newGoods as $newGood) {
+    
+      array_push($newIds, $newGood['sku_id']);
+    
+    }
+
+    foreach($oldGoods as $oldGood) {
+    
+      if (!in_array($oldGood['sku_id'], $newIds) {
+      
+        $updateNum += TemplateGoodsSv::remove($oldGood['id']); 
+      
+      } 
+    
+    }
+
+    foreach($newGoods as $newGood) {
+    
+      if ($newGood['id']) {
+
+        $id = $newGood['id'];
+
+        unset($newGood['id']);
+      
+        $updateNum += TemplateGoodsSv::update($id, $newGood);
+      
+      } else {
+      
+        $updateNum += TemplateGoodsSv::add($newGood); 
+      
+      }
+    
+    }
+
+    return $updateNum;
   
   }
 

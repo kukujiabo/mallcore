@@ -23,4 +23,10 @@ class SmartTemplateDm {
   
   }
 
+  public function updateTemplate($data) {
+  
+    return SmartTemplateSv::updateTemplate($data);
+  
+  }
+
 }
