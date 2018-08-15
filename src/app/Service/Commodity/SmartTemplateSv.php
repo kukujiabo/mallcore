@@ -168,7 +168,7 @@ class SmartTemplateSv extends BaseService {
 
     foreach($oldGoods as $oldGood) {
     
-      if (!in_array($oldGood['sku_id'], $newIds) {
+      if (!in_array($oldGood['sku_id'], $newIds)) {
       
         $updateNum += TemplateGoodsSv::remove($oldGood['id']); 
       
