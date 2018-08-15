@@ -43,4 +43,37 @@ class NewBounSv extends BaseService {
   
   }
 
+  public function removeBoun($data) {
+  
+    return self::remove($data['id']); 
+  
+  }
+
+  public function grantNew($data) {
+  
+    $coupons = self::getAll(); 
+
+    $user = UserSv::getUserByToken($data['token']);
+
+    $counTypeIds = array();
+
+    foreach($counpons as $coupon) {
+    
+      array_push($couTypeIds, $coupon['coupon_type_id']); 
+    
+    }
+
+    $result = CouponSv::batchGrant($couponTypeIds, $user['uid'], $data['sequence'], '新人礼包');
+
+    if ($result > 0) {
+    
+    
+    
+    } else {
+    
+    
+    }
+  
+  }
+
 }

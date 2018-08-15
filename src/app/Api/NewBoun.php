@@ -21,6 +21,20 @@ class NewBoun extends BaseApi {
       'getAll' => array(
       
       
+      ),
+
+      'removeBoun' => array(
+      
+        'id' => 'id|int|true||优惠券id'
+      
+      ),
+
+      'grantNew' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+
+        'sequence' => 'sequence|string|true||序列'
+      
       )
     
     )); 
@@ -48,6 +62,30 @@ class NewBoun extends BaseApi {
   public function getAll() {
   
     return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 删除新手礼包优惠券
+   * @desc 删除新手礼包优惠券
+   *
+   * @return int id
+   */
+  public function removeBoun() {
+  
+    return $this->dm->removeBoun($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 发放新人礼包
+   * @desc 发放新人礼包
+   *
+   * @return int num
+   */
+  public function grantNew() {
+  
+    return $this->dm->grantNew($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

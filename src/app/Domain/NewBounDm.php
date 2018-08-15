@@ -17,4 +17,16 @@ class NewBounDm {
   
   }
 
+  public function removeBoun($data) {
+  
+    return NewBounSv::removeBoun($data);
+  
+  }
+
+  public function grantNew($data) {
+  
+    return NewBounSv::grantNew($data);
+  
+  }
+
 }
