@@ -28,7 +28,7 @@ class SmartTemplate extends BaseApi {
 
       'getList' => array(
       
-        'template_name' => 'template_name|string|true||模版名称',
+        'template_name' => 'template_name|string|false||模版名称',
 
         'page' => 'page|int|false|1|页码',
 

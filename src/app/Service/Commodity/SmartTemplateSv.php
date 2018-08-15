@@ -56,7 +56,15 @@ class SmartTemplateSv extends BaseService {
 
   public function getList($data) {
   
-  
+    $query = array();
+
+    if ($data['template_name']) {
+    
+      $query['template_name'] = $data['template_name'];
+    
+    }   
+
+    return self::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
   
   }
 
