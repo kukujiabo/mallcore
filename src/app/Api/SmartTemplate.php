@@ -46,15 +46,15 @@ class SmartTemplate extends BaseApi {
 
         'id' => 'id|int|true||模版id',
       
-        'template_name' => 'template_name|string|true||模版名称',
+        'template_name' => 'template_name|string|false||模版名称',
       
-        'layout_ids' => 'layout_ids|string|true||布局id',
+        'layout_ids' => 'layout_ids|string|false||布局id',
 
-        'min_measure' => 'min_measure|int|true||最小面积',
+        'min_measure' => 'min_measure|int|false||最小面积',
 
-        'max_measure' => 'max_measure|int|true||最大面积',
+        'max_measure' => 'max_measure|int|false||最大面积',
 
-        'goods' => 'goods|string|true||商品'
+        'goods' => 'goods|string|false||商品'
       
       )
     
