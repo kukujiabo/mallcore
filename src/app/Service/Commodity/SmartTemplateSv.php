@@ -6,6 +6,8 @@ use Core\Service\CurdSv;
 
 class SmartTemplateSv extends BaseService {
 
+  use CurdSv;
+
   public function create($data) {
   
     $newData = array(
