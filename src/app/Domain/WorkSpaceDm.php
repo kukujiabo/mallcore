@@ -62,7 +62,7 @@ class WorkSpaceDm {
    */
   public function setTiming($data) {
   
-    return WorkSpace::setTiming($data);
+    return WorkSpaceSv::setTiming($data);
   
   }
 
