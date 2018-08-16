@@ -92,5 +92,11 @@ class WorkSpaceSv extends BaseService {
   
   }
 
+  public function setTiming($data) {
+  
+    return self::update($data['id'], array( 'cid' => $data['cid'] ));
+  
+  }
+
 }
 

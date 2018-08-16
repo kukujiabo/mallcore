@@ -56,4 +56,14 @@ class WorkSpaceDm {
   
   }
 
+  /**
+   * 设置施工阶段
+   *
+   */
+  public function setTiming($data) {
+  
+    return WorkSpace::setTiming($data);
+  
+  }
+
 }

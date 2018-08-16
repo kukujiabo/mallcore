@@ -42,6 +42,14 @@ class WorkSpace extends BaseApi {
         'token' => 'token|string|true||令牌',
         'page' => 'page|int|false|1|页码',
         'page_size' => 'page_size|int|false|20|每页条数'
+      ),
+
+      'setTiming' => array(
+      
+        'id' => 'id|int|true||工地id',
+
+        'cid' => 'cid|int|true||设置施工时段id'
+      
       )
     
     ));
@@ -81,6 +89,18 @@ class WorkSpace extends BaseApi {
   public function getListByToken() {
   
     return $this->dm->getListByToken($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 设置施工阶段
+   * @desc 设置施工阶段
+   *
+   * @return int num
+   */
+  public function setTiming() {
+  
+    return $this->dm->setTiming($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
