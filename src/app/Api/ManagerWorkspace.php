@@ -31,12 +31,6 @@ class ManagerWorkspace extends BaseApi {
         'page' => 'page|int|false||页码',
         'page_size' => 'page_size|int|false||页码',
     
-      ),
-
-      'getDetail' => array(
-      
-        'token' => 'token|string|true||用户令牌'
-      
       )
     
     ));
@@ -67,16 +61,5 @@ class ManagerWorkspace extends BaseApi {
   
   }
 
-  /**
-   * 查询详情
-   * @desc 查询详情
-   *
-   * @return array 
-   */
-  public function getDetail() {
-  
-    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__)); 
-  
-  }
 
 }

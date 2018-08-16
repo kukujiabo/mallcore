@@ -43,4 +43,10 @@ class ManagerDm {
   
   }
 
+  public function getDetail($data) {
+  
+    return ManagerSv::getDetail($data); 
+  
+  }
+
 }

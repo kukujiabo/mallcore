@@ -2,6 +2,7 @@
 namespace App\Service\Crm;
 
 use App\Service\BaseService;
+use App\Service\Admin\ProviderSv;
 use Core\Service\CurdSv;
 
 /**
@@ -50,6 +51,33 @@ class ManagerSv extends BaseService {
   public function getList($query, $order, $page, $pageSize) {
   
     return self::queryList($query, '*', $order, $page, $pageSize); 
+  
+  }
+
+  /**
+   * 查询详情
+   *
+   * 
+   */
+  public function getDetail($data) {
+  
+    $user = UserSv::getUserByToken($data['token']);
+
+    $mana = self::findOne(array( 'phone' => $user['user_tel'] ));
+
+    if ($mana) {
+    
+      $provider = ProviderSv::findOne($mana['pid']);
+    
+      $mana['ptype'] = $provider['ptype'];
+
+      return $mana;
+
+    } else {
+
+      return null;
+
+    }
   
   }
 

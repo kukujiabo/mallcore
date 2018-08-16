@@ -21,10 +21,4 @@ class ManagerWorkspaceDm {
   
   }
 
-  public function getDetail($data) {
-  
-    return ManagerWorkspaceSv::getDetail($data);
-  
-  }
-
 }

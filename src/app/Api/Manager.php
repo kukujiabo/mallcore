@@ -40,6 +40,12 @@ class Manager extends BaseApi {
         'phone' => 'phone|string|false||手机号',
         'status' => 'status|int|false||状态'
       
+      ),
+
+      'getDetail' => array(
+      
+        'token' => 'token|string|true||用户令牌'
+      
       )
     
     ));
@@ -82,5 +88,16 @@ class Manager extends BaseApi {
   
   }
 
+  /**
+   * 获取详情
+   * @desc 获取详情
+   *
+   * @return array data
+   */
+  public function getDetail() {
+  
+    return $this->dm->getDetail($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
 
 }

@@ -26,28 +26,6 @@ class ManagerWorkspaceSv extends BaseService {
   
   }
 
-  public function getDetail($data) {
-  
-    $user = UserSv::getUserByToken($data['token']);
-  
-    $mana = self::findOne(array( 'phone' => $user['user_tel'] ));
-
-    if ($mana) {
-
-      $provider = ProviderSv::findOne($mana['pid']);
-
-      $mana['ptype'] = $provider['ptype'];
-
-      return $mana;
-
-    } else {
-    
-      return null;
-    
-    }
-  
-  }
-
   public function getList($data) {
 
     $page = $data['page'];
