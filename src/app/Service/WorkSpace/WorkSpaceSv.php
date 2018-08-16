@@ -30,6 +30,7 @@ class WorkSpaceSv extends BaseService {
       'address' => $data['address'],
       'province' => $data['province'],
       'city' => $data['city'],
+      'cid' => $data['cid'],
       'contact' => $data['contact'],
       'phone' => $data['phone'],
       'status' => 1,

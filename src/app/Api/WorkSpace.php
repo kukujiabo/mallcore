@@ -20,6 +20,7 @@ class WorkSpace extends BaseApi {
         'province' => 'province|string|false||所在省份',
         'city' => 'city|int|false||所在城市',
         'contact' => 'contact|string|false||联系人',
+        'cid' => 'cid|int|false||施工阶段id',
         'phone' => 'phone|string|false||手机号'
       
       ),
