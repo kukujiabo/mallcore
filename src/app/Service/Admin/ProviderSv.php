@@ -48,7 +48,7 @@ class ProviderSv extends BaseService {
 
     $newSysAdminGroup = array(
       'uid' => $uid,
-      'group_id' => $data['ptype'] = 2 ? 2 : 6,
+      'group_id' => $data['ptype'] = 1 ? 2 : 6,
       'status' => 1,
       'created_at'  => date('Y-m-d H:i:s')
     );
