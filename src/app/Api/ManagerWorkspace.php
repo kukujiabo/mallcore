@@ -16,6 +16,7 @@ class ManagerWorkspace extends BaseApi {
       
         'mid' => 'mid|int|true||项目经理id',
         'wid' => 'wid|int|true||工地id',
+        'cid' => 'cid|int|true||阶段id',
         'status' => 'status|int|true||状态',
         'min_credit' => 'min_credit|float|true||最大额度',
         'max_credit' => 'max_credit|float|true||最小额度'
