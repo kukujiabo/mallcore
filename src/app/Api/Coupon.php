@@ -193,7 +193,7 @@ class Coupon extends BaseApi {
 
       'getDetail' => array(
       
-        'code' => 'code|string|true||优惠券编码'
+        'coupon_type_id' => 'coupon_type_id|string|true||优惠券编码'
       
       )
       
