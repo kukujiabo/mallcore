@@ -38,6 +38,18 @@ class CouponTypeDm {
 
     }
 
+    if ($data['start_time']) {
+    
+      $data['start_time'] = date('Y-m-d H:i:s', $data['start_time']);
+    
+    }
+
+    if ($data['end_time']) {
+    
+      $data['end_time'] = date('Y-m-d H:i:s', $data['end_time'] + 86399);
+    
+    }
+
     return CouponTypeSv::update($id, $data);
   
   }
