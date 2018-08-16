@@ -24,6 +24,7 @@ class Provider extends BaseApi {
         'thumbnail' => 'thumbnail|string|false||供应商图标',
         'status' => 'status|int|false|1|供应商状态',
         'account' => 'account|string|true||供应商账号',
+        'ptype' => 'ptype|int|false|1|公司类型',
         'password' => 'password|string|true||供应商密码'
       
       ),
@@ -61,7 +62,8 @@ class Provider extends BaseApi {
         'introduction' => 'introduction|string|false||装修公司简介',
         'thumbnail' => 'thumbnail|string|false||装修公司图标',
         'password' => 'password|string|false||装修公司密码',
-        'status' => 'status|int|false||装修公司状态'
+        'status' => 'status|int|false||装修公司状态',
+        'ptype' => 'ptype|int|false||公司类型'
       
       ),
 
