@@ -256,6 +256,12 @@ class CouponType extends BaseApi {
       'getAll' => array(
       
       
+      ),
+
+      'getDetail' => array(
+      
+        'coupon_type_id' => 'coupon_type_id|int|true||优惠券种类id' 
+      
       )
       
     ));
@@ -388,14 +394,6 @@ class CouponType extends BaseApi {
   public function getDetail() {
 
     $conditions = $this->retriveRuleParams('getDetail');
-
-    $regulation = array(
-
-      'coupon_type_id' => 'required',
-
-    );
-
-    \App\Verification($conditions, $regulation);
 
     return $this->dm->getDetail($conditions);
 
