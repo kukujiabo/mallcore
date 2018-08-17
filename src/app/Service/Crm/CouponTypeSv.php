@@ -211,6 +211,10 @@ class CouponTypeSv extends BaseService implements ICouponType {
   public function exchangeCoupon($data) {
   
     $user = UserSv::getUserByToken($data['token']);
+
+    $cty = self::findOne(array( 'coupon_type_id' => $data['coupon_type_id'] ));
+
+    MemberAccountSv::minuPoints($user['uid'], $cty['money'] * 10);
   
     return CouponSv::grant($user['uid'], $data['coupon_type_id']);
   
