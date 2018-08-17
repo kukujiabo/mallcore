@@ -22,6 +22,7 @@ class NewBounSv extends BaseService {
         'coupon_name' => $coupon['coupon_name'],
         'sequence' => $coupon['sequence'],
         'money' => $coupon['money'],
+        'add_num' => $coupon['add_num'],
         'at_least' => $coupon['at_least'],
         'created_at' => date('Y-m-d H:i:s'),
         'end_time' => $coupon['end_time'],
@@ -68,8 +69,14 @@ class NewBounSv extends BaseService {
     $result = 0;
 
     foreach($coupons as $coupon) {
+
+      $addNum = intval($coupon['add_num']);
+
+      for($i = 0; $i < $addNum; $i++) {
     
-      $result += CouponSv::grant($coupon['coupon_type_id'], $user['uid']);
+        $result += CouponSv::grant($coupon['coupon_type_id'], $user['uid']);
+
+      }
     
     }
 
