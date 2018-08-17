@@ -8,7 +8,7 @@ use App\Service\Takeaway\OrderAddressSv;
  *
  * @author: jiangzhangchan <jiangzhangchan@qq.com> 2017-11-11
  */
-class OrderTakeOutAddress {
+class OrderTakeOutAddressDm {
 
   /**
    * 新增
