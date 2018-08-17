@@ -271,7 +271,9 @@ class MemberAccountSv extends BaseService implements IMemberAccount {
 
       }
 
-      return MemberAccount::updateByUid($uid, array('point' => "+-{$point}"));
+      $newPoint = $acct['point'] - $point;
+
+      return MemberAccount::updateByUid($uid, array('point' => $newPoint));
 
     }
 
