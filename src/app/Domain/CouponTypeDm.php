@@ -114,4 +114,10 @@ class CouponTypeDm {
   
   }
 
+  public function exchangeCoupon($data) {
+  
+    return CouponTypeSv::exchangeCoupon($data); 
+  
+  }
+
 }

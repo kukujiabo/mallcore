@@ -208,4 +208,12 @@ class CouponTypeSv extends BaseService implements ICouponType {
   
   }
 
+  public function exchangeCoupon($data) {
+  
+    $user = UserSv::getUserByToken($data['token']);
+  
+    return CouponSv::grant($user['uid'], $data['coupon_type_id']);
+  
+  }
+
 }

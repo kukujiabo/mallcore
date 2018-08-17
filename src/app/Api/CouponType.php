@@ -262,6 +262,14 @@ class CouponType extends BaseApi {
       
         'coupon_type_id' => 'coupon_type_id|int|true||优惠券种类id' 
       
+      ),
+
+      'exchangeCoupon' => array(
+
+        'token' => 'token|string|true||用户令牌',
+      
+        'coupon_type_id' => 'coupon_type_id|int|true||优惠券种类id' 
+      
       )
       
     ));
@@ -482,9 +490,27 @@ class CouponType extends BaseApi {
   
   }
 
+  /**
+   * 查询全部优惠券类型
+   * @desc 查询全部优惠券类型
+   *
+   * @return array list
+   */
   public function getAll() {
   
     return $this->dm->getAll($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 积分兑换优惠券
+   * @desc 积分兑换优惠券
+   *
+   * @return int num
+   */
+  public function exchangeCoupon() {
+  
+    return $this->dm->exchangeCoupon($this->retriveRuleParams(__FUNCTION__));  
   
   }
 
