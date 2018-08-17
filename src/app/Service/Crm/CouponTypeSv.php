@@ -216,7 +216,7 @@ class CouponTypeSv extends BaseService implements ICouponType {
 
     MemberAccountSv::minuPoints($user['uid'], $cty['money'] * 10);
   
-    return CouponSv::grant($user['uid'], $data['coupon_type_id']);
+    return CouponSv::grant($data['coupon_type_id'], $user['uid']);
   
   }
 
