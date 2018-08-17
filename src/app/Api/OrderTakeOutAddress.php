@@ -181,6 +181,12 @@ class OrderTakeOutAddress extends BaseApi {
         'is_show' => 'is_show|int|false||是否允许首页显示:0 不显示，1 显示',
       
       ),
+
+      'getDetail' => array(
+      
+        'order_take_out_id' => 'order_take_out_id|int|true||订单id'
+      
+      )
       
     ));
 
@@ -265,14 +271,6 @@ class OrderTakeOutAddress extends BaseApi {
   public function getDetail() {
 
     $conditions = $this->retriveRuleParams('getDetail');
-
-    $regulation = array(
-
-      'coupon_type_id' => 'required',
-
-    );
-
-    \App\Verification($conditions, $regulation);
 
     return $this->dm->getDetail($conditions);
 

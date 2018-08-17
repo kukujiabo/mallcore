@@ -1,7 +1,7 @@
 <?php
 namespace App\Domain;
 
-use App\Service\Takeaway\OrderAddressSv;
+use App\Service\Takeaway\OrderTakeOutAddressSv;
 
 /**
  * 用户订单地址
@@ -15,7 +15,7 @@ class OrderTakeOutAddressDm {
    */
   public function add($data) {
 
-    return OrderAddressSv::add($data);
+    return OrderTakeOutAddressSv::add($data);
   
   }
 
@@ -24,7 +24,7 @@ class OrderTakeOutAddressDm {
    */
   public function update($data) {
 
-    return OrderAddressSv::update($data);
+    return OrderTakeOutAddressSv::update($data);
   
   }
 
@@ -33,7 +33,7 @@ class OrderTakeOutAddressDm {
    */
   public function getDetail($condition) {
 
-    return OrderAddressSv::getDetail($condition);
+    return OrderTakeOutAddressSv::getDetail($condition);
   
   }
 
@@ -42,7 +42,7 @@ class OrderTakeOutAddressDm {
    */
   public function queryList($condition) {
 
-    return OrderAddressSv::queryList($condition);
+    return OrderTakeOutAddressSv::queryList($condition);
   
   }
 
@@ -51,7 +51,7 @@ class OrderTakeOutAddressDm {
    */
   public function queryCount($condition) {
   
-    return OrderAddressSv::queryCount($condition);
+    return OrderTakeOutAddressSv::queryCount($condition);
 
   }
     

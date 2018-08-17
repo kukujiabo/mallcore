@@ -37,11 +37,9 @@ class OrderTakeOutAddressSv extends BaseService implements IOrderTakeOutAddress 
     /**
      * 获取详情
      */
-    public function getDetails($condition) {
+    public function getDetail($condition) {
 
-        $list = OrderTakeOutAddress::queryList($condition, $condition['fields'], $condition['order'], 0, 1);
-
-        return $list[0];
+      return self::findOne(array('order_take_out_id' => $condition['order_take_out_id'])); 
 
     }
 
