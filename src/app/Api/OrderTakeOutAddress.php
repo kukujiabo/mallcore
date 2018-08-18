@@ -184,7 +184,7 @@ class OrderTakeOutAddress extends BaseApi {
 
       'getDetail' => array(
       
-        'order_take_out_id' => 'order_take_out_id|int|true||订单id'
+        'order_id' => 'order_id|int|true||订单id'
       
       )
       
