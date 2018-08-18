@@ -830,17 +830,19 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
    */
   public function getDetails($condition) {
 
+      $query = array();
+
       if ($data['way'] == 1 && $condition['token']) {
 
           $info_user = UserSv::getUserByToken($condition['token']);
 
-          $condition['buyer_id'] = $info_user['uid'];
+          $query['buyer_id'] = $info_user['uid'];
 
       }
 
       if ($condition['order_id']) {
 
-          $condition['id'] = $condition['order_id'];
+          $query['order_take_out_id'] = $condition['order_id'];
 
       }
 
@@ -850,7 +852,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       unset($condition['way']);
 
-      $info_order = self::findOne($condition);
+      $info_order = self::findOne($query);
 
       if (!$info_order) {
 
