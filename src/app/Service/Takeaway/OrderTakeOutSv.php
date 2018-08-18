@@ -852,7 +852,7 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
       unset($condition['way']);
 
-      $info_order = self::findOne($condition['order_id']);
+      $info_order = self::findOne($query['order_take_out_id']);
 
       if (!$info_order) {
 
