@@ -39,7 +39,9 @@ class OrderTakeOutAddressSv extends BaseService implements IOrderTakeOutAddress 
      */
     public function getDetail($condition) {
 
-      return self::findOne(array('order_take_out_id' => $condition['order_take_out_id'])); 
+      $query = array( 'order_take_out_id' => $condition['order_id'] );
+
+      return self::findOne($query); 
 
     }
 
