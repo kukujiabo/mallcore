@@ -29,4 +29,10 @@ class SmartTemplateDm {
   
   }
 
+  public function getGoods($data) {
+  
+    return SmartTemplateSv::getGoods($data);
+  
+  }
+
 }

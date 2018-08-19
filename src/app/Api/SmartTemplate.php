@@ -56,6 +56,18 @@ class SmartTemplate extends BaseApi {
 
         'goods' => 'goods|string|false||商品'
       
+      ),
+
+      'getGoods' => array(
+      
+        'selectAttr' => 'selectAttr|string|true||选择属性',
+      
+        'layoutIds' => 'layoutIds|string|true||布局id',
+      
+        'measure' => 'measure|int|true||面积',
+
+        'sid' => 'sid|int|true||风格'
+
       )
     
     )); 
@@ -107,6 +119,18 @@ class SmartTemplate extends BaseApi {
   public function updateTemplate() {
   
     return $this->dm->updateTemplate($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 查询商品
+   * @desc 查询商品
+   *
+   * @return array list
+   */
+  public function getGoods() {
+  
+    return $this->dm->getGoods($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
