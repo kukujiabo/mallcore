@@ -219,6 +219,8 @@ trait CURD {
 
       $condition= $this->queryFieldFilter($id);
 
+      $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
+
       return $orm->where($condition)->fetchOne();
 
     } else {
