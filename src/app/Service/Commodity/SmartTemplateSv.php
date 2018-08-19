@@ -210,15 +210,39 @@ class SmartTemplateSv extends BaseService {
 
     $templateGoods = TemplateGoodsSv::all(array( 'template_id' => $template['id'], 'cons_id' => $data['selectAttr'], 'rank' => $data['sid'] ));
 
-    $goodsIds = array();
+    $skuIds = array();
 
     foreach($templateGoods as $good) {
     
-      array_push($goodsIds, $good['sku_id']);
+      array_push($skuIds, $good['sku_id']);
     
     }
 
-    $skuGoods = GoodsSkuSv::all(array( 'sku_id' => implode(',', $goodsIds) ));
+    $skuGoods = GoodsSkuSv::all(array( 'sku_id' => implode(',', $skuIds) ));
+
+    $goodsIds = array();
+
+    foreach($skuGoods as $sku) {
+    
+      array_push($goodsIds, $sku['goods_id']);
+    
+    }
+
+    $goods = GoodsSv::all(array( 'goods_id' => implode(',', $goodsIds) ));
+
+    foreach($goods as $good) {
+    
+      foreach($skuGoods as $key => $sku) {
+
+        if ($good['goods_id'] == $sku['goods_id']) {
+      
+          $skuGoods[$key]['goods_image'] = $good['thumbnail'];
+
+        }
+      
+      } 
+    
+    }
 
     return $skuGoods;
   
