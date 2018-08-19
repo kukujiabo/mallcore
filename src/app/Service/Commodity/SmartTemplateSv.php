@@ -204,7 +204,7 @@ class SmartTemplateSv extends BaseService {
   
     asort($layoutIds);
 
-    $layoutIdsStr = implode($layoutIds);
+    $layoutIdsStr = implode(',', $layoutIds);
 
     $template = self::findOne(array( 'layout_ids' => $layoutIdsStr, 'max_measure' => "eg|{$data['measure']}", 'min_measure' => "el|{$data['measure']}" ));
 
