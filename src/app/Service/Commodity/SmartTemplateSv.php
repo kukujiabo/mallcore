@@ -206,7 +206,7 @@ class SmartTemplateSv extends BaseService {
 
     $layoutIdsStr = implode(',', $layoutIds);
 
-    $template = self::findOne(array( 'layout_ids' => $layoutIdsStr, 'max_measure' => "eg|{$data['measure']}", 'min_measure' => "el|{$data['measure']}" ));
+    $template = self::findOne(array( 'layout_ids' => $layoutIdsStr, 'max_measure' => "el|{$data['measure']}", 'min_measure' => "eg|{$data['measure']}" ));
 
     return $template;
   
