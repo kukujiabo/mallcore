@@ -221,7 +221,7 @@ trait CURD {
 
       $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
 
-      return $orm->where($condition)->fetchOne();
+      return $orm->where($where)->fetchOne();
 
     } else {
 
