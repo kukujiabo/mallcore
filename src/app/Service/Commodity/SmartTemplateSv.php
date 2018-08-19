@@ -208,7 +208,19 @@ class SmartTemplateSv extends BaseService {
 
     $template = self::findOne(array( 'layout_ids' => $layoutIdsStr, 'max_measure' => "el|{$data['measure']}", 'min_measure' => "eg|{$data['measure']}" ));
 
-    return $template;
+    $templateGoods = TemplateGoodsSv::all(array( 'template_id' => $template['id'], 'cons_id' => $data['selectAttr'], 'rank' => $data['sid'] ));
+
+    $goodsIds = array();
+
+    foreach($templateGoods as $good) {
+    
+      array_push($goodsIds, $good['sku_id']);
+    
+    }
+
+    $skuGoods = GoodsSkuSv::all(array( 'sku_id' => implode(',', $goodsIds) ));
+
+    return $skuGoods;
   
   }
 
