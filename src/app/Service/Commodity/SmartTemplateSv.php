@@ -208,7 +208,7 @@ class SmartTemplateSv extends BaseService {
 
     $template = self::findOne(array( 'layout_ids' => $layoutIdsStr, 'max_measure' => "eg|{$data['measure']}", 'min_measure' => "el|{$data['measure']}" ));
 
-    return $template
+    return $template;
   
   }
 
