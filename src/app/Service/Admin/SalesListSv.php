@@ -25,14 +25,9 @@ class SalesListSv extends BaseService {
 
       $query['account'] = $user['uid'];
       
-      $salesBinding = SalesBindSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
-    
-    } else {
-    
-      $salesBinding = SalesBindSv::all(array());
-    
     }
 
+    $salesBinding = SalesBindSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
 
     $salesUsers = array();
 
