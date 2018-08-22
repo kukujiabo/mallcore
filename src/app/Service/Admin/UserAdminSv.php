@@ -128,7 +128,7 @@ class UserAdminSv extends BaseService implements IUserAdmin {
 
       case 3:
 
-        $newAdminGroup['group_id'] = 2;
+        $newAdminGroup['group_id'] = 3;
 
         break;
 
