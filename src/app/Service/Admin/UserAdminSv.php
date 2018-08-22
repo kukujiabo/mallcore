@@ -126,6 +126,12 @@ class UserAdminSv extends BaseService implements IUserAdmin {
 
         break;
 
+      case 3:
+
+        $newAdminGroup['group_id'] = 2;
+
+        break;
+
     }
 
     $relatId = UserAdminGroupSv::add($newAdminGroup); 
