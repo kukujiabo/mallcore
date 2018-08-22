@@ -19,10 +19,10 @@ class SalesListSv extends BaseService {
   
     $query = [];
 
-    $user = UserSv::findOne(array('instance_id' => $data['manager_account']));
-
-    if ($user) {
+    if ($data['manager_account']) {
     
+      $user = UserSv::findOne(array('instance_id' => $data['manager_account']));
+
       $query['account'] = $user['uid'];
       
       $salesBinding = SalesBindSv::queryList($query, $data['fields'], $data['order'], $data['page'], $data['page_size']);
