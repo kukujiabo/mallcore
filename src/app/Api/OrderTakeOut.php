@@ -398,7 +398,7 @@ class OrderTakeOut extends BaseApi {
       'orderAfterSale' => array(
       
         'sn' => 'sn|string|true||订单号',
-        'sku_id' => 'sku_id|int|true||订单商品编号',
+        'sku_id' => 'sku_id|string|true||订单商品编号',
         'num' => 'num|string|true||退货数量'
       
       ),
