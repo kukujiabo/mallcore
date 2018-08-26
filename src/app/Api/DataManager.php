@@ -22,7 +22,7 @@ class DataManager extends BaseApi {
       'getList' => array(
       
         'name' => 'name|string|false||名称',
-        'mobile' => 'mobile|string|false||手机号'
+        'mobile' => 'mobile|string|false||手机号',
         'city_code' => 'city_code|string|false||名称'
       
       )
