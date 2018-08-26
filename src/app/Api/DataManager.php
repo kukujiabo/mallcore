@@ -23,7 +23,9 @@ class DataManager extends BaseApi {
       
         'name' => 'name|string|false||名称',
         'mobile' => 'mobile|string|false||手机号',
-        'city_code' => 'city_code|string|false||名称'
+        'city_code' => 'city_code|string|false||名称',
+        'page' => 'page|int|false|1|页码',
+        'page_size' => 'page_size|int|false|1|每页条数',
       
       )
     
