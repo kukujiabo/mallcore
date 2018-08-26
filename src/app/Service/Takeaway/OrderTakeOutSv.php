@@ -1041,6 +1041,30 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
 
         WechatTemplateMessageSv::generalMessage($msgData);
 
+        $dataManas = DataManagerSv::all(array('city_code' => $cityCode));
+
+        foreach($dataManas as $dataMana) {
+
+          $infoData = array(
+          
+            'mobile' => $dataMana['mobile'],
+          
+            'short_id' => 'OPENTM410929003',
+
+            'minipage' => '',
+
+            'object_key' => 'order_id',
+
+            'object_id' => $orderId,
+
+            'contents' => "first\$\$小骏马下单||keyword1\$\${$data['sn']}||keyword2\$\${$data['create_time']}||remark\$\$用户手机号：{$info_user['user_tel']}"
+          
+          );
+
+          WechatTemplateMessageSv::generalMessage($infoData);
+
+        }
+
       } catch (\Exception $e) {
       
       
