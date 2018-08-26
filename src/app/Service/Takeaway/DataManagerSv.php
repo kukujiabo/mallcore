@@ -69,4 +69,10 @@ class DataManagerSv extends BaseService {
   
   }
 
+  public function removeManager($data) {
+  
+    return self::remove($data['id']);
+  
+  }
+
 }

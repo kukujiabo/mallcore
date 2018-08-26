@@ -17,4 +17,10 @@ class DataManagerDm {
   
   }
 
+  public function removeManager($data) {
+  
+    return DataManagerSv::removeManager($data);
+  
+  }
+
 }
