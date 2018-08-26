@@ -37,7 +37,7 @@ class DataManagerSv extends BaseService {
     
     );
      
-    return self::add($data);
+    return self::add($newData);
   
   }
 
