@@ -14,7 +14,7 @@ class DataManager extends BaseApi {
       'create' => array(
       
         'name' => 'name|string|true||名称',
-        'mobile' => 'mobile|string|true||手机号'
+        'mobile' => 'mobile|string|true||手机号',
         'city_code' => 'city_code|string|true||名称'
       
       ),
