@@ -71,7 +71,7 @@ class DataManager extends BaseApi {
    */
   public function removeManager() {
   
-    return $this->removeManager($this->retriveRuleParams(__FUNCTION__)); 
+    return $this->dm->removeManager($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
