@@ -304,11 +304,13 @@ class WechatSceneSv {
   
     $id = explode('_', $eventKey)[1];
 
-    $content = MenuTextSv::findOne($id);
+    $reply = MenuTextSv::findOne($id);
 
     $time = time();
+
+    $content = iconv('GBK', 'UTF-8', $reply['content']);
   
-    echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content['content']}]]></Content></xml>";
+    echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
 
     exit;
   
