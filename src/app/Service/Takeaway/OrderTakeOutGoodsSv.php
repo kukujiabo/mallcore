@@ -169,7 +169,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
     
       $id = $data['order_take_out_id'];
   
-      $info_order = self::findOne($id);
+      $info_order = OrderTakeOutSv::findOne($id);
 
       $goods = OrderTakeOutGoodsSv::all(array('id' => $data['goods_id']));
 
