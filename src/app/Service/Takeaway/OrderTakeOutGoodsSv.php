@@ -247,31 +247,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         $result = json_decode($response, true);
 
-        $i = 0;
-
-        foreach($goods as $key => $good) {
-        
-          $sku = self::findOne(array('order_take_out_id' => $data['order_take_out_id'], 'no_code' => $good['no_code']));
-
-          unset($sku['id']);
-
-          $sku['num'] = $nums[$key] * -1;
-
-          $sku['price'] = $sku['price'] * -1;
-
-          $sku['goods_money'] = $sku['price'] * $good['num'];
-
-          $sku['returned'] = 1;
-
-          $sku['return_code'] = $data['return_code'];
-
-          $sku['created_at'] = time();
-
-          array_push($newOrderGoods, $sku);
-        
-        }
-
-        return self::batchAdd($newOrderGoods);
+        return $result;
 
       }
     
