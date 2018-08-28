@@ -308,7 +308,7 @@ class WechatSceneSv {
 
     $time = time();
   
-    echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
+    echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content['content']}]]></Content></xml>";
 
     exit;
   
