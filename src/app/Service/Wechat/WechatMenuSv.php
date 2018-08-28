@@ -27,7 +27,14 @@ class WechatMenuSv extends BaseService {
 
     $url = str_replace('{ACCESS_TOKEN}', $accessToken, \PhalApi\DI()->config->get('wechat.CREATE_WPS_MENU'));
 
-    $result = Http::httpPost($url, $data['menus']);
+    /**
+     * 若有文字类型，则必须解析
+     */
+    $menus = json_decode($data['menus']);
+
+    self::textMenu($menus);
+
+    $result = Http::httpPost($url, json_encode($menus));
 
     if ($result) {
     
@@ -69,6 +76,34 @@ class WechatMenuSv extends BaseService {
     $url = str_replace('{ACCESS_TOKEN}', $accessToken, \PhalApi\DI()->config->get('wechat.GET_WPS_MENU'));
 
     return iconv('UTF-8', 'GBK', Http::httpPost($url, $data['menus']));
+  
+  }
+
+  public function textMenu(&$menus) {
+  
+    foreach($menus as $key => $menu) {
+    
+      if ($menu['type'] == 'click') {
+      
+        $text = $menus[$key]['text'];
+
+        unset($menus[$key]['text']);
+
+        $id = MenuTextSv::add(array('content' => $text, 'created_at' => date('Y-m-d H:i:s')));
+
+        $eventId = "cm_{$id}";
+
+        $menus[$key]['key'] = $eventId;
+      
+      }
+    
+      if ($menu['sub_button']) {
+      
+        self::textMenu($menus[$key]['sub_button']);
+      
+      }
+    
+    } 
   
   }
 
