@@ -30,9 +30,9 @@ class WechatMenuSv extends BaseService {
     /**
      * 若有文字类型，则必须解析
      */
-    $menus = json_decode($data['menus']);
+    $menus = json_decode($data['menus'], true);
 
-    self::textMenu($menus);
+    self::textMenu($menus['button']);
 
     $result = Http::httpPost($url, json_encode($menus));
 

@@ -6,5 +6,6 @@ use Core\Service\CurdSv;
 
 class MenuTextSv extends BaseService {
 
+  use CurdSv;
 
 }
