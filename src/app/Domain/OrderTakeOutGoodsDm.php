@@ -48,5 +48,11 @@ class OrderTakeOutGoodsDm {
     return OrderTakeOutGoodsSv::getAll($data);
   
   }
+
+  public function batchReturnGoods($data) {
+  
+    return OrderTakeOutGoodsSv::batchReturnGoods($data);
+  
+  }
     
 }
