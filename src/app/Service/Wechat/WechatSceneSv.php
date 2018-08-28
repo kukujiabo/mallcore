@@ -75,8 +75,9 @@ class WechatSceneSv {
 
         break;
 
-      case 'text':
+      case 'CLICK':
 
+        self::eventClick($openId, $eventKey);
 
         break;
 
@@ -295,6 +296,21 @@ class WechatSceneSv {
    */
   public function unsubscribe($openId, $sceneId) {
   
+  
+  
+  }
+
+  public function eventClick($openId, $eventKey) {
+  
+    $id = explode('_', $eventKey)[1];
+
+    $content = MenuTextSv::findOne($id);
+
+    $time = time();
+  
+    echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
+
+    exit;
   
   
   }
