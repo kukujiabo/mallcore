@@ -188,7 +188,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         $date = date('Y-m-d H:i:s');
 
-        $cretcode = substr(trim($sn) . rand(1000, 9999), 4, strlen(trim($sn)));
+        $cretcode = substr(trim($info_order['sn']) . rand(1000, 9999), 4, strlen(trim($info_order['sn'])));
 
         $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
 
