@@ -173,87 +173,114 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
       $goods = OrderTakeOutGoodsSv::all(array('id' => $data['goods_id']));
 
-      $userInfo = UserSv::findOne($info_order['buyer_id']);
-
-      $member = MemberSv::findOne($info_order['buyer_id']);
-
-      $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
-
-      $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $info_order['id']));
-
-      $date = date('Y-m-d H:i:s');
-
-      $cretcode = substr(trim($sn) . rand(1000, 9999), 4, strlen(trim($sn)));
-
-      $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
-
-      $signSecret = md5($signKey);
-
-      if ($userInfo['reference']) {
-      
-        $cbUser = UserSv::findOne($userInfo['reference']);
-      
-      }
-
-      $newAsync = array(
-
-        'sign'  => $signSecret,
-        'userid' => $info_order['buyer_id'],
-        'wechatcode' => $userInfo['wx_openid'],
-        'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
-        'wechatphone' => $userInfo['user_tel'],
-        'cretcode' => $cretcode,
-        'csocode' => trim($sn),
-        'ddate' => $date,
-        'cdepcode' => $info_order['city_code'],
-        'binvoice' => $info_order['invoice'],
-        "cbuserid" => $cbUser['uid'] ? $cbUser['uid'] : "",
-        'cbuserphone' => $cbUser['user_tel'] ? $cbUser['user_tel'] : "",
-        'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
-        'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
-        'creceiverphone' => $address['mobile'],
-        'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
-        'caccid' => $info_order['cas']
-      
-      );
-
-      $newAsync['detail'] = array();
-
       $nums = explode(',', $data['num']);
 
-      foreach($goods as $key => $good) {
+      if ($info_order['audit'] == 1) {
 
-        $orderGood = array(
+        $userInfo = UserSv::findOne($info_order['buyer_id']);
+
+        $member = MemberSv::findOne($info_order['buyer_id']);
+
+        $manager = ManagerSv::findOne(array('phone' => $userInfo['user_tel']));
+
+        $address = OrderTakeOutAddressSv::findOne(array('order_take_out_id' => $info_order['id']));
+
+        $date = date('Y-m-d H:i:s');
+
+        $cretcode = substr(trim($sn) . rand(1000, 9999), 4, strlen(trim($sn)));
+
+        $signKey = "cretcode={$cretcode}ddate={$date}wechatphone={$userInfo['user_tel']}TunZhoush@$58h";
+
+        $signSecret = md5($signKey);
+
+        if ($userInfo['reference']) {
         
-          'autoid' => $good['id'],
-          'iunsid' => $good['id'],
-          'cinvcode' => $good['no_code'],
-          'iquantity' => $nums[$key],
-          'iprice' => abs($good['price']),
-          'imoney' => $good['price'] * $nums[$key]
+          $cbUser = UserSv::findOne($userInfo['reference']);
+        
+        }
+
+        $newAsync = array(
+
+          'sign'  => $signSecret,
+          'userid' => $info_order['buyer_id'],
+          'wechatcode' => $userInfo['wx_openid'],
+          'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
+          'wechatphone' => $userInfo['user_tel'],
+          'cretcode' => $cretcode,
+          'csocode' => trim($sn),
+          'ddate' => $date,
+          'cdepcode' => $info_order['city_code'],
+          'binvoice' => $info_order['invoice'],
+          "cbuserid" => $cbUser['uid'] ? $cbUser['uid'] : "",
+          'cbuserphone' => $cbUser['user_tel'] ? $cbUser['user_tel'] : "",
+          'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
+          'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
+          'creceiverphone' => $address['mobile'],
+          'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
+          'caccid' => $info_order['cas']
         
         );
 
-        array_push($newAsync['detail'], $orderGood);
+        $newAsync['detail'] = array();
+
+        foreach($goods as $key => $good) {
+
+          $orderGood = array(
+          
+            'autoid' => $good['id'],
+            'iunsid' => $good['id'],
+            'cinvcode' => $good['no_code'],
+            'iquantity' => $nums[$key],
+            'iprice' => abs($good['price']),
+            'imoney' => $good['price'] * $nums[$key]
+          
+          );
+
+          array_push($newAsync['detail'], $orderGood);
+
+        }
+
+        return $newAsync;
+
+        $header = array( 'Content-Type:application/json;charset=utf-8' );
+        
+        $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salereturnvoucher", json_encode($newAsync), $header);
+
+        $result = json_decode($response, true);
+
+        // if ($result['status'] == 0) {
+        // 
+        //   self::update($orders[$key]['id'], array('audit' => 0));
+        // 
+        // }
+
+        $i = 0;
+
+        foreach($goods as $key => $good) {
+        
+          $sku = self::findOne(array('order_take_out_id' => $data['order_take_out_id'], 'no_code' => $good['no_code']));
+
+          unset($sku['id']);
+
+          $sku['num'] = $nums[$key] * -1;
+
+          $sku['price'] = $sku['price'] * -1;
+
+          $sku['goods_money'] = $sku['price'] * $good['num'];
+
+          $sku['returned'] = 1;
+
+          $sku['return_code'] = $data['return_code'];
+
+          $sku['created_at'] = time();
+
+          array_push($newOrderGoods, $sku);
+        
+        }
+
+        return self::batchAdd($newOrderGoods);
 
       }
-
-      return $newAsync;
-
-      $header = array( 'Content-Type:application/json;charset=utf-8' );
-      
-      $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salereturnvoucher", json_encode($newAsync), $header);
-
-      $result = json_decode($response, true);
-
-      if ($result['status'] == 0) {
-      
-        self::update($orders[$key]['id'], array('audit' => 0));
-      
-      }
-   
-      return $result;
-      
     
     }
 
