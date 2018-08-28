@@ -34,7 +34,7 @@ class WechatMenuSv extends BaseService {
 
     self::textMenu($menus['button']);
 
-    $result = Http::httpPost($url, json_encode($menus));
+    $result = Http::httpPost($url, json_encode($menus, JSON_UNESCAPED_UNICODE));
 
     if ($result) {
     
