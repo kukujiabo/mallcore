@@ -241,19 +241,11 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         }
 
-        return $newAsync;
-
         $header = array( 'Content-Type:application/json;charset=utf-8' );
         
         $response = Http::httpPost("http://58.247.168.34:8008/api/u8/interface/create_salereturnvoucher", json_encode($newAsync), $header);
 
         $result = json_decode($response, true);
-
-        // if ($result['status'] == 0) {
-        // 
-        //   self::update($orders[$key]['id'], array('audit' => 0));
-        // 
-        // }
 
         $i = 0;
 
