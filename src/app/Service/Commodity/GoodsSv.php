@@ -275,7 +275,7 @@ class GoodsSv extends BaseService implements IGoods {
 
       GoodsAttributeValueSv::batchUpdate(array('goods_id'=>$goods_id, 'active'=>1), array('active'=>2));
 
-      foreach($attribute as $v) {
+      foreach($attribute as $key => $v) {
 
           $attr_array = array();
 
@@ -329,6 +329,8 @@ class GoodsSv extends BaseService implements IGoods {
 
                   $data_attribute_value['active'] = 1;
 
+                  $data_attribute_value['sort'] = $key + 1;
+
                   // 修改商品规格项
                   $arr['attr_value'][$attr_id][$attr_value_id] = GoodsAttributeValueSv::edit($data_attribute_value);
 
@@ -339,6 +341,8 @@ class GoodsSv extends BaseService implements IGoods {
                   $data_attribute_value['active'] = 1;
 
                   $data_attribute_value['sort'] = $key;
+
+                  $data_attribute_value['sort'] = $key + 1;
 
                   // 添加商品规格项
                   $attrValueId = GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
