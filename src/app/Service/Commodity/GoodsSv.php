@@ -64,6 +64,8 @@ class GoodsSv extends BaseService implements IGoods {
       // 商品图片
       $img_data = json_decode($params['images'], true);
 
+      $data = array();
+
       // 未设置主图默认用第一张
       if (!isset($data['picture']) && isset($img_data[0])) {
 
@@ -71,27 +73,33 @@ class GoodsSv extends BaseService implements IGoods {
 
       }
 
-      $data['thumbnail'] = $params['thumbnail'];
-      $data['brand_id'] = $params['brand_id'];
-      $data['goods_name'] = $params['goods_name'];
-      $data['shop_id'] = $params['shop_id'];
-      $data['is_sku'] = $params['is_sku'];
-      $data['sign'] = $params['sign'];
-      $data['signature'] = $params['signature'];
-      $data['goods_number'] = $params['goods_number'];
-      $data['category_id'] = $params['category_id'];
-      $data['state'] = $params['state'];
-      $data['price'] = $params['price'];
-      $data['max_price'] = $params['max_price'];
-      $data['market_price'] = $params['market_price'];
-      $data['goods_weight'] = $params['goods_weight'];
-      $data['stock'] = $params['stock'];
-      $data['introduction'] = $params['introduction'] ? $params['introduction'] : '';
-      $data['description'] = $params['description'] ? $params['description'] : '';
-      $data['no_code'] = $params['no_code'] ? $params['no_code'] : '';
-      $data['sort'] = $params['sort'] ? $params['sort'] : '';
-      $data['index_show'] = $params['index_show'];
-      $data['cities'] = $params['cities'];
+      foreach($params as $key => $val) {
+      
+        $data[$key]  = $val;
+      
+      }
+
+      // $data['thumbnail'] = $params['thumbnail'];
+      // $data['brand_id'] = $params['brand_id'];
+      // $data['goods_name'] = $params['goods_name'];
+      // $data['shop_id'] = $params['shop_id'];
+      // $data['is_sku'] = $params['is_sku'];
+      // $data['sign'] = $params['sign'];
+      // $data['signature'] = $params['signature'];
+      // $data['goods_number'] = $params['goods_number'];
+      // $data['category_id'] = $params['category_id'];
+      // $data['state'] = $params['state'];
+      // $data['price'] = $params['price'];
+      // $data['max_price'] = $params['max_price'];
+      // $data['market_price'] = $params['market_price'];
+      // $data['goods_weight'] = $params['goods_weight'];
+      // $data['stock'] = $params['stock'];
+      // $data['introduction'] = $params['introduction'] ? $params['introduction'] : '';
+      // $data['description'] = $params['description'] ? $params['description'] : '';
+      // $data['no_code'] = $params['no_code'] ? $params['no_code'] : '';
+      // $data['sort'] = $params['sort'] ? $params['sort'] : '';
+      // $data['index_show'] = $params['index_show'];
+      // $data['cities'] = $params['cities'];
 
       if ($params['signature']) {
       
