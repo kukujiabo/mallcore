@@ -97,6 +97,12 @@ class WechatMenuSv extends BaseService {
       
       }
     
+      if ($menu['type'] == 'image') {
+      
+        $menu[$key]['type'] = 'media_id'
+      
+      }
+
       if ($menu['sub_button']) {
       
         self::textMenu($menus[$key]['sub_button']);
