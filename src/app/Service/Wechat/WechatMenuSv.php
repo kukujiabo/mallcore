@@ -99,7 +99,7 @@ class WechatMenuSv extends BaseService {
     
       if ($menu['type'] == 'image') {
       
-        $menu[$key]['type'] = 'media_id';
+        $menus[$key]['type'] = 'media_id';
       
       }
 
