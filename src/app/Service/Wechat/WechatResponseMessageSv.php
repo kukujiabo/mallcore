@@ -4,6 +4,7 @@ namespace App\Service\Wechat;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
 use App\Interfaces\Wechat\IWechatResponseMessage;
+use App\Service\System\ConfigSv;
 
 /**
  * 微信自定义消息回复
@@ -125,6 +126,18 @@ class WechatResponseMessageSv extends BaseService implements IWechatResponseMess
     }
 
     return self::add($newMsg);
+  
+  }
+
+  public function editResponseMessage($data) {
+  
+    return ConfigSv::saveByKname('subscribe_response', $data['text']);   
+  
+  }
+
+  public function getFocusResponse($data) {
+  
+    return ConfigSv::getConfigValueByKey('subscribte_response'); 
   
   }
 
