@@ -197,7 +197,7 @@ class WechatSceneSv {
 
     $reply = ConfigSv::findOne(array('k_name' => 'subscribe_response'));
 
-    $content = iconv('GBK', 'UTF-8', $reply['content']);
+    $content = iconv('GBK', 'UTF-8', $reply['val']);
     /**
      * 发送关注回复
      */
