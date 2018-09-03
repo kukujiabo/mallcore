@@ -147,7 +147,6 @@ class WechatSceneSv {
       /**
        * 无法获取用户unionid则抛出异常
        */
-    
       throw new WechatException(
 
         ErrorCode::WechatSceneSv['WECHAT_GET_UNION_ID_MSG'], 
@@ -180,98 +179,27 @@ class WechatSceneSv {
        */
     
       $res = MemberWechatSv::update($memberWx['id'], $data);
-
-      /**
-       * todo 同步pos重新关注
-       */
     
     } else {
 
       /**
        * 若公众号会员信息不存在，则添加新的公众号会员信息
        */
-
-      /**
-       * 获取相关渠道
-       * 根据场景值，有效状态，有效期等
-       */
-      $channel = ChannelSv::getActiveOneByScene($sceneId);
-    
-      if ($channel) {
-
-        $data['channel'] = $channel['id'];
-
-        $data['channel_type'] = $channel['type'];
-
-      } else {
-      
-        $data['channel'] = 'auto';
-
-        $data['channel_type'] = 0;
-      
-      }
-
       $data['subscribe'] = 1;
 
       $data['created_at'] = date('Y-m-d H:i:s');
 
       $res = MemberWechatSv::add($data);
-
-      if ($res) {
-
-        /**
-         * 新增公众号会员数据后，查询该公众号会员是否已经是正式会员(已绑定手机号)
-         */
-        $user = UserSv::findOne(array('wx_unionid' => $data['unionid']));
-
-        if ($user && $user['user_tel']) {
-
-          /**
-           * 是正式会员
-           */
-
-          // 获取账户信息
-          $acct = MemberAccountSv::findOne(array('uid'=>$user['uid']));
-
-          // 获取会员信息
-          $member = MemberSv::findOne(array('uid'=>$user['uid']));
-
-          $posUserData['sDocEntry'] = $acct['pos_id'];
-
-          $posUserData['sVIPName'] = $member['member_name'];
-
-          $posUserData['sSex'] = $user['sex'] == 1 ? '先生' : '女士';
-
-          $posUserData['sMobile'] = $user['user_tel'];
-
-          $posUserData['sWXOpenID'] = $openId;
-          
-          $posUserData['sHealImgURL'] = $user['user_headimg'];
-
-          /**
-           * 修改pos会员信息
-           */
-
-          PosSv::updateMemberInfo($posUserData);
-        
-        } else {
-
-          /**
-           *  todo 不是正式会员，需要推送一条消息到界面上，提示用户立即绑定手机号
-           */
-        
-        }
       
-      
-      } else {
-      
-        /**
-         * 新增公众号会员失败
-         */
-      
-      }
-    
     }
+
+    $nowTime = time();
+
+    /**
+     * 发送关注回复
+     */
+    echo "<xml><ToUserName>< ![CDATA[{$data['openid']}] ]></ToUserName> <FromUserName>< ![CDATA[gh_cbcd762da8e4] ]></FromUserName> <CreateTime>{$nowTime}</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[欢迎关注小骏马] ]></Content> </xml>";
+    exit;
   
   }
 
