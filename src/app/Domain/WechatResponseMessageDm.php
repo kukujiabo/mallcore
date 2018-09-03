@@ -17,4 +17,10 @@ class WechatResponseMessageDm {
   
   }
 
+  public function addKeywordResponse($data) {
+  
+    return WechatResponseMessageSv::addKeywordResponse($data);
+  
+  }
+
 }

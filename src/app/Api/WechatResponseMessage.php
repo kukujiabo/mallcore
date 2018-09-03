@@ -23,6 +23,18 @@ class WechatResponseMessage extends BaseApi {
       
         'token' => 'token|string|true||用户令牌'
       
+      ),
+
+      'addKeywordResponse' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+
+        'kname' => 'kname|string|true||key',
+
+        'keyword' => 'keyword|string|true||关键字',
+
+        'ext_1' => 'ext_1|string|true||回复内容'
+      
       )
     
     ));
@@ -50,6 +62,18 @@ class WechatResponseMessage extends BaseApi {
   public function getFocusResponse() {
   
     return $this->dm->getFocusResponse($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 新增关键字回复
+   * @desc 新增关键字回复
+   *
+   * @return
+   */
+  public function addKeywordResponse() {
+  
+    return $this->dm->addKeywordResponse($this->retriveRuleParams(__FUNCTION__));
   
   }
 

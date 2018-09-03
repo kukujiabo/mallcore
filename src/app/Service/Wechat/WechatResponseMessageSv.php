@@ -140,4 +140,18 @@ class WechatResponseMessageSv extends BaseService {
   
   }
 
+  public function addKeywordResponse($data) {
+
+    $newConfig = array(
+    
+      'k_name' => $data['kname'],
+      'val' => $data['keyword'],
+      'ext_1' => $data['ext_1'],
+    
+    );
+  
+    return ConfigSv::add($newConfig);
+  
+  }
+
 }
