@@ -46,7 +46,7 @@ class WechatResponseMessageSv extends BaseService {
     
       case 'text':
 
-        handleTextMessage($decodeXML);
+        self::handleTextMessage($decodeXML);
 
         break;
 
@@ -56,7 +56,7 @@ class WechatResponseMessageSv extends BaseService {
 
       case 'image':
 
-        handleImageMessage($decodeXML);
+        self::handleImageMessage($decodeXML);
 
         break;
     

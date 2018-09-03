@@ -178,7 +178,7 @@ class WechatSv extends BaseService {
          */
         WechatSceneSv::handleScene($params['openid'], $decodeXML['EventKey'], $decodeXML['Event']);
 
-      } elseif (in_array($decodeXML, WechatResponseMessageSv::MSGTYPES)) {
+      } else {
       
         /**
          * 处理推送消息
