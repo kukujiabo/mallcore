@@ -198,7 +198,7 @@ class WechatSceneSv {
     /**
      * 发送关注回复
      */
-    echo "<xml><ToUserName>< ![CDATA[{$data['openid']}] ]></ToUserName> <FromUserName>< ![CDATA[gh_cbcd762da8e4] ]></FromUserName> <CreateTime>{$nowTime}</CreateTime> <MsgType>< ![CDATA[text] ]></MsgType> <Content>< ![CDATA[欢迎关注小骏马] ]></Content> </xml>";
+    echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注小骏马]]></Content></xml>";
     exit;
   
   }
