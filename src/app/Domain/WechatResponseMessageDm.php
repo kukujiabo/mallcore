@@ -23,4 +23,10 @@ class WechatResponseMessageDm {
   
   }
 
+  public function getKeywordList($data) {
+  
+    return WechatResponseMessageSv::getKeywordList($data);
+  
+  }
+
 }

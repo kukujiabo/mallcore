@@ -144,6 +144,8 @@ class WechatResponseMessageSv extends BaseService {
 
     $newConfig = array(
     
+      'module' => 'WX',
+      'sub_module' => 'wechat_public_service_keyword',
       'k_name' => $data['kname'],
       'val' => $data['keyword'],
       'ext_1' => $data['ext_1'],
@@ -151,6 +153,12 @@ class WechatResponseMessageSv extends BaseService {
     );
   
     return ConfigSv::add($newConfig);
+  
+  }
+
+  public function getKeywordList($data) {
+  
+    return ConfigSv::all(array( 'sub_module' => 'wechat_public_service_keyword' ));
   
   }
 

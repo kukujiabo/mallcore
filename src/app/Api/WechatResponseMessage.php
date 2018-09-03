@@ -35,6 +35,12 @@ class WechatResponseMessage extends BaseApi {
 
         'ext_1' => 'ext_1|string|true||回复内容'
       
+      ),
+
+      'getKeywordList' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+      
       )
     
     ));
@@ -74,6 +80,18 @@ class WechatResponseMessage extends BaseApi {
   public function addKeywordResponse() {
   
     return $this->dm->addKeywordResponse($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 查询关键字列表
+   * @desc 查询关键字列表
+   *
+   * @return array list
+   */
+  public function getKeywordList() {
+  
+    return $this->dm->getKeywordList($this->retriveRuleParams(__FUNCTION__));
   
   }
 
