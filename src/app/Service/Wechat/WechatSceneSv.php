@@ -195,11 +195,13 @@ class WechatSceneSv {
 
     $nowTime = time();
 
-    $content = ConfigSv::findOne(array('k_name' => 'subscribe_response'));
+    $reply = ConfigSv::findOne(array('k_name' => 'subscribe_response'));
+
+    $content = iconv('GBK', 'UTF-8', $reply['content']);
     /**
      * 发送关注回复
      */
-    echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content['val']}]]></Content></xml>";
+    echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
     exit;
   
   }
