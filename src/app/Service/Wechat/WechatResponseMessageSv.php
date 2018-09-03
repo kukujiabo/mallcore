@@ -11,7 +11,7 @@ use App\Service\System\ConfigSv;
  *
  * @author Meroc Chen <398515393@qq.com> 2018-01-26
  */
-class WechatResponseMessageSv extends BaseService implements IWechatResponseMessageSv {
+class WechatResponseMessageSv extends BaseService {
 
   use CurdSv;
 
