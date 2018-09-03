@@ -81,7 +81,7 @@ class WechatResponseMessageSv extends BaseService {
 
       $content = iconv('GBK', 'UTF-8', $reply['ext_1']);
      
-      echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
+      echo "<xml><ToUserName><![CDATA[{$decodeXML['FromUserName']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
 
       exit;
 
