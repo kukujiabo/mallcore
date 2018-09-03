@@ -75,11 +75,13 @@ class WechatResponseMessageSv extends BaseService {
   
     $content = $decodeXML['Content'];
 
-    $keyword = ConfigSv::findOne(array('sub_module' => 'wechat_public_service_keyword', 'val' => $content));
+    $reply = ConfigSv::findOne(array('sub_module' => 'wechat_public_service_keyword', 'val' => $content));
 
-    if ($keyword) {
+    if ($reply) {
+
+      $content = iconv('GBK', 'UTF-8', $reply['ext_1']);
      
-      echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$keyword['ext_1']}]]></Content></xml>";
+      echo "<xml><ToUserName><![CDATA[{$data['openid']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
 
       exit;
 
