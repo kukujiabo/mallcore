@@ -162,4 +162,10 @@ class WechatResponseMessageSv extends BaseService {
   
   }
 
+  public function deleteKeyword($data) {
+  
+    return ConfigSv::remove($data['id']);
+  
+  }
+
 }

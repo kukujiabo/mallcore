@@ -41,6 +41,13 @@ class WechatResponseMessage extends BaseApi {
       
         'token' => 'token|string|true||用户令牌',
       
+      ),
+
+      'deleteKeyword' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+        'id' => 'id|int|true||删除关键字',
+      
       )
     
     ));
@@ -92,6 +99,18 @@ class WechatResponseMessage extends BaseApi {
   public function getKeywordList() {
   
     return $this->dm->getKeywordList($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 删除关键字
+   * @desc 删除关键字
+   *
+   * @return int id
+   */
+  public function deleteKeyword() {
+  
+    return $this->dm->deleteKeyword($this->retriveRuleParams(__FUNCTION__));
   
   }
 

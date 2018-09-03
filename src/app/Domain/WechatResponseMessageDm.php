@@ -29,4 +29,10 @@ class WechatResponseMessageDm {
   
   }
 
+  public function deleteKeyword($data) {
+  
+    return WechatResponseMessageSv::deleteKeyword($data);
+  
+  }
+
 }
