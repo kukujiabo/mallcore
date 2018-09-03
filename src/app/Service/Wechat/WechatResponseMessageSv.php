@@ -131,13 +131,12 @@ class WechatResponseMessageSv extends BaseService {
 
   public function editResponseMessage($data) {
   
-    return ConfigSv::saveByKname('subscribe_response', $data['text']);   
-  
+    return ConfigSv::saveByKname(array('subscribe_response'=>$data['text']));   
   }
 
   public function getFocusResponse($data) {
   
-    return ConfigSv::getConfigValueByKey('subscribte_response'); 
+    return ConfigSv::getConfigValueByKey('subscribe_response'); 
   
   }
 
