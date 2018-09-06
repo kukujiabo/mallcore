@@ -84,16 +84,20 @@ class WechatMenuSv extends BaseService {
     foreach($menus as $key => $menu) {
     
       if ($menu['type'] == 'click') {
-      
+
         $text = $menus[$key]['text'];
 
-        unset($menus[$key]['text']);
+          if ($text) {
 
-        $id = MenuTextSv::add(array('content' => $text, 'created_at' => date('Y-m-d H:i:s')));
+          unset($menus[$key]['text']);
 
-        $eventId = "cm_{$id}";
+          $id = MenuTextSv::add(array('content' => $text, 'created_at' => date('Y-m-d H:i:s')));
 
-        $menus[$key]['key'] = $eventId;
+          $eventId = "cm_{$id}";
+
+          $menus[$key]['key'] = $eventId;
+
+        }
       
       }
     
