@@ -66,6 +66,8 @@ class GoodsPriceMapSv extends BaseService {
 
         'tax_off_price' => $sku['tax_off_price'],
 
+        'no_code' => $sku['no_code'],
+
         'created_at' => date('Y-m-d H:i:s')
 
       );
@@ -96,7 +98,9 @@ class GoodsPriceMapSv extends BaseService {
 
       'level_name' => $params['level_name'],
       
-      'city_name' => $params['city_name']
+      'city_name' => $params['city_name'],
+
+      'no_code' => ''
     
     );
 
@@ -181,7 +185,8 @@ class GoodsPriceMapSv extends BaseService {
       '用户等级', 
       '城市代码', 
       '商品代码', 
-      'sku代码'
+      'sku代码',
+      '商品编码'
     
     );
 
@@ -225,7 +230,9 @@ class GoodsPriceMapSv extends BaseService {
 
         'goods_id' => $price['goods_id'],
         
-        'sku_id' => $price['sku_id']
+        'sku_id' => $price['sku_id'],
+
+        'no_code' => $price['no_code']
 
       );
 
@@ -288,7 +295,8 @@ class GoodsPriceMapSv extends BaseService {
         'user_level' => $row[6],
         'city_code' => $data['city_code'],
         'goods_id' => $row[8],
-        'sku_id' => $row[9]
+        'sku_id' => $row[9],
+        'no_code' => $row[10]
 
       ];
     
