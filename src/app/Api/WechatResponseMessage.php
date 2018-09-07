@@ -128,4 +128,28 @@ class WechatResponseMessage extends BaseApi {
   
   }
 
+  /**
+   * 编辑默认回复
+   * @desc 编辑默认回复
+   *
+   * @return
+   */
+  public function editDefaultMessage() {
+  
+    return $this->dmm->editDefaultMessage($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  /**
+   * 查询默认回复
+   * @desc 查询默认回复
+   *
+   * @return
+   */
+  public function getDefaultMessage() {
+  
+    return $this->dm->getDefaultMessage($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
 }
