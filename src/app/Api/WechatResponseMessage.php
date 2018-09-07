@@ -136,7 +136,7 @@ class WechatResponseMessage extends BaseApi {
    */
   public function editDefaultMessage() {
   
-    return $this->dmm->editDefaultMessage($this->retriveRuleParams(__FUNCTION__)); 
+    return $this->dm->editDefaultMessage($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
