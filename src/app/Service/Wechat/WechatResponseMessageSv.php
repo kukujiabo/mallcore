@@ -147,6 +147,18 @@ class WechatResponseMessageSv extends BaseService {
   
   }
 
+  public function editDefaultMessage($data) {
+  
+    return ConfigSv::saveByKname(array( 'default_response') => $data['text'] );
+  
+  }
+
+  public function getDefaultMessage($data) {
+  
+    return ConfigSv::getConfigValueByKey('default_response');
+  
+  }
+
   public function editResponseMessage($data) {
   
     return ConfigSv::saveByKname(array('subscribe_response'=>$data['text']));   

@@ -5,6 +5,18 @@ use App\Service\Wechat\WechatResponseMessageSv;
 
 class WechatResponseMessageDm {
 
+  public function editDefaultMessage($data) {
+  
+    return WechatResponseMessageSv::editDefaultMessage($data);
+  
+  }
+
+  public function getDefaultMessage($data) {
+  
+    return WechatResponseMessageSv::getDefaultMessage($data);
+  
+  }
+
   public function editResponseMessage($data) {
   
     return WechatResponseMessageSv::editResponseMessage($data);

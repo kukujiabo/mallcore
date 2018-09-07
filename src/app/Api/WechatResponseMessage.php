@@ -10,6 +10,20 @@ class WechatResponseMessage extends BaseApi {
   public function getRules() {
   
     return $this->rules(array(
+
+      'editDefaultMessage' => array(
+      
+        'token' => 'token|string|true||用户令牌',
+      
+        'text' => 'text|string|true||回复内容'
+      
+      ),
+
+      'getDefaultMessage' => array(
+      
+        'token' => 'token|string|true||用户令牌'
+      
+      ),
     
       'editResponseMessage' => array(
       
