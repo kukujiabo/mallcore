@@ -86,8 +86,10 @@ class WechatResponseMessageSv extends BaseService {
       exit;
 
     } else {
+
+      $reply = ConfigSv::findOne(array('k_name' => 'default_response'));
     
-      echo '';
+      echo "<xml><ToUserName><![CDATA[{$decodeXML['FromUserName']}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$nowTime}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$reply['val']}]]></Content></xml>";
 
       exit;
     
