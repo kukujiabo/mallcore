@@ -374,7 +374,7 @@ class GoodsPriceMapSv extends BaseService {
         
         }
 
-        array_push($newPrices);
+        array_push($newPrices, $newPrice);
       
       }
     
