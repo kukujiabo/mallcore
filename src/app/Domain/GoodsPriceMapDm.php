@@ -50,4 +50,10 @@ class GoodsPriceMapDm {
 
   }
 
+  public function syncSkuPriceByGoodsId($data) {
+  
+    return GoodsPriceMapSv::syncSkuPriceByGoodsId($data);  
+  
+  }
+
 }
