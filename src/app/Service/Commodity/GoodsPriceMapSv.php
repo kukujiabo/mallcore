@@ -367,7 +367,7 @@ class GoodsPriceMapSv extends BaseService {
         
           if ($price['sku_id'] == $sku['sku_id'] && $price['city_code'] == $city) {
           
-            $newPrice = $price
+            $newPrice = $price;
 
             $prices[$key]['update'] = 1;
           
