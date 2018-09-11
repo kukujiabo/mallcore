@@ -7,6 +7,7 @@ use App\Service\BaseService;
 use Core\Service\CurdSv;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Service\Crm\NationwideAreaSv;
+use App\Service\Crm\NationwideAreaSv;
 
 /**
  * 价格体系服务
@@ -320,6 +321,88 @@ class GoodsPriceMapSv extends BaseService {
 
     return $i;
   
+  }
+
+  /**
+   *
+   *
+   */
+  public function syncSkuPriceByGoodsId($data) {
+  
+    $prices = self::all(array('goods_id' => $data['goods_id']));
+
+    $good = GoodsSv::findOne($data['goods_id']);
+  
+    $skus = GoodsSkuSv::all(array('goods_id' => $data['goods_id'], 'active' => 1));
+
+    $newPrices = array();
+
+    foreach($skus as $sku) {
+    
+      $cities = explode(',', $sku['cities']);
+
+      foreach($cities as $city) {
+
+        $exist = false;
+
+        $region = NationwideAreaSv::findOne($city);
+
+        $newPrice = array(
+        
+          'sku_id' => $sku['sku_id'],
+          'goods_id' => $sku['goods_id'],
+          'user_level' => 1,
+          'city_code' => $city,
+          'city_name' => $region['name'],
+          'price' => $sku['price'],
+          'tax_off_price' => $sku['tax_off_price'],
+          'goods_name' => $good['goods_name'],
+          'sku_name' => $sku['sku_name'],
+          'no_code' => $sku['no_code'],
+          'created_at' => date('Y-m-d H:i:s')
+        
+        );
+      
+        foreach($prices as $key => $price) {
+        
+          if ($price['sku_id'] == $sku['sku_id'] && $price['city_code'] == $city) {
+          
+            $newPrice = $price
+
+            $prices[$key]['update'] = 1;
+          
+          }
+        
+        }
+
+        array_push($newPrices);
+      
+      }
+    
+    }
+
+    foreach($prices  as $price) {
+    
+      if (!$price['update']) {
+      
+        self::remove($price['id']);
+      
+      }
+    
+    }
+
+    foreach($newPrices as $price) {
+    
+      if (!$price['id']) {
+      
+        self::add($price);
+      
+      }
+    
+    }
+
+    return true;
+
   }
 
 }
