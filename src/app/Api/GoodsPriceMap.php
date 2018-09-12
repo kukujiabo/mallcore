@@ -43,6 +43,8 @@ class GoodsPriceMap extends BaseApi {
         'sku_name' => 'sku_name|string|false||sku名称',
 
         'city_code' => 'city_code|string|false||城市代码',
+        
+        'order' => 'order|string|false||排序',
 
         'page' => 'page|int|false|1|页码',
 

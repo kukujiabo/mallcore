@@ -136,7 +136,7 @@ class GoodsPriceMapSv extends BaseService {
     
     $params['goods_id'] ? $query['goods_id'] = $params['goods_id'] : '';
   
-    return self::queryList($query, '*', 'id desc', $params['page'], $params['page_size']);
+    return self::queryList($query, '*', $params['order'], $params['page'], $params['page_size']);
   
   }
 
