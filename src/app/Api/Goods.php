@@ -131,6 +131,12 @@ class Goods extends BaseApi {
 
         ),
 
+        'delGoods' => array(
+        
+          'goods_id' => 'goods_id|int|true||商品id'
+        
+        ),
+
         'queryList' => array(
 
             'token' => 'token|string|false||用户令牌',
@@ -1093,6 +1099,12 @@ class Goods extends BaseApi {
   public function getRecommendGoods() {
   
     return $this->dm->getRecommendGoods($this->retriveRuleParams(__FUNCTION__)); 
+  
+  }
+
+  public function delGoods() {
+  
+    return $this->dm->delGoods($this->retriveRuleParams(__FUNCTION__));
   
   }
 

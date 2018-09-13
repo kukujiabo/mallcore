@@ -806,4 +806,14 @@ class GoodsSv extends BaseService implements IGoods {
 
   }
 
+  public function delGoods($data) {
+  
+    GoodsPriceMapSv::batchRemove(array('goods_id' => $data['goods_id']));
+
+    GoodsSkuSv::batchRemove(array('goods_id' => $data['goods_id']));
+
+    return self::remove($data['goods_id']);
+  
+  }
+
 }

@@ -126,4 +126,10 @@ class GoodsDm {
   
   }
 
+  public function delGoods($data) {
+  
+    return GoodsSv::delGoods($data);
+  
+  }
+
 }
