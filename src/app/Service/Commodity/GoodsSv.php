@@ -558,7 +558,7 @@ class GoodsSv extends BaseService implements IGoods {
       }
     
     
-    } elseif ($condition['city_code'] && $condition['user_level']) {
+    } elseif ($condition['cities'] && $condition['user_level']) {
 
       foreach($goods['list'] as $key => $good) {
       
@@ -566,7 +566,7 @@ class GoodsSv extends BaseService implements IGoods {
         
           'goods_id' => $good['goods_id'],
 
-          'city_code' => $condition['city_code'],
+          'city_code' => $condition['cities'],
 
           'user_level' => $condition['user_level'],
 
