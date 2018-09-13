@@ -739,6 +739,12 @@ class GoodsSv extends BaseService implements IGoods {
   
     $goodsId = $data['goods_id'];
 
+    if (!$goodsId) {
+    
+      return false; 
+
+    }
+
     /**
      * 删除商品主表数据
      */
@@ -747,12 +753,18 @@ class GoodsSv extends BaseService implements IGoods {
     /**
      * 删除商品sku数据
      */
-    GoodsSkuSv::remove($goodsId, false);
+    GoodsSkuSv::batchRemove(array('goods_id' => $goodsId), false);
+
+    /**
+     * 删除商品价格
+     */
+
+    GoodsPriceMapSv::batchRemove(array('goods_id' => $goodsId));
 
     /**
      * 删除商品图片
      */
-    GoodsImagesSv::remove($goodsId, false);
+    GoodsImagesSv::remove(array('goods_id' => $goodsId), false);
 
     /**
      * 删除商品属性
@@ -804,16 +816,6 @@ class GoodsSv extends BaseService implements IGoods {
   
     return $returnGoods;
 
-  }
-
-  public function delGoods($data) {
-  
-    GoodsPriceMapSv::batchRemove(array('goods_id' => $data['goods_id']));
-
-    GoodsSkuSv::batchRemove(array('goods_id' => $data['goods_id']));
-
-    return self::remove($data['goods_id']);
-  
   }
 
 }
