@@ -743,7 +743,7 @@ class Goods extends BaseApi {
 
           'max_price' => 'max_price|float|true||商品原价格',
 
-          'price' => 'price|float|true||本店售价（元）',
+          'price' => 'price|float|false||本店售价（元）',
 
           'market_price' => 'market_price|float|true||市场售价（元）',
 
@@ -833,7 +833,7 @@ class Goods extends BaseApi {
 
           'cities' => 'cities|string|false||商品销售城市',
 
-          'price' => 'price|float|true||本店售价（元）',
+          'price' => 'price|float|false||本店售价（元）',
 
           'max_price' => 'max_price|float|true||商品原价格',
 
