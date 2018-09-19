@@ -176,6 +176,16 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
       $nums = explode(',', $data['num']);
 
+      $goodIds = explode(',', $data['goods_id']);
+
+      $matchIds = array();
+
+      foreach($goodIds as $key => $goodId) {
+      
+        $matchIds[$goodId] = $nums[$key];
+      
+      }
+
       if ($info_order['audit'] == 1) {
 
         $userInfo = UserSv::findOne($info_order['buyer_id']);
@@ -231,7 +241,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
             'autoid' => $good['id'],
             'iunsid' => $good['id'],
             'cinvcode' => $good['no_code'],
-            'iquantity' => $nums[$key],
+            'iquantity' => $matchIds[$good['id']],
             'iprice' => abs($good['price']),
             'imoney' => $good['price'] * $nums[$key]
           
