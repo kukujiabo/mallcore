@@ -188,7 +188,8 @@ class GoodsPriceMapSv extends BaseService {
       '城市代码', 
       '商品代码', 
       'sku代码',
-      '商品编码'
+      '商品编码',
+      '商品状态'
     
     );
 
@@ -206,7 +207,7 @@ class GoodsPriceMapSv extends BaseService {
 
     $row = 2;
 
-    $prices = self::all($conditions);
+    $prices = VPriceMapGoodsSv::all($conditions);
 
     foreach($prices as $price) {
 
@@ -234,7 +235,9 @@ class GoodsPriceMapSv extends BaseService {
         
         'sku_id' => $price['sku_id'],
 
-        'no_code' => $price['no_code']
+        'no_code' => $price['no_code'],
+
+        'goods_status' => $price['goods_status'] == 1 ? '上架' : '下架'
 
       );
 
