@@ -17,6 +17,8 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
     use CurdSv;
 
     public function getAll($condition) {
+
+      $condition['active'] = 1;
     
       $skus = self::all($condition);
 
