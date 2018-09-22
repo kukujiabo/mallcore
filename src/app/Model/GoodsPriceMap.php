@@ -14,7 +14,9 @@ class GoodsPriceMap extends BaseModel {
 
     'sku_name' => 'like',
 
-    'goods_id' => 'in'
+    'goods_id' => 'in',
+
+    'city_code' => 'like'
 
   );
 
