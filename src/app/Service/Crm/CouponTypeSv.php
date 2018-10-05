@@ -136,6 +136,8 @@ class CouponTypeSv extends BaseService implements ICouponType {
 
       'at_least' => $data['at_least'],
 
+      'description' => $data['coupon_desc'],
+
       'ext_1' => $data['ext_1'],
 
       'ext_2' => $data['ext_2'],

@@ -23,8 +23,6 @@ class Coupon extends BaseApi {
 
         'coupon_code' => 'coupon_code|string|true|0|优惠券编码',
 
-        'coupon_type_id' => 'coupon_type_id|string|true||优惠券类型id',
-
         'shop_id' => 'shop_id|string|true||店铺id|',
 
         'uid' => 'uid|string|true||用户id|',
@@ -42,6 +40,8 @@ class Coupon extends BaseApi {
         'wx_bind' => 'wx_bind|string|true||微信是否绑定',
 
         'coupon_name' => 'coupon_name|string|true||优惠券名称',
+
+        'coupon_desc' => 'coupon_desc|string|false||优惠券说明',
 
         'deduction_type' => 'deduction_type|int|true||抵扣类型：1 折扣，2 现金，3 包邮',
 

@@ -45,7 +45,7 @@ class CouponType extends BaseApi {
 
         'is_show' => 'is_show|int|false|0|是否允许首页显示:0 不显示，1 显示',
 
-        'description' => 'description|string|false||',
+        'coupon_desc' => 'coupon_desc|string|false||优惠券说明',
 
         'term_type' => 'term_type|int|false||有效期类型：1.固定有效期，2.灵活有效期',
 
