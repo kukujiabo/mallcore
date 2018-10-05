@@ -53,6 +53,7 @@ class GoodsBrand extends BaseApi {
         'brand_name' => 'brand_name|string|false||品牌名称',
         'brand_code' => 'brand_code|string|false||品牌编码',
         'index_show' => 'index_show|int|false||是否在首页展示',
+        'category_id' => 'category_id|int|false||分类id',
         'brand_state' => 'brand_state|int|false||品牌状态',
         'all' => 'all|int|false|0|是否',
         'page' => 'page|int|false|1|页码',

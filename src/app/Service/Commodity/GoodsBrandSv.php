@@ -154,7 +154,7 @@ class GoodsBrandSv extends BaseService {
    *
    * @return array list
    */
-  public function listQuery($brandName, $brandCode, $status, $index, $all = 0, $page = 1, $pageSize = 20) {
+  public function listQuery($brandName, $brandCode, $status, $index, $categoryId, $all = 0, $page = 1, $pageSize = 20) {
 
     $options = array();
 
@@ -165,6 +165,8 @@ class GoodsBrandSv extends BaseService {
     if (isset($status)) $options['brand_state'] = $status;
 
     if (isset($index)) $options['index_show'] = $index;
+    
+    if (isset($categoryId)) $options['category_id'] = $index;
 
     if (!$all) {
     

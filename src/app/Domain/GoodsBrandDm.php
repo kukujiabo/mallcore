@@ -50,7 +50,7 @@ class GoodsBrandDm {
    */
   public function listQuery($params) {
 
-     return GoodsBrandSv::listQuery($params['brand_name'], $params['brand_code'], $params['brand_state'], $params['index_show'], $params['all'], $params['page'], $params['page_size']);
+     return GoodsBrandSv::listQuery($params['brand_name'], $params['brand_code'], $params['brand_state'], $params['index_show'], $params['category_id'], $params['all'], $params['page'], $params['page_size']);
 
   }
 
