@@ -211,6 +211,8 @@ class CouponType extends BaseApi {
 
         'coupon_image' => 'coupon_image|string|true||优惠券图片',
 
+        'coupon_desc' => 'coupon_desc|string|true||优惠券说明',
+
         'deduction_type' => 'deduction_type|int|true||抵扣类型:1.折扣，2.抵扣',
 
         'all_shops' => 'all_shops|int|true|1|是否通用:1.通用，0.不通用',
