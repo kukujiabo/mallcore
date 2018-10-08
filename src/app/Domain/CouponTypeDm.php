@@ -50,6 +50,12 @@ class CouponTypeDm {
     
     }
 
+    if ($data['coupon_desc']) {
+    
+      $data['description'] = $data['description'];
+    
+    }
+
     return CouponTypeSv::update($id, $data);
   
   }
