@@ -52,7 +52,7 @@ class CouponTypeDm {
 
     if ($data['coupon_desc']) {
     
-      $data['description'] = $data['description'];
+      $data['description'] = $data['coupon_desc'];
     
     }
 
