@@ -165,6 +165,8 @@ class CouponType extends BaseApi {
         
         'coupon_name' => 'coupon_name|string|false||优惠券类型名称',
 
+        'coupon_desc' => 'coupon_desc|string|false||优惠券说明',
+
         'money' => 'money|int|false||发放面额',
 
         'percentage' => 'percentage|float|false||折扣',
