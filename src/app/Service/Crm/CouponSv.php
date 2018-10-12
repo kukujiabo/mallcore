@@ -369,6 +369,8 @@ class CouponSv extends BaseService implements ICoupon {
 
       'ext_1' => $couponType['ext_1'],
 
+      'coupon_desc' => $couponType['description'],
+
       'coupon_image' => $couponType['coupon_image'],
       
       'start_time' => $couponType['start_time'],
@@ -600,6 +602,8 @@ class CouponSv extends BaseService implements ICoupon {
           'at_least' => $couponType['at_least'],
 
           'online_type' => $couponType['online_type'],
+
+          'coupon_desc' => $couponType['description'],
 
           'ext_1' => $couponType['ext_1'],
 
