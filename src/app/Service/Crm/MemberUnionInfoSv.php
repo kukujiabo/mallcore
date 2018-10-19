@@ -65,7 +65,7 @@ class MemberUnionInfoSv extends BaseService {
 
       $rphones = array();
 
-      array_push($rphones, $ruser['user_tel']);
+      array_push($rphones, $data['reference']);
 
       foreach($rusers as $ruser) {
       
