@@ -13,6 +13,8 @@ class MemberUnionInfo extends BaseModel {
   protected $_queryOptionRule = array(
 
     'reg_time' => 'range',
+    
+    'recommend_phone' => 'in',
 
     'member_name' => 'like',
 

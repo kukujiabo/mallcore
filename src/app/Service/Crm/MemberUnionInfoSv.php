@@ -60,8 +60,20 @@ class MemberUnionInfoSv extends BaseService {
     
     }
     if ($data['reference']) {
-    
-      $query['recommend_phone'] = $data['reference'];
+
+      $rusers = self::all(array( 'recommend_phone' => $data['reference'] ));
+
+      $rphones = array();
+
+      array_push($rphones, $ruser['user_tel']);
+
+      foreach($rusers as $ruser) {
+      
+        array_push($rphones, $ruser['user_tel']);
+      
+      }
+
+      $query['recommend_phone'] = implode(',', $rphones);
     
     }
 
