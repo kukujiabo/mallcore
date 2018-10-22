@@ -38,6 +38,28 @@ class Merchant extends BaseApi {
   
   }
 
+  /**
+   * 新增客户资料
+   * @desc 新增客户资料
+   *
+   * @return int id
+   */
+  public function create() {
+  
+    return $this->dm->create($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
+  /**
+   * 查询资料列表 
+   * @desc 查询资料列表 
+   *
+   * @return array data
+   */
+  public function listQuery() {
+  
+    return $this->dm->listQuery($this->retriveRuleParams(__FUNCTION__));
+  
+  }
 
 }
