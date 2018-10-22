@@ -4,6 +4,7 @@ namespace App\Service\Admin;
 use App\Service\BaseService;
 use Core\Service\CurdSv;
 use App\Service\Crm\UserSv;
+use App\Service\Crm\VMemberUnionDataSv;
 
 class SalesBindSv extends BaseService {
 
@@ -21,17 +22,25 @@ class SalesBindSv extends BaseService {
 
       if (!$binded) {
 
-        $newBinding = array(
-        
-          'account' => $data['account'],
+        $user = VMemberUnionDataSv::findOne(array( 'user_tel' => $mobile ));
 
-          'sales_phone' => $mobile,
+        if ($user) {
 
-          'created_at' => date('Y-m-d H:i:s')
-        
-        );
+          $newBinding = array(
+          
+            'account' => $data['account'],
+
+            'real_name' => $user['member_name'],
+
+            'sales_phone' => $mobile,
+
+            'created_at' => date('Y-m-d H:i:s')
+          
+          );
     
-        array_push($newBindings, $newBinding);
+          array_push($newBindings, $newBinding);
+
+        }
 
       }
     
