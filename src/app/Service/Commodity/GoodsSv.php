@@ -420,15 +420,13 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data_sku = $v;
 
-              $data_sku['sku_id'] = $info_sku['sku_id'];
-
               $data_sku['active'] = 1;
 
               $data_sku['cities'] = implode(',', $data_sku['checkList']);
 
-              unset($data['checkList']);
+              GoodsSkuSv::edit($data_sku);
 
-              $arr['sku'][$info_sku['sku_id']] = GoodsSkuSv::edit($data_sku);
+              $arr['sku'][$info_sku['sku_id']] = $v['sku_id'];
 
           } else {
 
