@@ -407,16 +407,16 @@ class GoodsSv extends BaseService implements IGoods {
 
           }
 
+          $v['attr_value_items_format'] = json_encode($attr_val);
+          // $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
 
-          $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
+          // $info_sku = GoodsSkuSv::findOne($where_sku);
 
-          $info_sku = GoodsSkuSv::findOne($where_sku);
+          // $v['attr_value_items'] = $v['attr_value_items'];
 
-          $v['attr_value_items'] = $v['attr_value_items'];
+          // $v['attr_value_items_format'] = $v['attr_value_items_format'];
 
-          $v['attr_value_items_format'] = $v['attr_value_items_format'];
-
-          if ($info_sku) {
+          if ($v['sku_id']) {
 
               $data_sku = $v;
 
@@ -451,6 +451,8 @@ class GoodsSv extends BaseService implements IGoods {
           }
 
       }
+
+      GoodsSkuSv::removeAll(array('goods_id' => $goods_id, 'active' => 2));
 
       return $arr;
 
