@@ -146,6 +146,8 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         $sku['price'] = $sku['price'] * -1;
 
+        $sku['shop_id'] = 0;
+
         $sku['goods_money'] = $sku['price'] * $good['num'];
 
         $sku['returned'] = 1;
