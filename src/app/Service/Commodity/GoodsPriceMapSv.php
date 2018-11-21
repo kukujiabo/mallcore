@@ -300,12 +300,15 @@ class GoodsPriceMapSv extends BaseService {
         'user_level' => $row[6],
         'city_code' => $data['city_code'],
         'goods_id' => $row[8],
-        'sku_id' => $row[9],
         'no_code' => $row[10]
 
       ];
+
+      $sku = GoodsSkuSv::findOne(array('no_code' => $newData['no_code'], 'active' => 1));
+
+      $newData['sku_id'] = $sku['sku_id'];
     
-      $price = self::findOne(array('sku_id' => $newData['sku_id'], 'city_code' => $newData['city_code']));
+      $price = self::findOne(array('no_code' => $newData['no_code'], 'city_code' => $newData['city_code']));
 
       if ($price) {
       
