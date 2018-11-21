@@ -413,7 +413,7 @@ class GoodsPriceMapSv extends BaseService {
 
   public function removeAllPriceItem($data) {
  
-    return self::removeAll(array( 'id' => $data['ids'] ));  
+    return self::batchRemove(array( 'id' => $data['ids'] ));  
   
   }
 
