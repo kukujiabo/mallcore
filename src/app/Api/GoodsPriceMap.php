@@ -96,6 +96,12 @@ class GoodsPriceMap extends BaseApi {
       
         'goods_id' => 'goods_id|int|true||商品id'
       
+      ),
+
+      'removeAllPriceItem' => array(
+      
+        'ids' => 'ids|string|true||商品id'
+      
       )
     
     ));
@@ -199,6 +205,18 @@ class GoodsPriceMap extends BaseApi {
   public function syncSkuPriceByGoodsId() {
 
     return $this->dm->syncSkuPriceByGoodsId($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 删除所有选中价格
+   * @desc 删除所有选中价格
+   *
+   * @return int num
+   */
+  public function removeAllPriceItem() {
+  
+    return $this->dm->removeAllPriceItem($this->retriveRuleParams(__FUNCTION__));
   
   }
 

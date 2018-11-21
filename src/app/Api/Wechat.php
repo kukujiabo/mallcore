@@ -26,13 +26,13 @@ class Wechat extends BaseApi {
 
         'encrypt_type' => 'encrypt_type|string|false||加密类型',
 
-        'msg_signature' => 'msg_signature|string|false||签名参数',
+        'msg_signature' => 'msg_signature|string|false||签名参数'
                                                                  
        ),
 
        'getMiniTempCode' => array(
        
-          'token'  => 'token|string|true||用户令牌'
+        'token'  => 'token|string|true||用户令牌'
        
        )
     

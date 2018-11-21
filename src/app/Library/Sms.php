@@ -8,7 +8,7 @@ use App\Service\System\ConfigSv;
  *
  * @author Meroc Chen <398515393@qq.com>
  */
-class Sms {
+class Sms { 
 
   public function sendSms($mobile, $tpCode, $vars) {
   

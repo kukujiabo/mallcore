@@ -10,6 +10,8 @@ class GoodsPriceMap extends BaseModel {
 
   protected $_queryOptionRule = array(
 
+    'id' => 'in',
+
     'goods_name' => 'like',
 
     'sku_name' => 'like',

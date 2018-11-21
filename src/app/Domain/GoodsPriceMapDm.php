@@ -56,4 +56,10 @@ class GoodsPriceMapDm {
   
   }
 
+  public function removeAllPriceItem($data) {
+  
+    return GoodsPriceMapSv::removeAllPriceItem($data);
+  
+  }
+
 }
