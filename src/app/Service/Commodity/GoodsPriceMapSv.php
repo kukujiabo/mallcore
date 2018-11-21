@@ -300,7 +300,8 @@ class GoodsPriceMapSv extends BaseService {
         'user_level' => $row[6],
         'city_code' => $data['city_code'],
         'goods_id' => $row[8],
-        'no_code' => $row[10]
+        'no_code' => $row[10],
+        'created_at' => date('Y-m-d H:i:s')
 
       ];
 
