@@ -75,7 +75,7 @@ class WechatMenuSv extends BaseService {
 
     $url = str_replace('{ACCESS_TOKEN}', $accessToken, \PhalApi\DI()->config->get('wechat.GET_WPS_MENU'));
 
-    return iconv('UTF-8', 'GBK', Http::httpPost($url, $data['menus']));
+    return $data['menus']; iconv('UTF-8', 'GBK', Http::httpPost($url, $data['menus']));
   
   }
 

@@ -205,7 +205,7 @@ class WechatSceneSv {
     
     }
 
-    $content = iconv('GBK', 'UTF-8', $reply['val']);
+    $content = $reply['val']; // iconv('GBK', 'UTF-8', $reply['val']);
     /**
      * 发送关注回复
      */
@@ -247,7 +247,7 @@ class WechatSceneSv {
 
     $time = time();
 
-    $content = iconv('GBK', 'UTF-8', $reply['content']);
+    $content = $reply['content']; // iconv('GBK', 'UTF-8', $reply['content']);
   
     echo "<xml><ToUserName><![CDATA[{$openId}]]></ToUserName><FromUserName><![CDATA[gh_cbcd762da8e4]]></FromUserName><CreateTime>{$time}</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[{$content}]]></Content></xml>";
 

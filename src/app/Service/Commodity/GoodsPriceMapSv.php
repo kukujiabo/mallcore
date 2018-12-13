@@ -48,7 +48,7 @@ class GoodsPriceMapSv extends BaseService {
       
         'goods_id' => $params['goods_id'],
 
-        'goods_name' => iconv("UTF-8", "GBK", $params['goods_name']),
+        'goods_name' => $params['goods_name'], //iconv("UTF-8", "GBK", $params['goods_name']),
 
         'user_level' => $params['user_level'],
 
@@ -56,11 +56,11 @@ class GoodsPriceMapSv extends BaseService {
 
         'sku_id' => $sku['sku_id'],
 
-        'sku_name' => iconv("UTF-8", "GBK", $sku['sku_name']),
+        'sku_name' => $sku['sku_name'], // iconv("UTF-8", "GBK", $sku['sku_name']),
 
-        'level_name' => iconv("UTF-8", "GBK", $params['level_name']),
+        'level_name' => $params['level_name'], // iconv("UTF-8", "GBK", $params['level_name']),
       
-        'city_name' => iconv("UTF-8", "GBK", $params['city_name']),
+        'city_name' => $params['city_name'], // iconv("UTF-8", "GBK", $params['city_name']),
 
         'price' => floatval($sku['price']),
 
@@ -215,13 +215,13 @@ class GoodsPriceMapSv extends BaseService {
 
       $valuePrice = array(
 
-        'goods_name' => iconv('GBK', 'UTF-8', $price['goods_name']),
+        'goods_name' => $price['goods_name'], //iconv('GBK', 'UTF-8', $price['goods_name']),
 
-        'sku_name' => iconv('GBK', 'UTF-8', $price['sku_name']),
+        'sku_name' => $price['sku_name'], // iconv('GBK', 'UTF-8', $price['sku_name']),
 
-        'level_name' => iconv('GBK', 'UTF-8', $price['level_name']),
+        'level_name' => $price['level_name'], // iconv('GBK', 'UTF-8', $price['level_name']),
 
-        'city_name' => iconv('GBK', 'UTF-8', $price['city_name']),
+        'city_name' => $price['city_name'], //iconv('GBK', 'UTF-8', $price['city_name']),
       
         'price' => $price['price'],
 

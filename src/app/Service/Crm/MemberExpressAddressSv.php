@@ -104,7 +104,7 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         }
 
-        $data = eval('return '.iconv("UTF-8", "GBK//IGNORE", var_export($data,true)).';');
+        // $data = eval('return '.iconv("UTF-8", "GBK//IGNORE", var_export($data,true)).';');
 
         //$data['id'] = rand(100000000, 999999999);
 
@@ -263,7 +263,7 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
     
       $content = $data['content'];
 
-      $encodeContent = iconv('UTF-8', 'GBK', $content);
+      $encodeContent = $content; //iconv('UTF-8', 'GBK', $content);
 
       $query = array( 'uid' => $user['uid'] );
 

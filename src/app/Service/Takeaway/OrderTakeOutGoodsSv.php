@@ -217,7 +217,7 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
           'sign'  => $signSecret,
           'userid' => $info_order['buyer_id'],
           'wechatcode' => $userInfo['wx_openid'],
-          'wechatname' => iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
+          'wechatname' => $member['member_name'], //iconv("GBK//IGNORE", "UTF-8", $member['member_name']),
           'wechatphone' => $userInfo['user_tel'],
           'cretcode' => $cretcode,
           'csocode' => trim($info_order['sn']),
@@ -226,10 +226,10 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
           'binvoice' => $info_order['invoice'],
           "cbuserid" => $cbUser['uid'] ? $cbUser['uid'] : "",
           'cbuserphone' => $cbUser['user_tel'] ? $cbUser['user_tel'] : "",
-          'creceiver' => iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
-          'creceiveraddress' => iconv("GBK//IGNORE", "UTF-8", $address['address']),
+          'creceiver' => $address['consigner'], // iconv("GBK//IGNORE", "UTF-8", $address['consigner']),
+          'creceiveraddress' => $address['address'], // iconv("GBK//IGNORE", "UTF-8", $address['address']),
           'creceiverphone' => $address['mobile'],
-          'cmemo' => iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
+          'cmemo' => $order['buyer_message'], // iconv("GBK//IGNORE", "UTF-8", $order['buyer_message']),
           'caccid' => $info_order['cas']
         
         );
