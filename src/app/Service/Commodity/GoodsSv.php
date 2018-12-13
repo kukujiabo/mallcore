@@ -175,7 +175,7 @@ class GoodsSv extends BaseService implements IGoods {
       $data['goods_weight'] = $params['goods_weight'];
       $data['stock'] = $params['stock'];
       $data['introduction'] = $params['introduction']; //$params['introduction'] ? iconv('UTF-8', 'GBK', $params['introduction']) : '';
-      $data['description'] = $params['description']  // ? iconv('UTF-8', 'GBK', $params['description']) : '';
+      $data['description'] = $params['description'];  // ? iconv('UTF-8', 'GBK', $params['description']) : '';
       $data['brand_id'] = $params['brand_id'] ? $params['brand_id'] : '';
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
