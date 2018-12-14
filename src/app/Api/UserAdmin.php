@@ -115,6 +115,13 @@ class UserAdmin extends BaseApi {
         'token' => 'token|string|true||后台管理员领牌'
       
       ),
+
+      'editPass' => array(
+      
+        'id' => 'id|int|true||管理员id',
+        'password' => 'password|string|true||新密码'
+      
+      ),
             
       'getSysAdminList' => array(
             
@@ -306,9 +313,25 @@ class UserAdmin extends BaseApi {
     
   }
 
+  /**
+   * 查询销售代表
+   *
+   */
   public function getSalesManager() {
   
     return $this->dm->getSalesManager($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 编辑密码
+   * @desc 编辑密码
+   *
+   * @return int num
+   */
+  public function editPass() {
+  
+    return $this->dm->editPass($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 

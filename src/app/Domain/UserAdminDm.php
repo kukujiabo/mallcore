@@ -99,4 +99,10 @@ class UserAdminDm {
   
   }
 
+  public function editPass($params) {
+  
+    return UserAdminSv::editPass($params);
+  
+  }
+
 }
