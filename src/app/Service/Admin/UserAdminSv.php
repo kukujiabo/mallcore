@@ -179,7 +179,7 @@ class UserAdminSv extends BaseService implements IUserAdmin {
 
   public function editPass($data) {
   
-    return UserSv::update($data['id'], array( 'user_password' => md5($data['password'])));
+    return UserSv::batchUpdate(array( 'instance_id' => $data['id']), array( 'user_password' => md5($data['password'])));
   
   }
 
