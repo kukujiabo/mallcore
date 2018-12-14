@@ -19,17 +19,19 @@ class Response extends PhalApi_Response {
    */
   protected function formatResult($result) {
 
-    $data = eval('return '.iconv("GBK//IGNORE", "UTF-8", var_export($result,true)).';');
+    // $data = eval('return '.iconv("GBK//IGNORE", "UTF-8", var_export($result,true)).';');
+    //
+    return $result;
 
-    if (!$data) {
+   // if (!$data) {
 
-    	return parent::formatResult($result);
+   // 	return parent::formatResult($result);
 
-    } else {
+   // } else {
 
-    	return parent::formatResult($data);
+   // 	return parent::formatResult($data);
 
-    }
+   // }
   
   }
 

@@ -23,9 +23,10 @@ trait CURD {
 
       foreach($object as $key => $value) {
       
-        $codeValue = iconv('UTF-8', 'GBK', $value);
+        // $codeValue = iconv('UTF-8', 'GBK', $value);
 
-        $object[$key] = $codeValue ? $codeValue : $value;
+        // $object[$key] = $codeValue ? $codeValue : $value;
+        $object[$key] = $value;
       
       }
 
@@ -56,9 +57,10 @@ trait CURD {
 
         foreach($object as $key => $value) {
         
-          $codeValue = iconv('UTF-8', 'GBK', $value);
+          // $codeValue = iconv('UTF-8', 'GBK', $value);
 
-          $object[$key] = $codeValue ? $codeValue : $value;
+          // $object[$key] = $codeValue ? $codeValue : $value;
+          $object[$key] = $value;
         
         }
 
@@ -88,9 +90,10 @@ trait CURD {
 
     foreach($object as $key => $value) {
     
-      $codeValue = iconv('UTF-8', 'GBK', $value);
+      // $codeValue = iconv('UTF-8', 'GBK', $value);
 
-      $object[$key] = $codeValue ? $codeValue : $value;
+      // $object[$key] = $codeValue ? $codeValue : $value;
+      $object[$key] = $value;
     
     }
 
@@ -116,9 +119,10 @@ trait CURD {
 
     foreach($object as $key => $value) {
     
-      $codeValue = iconv('UTF-8', 'GBK', $value);
+      // $codeValue = iconv('UTF-8', 'GBK', $value);
 
-      $object[$key] = $codeValue ? $codeValue : $value;
+      // $object[$key] = $codeValue ? $codeValue : $value;
+      $object[$key] = $value;
     
     }
 

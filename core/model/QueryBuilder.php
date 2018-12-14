@@ -22,7 +22,7 @@ class QueryBuilder {
 
     foreach($condition as $key => $value) {
 
-      $value = iconv("UTF-8", "GB2312//IGNORE", $value);
+      // $value = iconv("UTF-8", "GB2312//IGNORE", $value);
 
       /**
        * 区间操作
