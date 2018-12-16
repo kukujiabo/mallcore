@@ -193,4 +193,10 @@ class OrderTakeOutDm {
   
   }
 
+  public function reAudit($data) {
+  
+    return OrderTakeOutSv::update($data['order_id'], array('audit' => 0));
+  
+  }
+
 }

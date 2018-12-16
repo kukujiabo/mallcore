@@ -415,6 +415,12 @@ class OrderTakeOut extends BaseApi {
 
         'order_id' => 'order_id|int|true||订单id'
       
+      ),
+
+      'reAudit' => array(
+      
+        'order_id' => 'order_id|int|true||订单id'
+      
       )
 
     ));
@@ -910,6 +916,18 @@ class OrderTakeOut extends BaseApi {
   public function getTransFirstLocation() {
   
     return $this->dm->getTransFirstLocation($this->retriveRuleParams(__FUNCTION__));
+  
+  }
+
+  /**
+   * 重新审核 
+   * @desc 重新审核 
+   *
+   * @return int num
+   */
+  public function reAudit() {
+  
+    return $this->dm->reAudit($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
