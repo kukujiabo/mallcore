@@ -2409,4 +2409,10 @@ class OrderTakeOutSv extends BaseService implements IOrderTakeOut {
   
   }
 
+  public function cancelReturnGoods($data) {
+  
+    return OrderTakeOutGoodsSv::remove($data['id']);
+  
+  }
+
 }

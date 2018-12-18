@@ -199,4 +199,10 @@ class OrderTakeOutDm {
   
   }
 
+  public function cancelReturnGoods($data) {
+  
+    return OrderTakeOutSv::cancelReturnGoods($data);
+  
+  }
+
 }
