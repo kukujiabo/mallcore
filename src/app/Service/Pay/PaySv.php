@@ -158,7 +158,9 @@ class PaySv extends BaseService implements IPay {
 
         ThirdPartyMessageLogSv::update($tid, array('status' => 1));
 
-        $self->wechatPay->replyXml($echoResult);
+        echo $self->wechatPay->replyXml($echoResult);
+
+        exit;
 
       } else { //微信支付失败
       
