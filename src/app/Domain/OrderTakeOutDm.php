@@ -199,9 +199,9 @@ class OrderTakeOutDm {
   
   }
 
-  public function cancelReturnGoods($data) {
+  public function cancelGoodsReturn($data) {
   
-    return OrderTakeOutSv::cancelReturnGoods($data);
+    return OrderTakeOutSv::cancelGoodsReturn($data);
   
   }
 

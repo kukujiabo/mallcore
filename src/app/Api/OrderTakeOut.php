@@ -423,7 +423,7 @@ class OrderTakeOut extends BaseApi {
       
       ),
 
-      'cancelReturnGoods' => array(
+      'cancelGoodsReturn' => array(
       
         'id' => 'id|int|true||退货id'
       
@@ -943,9 +943,9 @@ class OrderTakeOut extends BaseApi {
    *
    * @return int num
    */
-  public function cancelReturnGoods() {
+  public function cancelGoodsReturn() {
   
-    return $this->dm->cancelReturnGoods($this->retriveRuleParams(__FUNCTION__)); 
+    return $this->dm->cancelGoodsReturn($this->retriveRuleParams(__FUNCTION__)); 
   
   }
 
