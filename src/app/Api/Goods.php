@@ -139,8 +139,6 @@ class Goods extends BaseApi {
 
         'queryList' => array(
 
-            'token' => 'token|string|false||用户令牌',
-
             'way' => 'way|int|false||来源',
 
             'city_code' => 'city_code|int|false||城市代码',
@@ -722,6 +720,8 @@ class Goods extends BaseApi {
         ),
 
       'addSkuGoods' => array(
+
+          'provider_code' => 'provider_code|string|false||供应商编码',
 
           'brand_id' => 'brand_id|int|true||商品品牌',
 
