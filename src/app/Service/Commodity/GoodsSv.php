@@ -534,6 +534,7 @@ class GoodsSv extends BaseService implements IGoods {
     
     }
 
+
     if ($condition['city_code']) {
     
       $condition['cities'] = $condition['city_code'];
