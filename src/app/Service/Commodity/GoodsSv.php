@@ -61,18 +61,15 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function editSkuGoods($params) {
 
-      // 商品图片
       $img_data = json_decode($params['images'], true);
 
       $data = array();
 
-      // 未设置主图默认用第一张
       if (!isset($data['picture']) && isset($img_data[0])) {
 
           $data['picture'] = $img_data[0];
 
       }
-
 
       $data['thumbnail'] = $params['thumbnail'];
       $data['brand_id'] = $params['brand_id'];
@@ -102,10 +99,15 @@ class GoodsSv extends BaseService implements IGoods {
       
         foreach($signatures as $goodSignature) {
         
-          // if (!GoodsSignatureSv::findOne(array('signature' => iconv('UTF-8', 'GBK', $goodSignature)))) {
           if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
           
-            GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
+            GoodsSignatureSv::add(array(
+
+              'signature' => $goodSignature, 
+
+              'created_at' => date('Y-m-d H:i:s')
+
+            )); 
           
           }
         
@@ -137,32 +139,29 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function addSkuGoods($params) {
 
-      // 商品图片
       $img_data = json_decode($params['images'], true);
 
       foreach ($img_data as $v) {
 
-          if ($v['is_cover'] == 2) {
+        if ($v['is_cover'] == 2) {
 
-              // 商品主图
-              $data['picture'] = $v['img'];
+          $data['picture'] = $v['img'];
 
-              break;
+          break;
 
-          }
+        }
 
       }
 
-      // 未设置主图默认用第一张
       if (!isset($data['picture']) && isset($img_data[0])) {
 
-          $data['picture'] = $img_data[0];
+        $data['picture'] = $img_data[0];
 
       }
 
       $data['provider_code'] = $params['provider_code'];
       $data['thumbnail'] = $params['thumbnail'];
-      $data['goods_name'] = $params['goods_name']; //iconv('UTF-8', 'GBK', $params['goods_name']);
+      $data['goods_name'] = $params['goods_name'];
       $data['is_sku'] = $params['is_sku'];
       $data['shop_id'] = $params['shop_id'];
       $data['goods_number'] = $params['goods_number'];
@@ -175,8 +174,8 @@ class GoodsSv extends BaseService implements IGoods {
       $data['market_price'] = $params['market_price'];
       $data['goods_weight'] = $params['goods_weight'];
       $data['stock'] = $params['stock'];
-      $data['introduction'] = $params['introduction']; //$params['introduction'] ? iconv('UTF-8', 'GBK', $params['introduction']) : '';
-      $data['description'] = $params['description'];  // ? iconv('UTF-8', 'GBK', $params['description']) : '';
+      $data['introduction'] = $params['introduction'];
+      $data['description'] = $params['description'];
       $data['brand_id'] = $params['brand_id'] ? $params['brand_id'] : '';
       $data['sort'] = $params['sort'] ? $params['sort'] : '';
       $data['index_show'] = $params['index_show'];
@@ -189,10 +188,15 @@ class GoodsSv extends BaseService implements IGoods {
       
         foreach($signatures as $goodSignature) {
         
-          // if (!GoodsSignatureSv::findOne(array('signature' => iconv('UTF-8', 'GBK', $goodSignature)))) {
           if (!GoodsSignatureSv::findOne(array('signature' => $goodSignature))) {
           
-            GoodsSignatureSv::add(array('signature' => $goodSignature, 'created_at' => date('Y-m-d H:i:s'))); 
+            GoodsSignatureSv::add(array(
+
+              'signature' => $goodSignature, 
+
+              'created_at' => date('Y-m-d H:i:s')
+
+            )); 
           
           }
         
@@ -200,16 +204,13 @@ class GoodsSv extends BaseService implements IGoods {
       
       }
 
-      // 添加商品主数据
       $params['goods_id'] = $goods_id = self::addGoods($data);
 
-      // 处理商品图片
       self::imgDispose($img_data, $goods_id);
 
-      // 多规格商品添加sku商品
       if ($params['is_sku'] == 1) {
 
-          self::attrDispose($params);
+        self::attrDispose($params);
 
       }
 
@@ -222,7 +223,6 @@ class GoodsSv extends BaseService implements IGoods {
    */
   public function imgDispose($img_data, $goods_id) {
 
-      // 把所有商品图片改为无效
       GoodsImagesSv::batchUpdate(array('goods_id' => $goods_id, 'status'=> 1), array('status'=>2,'is_cover'=>1));
 
       foreach ($img_data as $key => $v) {
@@ -243,16 +243,12 @@ class GoodsSv extends BaseService implements IGoods {
 
               $data['sort'] = $key;
 
-              // 更新商品图片
               $img[$info_img['id']] = GoodsImagesSv::edit($data);
 
           } else {
 
-              //$v['id'] = rand(100000000, 999999999);
-
               $v['sort'] = $key;
 
-              // 添加商品图片
               $img[] = GoodsImagesSv::addData($v);
 
           }
@@ -270,7 +266,6 @@ class GoodsSv extends BaseService implements IGoods {
 
       $goods_id = $params['goods_id'];
 
-      // 商品sku属性
       $attribute = json_decode($params['attribute'], true);
 
       $data_attribute_value_all = array();
@@ -289,7 +284,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           $data_attribute['goods_id'] = $goods_id;
 
-          $data_attribute['attr_value'] = $v['attr_name']; //iconv('UTF-8', 'GBK', $v['attr_name']);
+          $data_attribute['attr_value'] = $v['attr_name'];
 
           $info_goods_attribute = GoodsAttributeSv::findOne($data_attribute);
 
@@ -303,8 +298,6 @@ class GoodsSv extends BaseService implements IGoods {
               $arr['attr'][$attr_id] = GoodsAttributeSv::edit($data_attribute);
 
           } else {
-
-              //$data_attribute['attr_id'] = rand(100000000, 999999999);
 
               $data_attribute['active'] = 1;
 
@@ -321,7 +314,7 @@ class GoodsSv extends BaseService implements IGoods {
               
               $data_attribute_value = array();
 
-              $data_attribute_value['attr_value'] = $vo; //iconv('UTF-8', 'GBK', $vo);
+              $data_attribute_value['attr_value'] = $vo;
 
               $data_attribute_value['attr_id'] = $attr_id;
 
@@ -331,29 +324,27 @@ class GoodsSv extends BaseService implements IGoods {
 
               if ($info_goods_attribute_value) {
 
-                  $data_attribute_value['attr_value_id'] = $attr_value_id = $info_goods_attribute_value['attr_value_id'];
+                $data_attribute_value['attr_value_id'] = $attr_value_id = $info_goods_attribute_value['attr_value_id'];
 
-                  $data_attribute_value['active'] = 1;
+                $data_attribute_value['active'] = 1;
 
-                  $data_attribute_value['sort'] = $key + 1;
+                $data_attribute_value['sort'] = $key + 1;
 
-                  // 修改商品规格项
-                  $arr['attr_value'][$attr_id][$attr_value_id] = GoodsAttributeValueSv::edit($data_attribute_value);
+                // 修改商品规格项
+                $arr['attr_value'][$attr_id][$attr_value_id] = GoodsAttributeValueSv::edit($data_attribute_value);
 
               } else {
 
-                  //$data_attribute_value['attr_value_id'] = rand(100000000, 999999999);
+                $data_attribute_value['active'] = 1;
 
-                  $data_attribute_value['active'] = 1;
+                $data_attribute_value['sort'] = $key;
 
-                  $data_attribute_value['sort'] = $key;
-
-                  $data_attribute_value['sort'] = $key + 1;
+                $data_attribute_value['sort'] = $key + 1;
 
                   // 添加商品规格项
-                  $attrValueId = GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
+                $attrValueId = GoodsAttributeValueSv::addGoodsAttributeValue($data_attribute_value);
 
-                  $attr_value_id = $arr['attr_value'][$attr_id][] = $attrValueId;
+                $attr_value_id = $arr['attr_value'][$attr_id][] = $attrValueId;
 
               }
 
@@ -380,7 +371,7 @@ class GoodsSv extends BaseService implements IGoods {
 
           }
 
-          $v['shop_id'] = $params['shop_id'];
+          $v['shop_id'] = 0;
 
           $attr_val = array();
 
@@ -406,18 +397,11 @@ class GoodsSv extends BaseService implements IGoods {
 
           if ($v['attr_value_items']) {
 
-              $where_sku['attr_value_items'] = $v['attr_value_items']; // iconv('UTF-8', 'GBK', $v['attr_value_items']);
+              $where_sku['attr_value_items'] = $v['attr_value_items'];
 
           }
 
           $v['attr_value_items_format'] = json_encode($attr_val);
-          // $where_sku['attr_value_items_format'] = $v['attr_value_items_format'] = json_encode($attr_val);
-
-          // $info_sku = GoodsSkuSv::findOne($where_sku);
-
-          // $v['attr_value_items'] = $v['attr_value_items'];
-
-          // $v['attr_value_items_format'] = $v['attr_value_items_format'];
 
           if ($v['sku_id']) {
 
@@ -437,7 +421,7 @@ class GoodsSv extends BaseService implements IGoods {
 
               $v['market_price'] = 0;
 
-              $v['sku_name'] = $v['sku_name']; // iconv('UTF-8', 'GBK', $v['sku_name']);
+              $v['sku_name'] = $v['sku_name'];
 
               $v['active'] = 1;
 

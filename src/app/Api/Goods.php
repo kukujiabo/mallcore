@@ -143,6 +143,8 @@ class Goods extends BaseApi {
 
             'provider_code' => 'provider_code|string|false||来源',
 
+            'brand_id' => 'brand_id|int|false||品牌id',
+
             'city_code' => 'city_code|int|false||城市代码',
 
             'user_level' => 'user_level|int|false||用户等级',
