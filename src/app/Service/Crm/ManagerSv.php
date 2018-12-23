@@ -66,10 +66,6 @@ class ManagerSv extends BaseService {
     $mana = self::findOne(array( 'phone' => $user['user_tel'] ));
 
     if ($mana) {
-    
-      $provider = ProviderSv::findOne($mana['pid']);
-    
-      $mana['ptype'] = $provider['ptype'];
 
       return $mana;
 
