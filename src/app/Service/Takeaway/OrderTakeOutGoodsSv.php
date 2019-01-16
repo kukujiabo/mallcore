@@ -236,18 +236,28 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
         $newAsync['detail'] = array();
 
+        $gids = explode(',', $data['goods_id']);
+
         foreach($goods as $key => $good) {
 
-          $orderGood = array(
-          
-            'autoid' => $good['id'],
-            'iunsid' => $good['id'],
-            'cinvcode' => $good['no_code'],
-            'iquantity' => $matchIds[$good['id']],
-            'iprice' => abs($good['price']),
-            'imoney' => $good['price'] * $nums[$key]
-          
-          );
+          foreach($gids as $ky => $gid) {
+
+            if ($gid == $good['id']) {
+
+              $orderGood = array(
+              
+                'autoid' => $good['id'],
+                'iunsid' => $good['id'],
+                'cinvcode' => $good['no_code'],
+                'iquantity' => $matchIds[$good['id']],
+                'iprice' => abs($good['price']),
+                'imoney' => $good['price'] * $nums[$ky]
+              
+              );
+
+            }
+
+          }
 
           array_push($newAsync['detail'], $orderGood);
 
