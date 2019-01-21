@@ -6,7 +6,7 @@
 return array(
     //公众号接口
     'WECHATPAY_EXPIRE'       => '60', // 微信支付请求超时时间
-    'WECHAT_PAY_NOTIFY_URL'  => 'http://paymall.xinxingtianxia.com/index.php/App/Pay/wechatPayNotify', //微信支付回调地址
+    'WECHAT_PAY_NOTIFY_URL'  => 'http://paymall.xinxingtianxia.com/index.php/App/Pay/wechatPayNotify/', //微信支付回调地址
     'WECHAT_PAY_IP'          => '139.196.175.163', //微信支付IP，仅对于扫码支付需要配置
     'WECHAT_UNIFIED_PAY'     => 'https://api.mch.weixin.qq.com/pay/unifiedorder', //微信统一支付地址
     'WECHAT_CODE'            => 'weixin://wxpay/bizpayurl?appid={APPID}&mch_id={MID}&nonce_str={STR}&product_id={PRODUCT}&time_stamp={TIME}&sign={SIGN}',
