@@ -38,7 +38,7 @@ class CartTakeOut extends BaseApi {
 
         'price' => 'price|float|false||商品价格',
         
-        'num' => 'num|int|true||商品数量',
+        'num' => 'num|float|true||商品数量',
 
         'goods_picture' => 'goods_picture|string|false||商品图片',
 
