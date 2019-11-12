@@ -111,7 +111,7 @@ trait CurdSv {
    *
    * @return array $list
    */
-  public function queryList($condition, $fields, $order, $page, $pageSize, $or = NULL) { 
+  public function queryList($condition, $fields, $order, $page, $pageSize = 20, $or = NULL) { 
     
     $className = get_class();
 
