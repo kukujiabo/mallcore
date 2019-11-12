@@ -161,7 +161,7 @@ trait CURD {
 
     $orm->order($order);
 
-    $orm->limit($limit, $offset);
+    $orm->limit($offset, $limit);
 
     $condition= $this->queryFieldFilter($condition);
 
