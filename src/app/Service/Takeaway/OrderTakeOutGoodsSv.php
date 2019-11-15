@@ -88,7 +88,9 @@ class OrderTakeOutGoodsSv extends BaseService implements IOrderTakeOutGoods {
 
             $data_goods['num'] = $v['num'];
 
-            $data_goods['goods_money'] = $v['num'] * ($invoice ? $v['tax_off_price'] : $v['price']);
+            $goodsMoney = $v['num'] * ($invoice ? $v['tax_off_price'] : $v['price']);
+
+            $data_goods['goods_money'] = sprintf("%.2f",$goodsMoney);
 
             $data_goods['goods_picture'] = $v['goods_picture'];
 
