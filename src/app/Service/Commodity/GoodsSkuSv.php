@@ -39,6 +39,8 @@ class GoodsSkuSv extends BaseService implements IGoodsSku {
           if ($priceRule) {
           
             $skus[$key]['price'] = $priceRule['price'];
+
+            $skus[$key]['tax_off_price'] = $priceRule['tax_off_price'];
           
           }
         
