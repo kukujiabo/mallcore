@@ -242,7 +242,7 @@ class Goods extends BaseApi {
             'update_time' => 'update_time|string|false||商品编辑时间',
 
             'sort' => 'sort|int|false||排序',
-
+            
             'img_id_array' => 'img_id_array|string|false||商品图片序列',
 
             'sku_img_array' => 'sku_img_array|string|false||商品sku应用图片列表  属性,属性值，图片ID',

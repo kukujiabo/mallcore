@@ -188,6 +188,8 @@ class GoodsPriceMapSv extends BaseService {
       '城市代码', 
       '商品代码', 
       'sku代码',
+      '分类二',
+      '分类一',
       '商品编码',
       '商品状态'
     
@@ -234,6 +236,10 @@ class GoodsPriceMapSv extends BaseService {
         'goods_id' => $price['goods_id'],
         
         'sku_id' => $price['sku_id'],
+
+        'second_category_name' => $price['second_category_name'],
+
+        'first_category_name' => $price['first_category_name'],
 
         'no_code' => $price['no_code'],
 

@@ -22,7 +22,7 @@ class UploadFile extends BaseApi {
         'type' => 'type|int|true|1|排列方式 1-纵向队列 2-横向队列',
 
       ),
-      
+
     ));
 
   }

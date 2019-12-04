@@ -2,7 +2,8 @@
 namespace App\Service;
 
 use Core\Service\CurdSv;
-use App\Service\Commodity\GoodsBrandSv; use App\Service\Commodity\GoodsSv;
+use App\Service\Commodity\GoodsBrandSv; 
+use App\Service\Commodity\GoodsSv;
 use App\Service\Commodity\GoodsSkuSv;
 use App\Service\Commodity\GoodsAttributeSv;
 use App\Service\Commodity\GoodsAttributeValueSv;
@@ -250,6 +251,12 @@ class TmpDataSv extends BaseService {
   
     return $accessToken; 
   
+  }
+
+  public function importOrderGoods() {
+
+
+
   }
 
 }

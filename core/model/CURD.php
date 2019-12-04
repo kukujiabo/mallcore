@@ -15,22 +15,9 @@ trait CURD {
    *
    * @return string $id
    */
-  protected function add(Array $data, $convert = true) {
+  protected function add(Array $data) {
 
     $object = $this->editableFieldFilter($data);
-
-    if ($convert) {
-
-      foreach($object as $key => $value) {
-      
-        // $codeValue = iconv('UTF-8', 'GBK', $value);
-
-        // $object[$key] = $codeValue ? $codeValue : $value;
-        $object[$key] = $value;
-      
-      }
-
-    }
 
     $this->orm()->insert($object);
 
@@ -45,29 +32,16 @@ trait CURD {
    *
    * @return int num
    */
-  protected function batchAdd(Array $dataSet, $convert = true) {
+  protected function batchAdd(Array $dataSet) {
 
     $objectSet = array();
-
-    if ($convert) {
   
-      foreach($dataSet as $data) {
-      
-        $object = $this->editableFieldFilter($data);
+    foreach($dataSet as $data) {
+    
+      $object = $this->editableFieldFilter($data);
 
-        foreach($object as $key => $value) {
-        
-          // $codeValue = iconv('UTF-8', 'GBK', $value);
-
-          // $object[$key] = $codeValue ? $codeValue : $value;
-          $object[$key] = $value;
-        
-        }
-
-        array_push($objectSet, $object);
-      
-      }
-
+      array_push($objectSet, $object);
+    
     }
 
     return $this->orm()->insert_multi($objectSet);
@@ -86,20 +60,11 @@ trait CURD {
 
     $orm = $this->orm();
 
-    $object = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
-
-    foreach($object as $key => $value) {
-    
-      // $codeValue = iconv('UTF-8', 'GBK', $value);
-
-      // $object[$key] = $codeValue ? $codeValue : $value;
-      $object[$key] = $value;
-    
-    }
+    $data = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
 
     $where = QueryBuilder::makeQuery(array( $this->_primaryKey => $id ), $this->_queryOptionRule);
 
-    return $orm->where($where)->update($object);
+    return $orm->where($where)->update($data);
 
   }
 
@@ -115,21 +80,11 @@ trait CURD {
 
     $orm = $this->orm();
 
-    $object = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
-
-    foreach($object as $key => $value) {
-    
-      // $codeValue = iconv('UTF-8', 'GBK', $value);
-
-      // $object[$key] = $codeValue ? $codeValue : $value;
-      $object[$key] = $value;
-    
-    }
-
+    $data = UpdateBuilder::buildUpdate($this->editableFieldFilter($data), $this->_updateOptionRule);
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
   
-    return $orm->where($where)->update($object);
+    return $orm->where($where)->update($data);
   
   }
 
@@ -161,22 +116,28 @@ trait CURD {
 
     $orm->order($order);
 
-    $orm->limit($offset, $limit);
+    $orm->limit($limit, $offset);
 
     $condition= $this->queryFieldFilter($condition);
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
+
+    if (empty($where)) {
+    
+      $where = [ '1' => 1 ];
+    
+    }
 
     if (!$or) {
 
       return $orm->where($where)->fetchRows();
 
     } else {
-    
-      return $orm->where($where)->and($or)->fetchRows();
-    
-    }
 
+      return $orm->where($where)->and($or)->fetchRows();
+
+    }
+      
   }
 
   /**
@@ -186,7 +147,7 @@ trait CURD {
    *
    * @return int $num
    */
-  protected function number($condition, $or = null) {
+  protected function number($condition, $or = NULL) {
   
     $operation = $this->_queryOptionRule;
 
@@ -196,14 +157,20 @@ trait CURD {
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
 
+    if (empty($where)) {
+    
+      $where = [ '1' => 1 ];
+    
+    }
+
     if (!$or) {
 
       return $orm->where($where)->count();
 
     } else {
-
-      return $orm->where($where)->and($or)->count();
     
+      return $orm->where($where)->and($or)->count();
+
     }
   
   }
@@ -221,11 +188,7 @@ trait CURD {
 
     if (is_array($id)) {
 
-      $condition= $this->queryFieldFilter($id);
-
-      $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
-
-      return $orm->where($where)->fetchOne();
+      return $orm->where($id)->fetchOne();
 
     } else {
 
@@ -272,7 +235,7 @@ trait CURD {
    *
    * @return array $data
    */
-  protected function all($condition, $order = NULL, $fields = '*', $or = null) {
+  protected function all($condition, $order = NULL, $fields = '*', $or = NULL) {
   
     $operation = $this->_queryOptionRule;
 
@@ -290,10 +253,16 @@ trait CURD {
 
     $where = QueryBuilder::makeQuery($condition, $this->_queryOptionRule);
 
+    if (empty($where)) {
+    
+      $where = [ '1' => 1 ];
+    
+    }
+
     if (!$or) {
 
       return $orm->where($where)->fetchRows();
-
+    
     } else {
     
       return $orm->where($where)->and($or)->fetchRows();

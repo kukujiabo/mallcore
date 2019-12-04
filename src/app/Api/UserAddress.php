@@ -16,7 +16,7 @@ class UserAddress extends BaseApi {
         return $this->rules(array(
             // 所有规则都有的固定参数
             '*' => array(
-                'token'  => array('name' => 'token', 'type' => 'string', 'require' => true, 'default' => '', 'desc' => '用户令牌'),
+                'token'  => array('name' => 'token', 'type' => 'string', 'require' => false, 'default' => '', 'desc' => '用户令牌'),
             ),
             'addAddress' => array(
                 'consigner'  => array('name' => 'consigner', 'type' => 'string', 'require' => true, 'default' => '', 'desc' => '收件人'),
