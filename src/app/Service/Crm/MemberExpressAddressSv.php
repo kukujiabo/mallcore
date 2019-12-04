@@ -32,52 +32,71 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         $condition['uid'] = $info_user['uid'];
 
-        $info = self::queryList($condition, $condition['fields'], $condition['order'], $condition['page'], $condition['page_size']);
+        $info = self::queryList(
+            $condition, 
+            $condition['fields'], 
+            $condition['order'], 
+            $condition['page'], 
+            $condition['page_size'], 
+            ""
+        );
 
-        if ($shop_id) {
+        $offset = ($condition['page'] - 1) * $condition['page_size'];
 
-            $info_shop = ShopSv::findOne($shop_id);
+        $sql = " select top({$condition['page_size']}) * from ( select  ROW_NUMBER() OVER(ORDER BY id DESC) as row_index, * from member_express_address where uid = {$condition['uid']} ) as Tmp where row_index > {$offset}";
 
-            $id = [];
+        $model = new MemberExpressAddress();
 
-            foreach ($info['list'] as $key => $value) {
+        $results = [ ];
 
-                $info['list'][$key]['is_out_of_range'] = 2;
+        $results['list'] = $model->orm()->queryAll($sql, []);
 
-                $info['list'][$key]['is_out_of_range'] = 1;
+        return $results;
 
-                $info['list'][$key]['distance'] = 0;
+        // if ($shop_id) {
 
-                $info['list'][$key]['latitude'] = 0;
+        //     $info_shop = ShopSv::findOne($shop_id);
 
-                $info['list'][$key]['longitude'] = 0;
+        //     $id = [];
 
-                $result = ShopSv::getQqCoordinate($value['address'], 1);
+        //     foreach ($info['list'] as $key => $value) {
 
-                if ($result) {
+        //         $info['list'][$key]['is_out_of_range'] = 2;
 
-                    $latitude = $info['list'][$key]['latitude'] = $result['location']['lat'];
+        //         $info['list'][$key]['is_out_of_range'] = 1;
 
-                    $longitude = $info['list'][$key]['longitude'] = $result['location']['lng'];
+        //         $info['list'][$key]['distance'] = 0;
 
-                    $distance = ShopSv::getdistance($info_shop['longitude'], $info_shop['latitude'], $longitude, $latitude);
+        //         $info['list'][$key]['latitude'] = 0;
+
+        //         $info['list'][$key]['longitude'] = 0;
+
+        //         $result = ShopSv::getQqCoordinate($value['address'], 1);
+
+        //         if ($result) {
+
+        //             $latitude = $info['list'][$key]['latitude'] = $result['location']['lat'];
+
+        //             $longitude = $info['list'][$key]['longitude'] = $result['location']['lng'];
+
+        //             $distance = ShopSv::getdistance($info_shop['longitude'], $info_shop['latitude'], $longitude, $latitude);
                     
-                    $info['list'][$key]['distance'] = $distance;
+        //             $info['list'][$key]['distance'] = $distance;
 
-                    if ($info_shop['shop_scope'] == 0 || $distance <= $info_shop['shop_scope']) {
+        //             if ($info_shop['shop_scope'] == 0 || $distance <= $info_shop['shop_scope']) {
 
-                        $info['list'][$key]['is_out_of_range'] = 2;
+        //                 $info['list'][$key]['is_out_of_range'] = 2;
 
-                    }
-                }
+        //             }
+        //         }
                 
-                $id[$key] = $info['list'][$key]['is_out_of_range'];
+        //         $id[$key] = $info['list'][$key]['is_out_of_range'];
 
-            }
+        //     }
 
-            array_multisort($id, SORT_DESC, $info['list']);
+        //     array_multisort($id, SORT_DESC, $info['list']);
 
-        }
+        // }
 
         return $info;
 
