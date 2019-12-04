@@ -32,14 +32,14 @@ class MemberExpressAddressSv extends BaseService implements IMemberExpressAddres
 
         $condition['uid'] = $info_user['uid'];
 
-        $info = self::queryList(
-            $condition, 
-            $condition['fields'], 
-            $condition['order'], 
-            $condition['page'], 
-            $condition['page_size'], 
-            ""
-        );
+        // $info = self::queryList(
+        //     $condition, 
+        //     $condition['fields'], 
+        //     $condition['order'], 
+        //     $condition['page'], 
+        //     $condition['page_size'], 
+        //     ""
+        // );
 
         $offset = ($condition['page'] - 1) * $condition['page_size'];
 
